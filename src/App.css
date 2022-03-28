@@ -40,9 +40,12 @@ height: 40px;
 }
 .header-main .navbar-light .navbar-nav .nav-link {
     color: #5c5c5c;
-    font-weight: 600;
+    font-weight: 400;
     font-size: 14px;
     margin: 0 10px;
+}
+body{
+  overflow-x: hidden;
 }
 .banner-section{
   background-image: url(../public/images/banner.png);
@@ -50,14 +53,24 @@ height: 40px;
   background-repeat: no-repeat;
   background-attachment: fixed;
   background-size: cover;
-  background-position: center;
+  background-position:  center bottom -400px;
   display: flex;
   align-items: center;
   justify-content: center;
   text-align: center;
   overflow: hidden;
   position: relative;
+  animation: moving 30s linear infinite;
+  
 }
+/*@keyframes moving{
+  from{
+    transform: translateY(0);
+  }
+  to{
+    transform: translateY(-300px);
+  }
+}*/
 
 .banner-section img{
 height: 120px;
@@ -79,7 +92,7 @@ letter-spacing: 8px;
     padding-bottom: 10px;
     transition: all ease-in-out .5s;
 }
-.banner-section:hover .total-cap-banner{
+.total-cap-banner:hover{
 bottom: 0px;
 }
 
@@ -475,13 +488,13 @@ margin-bottom: 30px;
 .header-search.input-group:hover{
   max-width: 350px;
 }
-
 .header-search.input-group .form-control {
     background-color: transparent;
     border: none;
     outline: none;
     box-shadow: none;
-    font-size: 14px;
+    font-size: 12px;
+    padding-left: 35px;
 }
 .header-search.input-group .input-group-text {
     border: none;
@@ -489,8 +502,9 @@ margin-bottom: 30px;
     padding: 6px;
 }
 .header-search.input-group .input-group-text img {
-    height: 22px;
+    height: 16px;
 }
+
 
 .scoll-down {
     position: fixed;
@@ -740,7 +754,7 @@ min-height: 500px;
 }
 .how-it-image-box img.full-img {
     object-fit: cover;
-    object-position: center;
+    object-position: center -135px;
     display: none;
 }
 .how-it-image-box .show-btn {
@@ -793,7 +807,7 @@ min-height: 500px;
     content: "";
     height: 12px;
     width: 12px;
-    background-color: green;
+    background-color: #2ed42e;
     position: absolute;
     border-radius: 50%;
     right: 4px;
@@ -893,6 +907,8 @@ padding: 5px 15px;
     min-width: 120px;
 }
 }
+
+
 
 @media (max-width: 1150px){
 

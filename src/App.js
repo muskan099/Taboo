@@ -20,7 +20,7 @@ const [showImg, setShowImg] = useState(false);
     <div className="App">
       <header className="header-main">
       <Navbar bg="light" expand="lg">
-          <Container fluid>
+          <Container>
             <Navbar.Brand href="#"> 
                <img src={'images/Logo_Small.png'} alt="logo" />
             </Navbar.Brand>
@@ -291,7 +291,7 @@ const [showImg, setShowImg] = useState(false);
         <Container fluid>
           <Row className="align-items-center">
              <Col md={3} sm={6} xs={12} className="order-2 m-auto">
-              <div className="team-side-box">
+              <div className="team-side-box aos-init aos-animate" data-aos="fade-left"  data-aos-duration="1800" data-aos-delay="500">
                  <h2><span>Our</span><span>Team</span></h2>
                  <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took</p>
               </div>
@@ -301,7 +301,7 @@ const [showImg, setShowImg] = useState(false);
                   <ul className="team-list">
                     <li>
                        <div>
-                         <img className="aos-init aos-animate" data-aos="fade-right"  data-aos-duration="800" data-aos-delay="500" src={'images/Team/team1.png'} alt="team" />
+                         <img className="aos-init aos-animate" data-aos="fade-right"  data-aos-duration="900" data-aos-delay="200" src={'images/Team/team1.png'} alt="team" />
                           <div className="content-team">
                             <h4>Eli</h4>
                             <p>Social Media Manager</p>
@@ -310,7 +310,7 @@ const [showImg, setShowImg] = useState(false);
                     </li>
                      <li>
                        <div>
-                         <img className="aos-init aos-animate" data-aos="fade-down"  data-aos-duration="800" data-aos-delay="500" src={'images/Team/team2.png'} alt="team" />
+                         <img className="aos-init aos-animate" data-aos="fade-down"  data-aos-duration="800" data-aos-delay="250" src={'images/Team/team2.png'} alt="team" />
                           <div className="content-team">
                             <h4>Majid</h4>
                             <p>CEO/Business Strategist</p>
@@ -319,7 +319,7 @@ const [showImg, setShowImg] = useState(false);
                     </li>
                     <li>
                        <div>
-                         <img className="aos-init aos-animate" data-aos="fade-right"  data-aos-duration="800" data-aos-delay="600" src={'images/Team/team3.png'} alt="team" />
+                         <img className="aos-init aos-animate" data-aos="fade-right"  data-aos-duration="800" data-aos-delay="200" src={'images/Team/team3.png'} alt="team" />
                           <div className="content-team">
                             <h4>Paul</h4>
                             <p>Developer</p>
@@ -328,7 +328,7 @@ const [showImg, setShowImg] = useState(false);
                     </li>
                     <li>
                        <div>
-                         <img className="aos-init aos-animate" data-aos="fade-up"  data-aos-duration="800" data-aos-delay="600" src={'images/Team/team4.png'} alt="team" />
+                         <img className="aos-init aos-animate" data-aos="fade-up"  data-aos-duration="800" data-aos-delay="250" src={'images/Team/team4.png'} alt="team" />
                           <div className="content-team">
                             <h4>Mat C</h4>
                             <p>Community Manager</p>
@@ -337,7 +337,7 @@ const [showImg, setShowImg] = useState(false);
                     </li>
                     <li>
                        <div>
-                         <img className="aos-init aos-animate" data-aos="fade-up"  data-aos-duration="1000" data-aos-delay="650"  src={'images/Team/team5.png'} alt="team" />
+                         <img className="aos-init aos-animate" data-aos="fade-up"  data-aos-duration="1000" data-aos-delay="300"  src={'images/Team/team5.png'} alt="team" />
                           <div className="content-team">
                             <h4>James</h4>
                             <p>CMO/CEO</p>
@@ -346,7 +346,7 @@ const [showImg, setShowImg] = useState(false);
                     </li>
                      <li>
                        <div>
-                         <img className="aos-init aos-animate" data-aos="fade-up"  data-aos-duration="800" data-aos-delay="670" src={'images/Team/team6.png'} alt="team" />
+                         <img className="aos-init aos-animate" data-aos="fade-up"  data-aos-duration="800" data-aos-delay="270" src={'images/Team/team6.png'} alt="team" />
                           <div className="content-team">
                             <h4>Khloe <br></br> terae</h4>
                             <p>Brand Ambassador</p>
@@ -355,7 +355,7 @@ const [showImg, setShowImg] = useState(false);
                     </li>
                     <li>
                        <div>
-                         <img className="aos-init aos-animate" data-aos="fade-down"  data-aos-duration="800" data-aos-delay="500" src={'images/Team/team7.png'} alt="team" />
+                         <img className="aos-init aos-animate" data-aos="fade-down"  data-aos-duration="200" data-aos-delay="500" src={'images/Team/team7.png'} alt="team" />
                           <div className="content-team">
                             <h4>Khloe <br></br> terae</h4>
                             <p>Brand Ambassador</p>
@@ -440,10 +440,10 @@ const [showImg, setShowImg] = useState(false);
             </Col>
           </Row>
           <Row className="copyright-line">
-            <Col md={4} sm={4}>
+            <Col md={6} sm={6}>
                <p>Copyright ©️ 2022 UI8 LLC. All rights reserved</p>
             </Col>
-            <Col md={4} sm={4}>
+            <Col md={6} sm={6}>
                <p class="cookies-box">
                  <b>We use cookies for better service</b>
                  <a href="">Accept</a>

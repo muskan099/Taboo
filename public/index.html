@@ -24,13 +24,22 @@
 <script>
       document.addEventListener("DOMContentLoaded", function () {
         const bannerSection =
+          document.getElementsByClassName("banner-section")[0];
+        console.log(bannerSection);
+        bannerSection.style.backgroundPosition = "bottom 50% center";
+      });
+      
+    </script>
+
+ <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        const bannerSection =
           document.getElementsByClassName("banner-section-2")[0];
         console.log(bannerSection);
         bannerSection.style.backgroundPosition = "bottom 80% center";
       });
-      // document.on("load", function () {
-      // });
-    </script>
+      
+    </script>   
 
 
 <script>
