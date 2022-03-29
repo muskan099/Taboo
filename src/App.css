@@ -329,16 +329,16 @@ body {
   bottom: -20px;
 }
 .common-btn {
-  display: inline-block;
-  background-color: #871333 !important;
-  color: #fff !important;
-  text-decoration: none;
-  padding: 8px 45px;
-  border-radius: 30px !important;
-  font-weight: 500;
-  max-width: max-content;
-  border: none !important;
-  margin: 5px;
+    display: inline-block;
+    background-color: #871333 !important;
+    color: #fff !important;
+    text-decoration: none;
+    padding: 8px 20px;
+    border-radius: 30px !important;
+    font-weight: 500;
+    max-width: max-content;
+    border: none !important;
+    margin: 5px;
 }
 .how-to-buy-sec img {
   max-height: 350px;
@@ -1141,4 +1141,72 @@ body {
     width: 100%;
     object-fit: contain;
   }
+}
+
+
+/*stakes pages css*/
+
+.padding-strip{
+  height: 80px;
+}
+.profile-img-stakes{
+margin: 30px 0 50px;
+}
+.profile-img-stakes img {
+    height: 120px;
+    width: 120px;
+    border-radius: 50%;
+    border: 5px solid #871333;
+}
+
+.profile-img-stakes p{
+  font-weight: 600;
+  color: #aaa;
+  font-size: 14px;
+  margin: 10px 0;
+}
+.table-stakes {
+    box-shadow: 0 0 10px rgba(0,0,0,0.3);
+    border-top: 2px solid rgb(135 19 51);;
+    word-break: break-all;
+    text-align: left;
+}
+.table-stakes th,
+.table-stakes td{
+padding: 15px;
+font-size: 14px;
+border: none !important;
+}
+.table-stakes.table-striped>tbody>tr:nth-of-type(odd)>* {
+    --bs-table-accent-bg: rgb(135 19 51);
+    color: #ffffff;
+}
+.table-stakes.table>:not(:first-child) {
+    border-top: none;
+}
+.section-stakes-table{
+  padding: 60px 0;
+}
+.active-status {
+    background-color: #12b912;
+    color: #fff;
+    padding: 2px 10px;
+    display: inline-block;
+    border-radius: 4px;
+    font-weight: 600;
+    font-size: 12px;
+}
+.common-btn.white-btn.withdrow-btn {
+    padding: 5px 10px;
+    font-size: 12px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.4);
+    border: 1px solid #871333 !important;
+}
+.table-stakes td{
+  font-weight: 500;
+  vertical-align: middle;
+}
+.table-stakes.table-hover>tbody>tr:hover>* {
+    --bs-table-accent-bg: rgb(255 235 240);
+    color: var(--bs-table-hover-color);
 }
