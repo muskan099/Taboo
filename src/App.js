@@ -16,14 +16,14 @@ function App() {
   }, []);
   return (
     <div className="App">
-      <Header />
       <BrowserRouter>
+        <Header />
         <Routes>
           <Route path="/" element={<Homepage />} />
           <Route path="/stakes" element={<Stakes />} />
         </Routes>
+        <Footer />
       </BrowserRouter>
-      <Footer />
     </div>
   );
 }

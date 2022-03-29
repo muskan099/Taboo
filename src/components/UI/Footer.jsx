@@ -83,7 +83,7 @@ const Footer = () => {
             <p>Copyright ©️ 2022 UI8 LLC. All rights reserved</p>
           </Col>
           <Col md={6} sm={6}>
-            <p class="cookies-box">
+            <p className="cookies-box">
               <b>We use cookies for better service</b>
               <a href="">Accept</a>
             </p>
