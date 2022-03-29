@@ -92,10 +92,10 @@ const Homepage = () => {
                   printer took
                 </p>
                 <div className="d-flex align-items-center">
-                  <a href="" class="common-btn">
+                  <a href="" className="common-btn">
                     Marketplace{" "}
                   </a>
-                  <a href="" class="common-btn white-btn">
+                  <a href="" className="common-btn white-btn">
                     Whitepaper{" "}
                   </a>
                 </div>
@@ -104,7 +104,7 @@ const Homepage = () => {
             <Col md={3}></Col>
             <Col md={5} sm={6} xs={12}>
               <div
-                class="nft-side-about-us aos-init aos-animate"
+                className="nft-side-about-us aos-init aos-animate"
                 data-aos="fade-left"
                 data-aos-duration="800"
                 data-aos-delay="600"
@@ -149,7 +149,7 @@ const Homepage = () => {
                     </div>
                   </li>
                   <li
-                    class="roadmap-new-box aos-init aos-animate"
+                    className="roadmap-new-box aos-init aos-animate"
                     data-aos="fade-right"
                     data-aos-duration="800"
                     data-aos-delay="600"
@@ -246,7 +246,9 @@ const Homepage = () => {
                 data-aos-delay="600"
               >
                 <div
-                  class={` how-it-image-box ${showImg ? "full-img-show" : ""} `}
+                  className={` how-it-image-box ${
+                    showImg ? "full-img-show" : ""
+                  } `}
                 >
                   <img className="small-img" src={"images/2.png"} alt="" />
                   <img
