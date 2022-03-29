@@ -10,7 +10,7 @@ import {
   passwordResetSaga,
   registerSaga,
   verifyOtpSaga,
-} from "./auth/auth";
+} from "./auth/authSaga";
 import { ratesSaga } from "./upperStripRate/rate";
 import { getTransactionsSaga } from "./transactions/transactionSaga";
 import { getDashboardSaga } from "./dashboard/dashboardSaga";
