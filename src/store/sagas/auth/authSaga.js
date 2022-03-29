@@ -27,32 +27,11 @@ function* setItemToLocalStorage(key, value) {
 export function* loginSaga(action) {
   yield put(loginStart());
   try {
-    const { formData, redirectToDashboardAfterLogin } = action.payload;
-    const response = yield axios.post(`/users/login`, formData);
-    if (response.status === 200) {
-      yield call(
-        setItemToLocalStorage,
-        "authToken",
-        response.data.data.loginObj.token
-      );
-      yield call(
-        setItemToLocalStorage,
-        "userRole",
-        response.data.data.loginObj.user_role
-      );
-      yield call(
-        setItemToLocalStorage,
-        "userData",
-        JSON.stringify(response.data.data.loginObj)
-      );
-      yield call(
-        setItemToLocalStorage,
-        "kycStatus",
-        JSON.stringify(response.data.data.kycstatus)
-      );
-      yield put(loginSuccess(response.data.data));
-      // yield put(redirectToDashboardAfterLogin("/dashboard"));
-      window.location.pathname = "/dashboard";
+    const { address } = action.payload;
+    if (address) {
+      yield call(setItemToLocalStorage, "isAuthenticated", true);
+      yield call(setItemToLocalStorage, "walletAddress", address);
+      yield put(loginSuccess(address));
     } else {
       yield put(loginFail("Something went wrong! Please try again."));
     }
@@ -60,6 +39,43 @@ export function* loginSaga(action) {
     yield call(catchHandler, error, loginFail);
   }
 }
+
+// export function* loginSaga(action) {
+//   yield put(loginStart());
+//   try {
+//     const { formData, redirectToDashboardAfterLogin } = action.payload;
+//     const response = yield axios.post(`/users/login`, formData);
+//     if (response.status === 200) {
+//       yield call(
+//         setItemToLocalStorage,
+//         "authToken",
+//         response.data.data.loginObj.token
+//       );
+//       yield call(
+//         setItemToLocalStorage,
+//         "userRole",
+//         response.data.data.loginObj.user_role
+//       );
+//       yield call(
+//         setItemToLocalStorage,
+//         "userData",
+//         JSON.stringify(response.data.data.loginObj)
+//       );
+//       yield call(
+//         setItemToLocalStorage,
+//         "kycStatus",
+//         JSON.stringify(response.data.data.kycstatus)
+//       );
+//       yield put(loginSuccess(response.data.data));
+//       // yield put(redirectToDashboardAfterLogin("/dashboard"));
+//       window.location.pathname = "/dashboard";
+//     } else {
+//       yield put(loginFail("Something went wrong! Please try again."));
+//     }
+//   } catch (error) {
+//     yield call(catchHandler, error, loginFail);
+//   }
+// }
 export function* registerSaga(action) {
   yield put(registerStart());
   try {

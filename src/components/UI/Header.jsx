@@ -13,8 +13,25 @@ import {
   NavDropdown,
   Container,
 } from "react-bootstrap";
+import { useDispatch, useSelector } from "react-redux";
+import Connect from "../../helpers/Connect";
+
+import userIcon from "../../assets/user-icon.png";
+
+import { loginSaga } from "../../store/reducers/authReducer";
 
 const Header = () => {
+  const dispatch = useDispatch();
+  const handleLogin = async () => {
+    let address = await Connect();
+    if (address && address.length) {
+      dispatch(loginSaga({ address: address[0] }));
+    }
+  };
+
+  const { isAuthenticated, walletAddress } = useSelector((state) => state.auth);
+  console.log({ isAuthenticated });
+
   return (
     <header className="header-main">
       <Navbar bg="light" expand="lg">
@@ -101,9 +118,34 @@ const Header = () => {
             </Dropdown.Menu>
           </Dropdown>
 
-          <Button className="common-btn" variant="outline-success">
-            Connect Wallet
-          </Button>
+          {!isAuthenticated ? (
+            <Button
+              className="common-btn"
+              variant="outline-success"
+              onClick={() => handleLogin()}
+            >
+              Connect Wallet
+            </Button>
+          ) : (
+            <>
+              {`${walletAddress?.slice(0, 3)}...${walletAddress?.slice(-3)}`}
+              <Dropdown>
+                <Dropdown.Toggle variant="success" id="dropdown-basic">
+                  <img src={userIcon} alt="" height={30} width={30} />
+                </Dropdown.Toggle>
+
+                <Dropdown.Menu>
+                  <Dropdown.Item href="#/action-1">Action</Dropdown.Item>
+                  <Dropdown.Item href="#/action-2">
+                    Another action
+                  </Dropdown.Item>
+                  <Dropdown.Item href="#/action-3">
+                    Something else
+                  </Dropdown.Item>
+                </Dropdown.Menu>
+              </Dropdown>
+            </>
+          )}
         </Container>
       </Navbar>
     </header>

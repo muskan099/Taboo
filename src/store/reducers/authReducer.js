@@ -1,24 +1,14 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-const userData = localStorage.getItem("userData");
-const storedToken = localStorage.getItem("authToken");
-const kycLocalStatus = localStorage.getItem("kycStatus");
+const isAuthenticated = localStorage.getItem("isAuthenticated");
 const walletAddress = localStorage.getItem("walletAddress");
-
 const authSlice = createSlice({
   name: "auth",
   initialState: {
-    isLoading: true,
-    kycStatus: !!kycLocalStatus && kycLocalStatus === "true" ? true : false,
+    isLoading: false,
     walletAddress: !!walletAddress ? walletAddress : "",
-    user: !!userData ? JSON.parse(userData) : {},
-    authToken: !!storedToken ? storedToken : "",
-    isAuthenticated: !!userData ? true : false,
+    isAuthenticated: !!isAuthenticated ? true : false,
     errorMsg: "",
-    isRegistered: false,
-    isOTPValid: false,
-    isForgotPasswordSuccess: false,
-    passwordResetSuccess: false,
   },
 
   reducers: {
@@ -38,13 +28,12 @@ const authSlice = createSlice({
     },
 
     loginSuccess: (state, action) => {
+      console.log(action.payload);
       return {
         ...state,
         isLoading: false,
+        walletAddress: action.payload,
         isAuthenticated: true,
-        kycStatus: action.payload.kycstatus,
-        authToken: action.payload.loginObj.token,
-        user: action.payload.loginObj,
         errorMsg: "",
       };
     },
@@ -53,7 +42,6 @@ const authSlice = createSlice({
         ...state,
         isLoading: false,
         isAuthenticated: false,
-        user: {},
         errorMsg: action.payload,
       };
     },
