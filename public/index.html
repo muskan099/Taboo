@@ -35,18 +35,18 @@
       $(document).ready(function () {
         $(window).scroll(function () {
           const scrollPos = $(window).scrollTop();
-          const scrollPosPercentage = scrollPos / 10;
+          const scrollPosPercentage = scrollPos / 2;
           console.log(scrollPosPercentage);
-          if (scrollPosPercentage > 10) {
+          if (scrollPosPercentage > 1) {
             $(".banner-section").css({
               backgroundPosition: "center bottom 0px",
-              transition: "all 2000ms",
+              transition: "all 1000ms",
             });
           }
-          if (scrollPosPercentage < 10) {
+          if (scrollPosPercentage < 1) {
             $(".banner-section").css({
               backgroundPosition: "center bottom -400px",
-              transition: "all 2000ms",
+              transition: "all 1000ms",
             });
           }
           if (scrollPosPercentage > 75 && scrollPosPercentage < 102) {

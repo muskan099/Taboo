@@ -137,14 +137,15 @@ const Header = () => {
             </Button>
           ) : (
             <>
-              <div className="wallet-address">
+              
+              <Dropdown className="d-flex align-items-center">
+                <div className="wallet-address">
                 {" "}
                 {`${walletAddress?.slice(0, 3)}...${walletAddress?.slice(
                   -3
                 )}`}{" "}
-                claa
+                
               </div>
-              <Dropdown>
                 <Dropdown.Toggle className="Dropdown-wallet-new">
                   <img src={userIcon} alt="" height={30} width={30} />
                 </Dropdown.Toggle>

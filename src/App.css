@@ -798,14 +798,17 @@ body {
 }
 .notfication-link::after {
   content: "";
-  height: 12px;
-  width: 12px;
+  height: 10px;
+  width: 10px;
   background-color: #2ed42e;
   position: absolute;
   border-radius: 50%;
-  right: 4px;
+  right: 6px;
   top: 0px;
   border: none !important;
+}
+.notfication-link img{
+  height: 20px;
 }
 .notify-dropdown.dropdown-menu {
   min-width: 300px;
@@ -1131,6 +1134,11 @@ body {
     max-width: 100%;
     text-align: left;
   }
+body .banner-section {
+    min-height: 400px;
+    background-position: center bottom 0 !important;
+}
+
 }
 
 @media (max-width: 580px) {
