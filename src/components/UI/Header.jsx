@@ -1,11 +1,10 @@
-import React from "react";
+import React, { useEffect } from "react";
 import {
   Form,
   FormControl,
   Button,
   Row,
   Col,
-  Link,
   InputGroup,
   Dropdown,
   Navbar,
@@ -13,15 +12,17 @@ import {
   NavDropdown,
   Container,
 } from "react-bootstrap";
+import { Link, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import Connect from "../../helpers/Connect";
 
 import userIcon from "../../assets/user-icon.png";
 
-import { loginSaga } from "../../store/reducers/authReducer";
+import { loginSaga, logout } from "../../store/reducers/authReducer";
 
 const Header = () => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const handleLogin = async () => {
     let address = await Connect();
     if (address && address.length) {
@@ -30,8 +31,16 @@ const Header = () => {
   };
 
   const { isAuthenticated, walletAddress } = useSelector((state) => state.auth);
-  console.log({ isAuthenticated });
 
+  useEffect(() => {
+    if (!isAuthenticated) {
+      navigate("/");
+    }
+  }, [isAuthenticated]);
+
+  const handleLogout = async () => {
+    dispatch(logout({}));
+  };
   return (
     <header className="header-main">
       <Navbar bg="light" expand="lg">
@@ -133,14 +142,16 @@ const Header = () => {
                 <Dropdown.Toggle variant="success" id="dropdown-basic">
                   <img src={userIcon} alt="" height={30} width={30} />
                 </Dropdown.Toggle>
-
                 <Dropdown.Menu>
-                  <Dropdown.Item href="#/action-1">Action</Dropdown.Item>
-                  <Dropdown.Item href="#/action-2">
-                    Another action
+                  <Dropdown.Item>
+                    <Link to="/stakes" className="dropdown-item">
+                      Stakes
+                    </Link>
                   </Dropdown.Item>
-                  <Dropdown.Item href="#/action-3">
-                    Something else
+                  <Dropdown.Item>
+                    <button className="dropdown-item" onClick={handleLogout}>
+                      Logout
+                    </button>
                   </Dropdown.Item>
                 </Dropdown.Menu>
               </Dropdown>

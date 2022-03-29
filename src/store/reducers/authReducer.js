@@ -50,11 +50,9 @@ const authSlice = createSlice({
       return {
         ...state,
         isLoading: false,
-        user: {},
-        authToken: "",
+        walletAddress: "",
         isAuthenticated: false,
         errorMsg: "",
-        kycStatus: false,
       };
     },
 
