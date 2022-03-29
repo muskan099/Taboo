@@ -128,20 +128,18 @@ const Header = () => {
             </Button>
           ) : (
             <>
-              {`${walletAddress?.slice(0, 3)}...${walletAddress?.slice(-3)}`}
+              <div className="wallet-address"> {`${walletAddress?.slice(0, 3)}...${walletAddress?.slice(-3)}`} claa</div>
               <Dropdown>
-                <Dropdown.Toggle variant="success" id="dropdown-basic">
+                <Dropdown.Toggle  className="Dropdown-wallet-new">
                   <img src={userIcon} alt="" height={30} width={30} />
                 </Dropdown.Toggle>
 
                 <Dropdown.Menu>
-                  <Dropdown.Item href="#/action-1">Action</Dropdown.Item>
+                  <Dropdown.Item href="#/action-1">Home</Dropdown.Item>
                   <Dropdown.Item href="#/action-2">
-                    Another action
+                    Stakes
                   </Dropdown.Item>
-                  <Dropdown.Item href="#/action-3">
-                    Something else
-                  </Dropdown.Item>
+                 
                 </Dropdown.Menu>
               </Dropdown>
             </>
