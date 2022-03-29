@@ -11,8 +11,8 @@ ReactDOM.render(
   <React.StrictMode>
     <Provider store={store}>
       <App />
+      <ScrollToTopButton />
     </Provider>
-    <ScrollToTopButton />
   </React.StrictMode>,
   document.getElementById("root")
 );

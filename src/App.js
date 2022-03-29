@@ -23,7 +23,6 @@ function App() {
           <Route path="/stakes" element={<Stakes />} />
         </Routes>
       </BrowserRouter>
-      <Homepage />
       <Footer />
     </div>
   );
