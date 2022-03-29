@@ -339,6 +339,7 @@ body {
   max-width: max-content;
   border: none !important;
   margin: 5px;
+  color: #fff !important;
 }
 .how-to-buy-sec img {
   max-height: 350px;
