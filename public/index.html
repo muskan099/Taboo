@@ -4,54 +4,73 @@
     <meta charset="utf-8" />
     <link rel="icon" href="%PUBLIC_URL%/images/Logo_Small.png" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=1.0, minimum-scale=1.0, maximum-scale=1.0">
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, user-scalable=1.0, minimum-scale=1.0, maximum-scale=1.0"
+    />
     <meta name="theme-color" content="#000000" />
     <meta
       name="description"
       content="Web site created using create-react-app"
     />
     <link rel="apple-touch-icon" href="%PUBLIC_URL%/images/Logo_Small.png" />
-    
-   
+
     <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
-   <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/fontawesome.min.css">
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/fontawesome.min.css"
+    />
+    <script
+      src="https://code.jquery.com/jquery-3.6.0.min.js"
+      integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
+      crossorigin="anonymous"
+    ></script>
     <title>Taboo New</title>
   </head>
   <body>
-   
     <div id="root"></div>
-    
-<script>
-      document.addEventListener("DOMContentLoaded", function () {
-        const bannerSection =
-          document.getElementsByClassName("banner-section")[0];
-        console.log(bannerSection);
-        bannerSection.style.backgroundPosition = "bottom 50% center";
+
+    <script>
+      $(document).ready(function () {
+        $(window).scroll(function () {
+          const scrollPos = $(window).scrollTop();
+          const scrollPosPercentage = scrollPos / 10;
+          console.log(scrollPosPercentage);
+          if (scrollPosPercentage > 75 && scrollPosPercentage < 102) {
+            $(".banner-section-2").css({
+              backgroundPosition: `bottom 90% center`,
+              transition: "all 3000ms",
+            });
+            // $('.banner-section-2-image-box').attr('data-aos'""fade-up"')
+          }
+          if (scrollPosPercentage < 75 || scrollPosPercentage > 102) {
+            $(".banner-section-2").css({
+              backgroundPosition: `bottom 20% center`,
+              transition: "all 3000ms",
+            });
+          }
+        });
       });
-      
     </script>
 
- <script>
+    <!-- <script>
       document.addEventListener("DOMContentLoaded", function () {
         const bannerSection =
           document.getElementsByClassName("banner-section-2")[0];
         console.log(bannerSection);
         bannerSection.style.backgroundPosition = "bottom 80% center";
       });
-      
-    </script>   
+    </script> -->
 
-
-<script>
-$(window).scroll(function(){
-    if ($(this).scrollTop() > 50) {
-       $('.header-main').addClass('dark-header');
-    } else {
-       $('.header-main').removeClass('dark-header');
-    }
-});
-</script>
-
+    <script>
+      $(window).scroll(function () {
+        if ($(this).scrollTop() > 50) {
+          $(".header-main").addClass("dark-header");
+        } else {
+          $(".header-main").removeClass("dark-header");
+        }
+      });
+    </script>
   </body>
-
 </html>
