@@ -137,12 +137,19 @@ const Header = () => {
             </Button>
           ) : (
             <>
-              <div className="wallet-address"> {`${walletAddress?.slice(0, 3)}...${walletAddress?.slice(-3)}`} claa</div>
+              <div className="wallet-address">
+                {" "}
+                {`${walletAddress?.slice(0, 3)}...${walletAddress?.slice(
+                  -3
+                )}`}{" "}
+                claa
+              </div>
               <Dropdown>
-                <Dropdown.Toggle  className="Dropdown-wallet-new">
+                <Dropdown.Toggle className="Dropdown-wallet-new">
                   <img src={userIcon} alt="" height={30} width={30} />
                 </Dropdown.Toggle>
                 <Dropdown.Menu>
+                  <Dropdown.Item>
                     <Link to="/stakes" className="dropdown-item">
                       Stakes
                     </Link>
@@ -152,7 +159,6 @@ const Header = () => {
                       Logout
                     </button>
                   </Dropdown.Item>
-                 
                 </Dropdown.Menu>
               </Dropdown>
             </>
