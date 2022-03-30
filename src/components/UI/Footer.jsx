@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   Form,
   FormControl,
@@ -6,10 +6,16 @@ import {
   Row,
   Col,
   Link,
+  Modal,
   InputGroup,
   Container,
 } from "react-bootstrap";
 const Footer = () => {
+  // Modal Code
+  const [show, setShow] = useState(false);
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
+
   return (
     <section className="footer-box">
       <Container>
@@ -29,13 +35,34 @@ const Footer = () => {
               <h6>Crypter</h6>
               <ul>
                 <li>
-                  <a href="">Discover</a>
+                  <a
+                    onClick={(e) => {
+                      e.preventDefault();
+                      setShow(true);
+                    }}
+                  >
+                    Discover
+                  </a>
                 </li>
                 <li>
-                  <a href="">Connect wallet</a>
+                  <a
+                    onClick={(e) => {
+                      e.preventDefault();
+                      setShow(true);
+                    }}
+                  >
+                    Connect wallet
+                  </a>
                 </li>
                 <li>
-                  <a href="">Create Item</a>
+                  <a
+                    onClick={(e) => {
+                      e.preventDefault();
+                      setShow(true);
+                    }}
+                  >
+                    Create Item
+                  </a>
                 </li>
               </ul>
             </div>
@@ -45,13 +72,34 @@ const Footer = () => {
               <h6>Info</h6>
               <ul>
                 <li>
-                  <a href="">Download</a>
+                  <a
+                    onClick={(e) => {
+                      e.preventDefault();
+                      setShow(true);
+                    }}
+                  >
+                    Download
+                  </a>
                 </li>
                 <li>
-                  <a href="">Demos</a>
+                  <a
+                    onClick={(e) => {
+                      e.preventDefault();
+                      setShow(true);
+                    }}
+                  >
+                    Demos
+                  </a>
                 </li>
                 <li>
-                  <a href="">Support</a>
+                  <a
+                    onClick={(e) => {
+                      e.preventDefault();
+                      setShow(true);
+                    }}
+                  >
+                    Support
+                  </a>
                 </li>
               </ul>
             </div>
@@ -85,11 +133,34 @@ const Footer = () => {
           <Col md={6} sm={6}>
             <p className="cookies-box">
               <b>We use cookies for better service</b>
-              <a href="">Accept</a>
+              <a
+                onClick={(e) => {
+                  e.preventDefault();
+                  setShow(true);
+                }}
+              >
+                Accept
+              </a>
             </p>
           </Col>
         </Row>
       </Container>
+      <Modal
+        size="lg"
+        aria-labelledby="contained-modal-title-vcenter"
+        centered
+        className="modal-comming-soon"
+        show={show}
+        onHide={handleClose}
+      >
+        <Modal.Header closeButton className="border-none"></Modal.Header>
+        <Modal.Body>
+          <div className="outer-div">
+            <img src={"images/coming-soon.png"} className="img-fluid" />
+            <h5>This page will be Added Soon</h5>
+          </div>
+        </Modal.Body>
+      </Modal>
     </section>
   );
 };
