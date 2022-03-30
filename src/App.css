@@ -199,17 +199,24 @@ body {
   min-height: 150px;
 }
 .inner-roadmap-list > li::before {
-  content: "x";
+  content: "";
   position: absolute;
   left: -14px;
   height: 25px;
   width: 25px;
+  background-image: url("./assets/images/plus.png");
+  background-repeat: no-repeat;
+    background-size: 50%;
+    background-position: center;
   background-color: #871333;
   border-radius: 50%;
   color: #fff;
   line-height: 21px;
   font-weight: 700;
   top: 5px;
+  transition: all 1s ease-in-out;
+  cursor: pointer;
+  z-index: 10;
 }
 .inner-roadmap-list > li::after {
   content: "";
@@ -219,6 +226,9 @@ body {
   background-color: #871333;
   left: 0;
   top: 18px;
+  transition: all 1s ease-in-out;
+  opacity: 0;
+  transform: translateX(-15px);
 }
 .inner-roadmap-list > li:nth-child(odd) {
   position: relative;
@@ -248,7 +258,7 @@ body {
 
 .inner-roadmap-list > li.roadmap-new-box > div ul {
   position: absolute;
-  top: -159px;
+  top: -90px;
   padding-right: 130px !important;
 }
 
@@ -277,20 +287,55 @@ body {
 .inner-roadmap-list > li > div ul {
   text-align: left;
   padding-left: 75px;
+  transition: all 1s ease-in-out;
+  opacity: 0;
+  transform: translateX(-115px);
+}
+
+.inner-roadmap-list > li:hover > div ul {
+  transform: translateX(0px);
+  opacity: 1;
+}
+.inner-roadmap-list > li:hover::after {
+  transform: translateX(0px);
+  opacity: 1;
+}
+.inner-roadmap-list > li:hover::before{
+  transform: rotate(45deg);
 }
 .inner-roadmap-list > li:nth-child(odd) > div ul {
   padding-right: 75px;
   padding-left: 0;
 }
+
+.inner-roadmap-list > li:nth-child(odd) > div ul {
+  transition: all 1s ease-in-out;
+  opacity: 0;
+  transform: translateX(115px);
+}
+.inner-roadmap-list > li:nth-child(odd):hover > div ul{
+   transform: translateX(0px);
+  opacity: 1;
+}
+.inner-roadmap-list > li:nth-child(odd)::after {
+  transition: all 1s ease-in-out;
+  opacity: 0;
+  transform: translateX(15px);
+}
+.inner-roadmap-list > li:nth-child(odd):hover::after {
+  transform: translateX(0px);
+  opacity: 1;
+}
+
 .inner-roadmap-list > li > div ul li {
   list-style: none;
   font-size: 14px;
   line-height: 19px;
   margin-bottom: 5px;
 }
-.inner-roadmap-list > li:nth-child(2)::after {
+/*.inner-roadmap-list > li:nth-child(2)::after {
   content: none;
-}
+}*/
 
 .how-to-buy-sec {
   background-color: #f4f5f6;
@@ -553,11 +598,12 @@ body {
   font-size: 14px;
 }
 .team-list {
-  padding: 0;
-  margin: 0;
-  position: relative;
-  min-height: 500px;
-  width: 990px;
+    padding: 0;
+    margin: 0;
+    position: relative;
+    min-height: 500px;
+    width: 990px;
+    margin: 0 auto;
 }
 .team-list li {
   list-style: none;
@@ -1138,7 +1184,21 @@ body .banner-section {
     min-height: 400px;
     background-position: center bottom 0 !important;
 }
-
+.inner-roadmap-list > li > div ul {
+  transform: translateX(0px) !important;
+  opacity: 1 !important;
+}
+.inner-roadmap-list > li::after {
+  transform: translateX(0px) !important;
+  opacity: 1 !important;
+}
+.inner-roadmap-list > li::before{
+  transform: rotate(45deg);
+}
+.team-list li > div {
+    max-width: 320px;
+    margin: 0  auto;
+}
 }
 
 @media (max-width: 580px) {

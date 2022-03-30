@@ -37,16 +37,16 @@
           const scrollPos = $(window).scrollTop();
           const scrollPosPercentage = scrollPos / 2;
           console.log(scrollPosPercentage);
-          if (scrollPosPercentage > 1) {
+          if (scrollPosPercentage > 0) {
             $(".banner-section").css({
               backgroundPosition: "center bottom 0px",
-              transition: "all 1000ms",
+              transition: "all 500ms",
             });
           }
           if (scrollPosPercentage < 1) {
             $(".banner-section").css({
               backgroundPosition: "center bottom -400px",
-              transition: "all 1000ms",
+              transition: "all 500ms",
             });
           }
           if (scrollPosPercentage > 75 && scrollPosPercentage < 102) {
