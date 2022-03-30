@@ -52,6 +52,8 @@
         tabooAboutUsNft.addClass("opacity-zero");
         tabooAboutUsBox.addClass("opacity-zero");
 
+        const roadmapbuttons = document.getElementsByClassName("button-plus");
+
         $(window).scroll(function () {
           const isFirstBannerVisible = firstBanner.isInViewport();
           const isSecondBannerVisible = secondBanner.isInViewport();
@@ -140,6 +142,11 @@
               animation: "fadeInLeft 3s ease-in-out",
             });
           }
+        });
+
+        $(".button-plus").click(function () {
+          $(".show-roadmap-content").removeClass("show-roadmap-content");
+          $(this).parent().toggleClass("show-roadmap-content");
         });
       });
     </script>

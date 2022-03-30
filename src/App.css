@@ -365,6 +365,8 @@ body {
   line-height: 19px;
   margin-bottom: 5px;
 }
+.show-roadmap-content {
+}
 /*.inner-roadmap-list > li:nth-child(2)::after {
   content: none;
 }*/
@@ -1230,6 +1232,14 @@ body {
   .team-list li > div {
     max-width: 320px;
     margin: 0 auto;
+  }
+
+  .button-plus {
+    left: 0;
+  }
+  .inner-roadmap-list > li:nth-child(odd) .button-plus {
+    right: auto;
+    left: 0;
   }
 }
 
