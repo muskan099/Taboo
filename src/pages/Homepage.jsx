@@ -161,7 +161,7 @@ const Homepage = () => {
                   </li>
 
                   <li
-                    className="roadmap-new-box aos-init aos-animate"
+                    className="roadmap-new-box aos-init aos-animate show-roadmap-content"
                     data-aos="fade-right"
                     data-aos-duration="20"
                     data-aos-delay="20"
@@ -202,7 +202,7 @@ const Homepage = () => {
                     </div>
                   </li>
                   <li
-                    className="aos-init aos-animate"
+                    className="aos-init aos-animate show-roadmap-content"
                     data-aos="fade-left"
                     data-aos-duration="20"
                     data-aos-delay="20"
@@ -221,7 +221,7 @@ const Homepage = () => {
                     </div>
                   </li>
                   <li
-                    className="aos-init aos-animate"
+                    className="aos-init aos-animate show-roadmap-content"
                     data-aos="fade-right"
                     data-aos-duration="20"
                     data-aos-delay="20"
