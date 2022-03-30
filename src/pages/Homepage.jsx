@@ -331,7 +331,7 @@ const Homepage = () => {
                 </p>
               </div>
             </Col>
-            <Col xxl={8} xl={9} lg={9} md={9} sm={12} xs={12}>
+            <Col xxl={9} xl={9} lg={9} md={9} sm={12} xs={12}>
               <div>
                 <ul className="team-list">
                   <li>

@@ -806,7 +806,7 @@ body {
   color: #505050 !important;
 }
 .banner-section-2 {
-  padding: 60px 0;
+  padding: 100px 0;
 }
 .inner-box-how {
   position: relative;
@@ -929,7 +929,10 @@ body {
   font-weight: 500;
 }
 .nft-side-about-us {
-  position: relative;
+    position: relative;
+    max-width: 460px;
+    top: 0px;
+    right: -35px;
 }
 .nft-side-about-us h5 {
   position: absolute;
