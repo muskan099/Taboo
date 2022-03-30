@@ -141,9 +141,9 @@ const Homepage = () => {
                     data-aos-duration="20"
                     data-aos-delay="20"
                   >
-                  <button className="button-plus">
-                     <img src={"images/plus.png"} alt="icon" />
-                  </button>
+                    <button className="button-plus">
+                      <img src={"images/plus.png"} alt="icon" />
+                    </button>
                     <div>
                       <h4>Q1 2022</h4>
                       <ul>
@@ -156,7 +156,6 @@ const Homepage = () => {
                           - Smart Contract Audits on our Fully Integrated DeFi
                           platform.
                         </li>
-                      
                       </ul>
                     </div>
                   </li>
@@ -167,11 +166,11 @@ const Homepage = () => {
                     data-aos-duration="20"
                     data-aos-delay="20"
                   >
-                  <button className="button-plus">
-                     <img src={"images/plus.png"} alt="icon" />
-                  </button>
+                    <button className="button-plus">
+                      <img src={"images/plus.png"} alt="icon" />
+                    </button>
                     <div>
-                      <h4>Q1 2022</h4>
+                      <h4>Q2 2022</h4>
                       <ul>
                         <li>
                           - Cross chain SDK integration will have begun by now,
@@ -208,9 +207,9 @@ const Homepage = () => {
                     data-aos-duration="20"
                     data-aos-delay="20"
                   >
-                  <button className="button-plus">
-                     <img src={"images/plus.png"} alt="icon" />
-                  </button>
+                    <button className="button-plus">
+                      <img src={"images/plus.png"} alt="icon" />
+                    </button>
                     <div>
                       <h4>Q3 2022</h4>
                       <ul>
@@ -227,9 +226,9 @@ const Homepage = () => {
                     data-aos-duration="20"
                     data-aos-delay="20"
                   >
-                  <button className="button-plus">
-                     <img src={"images/plus.png"} alt="icon" />
-                  </button>
+                    <button className="button-plus">
+                      <img src={"images/plus.png"} alt="icon" />
+                    </button>
                     <div>
                       <h4>Q4 2022</h4>
                       <ul>
@@ -305,7 +304,15 @@ const Homepage = () => {
       <section className="team-sec-new">
         <Container fluid>
           <Row className="align-items-center">
-            <Col xxl={3} xl={3} lg={3} md={3} sm={6} xs={12} className="order-2 mt-auto mb-auto ml-0">
+            <Col
+              xxl={3}
+              xl={3}
+              lg={3}
+              md={3}
+              sm={6}
+              xs={12}
+              className="order-2 mt-auto mb-auto ml-0"
+            >
               <div
                 className="team-side-box aos-init aos-animate"
                 data-aos="fade-left"
@@ -324,7 +331,7 @@ const Homepage = () => {
                 </p>
               </div>
             </Col>
-            <Col xxl={8}  xl={9} lg={9} md={9} sm={12} xs={12}>
+            <Col xxl={8} xl={9} lg={9} md={9} sm={12} xs={12}>
               <div>
                 <ul className="team-list">
                   <li>
@@ -436,9 +443,7 @@ const Homepage = () => {
                         alt="team"
                       />
                       <div className="content-team">
-                        <h4>
-                          Conrad
-                        </h4>
+                        <h4>Conrad</h4>
                         <p>Present egal Air</p>
                       </div>
                     </div>
