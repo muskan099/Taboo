@@ -42,8 +42,8 @@
   font-weight: 400;
   font-size: 14px;
   margin: 0 10px;
-  outline:none !important;
-  border:none !important;
+  outline: none !important;
+  border: none !important;
 }
 body {
   overflow-x: hidden;
@@ -208,8 +208,8 @@ body {
   width: 25px;
   background-image: url("./assets/images/plus.png");
   background-repeat: no-repeat;
-    background-size: 50%;
-    background-position: center;
+  background-size: 50%;
+  background-position: center;
   background-color: #871333;
   border-radius: 50%;
   color: #fff;
@@ -221,27 +221,26 @@ body {
   z-index: 10;
 }
 .button-plus {
-    position: absolute;
-    left: -14px;
-    height: 25px;
-    width: 25px;
-    background-color: #871333;
-    border: none !important;
-    border-radius: 50%;
-    color: #fff;
-    line-height: 16px;
-    font-weight: 700;
-    top: 5px;
-    transition: all 1s ease-in-out;
-    cursor: pointer;
-    z-index: 10;
+  position: absolute;
+  left: -14px;
+  height: 25px;
+  width: 25px;
+  background-color: #871333;
+  border: none !important;
+  border-radius: 50%;
+  color: #fff;
+  line-height: 16px;
+  font-weight: 700;
+  top: 5px;
+  transition: all 1s ease-in-out;
+  cursor: pointer;
+  z-index: 10;
 }
-.button-plus img{
+.button-plus img {
   height: 100%;
   width: 100%;
   object-fit: contain;
 }
-
 
 .inner-roadmap-list > li::after {
   content: "";
@@ -268,7 +267,7 @@ body {
   right: 0;
   left: auto;
 }
-.inner-roadmap-list > li:nth-child(odd) .button-plus{
+.inner-roadmap-list > li:nth-child(odd) .button-plus {
   right: -14px;
   left: auto;
 }
@@ -321,8 +320,6 @@ body {
   transform: translateX(-115px);
 }
 
-
-
 .inner-roadmap-list > li:hover > div ul {
   transform: translateX(0px);
   opacity: 1;
@@ -331,15 +328,12 @@ body {
   transform: translateX(0px);
   opacity: 1;
 }
-.inner-roadmap-list > li:hover::before{
+.inner-roadmap-list > li:hover::before {
   transform: rotate(45deg);
 }
-.inner-roadmap-list > li:hover .button-plus{
+.inner-roadmap-list > li:hover .button-plus {
   transform: rotate(45deg);
-} 
-
-
-
+}
 
 .inner-roadmap-list > li:nth-child(odd) > div ul {
   padding-right: 75px;
@@ -351,8 +345,8 @@ body {
   opacity: 0;
   transform: translateX(115px);
 }
-.inner-roadmap-list > li:nth-child(odd):hover > div ul{
-   transform: translateX(0px);
+.inner-roadmap-list > li:nth-child(odd):hover > div ul {
+  transform: translateX(0px);
   opacity: 1;
 }
 .inner-roadmap-list > li:nth-child(odd)::after {
@@ -636,12 +630,12 @@ body {
   font-size: 14px;
 }
 .team-list {
-    padding: 0;
-    margin: 0;
-    position: relative;
-    min-height: 500px;
-    width: 990px;
-    margin: 0 auto;
+  padding: 0;
+  margin: 0;
+  position: relative;
+  min-height: 500px;
+  width: 990px;
+  margin: 0 auto;
 }
 .team-list li {
   list-style: none;
@@ -891,7 +885,7 @@ body {
   top: 0px;
   border: none !important;
 }
-.notfication-link img{
+.notfication-link img {
   height: 20px;
 }
 .notify-dropdown.dropdown-menu {
@@ -1218,25 +1212,25 @@ body {
     max-width: 100%;
     text-align: left;
   }
-body .banner-section {
+  body .banner-section {
     min-height: 400px;
     background-position: center bottom 0 !important;
-}
-.inner-roadmap-list > li > div ul {
-  transform: translateX(0px) !important;
-  opacity: 1 !important;
-}
-.inner-roadmap-list > li::after {
-  transform: translateX(0px) !important;
-  opacity: 1 !important;
-}
-.inner-roadmap-list > li::before{
-  transform: rotate(45deg);
-}
-.team-list li > div {
+  }
+  .inner-roadmap-list > li > div ul {
+    transform: translateX(0px) !important;
+    opacity: 1 !important;
+  }
+  .inner-roadmap-list > li::after {
+    transform: translateX(0px) !important;
+    opacity: 1 !important;
+  }
+  .inner-roadmap-list > li::before {
+    transform: rotate(45deg);
+  }
+  .team-list li > div {
     max-width: 320px;
-    margin: 0  auto;
-}
+    margin: 0 auto;
+  }
 }
 
 @media (max-width: 580px) {
@@ -1370,41 +1364,112 @@ body .banner-section {
   --bs-table-accent-bg: rgb(255 235 240);
   color: var(--bs-table-hover-color);
 }
-.modal-comming-soon{
-
+.modal-comming-soon {
 }
-body{
+body {
   padding: 0 !important;
 }
-.modal-comming-soon .border-none{
-  border:none;
+.modal-comming-soon .border-none {
+  border: none;
 }
 .modal-comming-soon .modal-dialog {
-    max-width: 600px;
+  max-width: 600px;
 }
 .modal-comming-soon .modal-header .btn-close {
-    position: absolute;
-    color: #871333;
-    right: 15px;
-    top: 15px;
-    outline: none !important;
-    border: none !important;
-    box-shadow: none !important;
-    opacity: 1;
+  position: absolute;
+  color: #871333;
+  right: 15px;
+  top: 15px;
+  outline: none !important;
+  border: none !important;
+  box-shadow: none !important;
+  opacity: 1;
 }
-.modal-comming-soon .modal-body{
+.modal-comming-soon .modal-body {
+}
+.modal-comming-soon .outer-div {
+  text-align: center;
+}
 
-}
-.modal-comming-soon .outer-div{
-text-align: center;
-}
-
-.modal-comming-soon .outer-div img{
+.modal-comming-soon .outer-div img {
   height: 200px;
 }
-.modal-comming-soon .outer-div h5{
+.modal-comming-soon .outer-div h5 {
   font-size: 20px;
   color: #871333;
   text-transform: uppercase;
   margin: 30px 0;
 }
+
+/* CSS Banner Animation By Shashank */
+@keyframes fadeInRight {
+  from {
+    opacity: 0;
+    transform: translateX(300px);
+  }
+  to {
+    opacity: 1;
+  }
+}
+@keyframes fadeOutRight {
+  from {
+    opacity: 1;
+    transform: translateX(0px);
+  }
+  to {
+    opacity: 0;
+    transform: translateX(300px);
+  }
+}
+.taboo-box-fadeout-animation {
+  opacity: 0;
+  transition: opacity 1s;
+  animation: fadeOutLeft 1s ease-out;
+}
+.nft-box-fadeout-animation {
+  opacity: 0;
+  transition: opacity 1s;
+  animation: fadeOutRight 1s ease-out;
+}
+
+@keyframes fadeInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-300px);
+  }
+  to {
+    opacity: 1;
+  }
+}
+@keyframes fadeOutLeft {
+  from {
+    opacity: 1;
+    transform: translateX(0px);
+  }
+  to {
+    opacity: 0;
+    transform: translateX(-300px);
+  }
+}
+
+@keyframes fadeout {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+
+.opacity-zero {
+  opacity: 0;
+  /* animation: fadeout 1s ease-out; */
+}
+@media (min-width: 1281px) {
+  .nft-side-about-us {
+    position: relative;
+    margin-right: -250px;
+    margin-top: -60px;
+  }
+}
+/* CSS Banner Animation By Shashank */
