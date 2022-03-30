@@ -21,6 +21,78 @@
       type="text/css"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/fontawesome.min.css"
     />
+    <style>
+      @keyframes fadeInRight {
+        from {
+          opacity: 0;
+          transform: translateX(300px);
+        }
+        to {
+          opacity: 1;
+        }
+      }
+      @keyframes fadeOutRight {
+        from {
+          opacity: 1;
+          transform: translateX(0px);
+        }
+        to {
+          opacity: 0;
+          transform: translateX(300px);
+        }
+      }
+      .taboo-box-fadeout-animation {
+        opacity: 0;
+        transition: opacity 1s;
+        animation: fadeOutLeft 1s ease-out;
+      }
+      .nft-box-fadeout-animation {
+        opacity: 0;
+        transition: opacity 1s;
+        animation: fadeOutRight 1s ease-out;
+      }
+
+      @keyframes fadeInLeft {
+        from {
+          opacity: 0;
+          transform: translateX(-300px);
+        }
+        to {
+          opacity: 1;
+        }
+      }
+      @keyframes fadeOutLeft {
+        from {
+          opacity: 1;
+          transform: translateX(0px);
+        }
+        to {
+          opacity: 0;
+          transform: translateX(-300px);
+        }
+      }
+
+      @keyframes fadeout {
+        from {
+          opacity: 1;
+        }
+        to {
+          opacity: 0;
+        }
+      }
+
+      .opacity-zero {
+        opacity: 0;
+        /* animation: fadeout 1s ease-out; */
+      }
+      @media (min-width: 1281px) {
+        .nft-side-about-us {
+          position: relative;
+          margin-right: -250px;
+          margin-top: -60px;
+        }
+      }
+    </style>
     <script
       src="https://code.jquery.com/jquery-3.6.0.min.js"
       integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
@@ -32,11 +104,30 @@
     <div id="root"></div>
 
     <script>
+      $.fn.isInViewport = function () {
+        var elementTop = $(this).offset().top;
+        var elementBottom = elementTop + $(this).outerHeight();
+
+        var viewportTop = $(window).scrollTop();
+        var viewportBottom = viewportTop + $(window).height();
+
+        return elementBottom > viewportTop && elementTop < viewportBottom;
+      };
+
       $(document).ready(function () {
+        $("#taboo-about-us-nft").addClass("opacity-zero");
+        $("#taboo-about-us-box").addClass("opacity-zero");
+
         $(window).scroll(function () {
+          const isBannerSection_2_InViewport =
+            $(".banner-section-2").isInViewport();
+
+          const isRoadMapInViewport = $(".roadmap-new-box").isInViewport();
+          const isTabooLogoInViewport = $(".taboo-logo").isInViewport();
+
           const scrollPos = $(window).scrollTop();
           const scrollPosPercentage = scrollPos / 2;
-          console.log(scrollPosPercentage);
+
           if (scrollPosPercentage > 1) {
             $(".banner-section").css({
               backgroundPosition: "center bottom 0px",
@@ -49,31 +140,76 @@
               transition: "all 1000ms",
             });
           }
-          if (scrollPosPercentage > 75 && scrollPosPercentage < 102) {
+
+          if (
+            $(".banner-section").isInViewport() &&
+            $(".banner-section-2").isInViewport()
+          ) {
+            // document.getElementById("taboo-about-us-nft").style = "";
+            // $("#taboo-about-us-nft").addClass("opacity-zero");
+            $("#taboo-about-us-nft").css({
+              // transform: "translateX(-300px)",
+            });
+          }
+
+          if (isTabooLogoInViewport && !isBannerSection_2_InViewport) {
+            $("#taboo-about-us-nft").addClass("nft-box-fadeout-animation");
+            $("#taboo-about-us-box").addClass("taboo-box-fadeout-animation");
+          }
+
+          if (isBannerSection_2_InViewport && isTabooLogoInViewport) {
+            $("#taboo-about-us-nft").removeAttr("style");
+            $("#taboo-about-us-box").removeAttr("style");
+            $(".banner-section-2").css({
+              backgroundPosition: `bottom 20% center`,
+              transition: "all 2000ms ease-out",
+            });
+            $("#taboo-about-us-nft").addClass("nft-box-fadeout-animation");
+            $("#taboo-about-us-box").addClass("taboo-box-fadeout-animation");
+          }
+
+          if (isBannerSection_2_InViewport && isRoadMapInViewport) {
+            console.log("banner section & road map in view");
+            $("#taboo-about-us-nft").removeAttr("style");
+            $("#taboo-about-us-box").removeAttr("style");
+            $(".banner-section-2").css({
+              backgroundPosition: `bottom -10% center`,
+              transition: "all 2000ms ease-out",
+            });
+            $("#taboo-about-us-nft").addClass("nft-box-fadeout-animation");
+            $("#taboo-about-us-box").addClass("taboo-box-fadeout-animation");
+          }
+
+          if (!$(".banner-section-2").isInViewport()) {
+            $(".banner-section-2").css({
+              backgroundPosition: `bottom 20% center`,
+              transition: "all 500ms",
+            });
+          }
+
+          if (
+            !$(".banner-section").isInViewport() &&
+            $(".banner-section-2").isInViewport() &&
+            !isRoadMapInViewport
+          ) {
             $(".banner-section-2").css({
               backgroundPosition: `bottom 90% center`,
               transition: "all 3000ms",
             });
-            // $('.banner-section-2-image-box').attr('data-aos'""fade-up"')
-          }
-          if (scrollPosPercentage < 75 || scrollPosPercentage > 102) {
-            $(".banner-section-2").css({
-              backgroundPosition: `bottom 20% center`,
-              transition: "all 3000ms",
+            $("#taboo-about-us-nft").removeClass("opacity-zero");
+            $("#taboo-about-us-box").removeClass("opacity-zero");
+            $("#taboo-about-us-box").removeClass("taboo-box-fadeout-animation");
+            $("#taboo-about-us-nft").removeClass("nft-box-fadeout-animation");
+            $("#taboo-about-us-nft").css({
+              animation: "fadeInRight 3s ease-in-out",
+            });
+            $("#taboo-about-us-box").css({
+              animation: "fadeInLeft 3s ease-in-out",
             });
           }
         });
       });
     </script>
-
-    <!-- <script>
-      document.addEventListener("DOMContentLoaded", function () {
-        const bannerSection =
-          document.getElementsByClassName("banner-section-2")[0];
-        console.log(bannerSection);
-        bannerSection.style.backgroundPosition = "bottom 80% center";
-      });
-    </script> -->
 
     <script>
       $(window).scroll(function () {

@@ -10,7 +10,11 @@ const Homepage = () => {
           <Row>
             <Col>
               <div>
-                <img src={"images/Logo_big.png"} alt="logo" />
+                <img
+                  src={"images/Logo_big.png"}
+                  alt="logo"
+                  className="taboo-logo"
+                />
                 <h4>Taboo is an Adult NFT & The playboy of Crypto</h4>
               </div>
             </Col>
@@ -76,10 +80,8 @@ const Homepage = () => {
           <Row className="align-items-center">
             <Col md={4} sm={6} xs={12}>
               <div
-                className="team-side-box about-box-new aos-init aos-animate"
-                data-aos="fade-right"
-                data-aos-duration="800"
-                data-aos-delay="600"
+                className="team-side-box about-box-new"
+                id="taboo-about-us-box"
               >
                 <h2>
                   <span>What Is</span>
@@ -103,12 +105,7 @@ const Homepage = () => {
             </Col>
             <Col md={3}></Col>
             <Col md={5} sm={6} xs={12}>
-              <div
-                className="nft-side-about-us aos-init aos-animate"
-                data-aos="fade-left"
-                data-aos-duration="800"
-                data-aos-delay="600"
-              >
+              <div className="nft-side-about-us" id="taboo-about-us-nft">
                 <h5>KHLOE TERAE NFTs</h5>
                 <img
                   className="img-fluid"
