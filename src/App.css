@@ -320,20 +320,24 @@ body {
   transform: translateX(-115px);
 }
 
-.inner-roadmap-list > li:hover > div ul {
+.inner-roadmap-list > li.show-roadmap-content > div ul {
   transform: translateX(0px);
   opacity: 1;
 }
-.inner-roadmap-list > li:hover::after {
+.inner-roadmap-list > li.show-roadmap-content::after {
   transform: translateX(0px);
   opacity: 1;
 }
-.inner-roadmap-list > li:hover::before {
+.inner-roadmap-list > li.show-roadmap-content::before {
   transform: rotate(45deg);
 }
-.inner-roadmap-list > li:hover .button-plus {
+.inner-roadmap-list > li.show-roadmap-content .button-plus {
   transform: rotate(45deg);
 }
+
+
+
+
 
 .inner-roadmap-list > li:nth-child(odd) > div ul {
   padding-right: 75px;
@@ -345,7 +349,7 @@ body {
   opacity: 0;
   transform: translateX(115px);
 }
-.inner-roadmap-list > li:nth-child(odd):hover > div ul {
+.inner-roadmap-list > li:nth-child(odd).show-roadmap-content > div ul {
   transform: translateX(0px);
   opacity: 1;
 }
@@ -354,10 +358,7 @@ body {
   opacity: 0;
   transform: translateX(15px);
 }
-.inner-roadmap-list > li:nth-child(odd):hover::after {
-  transform: translateX(0px);
-  opacity: 1;
-}
+
 
 .inner-roadmap-list > li > div ul li {
   list-style: none;
@@ -510,6 +511,7 @@ body {
   color: #aaa;
   display: inline-block;
   margin: 8px 0;
+  cursor: pointer;
 }
 .newsletter-box p {
   font-size: 11px;
