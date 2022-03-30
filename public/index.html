@@ -145,8 +145,12 @@
         });
 
         $(".button-plus").click(function () {
-          $(".show-roadmap-content").removeClass("show-roadmap-content");
-          $(this).parent().toggleClass("show-roadmap-content");
+          if ($(this).parent().hasClass("show-roadmap-content")) {
+            $(this).parent().removeClass("show-roadmap-content");
+          } else {
+            $(".show-roadmap-content").toggleClass("show-roadmap-content");
+            $(this).parent().toggleClass("show-roadmap-content");
+          }
         });
       });
     </script>
