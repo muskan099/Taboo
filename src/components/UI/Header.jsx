@@ -1,10 +1,11 @@
-import React, { useEffect } from "react";
+import React, { useEffect ,useState} from "react";
 import {
   Form,
   FormControl,
   Button,
   Row,
   Col,
+  Modal,
   InputGroup,
   Dropdown,
   Navbar,
@@ -23,6 +24,12 @@ import { loginSaga, logout } from "../../store/reducers/authReducer";
 const Header = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
+
+// Modal Code
+  const [show, setShow] = useState(false);
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
+  
   const handleLogin = async () => {
     let address = await Connect();
     if (address && address.length) {
@@ -51,20 +58,20 @@ const Header = () => {
           <Navbar.Toggle aria-controls="navbarScroll" />
           <Navbar.Collapse id="navbarScroll">
             <Nav className="me-auto my-2 my-lg-0">
-              <Nav.Link href="#action1">Explore</Nav.Link>
-              <Nav.Link href="#action1">Magazine</Nav.Link>
-              <Nav.Link href="#action1">News</Nav.Link>
-              <Nav.Link href="#action1">About</Nav.Link>
+              <Nav.Link  onClick={handleShow}>Explore</Nav.Link>
+              <Nav.Link  onClick={handleShow}>Magazine</Nav.Link>
+              <Nav.Link  onClick={handleShow}>News</Nav.Link>
+              <Nav.Link  onClick={handleShow}>About</Nav.Link>
             </Nav>
           </Navbar.Collapse>
-          <InputGroup className="header-search">
+          {/*<InputGroup className="header-search">
             <FormControl placeholder="Search By Username Or Hashtag" />
             <InputGroup.Text>
               <img src={"images/icons-Search-Line.png"} />
             </InputGroup.Text>
-          </InputGroup>
+          </InputGroup>*/}
 
-          <Dropdown>
+          {/*<Dropdown>
             <Dropdown.Toggle className="notfication-link">
               <img src={"images/icons-Bell-Line.png"} alt="bell" />
             </Dropdown.Toggle>
@@ -125,7 +132,7 @@ const Header = () => {
                 </ul>
               </div>
             </Dropdown.Menu>
-          </Dropdown>
+          </Dropdown>*/}
 
           {!isAuthenticated ? (
             <Button
@@ -166,6 +173,22 @@ const Header = () => {
           )}
         </Container>
       </Navbar>
+      <Modal
+      size="lg"
+      aria-labelledby="contained-modal-title-vcenter"
+      centered
+       className="modal-comming-soon" show={show} onHide={handleClose}>
+        <Modal.Header closeButton className="border-none">
+          
+        </Modal.Header>
+        <Modal.Body>
+            <div className="outer-div">
+              <img src={"images/coming-soon.png"} className="img-fluid" />
+              <h5>This page will be Added Soon</h5>
+            </div>
+        </Modal.Body>
+        
+      </Modal>
     </header>
   );
 };

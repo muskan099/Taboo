@@ -77,7 +77,7 @@ const Homepage = () => {
 
       <section className="banner-section-2">
         <Container>
-          <Row className="align-items-center">
+          <Row className="">
             <Col md={4} sm={6} xs={12}>
               <div
                 className="team-side-box about-box-new"
@@ -138,19 +138,38 @@ const Homepage = () => {
                   <li
                     className="aos-init aos-animate"
                     data-aos="fade-left"
-                    data-aos-duration="800"
-                    data-aos-delay="600"
+                    data-aos-duration="20"
+                    data-aos-delay="20"
                   >
+                  <button className="button-plus">
+                     <img src={"images/plus.png"} alt="icon" />
+                  </button>
                     <div>
                       <h4>Q1 2022</h4>
+                      <ul>
+                        <li>
+                          - Cross chain SDK integration will have begun by now,
+                          with cross chain functionalities Including chains like
+                          Polygon, Harmony, Cardano, and more.
+                        </li>
+                        <li>
+                          - Smart Contract Audits on our Fully Integrated DeFi
+                          platform.
+                        </li>
+                      
+                      </ul>
                     </div>
                   </li>
+
                   <li
                     className="roadmap-new-box aos-init aos-animate"
                     data-aos="fade-right"
-                    data-aos-duration="800"
-                    data-aos-delay="600"
+                    data-aos-duration="20"
+                    data-aos-delay="20"
                   >
+                  <button className="button-plus">
+                     <img src={"images/plus.png"} alt="icon" />
+                  </button>
                     <div>
                       <h4>Q1 2022</h4>
                       <ul>
@@ -186,9 +205,12 @@ const Homepage = () => {
                   <li
                     className="aos-init aos-animate"
                     data-aos="fade-left"
-                    data-aos-duration="800"
-                    data-aos-delay="600"
+                    data-aos-duration="20"
+                    data-aos-delay="20"
                   >
+                  <button className="button-plus">
+                     <img src={"images/plus.png"} alt="icon" />
+                  </button>
                     <div>
                       <h4>Q3 2022</h4>
                       <ul>
@@ -202,9 +224,12 @@ const Homepage = () => {
                   <li
                     className="aos-init aos-animate"
                     data-aos="fade-right"
-                    data-aos-duration="800"
-                    data-aos-delay="600"
+                    data-aos-duration="20"
+                    data-aos-delay="20"
                   >
+                  <button className="button-plus">
+                     <img src={"images/plus.png"} alt="icon" />
+                  </button>
                     <div>
                       <h4>Q4 2022</h4>
                       <ul>
@@ -280,7 +305,7 @@ const Homepage = () => {
       <section className="team-sec-new">
         <Container fluid>
           <Row className="align-items-center">
-            <Col md={3} sm={6} xs={12} className="order-2 m-auto">
+            <Col xxl={3} xl={3} lg={3} md={3} sm={6} xs={12} className="order-2 mt-auto mb-auto ml-0">
               <div
                 className="team-side-box aos-init aos-animate"
                 data-aos="fade-left"
@@ -299,7 +324,7 @@ const Homepage = () => {
                 </p>
               </div>
             </Col>
-            <Col md={9} sm={12} xs={12}>
+            <Col xxl={8}  xl={9} lg={9} md={9} sm={12} xs={12}>
               <div>
                 <ul className="team-list">
                   <li>
@@ -387,8 +412,8 @@ const Homepage = () => {
                       <img
                         className="aos-init aos-animate"
                         data-aos="fade-up"
-                        data-aos-duration="800"
-                        data-aos-delay="270"
+                        data-aos-duration="900"
+                        data-aos-delay="500"
                         src={"images/Team/team6.png"}
                         alt="team"
                       />
@@ -405,16 +430,16 @@ const Homepage = () => {
                       <img
                         className="aos-init aos-animate"
                         data-aos="fade-down"
-                        data-aos-duration="200"
+                        data-aos-duration="900"
                         data-aos-delay="500"
                         src={"images/Team/team7.png"}
                         alt="team"
                       />
                       <div className="content-team">
                         <h4>
-                          Khloe <br></br> terae
+                          Conrad
                         </h4>
-                        <p>Brand Ambassador</p>
+                        <p>Present egal Air</p>
                       </div>
                     </div>
                   </li>
