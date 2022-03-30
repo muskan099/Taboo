@@ -353,12 +353,15 @@ body {
   transform: translateX(0px);
   opacity: 1;
 }
-.inner-roadmap-list > li:nth-child(odd).show-roadmap-content::after {
+.inner-roadmap-list > li:nth-child(odd)::after {
   transition: all 1s ease-in-out;
   opacity: 0;
   transform: translateX(15px);
 }
-
+.inner-roadmap-list > li:nth-child(odd).show-roadmap-content::after {
+  opacity: 1;
+  transform: translateX(0px);
+}
 
 .inner-roadmap-list > li > div ul li {
   list-style: none;
