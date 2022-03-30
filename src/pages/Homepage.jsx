@@ -73,7 +73,7 @@ const Homepage = () => {
 
       <section className="banner-section-2">
         <Container>
-          <Row className="align-items-center">
+          <Row className="">
             <Col md={4} sm={6} xs={12}>
               <div
                 className="team-side-box about-box-new aos-init aos-animate"
@@ -144,6 +144,9 @@ const Homepage = () => {
                     data-aos-duration="20"
                     data-aos-delay="20"
                   >
+                  <button className="button-plus">
+                     <img src={"images/plus.png"} alt="icon" />
+                  </button>
                     <div>
                       <h4>Q1 2022</h4>
                       <ul>
@@ -167,6 +170,9 @@ const Homepage = () => {
                     data-aos-duration="20"
                     data-aos-delay="20"
                   >
+                  <button className="button-plus">
+                     <img src={"images/plus.png"} alt="icon" />
+                  </button>
                     <div>
                       <h4>Q1 2022</h4>
                       <ul>
@@ -205,6 +211,9 @@ const Homepage = () => {
                     data-aos-duration="20"
                     data-aos-delay="20"
                   >
+                  <button className="button-plus">
+                     <img src={"images/plus.png"} alt="icon" />
+                  </button>
                     <div>
                       <h4>Q3 2022</h4>
                       <ul>
@@ -221,6 +230,9 @@ const Homepage = () => {
                     data-aos-duration="20"
                     data-aos-delay="20"
                   >
+                  <button className="button-plus">
+                     <img src={"images/plus.png"} alt="icon" />
+                  </button>
                     <div>
                       <h4>Q4 2022</h4>
                       <ul>

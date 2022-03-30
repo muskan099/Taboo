@@ -42,6 +42,8 @@
   font-weight: 400;
   font-size: 14px;
   margin: 0 10px;
+  outline:none !important;
+  border:none !important;
 }
 body {
   overflow-x: hidden;
@@ -218,6 +220,29 @@ body {
   cursor: pointer;
   z-index: 10;
 }
+.button-plus {
+    position: absolute;
+    left: -14px;
+    height: 25px;
+    width: 25px;
+    background-color: #871333;
+    border: none !important;
+    border-radius: 50%;
+    color: #fff;
+    line-height: 16px;
+    font-weight: 700;
+    top: 5px;
+    transition: all 1s ease-in-out;
+    cursor: pointer;
+    z-index: 10;
+}
+.button-plus img{
+  height: 100%;
+  width: 100%;
+  object-fit: contain;
+}
+
+
 .inner-roadmap-list > li::after {
   content: "";
   position: absolute;
@@ -241,6 +266,10 @@ body {
 }
 .inner-roadmap-list > li:nth-child(odd)::after {
   right: 0;
+  left: auto;
+}
+.inner-roadmap-list > li:nth-child(odd) .button-plus{
+  right: -14px;
   left: auto;
 }
 
@@ -292,6 +321,8 @@ body {
   transform: translateX(-115px);
 }
 
+
+
 .inner-roadmap-list > li:hover > div ul {
   transform: translateX(0px);
   opacity: 1;
@@ -303,6 +334,13 @@ body {
 .inner-roadmap-list > li:hover::before{
   transform: rotate(45deg);
 }
+.inner-roadmap-list > li:hover .button-plus{
+  transform: rotate(45deg);
+} 
+
+
+
+
 .inner-roadmap-list > li:nth-child(odd) > div ul {
   padding-right: 75px;
   padding-left: 0;
@@ -1331,4 +1369,42 @@ body .banner-section {
 .table-stakes.table-hover > tbody > tr:hover > * {
   --bs-table-accent-bg: rgb(255 235 240);
   color: var(--bs-table-hover-color);
+}
+.modal-comming-soon{
+
+}
+body{
+  padding: 0 !important;
+}
+.modal-comming-soon .border-none{
+  border:none;
+}
+.modal-comming-soon .modal-dialog {
+    max-width: 600px;
+}
+.modal-comming-soon .modal-header .btn-close {
+    position: absolute;
+    color: #871333;
+    right: 15px;
+    top: 15px;
+    outline: none !important;
+    border: none !important;
+    box-shadow: none !important;
+    opacity: 1;
+}
+.modal-comming-soon .modal-body{
+
+}
+.modal-comming-soon .outer-div{
+text-align: center;
+}
+
+.modal-comming-soon .outer-div img{
+  height: 200px;
+}
+.modal-comming-soon .outer-div h5{
+  font-size: 20px;
+  color: #871333;
+  text-transform: uppercase;
+  margin: 30px 0;
 }
