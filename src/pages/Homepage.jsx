@@ -84,8 +84,7 @@ const Homepage = () => {
                 id="taboo-about-us-box"
               >
                 <h2>
-                  <span>What Is</span>
-                  <span>Taboo</span>
+                  <span>What Is</span> <span>Taboo</span>
                 </h2>
                 <p>
                   At TABOO, nothing is forbidden. We aim to promote personal
@@ -261,7 +260,7 @@ const Homepage = () => {
           <img src={"images/copy.png"} alt="" />
           <div>
             <h4>Taboo Smart Contract</h4>
-            <p>0559b889b8g89g98g89g8g89g89g...</p>
+            <p>0x9abdba20edfba06b782126b4d8d72a5853918fd0</p>
           </div>
         </div>
         <Container>
