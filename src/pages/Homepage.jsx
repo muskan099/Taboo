@@ -18,7 +18,9 @@ const Homepage = () => {
                   alt="logo"
                   className="taboo-logo"
                 />
-                <h4>Taboo is an Adult NFT & The playboy of Crypto</h4>
+                <h4>
+                 TABOO IS AN ADULT NFT PLATFORM & PLAYBOY OF CRYPTO
+                  </h4>
               </div>
             </Col>
           </Row>
@@ -359,11 +361,11 @@ const Homepage = () => {
                   <li>
                     <div>
                       <img
-                        className="aos-init aos-animate d-none"
+                        className="aos-init aos-animate"
                         data-aos="fade-right"
                         data-aos-duration="900"
                         data-aos-delay="200"
-                        src={"images/Team/team1.png"}
+                        src={"images/Team/teamn.jpg"}
                         alt="team"
                       />
                       <div className="content-team">
@@ -375,11 +377,11 @@ const Homepage = () => {
                   <li>
                     <div>
                       <img
-                        className="aos-init aos-animate d-none"
+                        className="aos-init aos-animate"
                         data-aos="fade-down"
                         data-aos-duration="800"
                         data-aos-delay="250"
-                        src={"images/Team/team2.png"}
+                        src={"images/Team/teamn.jpg"}
                         alt="team"
                       />
                       <div className="content-team">
@@ -391,11 +393,11 @@ const Homepage = () => {
                   <li>
                     <div>
                       <img
-                        className="aos-init aos-animate d-none"
+                        className="aos-init aos-animate"
                         data-aos="fade-right"
                         data-aos-duration="800"
                         data-aos-delay="200"
-                        src={"images/Team/team3.png"}
+                        src={"images/Team/teamn.jpg"}
                         alt="team"
                       />
                       <div className="content-team">
@@ -407,11 +409,11 @@ const Homepage = () => {
                   <li>
                     <div>
                       <img
-                        className="aos-init aos-animate d-none"
+                        className="aos-init aos-animate"
                         data-aos="fade-up"
                         data-aos-duration="800"
                         data-aos-delay="250"
-                        src={"images/Team/team4.png"}
+                        src={"images/Team/teamn.jpg"}
                         alt="team"
                       />
                       <div className="content-team">
@@ -423,11 +425,11 @@ const Homepage = () => {
                   <li>
                     <div>
                       <img
-                        className="aos-init aos-animate d-none"
+                        className="aos-init aos-animate "
                         data-aos="fade-up"
                         data-aos-duration="1000"
                         data-aos-delay="300"
-                        src={"images/Team/team5.png"}
+                        src={"images/Team/teamn.jpg"}
                         alt="team"
                       />
                       <div className="content-team">
@@ -439,11 +441,11 @@ const Homepage = () => {
                   <li>
                     <div>
                       <img
-                        className="aos-init aos-animate d-none"
+                        className="aos-init aos-animate"
                         data-aos="fade-up"
                         data-aos-duration="900"
                         data-aos-delay="500"
-                        src={"images/Team/team6.png"}
+                        src={"images/Team/teamn.jpg"}
                         alt="team"
                       />
                       <div className="content-team">
@@ -457,11 +459,11 @@ const Homepage = () => {
                   <li>
                     <div>
                       <img
-                        className="aos-init aos-animate d-none"
+                        className="aos-init aos-animate"
                         data-aos="fade-down"
                         data-aos-duration="900"
                         data-aos-delay="500"
-                        src={"images/Team/team7.png"}
+                        src={"images/Team/teamn.jpg"}
                         alt="team"
                       />
                       <div className="content-team">

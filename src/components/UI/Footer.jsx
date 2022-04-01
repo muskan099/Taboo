@@ -32,7 +32,7 @@ const Footer = () => {
           </Col>
           <Col md={2} sm={2}>
             <div>
-              <h6>Crypter</h6>
+              <h6>Crypto</h6>
               <ul>
                 <li>
                   <a
