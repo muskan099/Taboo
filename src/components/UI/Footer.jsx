@@ -108,10 +108,7 @@ const Footer = () => {
             <div>
               <h6>Join Newsletter</h6>
               <div className="newsletter-box">
-                <p>
-                  Subscribe Our newsletter to get more free design course and
-                  resource
-                </p>
+                <p>Subscribe to our newsletter to receive updates</p>
                 <InputGroup className="">
                   <FormControl
                     placeholder="Enter Your Email"

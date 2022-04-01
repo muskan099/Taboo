@@ -122,13 +122,10 @@
             });
           }
 
-          if (
-            !firstBanner.isInViewport() &&
-            secondBanner.isInViewport() &&
-            !isRoadMapInViewport
-          ) {
+          /* prettier-ignore */
+          if (!firstBanner.isInViewport() && secondBanner.isInViewport() && !isRoadMapInViewport) {
             secondBanner.css({
-              backgroundPosition: `bottom 97% center`,
+              backgroundPosition: `bottom 90% center`,
               transition: "all 3000ms",
             });
             tabooAboutUsNft.removeClass("opacity-zero");
@@ -140,6 +137,23 @@
             });
             tabooAboutUsBox.css({
               animation: "fadeInLeft 3s ease-in-out",
+            });
+          }
+
+          /* prettier-ignore */
+          if (!isFirstBannerVisible && isSecondBannerVisible && !isRoadMapInViewport
+          ) {
+            $(".header-main").css({
+              opacity: 0,
+              transition: "opacity 500ms ease-in-out",
+            }); 
+          }
+
+          /* prettier-ignore */
+          if (isSecondBannerVisible && (isFirstBannerVisible || isRoadMapInViewport)) {
+            $(".header-main").css({
+              opacity: 1,
+              transition: "opacity 500ms ease-in-out",
             });
           }
         });

@@ -88,10 +88,17 @@ const Homepage = () => {
                   <span>Taboo</span>
                 </h2>
                 <p>
-                  Lorem Ipsum is simply dummy text of the printing and
-                  typesetting industry. Lorem Ipsum has been the industry's
-                  standard dummy text ever since the 1500s, when an unknown
-                  printer took
+                  At TABOO, nothing is forbidden. We aim to promote personal
+                  empowerment, inspiring our holders to be confident, happy, and
+                  excited to explore their taboo fantasies. Put simply, Taboo
+                  will not only be a platform to discover adult content from
+                  carefully selected models, but also a gateway to some of the
+                  world’s most beautiful NFTs, with a beautiful TABOO Metaverse
+                  to come The best bit? That would be the full integration of
+                  NFT blockchain technology, the fiat on-ramp for easy purchase,
+                  breath-taking Virtual Reality experiences and the finest
+                  content, making Taboo a genuine market disruptor within the
+                  adult industry
                 </p>
                 <div className="d-flex align-items-center">
                   <a href="" className="common-btn">
@@ -136,7 +143,7 @@ const Homepage = () => {
                     </h2>
                   </div>
                   <li
-                    className="aos-init aos-animate"
+                    className="aos-init aos-animate show-roadmap-content"
                     data-aos="fade-left"
                     data-aos-duration="20"
                     data-aos-delay="20"
@@ -289,10 +296,8 @@ const Homepage = () => {
                 </div>
                 <h3>How To Buy</h3>
                 <p>
-                  Lorem Ipsum is simply dummy text of the printing and
-                  typesetting industry. Lorem Ipsum has been the industry's
-                  standard dummy text ever since the 1500s, when an unknown
-                  printer took a galley{" "}
+                  The process is simple, hit the BUY NOW button below and join
+                  the world of exclusive content.
                 </p>
                 <a href="#">Buy Now</a>
               </div>
@@ -324,10 +329,12 @@ const Homepage = () => {
                   <span>Team</span>
                 </h2>
                 <p>
-                  Lorem Ipsum is simply dummy text of the printing and
-                  typesetting industry. Lorem Ipsum has been the industry's
-                  standard dummy text ever since the 1500s, when an unknown
-                  printer took
+                  Taboo’s founders and core-staff are all serial entrepreneurs,
+                  from across multiple industries, that have all found a
+                  connection within the world of Cryptocurrency. What each one
+                  of them has in common is a relentless commitment to excellence
+                  and the vision to build the world’s finest adult entertainment
+                  experience.
                 </p>
               </div>
             </Col>

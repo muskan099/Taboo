@@ -52,7 +52,7 @@ body {
   background-image: url("./assets/images/banner.png");
   min-height: 100vh;
   background-repeat: no-repeat;
-  background-attachment: fixed;
+  /* background-attachment: fixed; */
   background-size: cover;
   background-position: center bottom -400px;
   display: flex;
@@ -158,7 +158,7 @@ body {
   min-height: 100vh;
   background-image: url("./assets/images/3_full View.png");
   background-repeat: no-repeat;
-  background-attachment: fixed;
+  /* background-attachment: fixed; */
   background-size: cover;
   background-position: bottom 20% center;
   display: flex;
@@ -334,10 +334,6 @@ body {
 .inner-roadmap-list > li.show-roadmap-content .button-plus {
   transform: rotate(45deg);
 }
-
-
-
-
 
 .inner-roadmap-list > li:nth-child(odd) > div ul {
   padding-right: 75px;
@@ -929,10 +925,10 @@ body {
   font-weight: 500;
 }
 .nft-side-about-us {
-    position: relative;
-    max-width: 460px;
-    top: 0px;
-    right: -35px;
+  position: relative;
+  max-width: 420px;
+  top: 0px;
+  right: -100px;
 }
 .nft-side-about-us h5 {
   position: absolute;
@@ -991,7 +987,6 @@ body {
 }
 
 @media (max-width: 1150px) {
-  
   .team-sec-new .team-side-box {
     text-align: center;
     margin-bottom: 30px;
@@ -1009,41 +1004,40 @@ body {
   }
 }
 
-@media (max-width: 1120px){
-
-.team-list {
+@media (max-width: 1120px) {
+  .team-list {
     width: 800px;
     margin: 0 auto;
-}
-.team-list li:first-child {
+  }
+  .team-list li:first-child {
     left: 0;
-}
-.team-list li:nth-child(2) {
+  }
+  .team-list li:nth-child(2) {
     left: 145px;
-}
-.team-list li:nth-child(3) {
+  }
+  .team-list li:nth-child(3) {
     top: 290px;
     left: 100px;
-}
-.team-list li:nth-child(4) {
+  }
+  .team-list li:nth-child(4) {
     top: 270px;
     left: 310px;
-}
-.team-list li:nth-child(5) {
+  }
+  .team-list li:nth-child(5) {
     left: 425px;
-}
+  }
 
-.team-list li:nth-child(7) {
+  .team-list li:nth-child(7) {
     top: 30px;
     left: 575px;
-}
-.team-list li:nth-child(6) {
+  }
+  .team-list li:nth-child(6) {
     top: 310px;
     left: 640px;
-}
-.team-side-box h2 {
+  }
+  .team-side-box h2 {
     text-align: left;
-}
+  }
 }
 
 @media (max-width: 992px) {
