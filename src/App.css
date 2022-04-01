@@ -1,3 +1,11 @@
+@font-face {
+  font-family: "Times-Sans-Serif";
+  src: url("./assets/TIMES-Sans-Serif.ttf");
+}
+
+body {
+  font-family: "Times-Sans-Serif";
+}
 .App {
   text-align: center;
 }
