@@ -314,7 +314,7 @@ const Homepage = () => {
                   The process is simple, hit the BUY NOW button below and join
                   the world of exclusive content.
                 </p>
-                <a href="https://pancakeswap.finance/swap" target={"_blank"}>
+                <a href="https://pancakeswap.finance/swap#/swap?outputCurrency=0x9abDbA20EdFbA06B782126b4D8d72A5853918FD0" target={"_blank"}>
                   Buy Now
                 </a>
               </div>
