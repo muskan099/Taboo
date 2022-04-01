@@ -359,7 +359,7 @@ const Homepage = () => {
                   <li>
                     <div>
                       <img
-                        className="aos-init aos-animate"
+                        className="aos-init aos-animate d-none"
                         data-aos="fade-right"
                         data-aos-duration="900"
                         data-aos-delay="200"
@@ -375,7 +375,7 @@ const Homepage = () => {
                   <li>
                     <div>
                       <img
-                        className="aos-init aos-animate"
+                        className="aos-init aos-animate d-none"
                         data-aos="fade-down"
                         data-aos-duration="800"
                         data-aos-delay="250"
@@ -391,7 +391,7 @@ const Homepage = () => {
                   <li>
                     <div>
                       <img
-                        className="aos-init aos-animate"
+                        className="aos-init aos-animate d-none"
                         data-aos="fade-right"
                         data-aos-duration="800"
                         data-aos-delay="200"
@@ -407,7 +407,7 @@ const Homepage = () => {
                   <li>
                     <div>
                       <img
-                        className="aos-init aos-animate"
+                        className="aos-init aos-animate d-none"
                         data-aos="fade-up"
                         data-aos-duration="800"
                         data-aos-delay="250"
@@ -423,7 +423,7 @@ const Homepage = () => {
                   <li>
                     <div>
                       <img
-                        className="aos-init aos-animate"
+                        className="aos-init aos-animate d-none"
                         data-aos="fade-up"
                         data-aos-duration="1000"
                         data-aos-delay="300"
@@ -439,7 +439,7 @@ const Homepage = () => {
                   <li>
                     <div>
                       <img
-                        className="aos-init aos-animate"
+                        className="aos-init aos-animate d-none"
                         data-aos="fade-up"
                         data-aos-duration="900"
                         data-aos-delay="500"
@@ -457,7 +457,7 @@ const Homepage = () => {
                   <li>
                     <div>
                       <img
-                        className="aos-init aos-animate"
+                        className="aos-init aos-animate d-none"
                         data-aos="fade-down"
                         data-aos-duration="900"
                         data-aos-delay="500"

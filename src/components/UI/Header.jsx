@@ -60,11 +60,11 @@ const Header = () => {
             <Nav className="me-auto my-2 my-lg-0">
               <Nav.Link onClick={handleShow}>Explore</Nav.Link>
               <a
-                href="https://punks.taboo.io/"
+                href="http://punks.taboo.io:3000"
                 target={"_blank"}
                 className="nav-link"
               >
-                Taboo Punks
+                TabooPunks
               </a>
               <Nav.Link onClick={handleShow}>Magazine</Nav.Link>
               <Nav.Link onClick={handleShow}>News</Nav.Link>
