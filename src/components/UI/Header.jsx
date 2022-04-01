@@ -1,4 +1,4 @@
-import React, { useEffect ,useState} from "react";
+import React, { useEffect, useState } from "react";
 import {
   Form,
   FormControl,
@@ -25,11 +25,11 @@ const Header = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-// Modal Code
+  // Modal Code
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
-  
+
   const handleLogin = async () => {
     let address = await Connect();
     if (address && address.length) {
@@ -58,10 +58,17 @@ const Header = () => {
           <Navbar.Toggle aria-controls="navbarScroll" />
           <Navbar.Collapse id="navbarScroll">
             <Nav className="me-auto my-2 my-lg-0">
-              <Nav.Link  onClick={handleShow}>Explore</Nav.Link>
-              <Nav.Link  onClick={handleShow}>Magazine</Nav.Link>
-              <Nav.Link  onClick={handleShow}>News</Nav.Link>
-              <Nav.Link  onClick={handleShow}>About</Nav.Link>
+              <Nav.Link onClick={handleShow}>Explore</Nav.Link>
+              <a
+                href="https://punks.taboo.io/"
+                target={"_blank"}
+                className="nav-link"
+              >
+                Taboo Punks
+              </a>
+              <Nav.Link onClick={handleShow}>Magazine</Nav.Link>
+              <Nav.Link onClick={handleShow}>News</Nav.Link>
+              <Nav.Link onClick={handleShow}>About</Nav.Link>
             </Nav>
           </Navbar.Collapse>
           {/*<InputGroup className="header-search">
@@ -144,15 +151,13 @@ const Header = () => {
             </Button>
           ) : (
             <>
-              
               <Dropdown className="d-flex align-items-center">
                 <div className="wallet-address">
-                {" "}
-                {`${walletAddress?.slice(0, 3)}...${walletAddress?.slice(
-                  -3
-                )}`}{" "}
-                
-              </div>
+                  {" "}
+                  {`${walletAddress?.slice(0, 3)}...${walletAddress?.slice(
+                    -3
+                  )}`}{" "}
+                </div>
                 <Dropdown.Toggle className="Dropdown-wallet-new">
                   <img src={userIcon} alt="" height={30} width={30} />
                 </Dropdown.Toggle>
@@ -174,20 +179,20 @@ const Header = () => {
         </Container>
       </Navbar>
       <Modal
-      size="lg"
-      aria-labelledby="contained-modal-title-vcenter"
-      centered
-       className="modal-comming-soon" show={show} onHide={handleClose}>
-        <Modal.Header closeButton className="border-none">
-          
-        </Modal.Header>
+        size="lg"
+        aria-labelledby="contained-modal-title-vcenter"
+        centered
+        className="modal-comming-soon"
+        show={show}
+        onHide={handleClose}
+      >
+        <Modal.Header closeButton className="border-none"></Modal.Header>
         <Modal.Body>
-            <div className="outer-div">
-              <img src={"images/coming-soon.png"} className="img-fluid" />
-              <h5>This page will be Added Soon</h5>
-            </div>
+          <div className="outer-div">
+            <img src={"images/coming-soon.png"} className="img-fluid" />
+            <h5>This page will be Added Soon</h5>
+          </div>
         </Modal.Body>
-        
       </Modal>
     </header>
   );
