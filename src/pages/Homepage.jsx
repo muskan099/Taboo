@@ -1,8 +1,11 @@
 import React, { useState } from "react";
-import { Row, Col, Container } from "react-bootstrap";
+import { Row, Col, Container, Modal } from "react-bootstrap";
 
 const Homepage = () => {
   const [showImg, setShowImg] = useState(false);
+  const [show, setShow] = useState(false);
+  const handleClose = () => setShow(false);
+
   return (
     <>
       <section className="banner-section">
@@ -100,10 +103,21 @@ const Homepage = () => {
                   adult industry
                 </p>
                 <div className="d-flex align-items-center">
-                  <a href="" className="common-btn">
+                  <a
+                    href=""
+                    className="common-btn"
+                    onClick={(e) => {
+                      e.preventDefault();
+                      setShow(true);
+                    }}
+                  >
                     Marketplace{" "}
                   </a>
-                  <a href="" className="common-btn white-btn">
+                  <a
+                    href="https://cdn.shopify.com/s/files/1/0573/4540/9212/files/Taboo_Token_Whitepaper_02_final_2.pdf?v=1629456040"
+                    className="common-btn white-btn"
+                    target={"_blank"}
+                  >
                     Whitepaper{" "}
                   </a>
                 </div>
@@ -298,7 +312,9 @@ const Homepage = () => {
                   The process is simple, hit the BUY NOW button below and join
                   the world of exclusive content.
                 </p>
-                <a href="#">Buy Now</a>
+                <a href="https://pancakeswap.finance/swap" target={"_blank"}>
+                  Buy Now
+                </a>
               </div>
             </Col>
           </Row>
@@ -459,6 +475,22 @@ const Homepage = () => {
             </Col>
           </Row>
         </Container>
+        <Modal
+          size="lg"
+          aria-labelledby="contained-modal-title-vcenter"
+          centered
+          className="modal-comming-soon"
+          show={show}
+          onHide={handleClose}
+        >
+          <Modal.Header closeButton className="border-none"></Modal.Header>
+          <Modal.Body>
+            <div className="outer-div">
+              <img src={"images/coming-soon.png"} className="img-fluid" />
+              <h5>This page will be Added Soon</h5>
+            </div>
+          </Modal.Body>
+        </Modal>
       </section>
     </>
   );
