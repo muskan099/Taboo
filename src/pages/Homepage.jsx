@@ -369,8 +369,10 @@ const Homepage = () => {
                         alt="team"
                       />
                       <div className="content-team">
-                        <h4>Eli</h4>
-                        <p>Social Media Manager</p>
+
+                         <h4>James</h4>
+                        <p>CMO/CEO</p>
+                      
                       </div>
                     </div>
                   </li>
@@ -433,8 +435,10 @@ const Homepage = () => {
                         alt="team"
                       />
                       <div className="content-team">
-                        <h4>James</h4>
-                        <p>CMO/CEO</p>
+                      
+                        <h4>Eli</h4>
+                        <p>Social Media Manager</p>
+
                       </div>
                     </div>
                   </li>
@@ -468,7 +472,7 @@ const Homepage = () => {
                       />
                       <div className="content-team">
                         <h4>Conrad</h4>
-                        <p>Present egal Air</p>
+                        <p>Legal Aid/Advisor</p>
                       </div>
                     </div>
                   </li>
