@@ -1087,6 +1087,19 @@ body {
     right: auto;
     left: 0 !important;
   }
+.navbar-collapse {
+    position: absolute;
+    top: 55px;
+    background-color: #fff;
+    left: 0;
+    right: 0;
+    text-align: left;
+    box-shadow: 0px 2px 10px rgba(0,0,0,0.3);
+}
+.header-main .navbar-light .navbar-nav .nav-link {
+    font-size: 14px;
+    padding: 5px;
+}
 }
 @media (max-width: 820px) {
   .team-list {
@@ -1290,6 +1303,21 @@ body {
     right: auto;
     left: 0;
   }
+  .nft-side-about-us {
+    right: 0;
+}
+.copy-box p {
+    font-size: 10px;
+}
+.banner-section-2 {
+    padding: 30px 0;
+}
+.padding-strip {
+    height: 0 !important;
+}
+.section-stakes-table {
+    padding: 20px 0 !important;
+}
 }
 
 @media (max-width: 580px) {
@@ -1325,16 +1353,17 @@ body {
   margin: 10px 0;
 }
 .table-stakes {
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
-  border-top: 2px solid rgb(135 19 51);
-  word-break: break-all;
-  text-align: left;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+    border-top: 2px solid rgb(135 19 51);
+    word-break: break-all;
+    text-align: left;
+    min-width: 895px;
 }
-.table-stakes th,
-.table-stakes td {
-  padding: 15px;
-  font-size: 14px;
-  border: none !important;
+.table-stakes th, .table-stakes td {
+    padding: 15px;
+    font-size: 14px;
+    border: none !important;
+    word-break: break-word;
 }
 .table-stakes.table-striped > tbody > tr:nth-of-type(odd) > * {
   --bs-table-accent-bg: rgb(135 19 51);
@@ -1344,7 +1373,7 @@ body {
   border-top: none;
 }
 .section-stakes-table {
-  padding: 60px 0;
+    padding: 15px 0 60px;
 }
 .active-status {
   background-color: #12b912;
@@ -1363,16 +1392,21 @@ body {
   border-radius: 4px;
   font-weight: 600;
   font-size: 12px;
+  word-break: normal;
 }
 .common-btn.white-btn.withdrow-btn {
   padding: 5px 10px;
   font-size: 12px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.4);
   border: 1px solid #871333 !important;
+  word-break: normal;
 }
 .table-stakes td {
   font-weight: 500;
   vertical-align: middle;
+}
+.table-stakes td:first-child {
+    word-break: break-all;
 }
 .table-stakes.table-hover > tbody > tr:hover > * {
   --bs-table-accent-bg: rgb(255 235 240);
@@ -1410,6 +1444,7 @@ body {
   top: 46px;
   border: none;
   border-radius: 0;
+  box-shadow: 0 0 10px rgba(0,0,0,0.2);
 }
 .dropdown .dropdown-menu .dropdown-item {
   font-size: 14px;

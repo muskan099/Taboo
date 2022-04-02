@@ -31,7 +31,8 @@ const Stakes = () => {
               </div>
               {console.log(stakesData && stakesData?.stakes.length)}
               {stakesData && stakesData?.stakes.length > 0 ? (
-                <Table
+                <div className="table-responsive">
+                  <Table
                   responsive
                   striped
                   hover
@@ -51,7 +52,7 @@ const Stakes = () => {
                   <tbody>
                     {stakesData.stakes.map((item) => (
                       <tr key={item._id}>
-                        <td width="30%">{item.wallet_address}</td>
+                        <td width="30%" >{item.wallet_address}</td>
                         <td width="15%">{item.stakeinfo.deposit}</td>
                         <td width="15%">
                           {Number(item.stakeinfo.interest_earned).toFixed(4)}
@@ -80,6 +81,7 @@ const Stakes = () => {
                     ))}
                   </tbody>
                 </Table>
+                </div>
               ) : (
                 "No Data Found"
               )}

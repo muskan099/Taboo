@@ -276,7 +276,7 @@ const Homepage = () => {
           <img src={"images/copy.png"} alt="" />
           <div>
             <h4>Taboo Smart Contract</h4>
-            <p>0x9abdba20edfba06b782126b4d8d72a5853918fd0</p>
+            <p>0x5F0A7666c81782138538Ef5b4B1CbbcD15432852</p>
           </div>
         </div>
         <Container>
