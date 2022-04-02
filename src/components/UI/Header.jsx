@@ -60,8 +60,7 @@ const Header = () => {
             <Nav className="me-auto my-2 my-lg-0">
               <Nav.Link onClick={handleShow}>Explore</Nav.Link>
               <a
-                href="http://punks.taboo.io:3000"
-                target={"_blank"}
+                onClick={handleShow}
                 className="nav-link"
               >
                 TabooPunks
