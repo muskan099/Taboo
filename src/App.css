@@ -992,6 +992,9 @@ body {
   .team-list li:nth-child(6) .content-team {
     min-width: 120px;
   }
+  .nft-side-about-us {
+    right: -40px;
+}
 }
 
 @media (max-width: 1150px) {
@@ -1099,6 +1102,10 @@ body {
 .header-main .navbar-light .navbar-nav .nav-link {
     font-size: 14px;
     padding: 5px;
+}
+body .banner-section {
+    min-height: 600px;
+    background-position: center bottom 0 !important;
 }
 }
 @media (max-width: 820px) {
