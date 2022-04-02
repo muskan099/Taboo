@@ -1,10 +1,16 @@
 import React, { useState } from "react";
 import { Row, Col, Container, Modal } from "react-bootstrap";
+import { toast } from "react-toastify";
 
 const Homepage = () => {
   const [showImg, setShowImg] = useState(false);
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
+
+  const copyToClipboard = () => {
+    navigator.clipboard.writeText("0x9abdba20edfba06b782126b4d8d72a5853918fd0");
+    toast.success("Smart Contract Copied To Clipboard");
+  };
 
   return (
     <>
@@ -18,9 +24,7 @@ const Homepage = () => {
                   alt="logo"
                   className="taboo-logo"
                 />
-                <h4>
-                 TABOO IS AN ADULT NFT PLATFORM & PLAYBOY OF CRYPTO
-                  </h4>
+                <h4>TABOO IS AN ADULT NFT PLATFORM & PLAYBOY OF CRYPTO</h4>
               </div>
             </Col>
           </Row>
@@ -273,10 +277,10 @@ const Homepage = () => {
           data-aos-duration="600"
           data-aos-delay="500"
         >
-          <img src={"images/copy.png"} alt="" />
+          <img src={"images/copy.png"} alt="" onClick={copyToClipboard} />
           <div>
             <h4>Taboo Smart Contract</h4>
-            <p>0x5F0A7666c81782138538Ef5b4B1CbbcD15432852</p>
+            <p>0x9abdba20edfba06b782126b4d8d72a5853918fd0</p>
           </div>
         </div>
         <Container>
@@ -314,7 +318,10 @@ const Homepage = () => {
                   The process is simple, hit the BUY NOW button below and join
                   the world of exclusive content.
                 </p>
-                <a href="https://pancakeswap.finance/swap#/swap?outputCurrency=0x9abDbA20EdFbA06B782126b4D8d72A5853918FD0" target={"_blank"}>
+                <a
+                  href="https://pancakeswap.finance/swap#/swap?outputCurrency=0x9abDbA20EdFbA06B782126b4D8d72A5853918FD0"
+                  target={"_blank"}
+                >
                   Buy Now
                 </a>
               </div>
@@ -369,10 +376,8 @@ const Homepage = () => {
                         alt="team"
                       />
                       <div className="content-team">
-
-                         <h4>James</h4>
+                        <h4>James</h4>
                         <p>CMO/CEO</p>
-                      
                       </div>
                     </div>
                   </li>
@@ -435,10 +440,8 @@ const Homepage = () => {
                         alt="team"
                       />
                       <div className="content-team">
-                      
                         <h4>Eli</h4>
                         <p>Social Media Manager</p>
-
                       </div>
                     </div>
                   </li>

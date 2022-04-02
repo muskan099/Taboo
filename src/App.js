@@ -9,6 +9,8 @@ import Header from "./components/UI/Header";
 import Footer from "./components/UI/Footer";
 import Homepage from "./pages/Homepage";
 import Stakes from "./pages/Stakes";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 function App() {
   useEffect(() => {
@@ -17,6 +19,7 @@ function App() {
   return (
     <div className="App">
       <BrowserRouter>
+        <ToastContainer />
         <Header />
         <Routes>
           <Route path="/" element={<Homepage />} />
