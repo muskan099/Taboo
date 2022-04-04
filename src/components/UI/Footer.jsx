@@ -125,7 +125,7 @@ const Footer = () => {
         </Row>
         <Row className="copyright-line">
           <Col md={6} sm={6}>
-            <p>Copyright ©️ 2022 UI8 LLC. All rights reserved</p>
+            <p>copyright of TABOO. All rights reserved</p>
           </Col>
           <Col md={6} sm={6}>
             <p className="cookies-box">
