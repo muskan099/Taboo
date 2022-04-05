@@ -1574,3 +1574,29 @@ body {
   }
 }*/
 /* CSS Banner Animation By Shashank */
+
+
+/*soniya new added 05/04/2022*/
+
+.outer-age-box {
+    text-align: center;
+    padding: 30px;
+}
+.outer-age-box .outer-div{
+  font-weight: 600;
+  margin-bottom: 20px;
+}
+.outer-age-box button {
+    margin: 0 10px;
+    background-color: #871333;
+    color: #fff;
+    border: none;
+    padding: 5px 30px;
+    border-radius: 30px;
+    outline: none;
+    box-shadow: none;
+    font-weight: 700;
+}
+.below-18-popup.modal-comming-soon .modal-dialog {
+    max-width: 400px;
+}

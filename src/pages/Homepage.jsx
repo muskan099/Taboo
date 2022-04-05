@@ -501,7 +501,7 @@ const Homepage = () => {
           size="lg"
           aria-labelledby="contained-modal-title-vcenter"
           centered
-          className="modal-comming-soon"
+          className="modal-comming-soon "
           show={show}
           onHide={handleClose}
         >
@@ -517,14 +517,14 @@ const Homepage = () => {
           size="lg"
           aria-labelledby="contained-modal-title-vcenter"
           centered
-          className="modal-comming-soon"
+          className="modal-comming-soon below-18-popup"
           backdrop="static"
           keyboard={false}
           show={isBelow18}
           onHide={handleAbove18}
         >
-          <Modal.Header className="border-none"></Modal.Header>
-          <Modal.Body>
+          <Modal.Header className="border-none p-0"></Modal.Header>
+          <Modal.Body className="outer-age-box">
             {!ageError ? (
               <>
                 <div className="outer-div">Are You Above 18 Years Of Age</div>
@@ -532,8 +532,9 @@ const Homepage = () => {
                 <button onClick={handleAbove18}>Yes</button>
               </>
             ) : (
-              <div className="outer-div">
-                Sorry You Can't Access The Website
+              <div className="outer-div mb-0">
+                <h3>Sorry...!!!</h3>
+                 You Can't Access The Website..!!
               </div>
             )}
           </Modal.Body>
