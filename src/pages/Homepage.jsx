@@ -2,10 +2,23 @@ import React, { useState } from "react";
 import { Row, Col, Container, Modal } from "react-bootstrap";
 import { toast } from "react-toastify";
 
+const onClose = () => {
+  window.close();
+};
+
 const Homepage = () => {
+  const isAbove18 = !!localStorage.getItem("below-18");
+  console.log(isAbove18);
   const [showImg, setShowImg] = useState(false);
   const [show, setShow] = useState(false);
+  const [isBelow18, setIsBelow18] = useState(isAbove18 ? false : true);
+  const [ageError, setAgeError] = useState(false);
+
   const handleClose = () => setShow(false);
+  const handleAbove18 = () => {
+    setIsBelow18(false);
+    localStorage.setItem("below-18", false);
+  };
 
   const copyToClipboard = () => {
     navigator.clipboard.writeText("0x9abdba20edfba06b782126b4d8d72a5853918fd0");
@@ -498,6 +511,31 @@ const Homepage = () => {
               <img src={"images/coming-soon.png"} className="img-fluid" />
               <h5>This page will be Added Soon</h5>
             </div>
+          </Modal.Body>
+        </Modal>
+        <Modal
+          size="lg"
+          aria-labelledby="contained-modal-title-vcenter"
+          centered
+          className="modal-comming-soon"
+          backdrop="static"
+          keyboard={false}
+          show={isBelow18}
+          onHide={handleAbove18}
+        >
+          <Modal.Header className="border-none"></Modal.Header>
+          <Modal.Body>
+            {!ageError ? (
+              <>
+                <div className="outer-div">Are You Above 18 Years Of Age</div>
+                <button onClick={() => setAgeError(true)}>No</button>
+                <button onClick={handleAbove18}>Yes</button>
+              </>
+            ) : (
+              <div className="outer-div">
+                Sorry You Can't Access The Website
+              </div>
+            )}
           </Modal.Body>
         </Modal>
       </section>
