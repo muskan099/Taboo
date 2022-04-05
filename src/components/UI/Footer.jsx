@@ -10,11 +10,29 @@ import {
   InputGroup,
   Container,
 } from "react-bootstrap";
+import { toast } from "react-toastify";
+import axiosMain from "../../http/axios/axios_main";
 const Footer = () => {
   // Modal Code
   const [show, setShow] = useState(false);
+  const [email, setEmail] = useState("");
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
+
+  const subscribeHandle = async () => {
+    if (!email) {
+      toast.error("Please Enter Email First");
+      return;
+    }
+
+    if (!/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email)) {
+      toast.error("Invalid Email");
+      return;
+    }
+
+    await axiosMain.post("/subscribe", { email });
+    toast.success("You've been subscribed successfully");
+  };
 
   return (
     <section className="footer-box">
@@ -114,8 +132,14 @@ const Footer = () => {
                     placeholder="Enter Your Email"
                     aria-label="Recipient's username"
                     aria-describedby="basic-addon2"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
                   />
-                  <Button variant="outline-secondary" id="button-addon2">
+                  <Button
+                    variant="outline-secondary"
+                    id="button-addon2"
+                    onClick={subscribeHandle}
+                  >
                     <img src={"images/left-arrow.png"} alt="logo" />
                   </Button>
                 </InputGroup>
