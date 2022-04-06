@@ -181,7 +181,7 @@ const Homepage = () => {
                     data-aos-delay="20"
                   >
                     <button className="button-plus Q1">
-                      <img src={"images/plus.png"} alt="icon" />
+                      <img src={"images/plus-24.png"} alt="icon" />
                     </button>
                     <div>
                       <h4>Q1 2022</h4>
@@ -206,7 +206,7 @@ const Homepage = () => {
                     data-aos-delay="20"
                   >
                     <button className="button-plus Q2">
-                      <img src={"images/plus.png"} alt="icon" />
+                      <img src={"images/plus-24.png"} alt="icon" />
                     </button>
                     <div>
                       <h4>Q2 2022</h4>
@@ -247,7 +247,7 @@ const Homepage = () => {
                     data-aos-delay="20"
                   >
                     <button className="button-plus Q3">
-                      <img src={"images/plus.png"} alt="icon" />
+                      <img src={"images/plus-24.png"} alt="icon" />
                     </button>
                     <div>
                       <h4>Q3 2022</h4>
@@ -266,7 +266,7 @@ const Homepage = () => {
                     data-aos-delay="20"
                   >
                     <button className="button-plus Q4">
-                      <img src={"images/plus.png"} alt="icon" />
+                      <img src={"images/plus-24.png"} alt="icon" />
                     </button>
                     <div>
                       <h4>Q4 2022</h4>
@@ -289,11 +289,14 @@ const Homepage = () => {
           data-aos="fade-right"
           data-aos-duration="600"
           data-aos-delay="500"
+          style={{ zIndex: "10", cursor: "pointer" }}
         >
           <img src={"images/copy.png"} alt="" onClick={copyToClipboard} />
           <div>
-            <h4>Taboo Smart Contract</h4>
-            <p>0x9abdba20edfba06b782126b4d8d72a5853918fd0</p>
+            <h4 onClick={copyToClipboard}>Taboo Smart Contract</h4>
+            <p onClick={copyToClipboard}>
+              0x9abdba20edfba06b782126b4d8d72a5853918fd0
+            </p>
           </div>
         </div>
         <Container>
@@ -534,7 +537,7 @@ const Homepage = () => {
             ) : (
               <div className="outer-div mb-0">
                 <h3>Sorry...!!!</h3>
-                 You Can't Access The Website..!!
+                You Can't Access The Website..!!
               </div>
             )}
           </Modal.Body>
