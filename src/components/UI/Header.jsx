@@ -54,7 +54,7 @@ const Header = () => {
         <Container>
           <Navbar.Brand>
             <Link to="/">
-              <img src={"images/Logo_Small.png"} alt="logo" />
+              <img src={"images/Logo_big-red.png"} alt="logo" />
             </Link>
           </Navbar.Brand>
           <Navbar.Toggle aria-controls="navbarScroll" />

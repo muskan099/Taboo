@@ -148,7 +148,7 @@ const Homepage = () => {
                 <h5>KHLOE TERAE NFTs</h5>
                 <img
                   className="img-fluid"
-                  src={"images/about-img.png"}
+                  src={"images/White-frame.png"}
                   alt="about-Image"
                 />
               </div>
