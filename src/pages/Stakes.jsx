@@ -63,10 +63,11 @@ const Stakes = () => {
                           )}
                         </td>
                         <td width="10%">
-                          <span className={`${item.stakeinfo.status}-status`}>
-                            {`${item.stakeinfo.status[0].toUpperCase()}${item.stakeinfo.status.slice(
+                          <span className={`active-status`}>
+                            {/*`${item.stakeinfo.status[0].toUpperCase()}${item.stakeinfo.status.slice(
                               1
-                            )}`}
+                            )}`*/}
+                            Active
                           </span>
                         </td>
                         <td width="15%">
