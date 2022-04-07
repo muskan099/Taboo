@@ -74,7 +74,7 @@ const Homepage = () => {
                 <ul className="partner-list">
                   <li>
                     <img
-                      src={"images/newsnow-publishing-limited-vector-logo.png"}
+                      src={"images/newsnow.png"}
                       alt="logo"
                     />
                   </li>
@@ -211,15 +211,7 @@ const Homepage = () => {
                     <div>
                       <h4>Q2 2022</h4>
                       <ul>
-                        <li>
-                          - Cross chain SDK integration will have begun by now,
-                          with cross chain functionalities Including chains like
-                          Polygon, Harmony, Cardano, and more.
-                        </li>
-                        <li>
-                          - Smart Contract Audits on our Fully Integrated DeFi
-                          platform.
-                        </li>
+                        
                         <li>
                           - Full integration of the Adult Crypto Currency Dex
                           and our fully operable DeFi platform.

@@ -1137,12 +1137,30 @@ body .banner-section {
     min-width: 160px !important;
   }
   .partner-list li {
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+    box-shadow: none;
     width: 40%;
     margin-bottom: 15px;
     height: 60px;
     padding: 10px 0;
   }
+  .footer-upper-row h6 {
+    font-size: 16px;
+    margin-bottom: 0px;
+    font-weight: 800;
+    margin-top: 16px;
+}
+.footer-upper-row ul li a {
+    margin: 5px 0;
+}
+.footer-box {
+    padding: 20px 0 0;
+}
+.newsletter-box .input-group {
+    margin: 20px 0 !important;
+}
+.footer-upper-row h4 {
+    font-size: 16px;
+}
   .about-box-new {
     margin-bottom: 30px;
   }
@@ -1599,4 +1617,18 @@ body {
 }
 .below-18-popup.modal-comming-soon .modal-dialog {
     max-width: 400px;
+}
+
+/*07-04-2022*/
+
+.header-main .header-container.container .navbar-toggler {
+    margin-right: auto;
+    background-color: transparent !important;
+    border: none !important;
+    padding: 0 !important;
+}
+.header-main .header-container.container .navbar-toggler .navbar-toggler-icon {
+    background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgEAYAAAAj6qa3AAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAABmJLR0QAAAAAAAD5Q7t/AAAACXBIWXMAAABgAAAAYADwa0LPAAAAB3RJTUUH5gQHCCInaDVutQAAAd5JREFUaN7t2EFIk2EYB/D/87AmWwzz8yIeKg+RgsT4ig4GBYLJ2nAdR+0kMy+Ji8bGVAiS+gyPSlCjRsGoUwR6WwXzEKzMwkPqQQ8yAiOH7LCB1Pd4GF46pcL7BXt/l/f2Pv/nhZf34QU0TWtkdE8AgLmpzQj4Fzo7Kc6fOe7xqApge/jcsUSpNB7/+aF4Y2tL9QG4mn4YQ+bjXI7i9IbuRCKAAKQuAJ/5c/V3YXf3UZ9x7fxOKJTKlxNfTuTzyurTfcrBHwyqa/kvy5jGottte/Eevf39qstzfbEsFOS1fKrVVAeQuzINWV+n5zLDg9ms6vqapmlaI6MH31oSF6Ld3RzkdjFjMdyWNVxXNwkqN0tn8bZWo2V7gN2ZDE21tD41321sSBJpSnV0OJ1Plf35gyUpZVwScTqQU1x2QH7xUDjMQRqXm41zBfiWXGZ3JuN0HE3TNM1JNBUzNs3o2JiUsIYXExO4QhG6+B8/g/sfN6cojOLkZPrJdnWpx7IOfQDWcKvX/Fip4DQ8NOLzOd3fPxvFcSlWKmnv9uaSq7n5sNswBiSFk/PzTvdzYCvyjB7OzR11G6oPwURWmxHwL3R1qf4WPyj+br+SQrWafFnu++pbXSUCgMYd5TVNO5o9nQ+mPGuPT+0AAAAldEVYdGRhdGU6Y3JlYXRlADIwMjItMDQtMDdUMDg6MzQ6MzkrMDA6MDDnQA3DAAAAJXRFWHRkYXRlOm1vZGlmeQAyMDIyLTA0LTA3VDA4OjM0OjM5KzAwOjAwlh21fwAAAABJRU5ErkJggg==);
+    height: 20px;
+    width: 20px;
 }

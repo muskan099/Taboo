@@ -51,7 +51,7 @@ const Header = () => {
   return (
     <header className="header-main">
       <Navbar bg="light" expand="lg">
-        <Container>
+        <Container className="header-container">
           <Navbar.Brand>
             <Link to="/">
               <img src={"images/Logo_big-red.png"} alt="logo" />
