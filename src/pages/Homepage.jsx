@@ -73,10 +73,7 @@ const Homepage = () => {
               <div>
                 <ul className="partner-list">
                   <li>
-                    <img
-                      src={"images/newsnow.png"}
-                      alt="logo"
-                    />
+                    <img src={"images/newsnow.png"} alt="logo" />
                   </li>
                   <li>
                     <img
@@ -211,7 +208,6 @@ const Homepage = () => {
                     <div>
                       <h4>Q2 2022</h4>
                       <ul>
-                        
                         <li>
                           - Full integration of the Adult Crypto Currency Dex
                           and our fully operable DeFi platform.
@@ -306,12 +302,27 @@ const Homepage = () => {
                   } `}
                 >
                   <img className="small-img" src={"images/2.png"} alt="" />
-                  <img
+                  {/* <img
                     className="full-img"
                     src={"images/full-View.png"}
                     alt=""
-                  />
-                  <button className="show-btn" onClick={() => setShowImg(true)}>
+                  /> */}
+                  {showImg && (
+                    <iframe
+                      width="700"
+                      height="350"
+                      src="https://www.youtube.com/embed/fTZBo_V0sTk?autoplay=1"
+                      title="YouTube video player"
+                      frameborder="0"
+                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                      allowfullscreen
+                    ></iframe>
+                  )}
+                  <button
+                    className="show-btn"
+                    onClick={() => setShowImg(true)}
+                    style={{ display: showImg ? "none" : "block" }}
+                  >
                     <img src={"images/Polygon.png"} alt="" />
                   </button>
                   <button

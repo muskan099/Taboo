@@ -859,14 +859,16 @@ body {
 .how-it-image-box .hide-btn {
   display: none;
   position: absolute;
-  right: 0;
+  top: 0px;
+  background: #871333;
   z-index: 100;
-  background-color: transparent;
   border: none;
   color: #fff;
   font-weight: 600;
-  font-size: 21px;
-  right: 5px;
+  font-size: 16px;
+  right: 0px;
+  border-radius: 5px;
+  width: 25px;
 }
 .how-it-image-box.full-img-show img.small-img {
   display: none;
@@ -994,7 +996,7 @@ body {
   }
   .nft-side-about-us {
     right: -40px;
-}
+  }
 }
 
 @media (max-width: 1150px) {
@@ -1090,23 +1092,23 @@ body {
     right: auto;
     left: 0 !important;
   }
-.navbar-collapse {
+  .navbar-collapse {
     position: absolute;
     top: 55px;
     background-color: #fff;
     left: 0;
     right: 0;
     text-align: left;
-    box-shadow: 0px 2px 10px rgba(0,0,0,0.3);
-}
-.header-main .navbar-light .navbar-nav .nav-link {
+    box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.3);
+  }
+  .header-main .navbar-light .navbar-nav .nav-link {
     font-size: 14px;
     padding: 5px;
-}
-body .banner-section {
+  }
+  body .banner-section {
     min-height: 600px;
     background-position: center bottom 0 !important;
-}
+  }
 }
 @media (max-width: 820px) {
   .team-list {
@@ -1148,19 +1150,19 @@ body .banner-section {
     margin-bottom: 0px;
     font-weight: 800;
     margin-top: 16px;
-}
-.footer-upper-row ul li a {
+  }
+  .footer-upper-row ul li a {
     margin: 5px 0;
-}
-.footer-box {
+  }
+  .footer-box {
     padding: 20px 0 0;
-}
-.newsletter-box .input-group {
+  }
+  .newsletter-box .input-group {
     margin: 20px 0 !important;
-}
-.footer-upper-row h4 {
+  }
+  .footer-upper-row h4 {
     font-size: 16px;
-}
+  }
   .about-box-new {
     margin-bottom: 30px;
   }
@@ -1330,19 +1332,19 @@ body .banner-section {
   }
   .nft-side-about-us {
     right: 0;
-}
-.copy-box p {
+  }
+  .copy-box p {
     font-size: 10px;
-}
-.banner-section-2 {
+  }
+  .banner-section-2 {
     padding: 30px 0;
-}
-.padding-strip {
+  }
+  .padding-strip {
     height: 0 !important;
-}
-.section-stakes-table {
+  }
+  .section-stakes-table {
     padding: 20px 0 !important;
-}
+  }
 }
 
 @media (max-width: 580px) {
@@ -1378,17 +1380,18 @@ body .banner-section {
   margin: 10px 0;
 }
 .table-stakes {
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
-    border-top: 2px solid rgb(135 19 51);
-    word-break: break-all;
-    text-align: left;
-    min-width: 895px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+  border-top: 2px solid rgb(135 19 51);
+  word-break: break-all;
+  text-align: left;
+  min-width: 895px;
 }
-.table-stakes th, .table-stakes td {
-    padding: 15px;
-    font-size: 14px;
-    border: none !important;
-    word-break: break-word;
+.table-stakes th,
+.table-stakes td {
+  padding: 15px;
+  font-size: 14px;
+  border: none !important;
+  word-break: break-word;
 }
 .table-stakes.table-striped > tbody > tr:nth-of-type(odd) > * {
   --bs-table-accent-bg: rgb(135 19 51);
@@ -1398,7 +1401,7 @@ body .banner-section {
   border-top: none;
 }
 .section-stakes-table {
-    padding: 15px 0 60px;
+  padding: 15px 0 60px;
 }
 .active-status {
   background-color: #12b912;
@@ -1431,7 +1434,7 @@ body .banner-section {
   vertical-align: middle;
 }
 .table-stakes td:first-child {
-    word-break: break-all;
+  word-break: break-all;
 }
 .table-stakes.table-hover > tbody > tr:hover > * {
   --bs-table-accent-bg: rgb(255 235 240);
@@ -1469,7 +1472,7 @@ body .banner-section {
   top: 46px;
   border: none;
   border-radius: 0;
-  box-shadow: 0 0 10px rgba(0,0,0,0.2);
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
 }
 .dropdown .dropdown-menu .dropdown-item {
   font-size: 14px;
@@ -1593,42 +1596,41 @@ body {
 }*/
 /* CSS Banner Animation By Shashank */
 
-
 /*soniya new added 05/04/2022*/
 
 .outer-age-box {
-    text-align: center;
-    padding: 30px;
+  text-align: center;
+  padding: 30px;
 }
-.outer-age-box .outer-div{
+.outer-age-box .outer-div {
   font-weight: 600;
   margin-bottom: 20px;
 }
 .outer-age-box button {
-    margin: 0 10px;
-    background-color: #871333;
-    color: #fff;
-    border: none;
-    padding: 5px 30px;
-    border-radius: 30px;
-    outline: none;
-    box-shadow: none;
-    font-weight: 700;
+  margin: 0 10px;
+  background-color: #871333;
+  color: #fff;
+  border: none;
+  padding: 5px 30px;
+  border-radius: 30px;
+  outline: none;
+  box-shadow: none;
+  font-weight: 700;
 }
 .below-18-popup.modal-comming-soon .modal-dialog {
-    max-width: 400px;
+  max-width: 400px;
 }
 
 /*07-04-2022*/
 
 .header-main .header-container.container .navbar-toggler {
-    margin-right: auto;
-    background-color: transparent !important;
-    border: none !important;
-    padding: 0 !important;
+  margin-right: auto;
+  background-color: transparent !important;
+  border: none !important;
+  padding: 0 !important;
 }
 .header-main .header-container.container .navbar-toggler .navbar-toggler-icon {
-    background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgEAYAAAAj6qa3AAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAABmJLR0QAAAAAAAD5Q7t/AAAACXBIWXMAAABgAAAAYADwa0LPAAAAB3RJTUUH5gQHCCInaDVutQAAAd5JREFUaN7t2EFIk2EYB/D/87AmWwzz8yIeKg+RgsT4ig4GBYLJ2nAdR+0kMy+Ji8bGVAiS+gyPSlCjRsGoUwR6WwXzEKzMwkPqQQ8yAiOH7LCB1Pd4GF46pcL7BXt/l/f2Pv/nhZf34QU0TWtkdE8AgLmpzQj4Fzo7Kc6fOe7xqApge/jcsUSpNB7/+aF4Y2tL9QG4mn4YQ+bjXI7i9IbuRCKAAKQuAJ/5c/V3YXf3UZ9x7fxOKJTKlxNfTuTzyurTfcrBHwyqa/kvy5jGottte/Eevf39qstzfbEsFOS1fKrVVAeQuzINWV+n5zLDg9ms6vqapmlaI6MH31oSF6Ld3RzkdjFjMdyWNVxXNwkqN0tn8bZWo2V7gN2ZDE21tD41321sSBJpSnV0OJ1Plf35gyUpZVwScTqQU1x2QH7xUDjMQRqXm41zBfiWXGZ3JuN0HE3TNM1JNBUzNs3o2JiUsIYXExO4QhG6+B8/g/sfN6cojOLkZPrJdnWpx7IOfQDWcKvX/Fip4DQ8NOLzOd3fPxvFcSlWKmnv9uaSq7n5sNswBiSFk/PzTvdzYCvyjB7OzR11G6oPwURWmxHwL3R1qf4WPyj+br+SQrWafFnu++pbXSUCgMYd5TVNO5o9nQ+mPGuPT+0AAAAldEVYdGRhdGU6Y3JlYXRlADIwMjItMDQtMDdUMDg6MzQ6MzkrMDA6MDDnQA3DAAAAJXRFWHRkYXRlOm1vZGlmeQAyMDIyLTA0LTA3VDA4OjM0OjM5KzAwOjAwlh21fwAAAABJRU5ErkJggg==);
-    height: 20px;
-    width: 20px;
+  background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgEAYAAAAj6qa3AAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAABmJLR0QAAAAAAAD5Q7t/AAAACXBIWXMAAABgAAAAYADwa0LPAAAAB3RJTUUH5gQHCCInaDVutQAAAd5JREFUaN7t2EFIk2EYB/D/87AmWwzz8yIeKg+RgsT4ig4GBYLJ2nAdR+0kMy+Ji8bGVAiS+gyPSlCjRsGoUwR6WwXzEKzMwkPqQQ8yAiOH7LCB1Pd4GF46pcL7BXt/l/f2Pv/nhZf34QU0TWtkdE8AgLmpzQj4Fzo7Kc6fOe7xqApge/jcsUSpNB7/+aF4Y2tL9QG4mn4YQ+bjXI7i9IbuRCKAAKQuAJ/5c/V3YXf3UZ9x7fxOKJTKlxNfTuTzyurTfcrBHwyqa/kvy5jGottte/Eevf39qstzfbEsFOS1fKrVVAeQuzINWV+n5zLDg9ms6vqapmlaI6MH31oSF6Ld3RzkdjFjMdyWNVxXNwkqN0tn8bZWo2V7gN2ZDE21tD41321sSBJpSnV0OJ1Plf35gyUpZVwScTqQU1x2QH7xUDjMQRqXm41zBfiWXGZ3JuN0HE3TNM1JNBUzNs3o2JiUsIYXExO4QhG6+B8/g/sfN6cojOLkZPrJdnWpx7IOfQDWcKvX/Fip4DQ8NOLzOd3fPxvFcSlWKmnv9uaSq7n5sNswBiSFk/PzTvdzYCvyjB7OzR11G6oPwURWmxHwL3R1qf4WPyj+br+SQrWafFnu++pbXSUCgMYd5TVNO5o9nQ+mPGuPT+0AAAAldEVYdGRhdGU6Y3JlYXRlADIwMjItMDQtMDdUMDg6MzQ6MzkrMDA6MDDnQA3DAAAAJXRFWHRkYXRlOm1vZGlmeQAyMDIyLTA0LTA3VDA4OjM0OjM5KzAwOjAwlh21fwAAAABJRU5ErkJggg==);
+  height: 20px;
+  width: 20px;
 }
