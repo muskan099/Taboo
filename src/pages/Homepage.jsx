@@ -47,19 +47,19 @@ const Homepage = () => {
             <li>
               <div>
                 <p>Total Market Cap</p>
-                <h5>$37, 893, 516M</h5>
+                <h5>$27,030,368</h5>
               </div>
             </li>
             <li>
               <div>
                 <p>Current Price</p>
-                <h5>$0.003874</h5>
+                <h5>$0.002765</h5>
               </div>
             </li>
             <li>
               <div>
                 <p>Volume 24H</p>
-                <h5>$1,169,856M</h5>
+                <h5>$1,089,578</h5>
               </div>
             </li>
           </ul>
