@@ -443,7 +443,7 @@ const Homepage = () => {
                         alt="team"
                       />
                       <div className="content-team">
-                        <h4>Mat C</h4>
+                        <h4>Matt</h4>
                         <p>Community Manager</p>
                       </div>
                     </div>
