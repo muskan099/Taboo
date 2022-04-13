@@ -1054,6 +1054,13 @@ body {
 }
 
 @media (max-width: 992px) {
+  .how-it-image-box {
+    height: 200px;
+  }
+  .how-it-image-box iframe {
+    width: 100%;
+    height: 100%;
+  }
   .team-sec-new .order-2 {
     order: initial !important;
     text-align: center;
