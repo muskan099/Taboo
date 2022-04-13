@@ -12,10 +12,17 @@ import {
 } from "react-bootstrap";
 import { toast } from "react-toastify";
 import axiosMain from "../../http/axios/axios_main";
+
+const cookiesAccepted = localStorage.getItem("cookies");
+
 const Footer = () => {
   // Modal Code
   const [show, setShow] = useState(false);
   const [email, setEmail] = useState("");
+  const [showCookies, setShowCookies] = useState(
+    cookiesAccepted === "accepted" ? false : true
+  );
+
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
 
@@ -152,17 +159,20 @@ const Footer = () => {
             <p>copyright of TABOO. All rights reserved</p>
           </Col>
           <Col md={6} sm={6}>
-            <p className="cookies-box">
-              <b>We use cookies for better service</b>
-              <a
-                onClick={(e) => {
-                  e.preventDefault();
-                  setShow(true);
-                }}
-              >
-                Accept
-              </a>
-            </p>
+            {showCookies && (
+              <p className="cookies-box">
+                <b>We use cookies for better service</b>
+                <a
+                  onClick={(e) => {
+                    e.preventDefault();
+                    setShowCookies(false);
+                    localStorage.setItem("cookies", "accepted");
+                  }}
+                >
+                  Accept
+                </a>
+              </p>
+            )}
           </Col>
         </Row>
       </Container>
