@@ -25,8 +25,11 @@ function App() {
         <Header />
         <Routes>
           <Route path="/" element={<Homepage />} />
+             
           <Route path="/explore" element={<Explore />} />
+           
           <Route path="/details" element={<NftDetails />} />
+              
           <Route path="/stakes" element={<Stakes />} />
         </Routes>
         <Footer />
