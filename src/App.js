@@ -10,6 +10,7 @@ import Footer from "./components/UI/Footer";
 import Homepage from "./pages/Homepage";
 import Stakes from "./pages/Stakes";
 import Explore from "./pages/Explore"
+import NftDetails from "./pages/NftDetails";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
@@ -25,6 +26,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Homepage />} />
           <Route path="/explore" element={<Explore />} />
+          <Route path="/details" element={<NftDetails />} />
           <Route path="/stakes" element={<Stakes />} />
         </Routes>
         <Footer />

@@ -1,5 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom";
+import HttpsRedirect from 'react-https-redirect';
 import "./index.css";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
@@ -10,7 +11,10 @@ import { Provider } from "react-redux";
 ReactDOM.render(
   <React.StrictMode>
     <Provider store={store}>
+      <HttpsRedirect>
       <App />
+      </HttpsRedirect>
+      
       <ScrollToTopButton />
     </Provider>
   </React.StrictMode>,

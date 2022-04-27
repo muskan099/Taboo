@@ -61,7 +61,7 @@ const Header = () => {
           <Navbar.Collapse id="navbarScroll">
             <Nav className="me-auto my-2 my-lg-0">
               <Nav.Link onClick={handleShow}>Explore</Nav.Link>
-              <a onClick={handleShow} className="nav-link">
+              <a href="https://punks.taboo.io/" target={'_blank'} className="nav-link">
                 TabooPunks
               </a>
               <Nav.Link onClick={handleShow}>Magazine</Nav.Link>
