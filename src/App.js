@@ -9,6 +9,7 @@ import Header from "./components/UI/Header";
 import Footer from "./components/UI/Footer";
 import Homepage from "./pages/Homepage";
 import Stakes from "./pages/Stakes";
+import Explore from "./pages/Explore"
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
@@ -23,6 +24,7 @@ function App() {
         <Header />
         <Routes>
           <Route path="/" element={<Homepage />} />
+          <Route path="/explore" element={<Explore />} />
           <Route path="/stakes" element={<Stakes />} />
         </Routes>
         <Footer />
