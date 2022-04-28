@@ -11,6 +11,8 @@ import Homepage from "./pages/Homepage";
 import Stakes from "./pages/Stakes";
 import Explore from "./pages/Explore"
 import NftDetails from "./pages/NftDetails";
+import JoinUs from "./pages/JoinUs";
+import Magzine from "./pages/Magzine";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
@@ -27,6 +29,9 @@ function App() {
           <Route path="/" element={<Homepage />} />
              
           <Route path="/explore" element={<Explore />} />
+
+          <Route path="/magzine" element={<Magzine />} />
+          <Route path="/join-us" element={<JoinUs />} />
            
           <Route path="/details" element={<NftDetails />} />
               
