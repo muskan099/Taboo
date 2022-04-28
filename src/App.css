@@ -2368,6 +2368,127 @@ margin: 15px 0;
 font-weight: 600;
 font-size: 40px;
 }
-.magazine-heading p{
 
+/*rank page css*/
+
+.outer-rank-box {
+    padding: 60px 45px;
+}
+
+.magazine-heading.rank-heading{
+  display: flex;
+  align-items: flex-start;
+}
+.magazine-heading.rank-heading h2 {
+    position: relative;
+    font-size: 50px;
+    width: 250px;
+    text-align: left;
+}
+.magazine-heading.rank-heading h2::after {
+    height: 2px;
+    width: 75%;
+    content: "";
+    position: absolute;
+    bottom: -4px;
+    background-color: #871333;
+    left: 0;
+    right: auto;
+    margin: 0 auto;
+}
+.magazine-heading.rank-heading p {
+    width: calc( 100% - 250px);
+    text-align: left;
+}
+.filer-right-box.allcategory-filter{
+justify-content: flex-start;
+margin: 20px 0;
+}
+
+.filer-right-box.allcategory-filter .dropdown-toggle{
+    min-width: 180px;
+    font-weight: 600;
+}
+.filer-right-box.allcategory-filter .dropdown-toggle:after {
+    content: "";
+    background-image: none;
+    height: 10px;
+    width: 10px;
+    border-right: 2px solid #871434 !important;
+    border-bottom: 2px solid #871434 !important;
+    transform: rotate(45deg);
+    right: 15px;
+    top: 13px;
+}
+.table-tank{
+font-size: 14px;
+color: #6e6e6e;
+text-align: left;
+font-weight: 600;
+}
+.table-tank .tbody{
+  border: none;
+}
+.table-tank tr td{
+  vertical-align: middle;
+}
+.table-tank tr th,
+.table-tank tr td{
+  padding: 15px;
+}
+.table-tank .owner-row-outer {
+    border: none !important;
+    padding: 0 !important;
+    text-align: left;
+}
+.table-tank .owner-row-outer img {
+    height: 38px;
+    width: 38px;
+    margin-right: 10px;
+    border-radius: 50%;
+}
+.table-tank .owner-row-outer h5 {
+    font-size: 14px;
+    color: #6e6e6e;
+}
+.table-tank tr td div.icon-img img{
+  height: 18px;
+  margin-right: 10px;
+}
+.table-tank tr td span.success{
+color: green;
+}
+.table-tank tr td span.down{
+color:#871434;
+}
+.rank-outer-sec .rank-side-img{
+height: 100%;
+}
+.rank-outer-sec .rank-side-img img {
+    height: 100%;
+    object-fit: cover;
+}
+
+@media (max-width: 768px){
+  .join-box-sec.rank-outer-sec {
+    padding: 0;
+}
+  .magazine-heading.rank-heading {
+    display: block;
+}
+.magazine-heading.rank-heading h2 {
+    font-size: 32px;
+    width: 100%;
+}
+.magazine-heading.rank-heading p {
+    width: 100%;
+    text-align: left;
+}
+.filer-right-box.allcategory-filter .dropdown-toggle {
+    margin: 0;
+    min-width: 130px;
+}
+.outer-rank-box {
+    padding: 30px 15px;
+}
 }
