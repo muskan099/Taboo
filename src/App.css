@@ -2250,3 +2250,104 @@ border-radius: 20px;
 .color-green{
   color: green;
 }
+
+/*join us page css*/
+
+.join-box-sec{
+  padding: 65px 0 0;
+}
+.join-first-box{
+
+}
+.join-first-box img{
+  width: 100%;
+  margin-bottom: 30px;
+}
+.join-first-box .text-first-box {
+    padding: 30px;
+    text-align: justify;
+}
+.join-box-heading {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+}
+.join-box-heading h2{
+  position: relative;
+  font-size: 50px;
+}
+.join-box-heading h2::after {
+    height: 2px;
+    width: 75%;
+    content: "";
+    position: absolute;
+    bottom: -4px;
+    background-color: #871333;
+    left: 0;
+    right: 0;
+    margin: 0 auto;
+}
+.form-join-us{
+  padding: 40px 0;
+  text-align: left;
+}
+.form-join-us .form-label {
+    font-weight: 600;
+    color: #cfcece;
+}
+.form-join-us .form-control {
+    border: none;
+    border-bottom: 1px solid #ddd;
+    border-radius: 0;
+    padding: 0;
+}
+.form-join-us .checkbox label{
+font-weight: 600;
+    color: #aaa;
+}
+.form-join-us .blue-btn {
+    display: block;
+    width: 100%;
+    margin: 20px 0;
+}
+
+
+@media (max-width: 992px){
+.join-box-sec {
+    padding: 30px 0 0;
+}
+.join-box-heading h2 {
+    position: relative;
+    font-size: 40px;
+    margin-bottom: 40px;
+}
+.join-first-box .text-first-box {
+    padding: 0px 10px 0 20px;
+    text-align: justify;
+}
+}
+
+
+@media (max-width: 768px){
+
+.join-box-sec {
+    padding: 30px 0 0;
+}
+.join-box-heading h2 {
+    position: relative;
+    font-size: 40px;
+    margin-bottom: 40px;
+}
+
+.join-box-sec  .order-2 {
+    order: initial !important;
+}
+.form-join-us {
+    padding: 0 20px 40px;
+}
+.join-first-box .text-first-box {
+    padding: 0 30px 20px;
+}
+}
+
