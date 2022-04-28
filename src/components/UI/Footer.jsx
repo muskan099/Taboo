@@ -42,7 +42,7 @@ const Footer = () => {
   };
 
   return (
-    <section className="footer-box mt-0">
+    <footer className="footer-box mt-0">
       <Container>
         <Row className="footer-upper-row">
           <Col md={4} sm={4}>
@@ -192,7 +192,7 @@ const Footer = () => {
           </div>
         </Modal.Body>
       </Modal>
-    </section>
+    </footer>
   );
 };
 
