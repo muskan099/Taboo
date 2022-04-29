@@ -15,6 +15,8 @@ import JoinUs from "./pages/JoinUs";
 import Magzine from "./pages/Magzine";
 import Rank from "./pages/Rank";
 import Profile from "./pages/Profile";
+import News from "./pages/News";
+import NewsDetails from "./pages/NewsDetails";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
@@ -34,6 +36,10 @@ function App() {
 
           <Route path="/magzine" element={<Magzine />} />
           <Route path="/join-us" element={<JoinUs />} />
+
+          <Route path="/news" element={<News />} />
+
+          <Route path="/news-details" element={<NewsDetails />} />
           
           <Route path="/profile" element={<Profile />} />
           <Route path="/rank" element={<Rank />} />
