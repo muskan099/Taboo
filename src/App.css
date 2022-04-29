@@ -2492,3 +2492,198 @@ height: 100%;
     padding: 30px 15px;
 }
 }
+
+/*profile page css*/
+
+.outer-profile-collection {
+    padding: 60px 0 120px;
+}
+.outer-profile-collection .filer-right-box ul li a{
+  font-size: 18px;
+  padding: 5px 25px;
+}
+.outer-profile-collection .outer-explor-box {
+    border-radius: 0;
+    box-shadow: none;
+    padding: 0px;
+    margin: 15px 0;
+}
+.outer-profile-collection .outer-explor-box .img-main {
+    width: 100%;
+    border-radius: 15px;
+    height: 290px;
+    object-fit: cover;
+}
+.profile-upper-banner{
+  padding: 50px 0;
+}
+.profile-upper-banner .profile-banner{
+  width: 100%;
+}
+.profile-upper-banner .profile-banner img{
+  max-height: 350px;
+  width: 100%;
+  object-fit: cover;
+}
+.favorite-model-heading {
+    position: relative;
+    height: 2px;
+    background-color: #ddd;
+    margin: 20px 0 60px;
+}
+.favorite-model-heading span {
+    position: absolute;
+    top: -14px;
+    left: 0;
+    right: 0;
+    margin: 0 auto;
+    display: inline-block;
+    background-color: #fff;
+    max-width: 360px;
+    text-transform: uppercase;
+    font-size: 20px;
+    font-weight: 600;
+    color: #888787;
+}
+.favorite-model-img-box{
+  text-align: center;
+}
+.favorite-model-img-box{
+margin: 20px 0;
+}
+.favorite-model-img-box img {
+    height: 190px;
+    width: 190px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin: 0 auto !important;
+}
+.favorite-model-img-box h4 {
+    margin: 10px 0;
+    font-size: 20px;
+    font-weight: 600;
+    color: #828080;
+}
+.profile-img-left-box {
+    background-color: #fff;
+    border-radius: 15px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+    /* position: relative; */
+    margin-top: -150px !important;
+    padding: 30px 15px;
+    color: #848383;
+    margin: 0 30px;
+}
+.profile-main-img {
+    height: 190px;
+    width: 190px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+.profile-img-left-box h4{
+  margin: 20px 0 10px;
+  font-weight: 600;
+}
+.profile-img-left-box p{
+
+}
+.profile-img-left-box p a {
+    color: #871434;
+    font-size: 20px;
+    display: inline-block;
+    margin-left: 11px;
+}
+.profile-img-left-box .biography-box{
+text-align: left;
+}
+.profile-img-left-box .biography-box p {
+    text-align: justify;
+    line-height: 18px;
+}
+.profile-img-left-box h5 a{
+    font-size: 16px;
+    text-decoration: none;
+    color: #000;
+}
+.profile-img-left-box h5 img{
+  height: 20px;
+}
+.profile-img-left-box  .follow-row{
+
+}
+.profile-img-left-box  .follow-row a {
+    display: inline-block;
+    margin: 10px 5px;
+}
+.profile-img-left-box  .follow-row a img {
+    height: 40px;
+    width: 40px;
+    border-radius: 50%;
+}
+.social-media-icon a {
+    display: inline-block;
+    margin: 30px 6px 20px;
+}
+.social-media-icon a img{
+  height: 28px;
+  width: 28px;
+  object-fit: contain;
+}
+.slick-arrow.slick-prev {
+    background-color: transparent;
+    font-size: 0;
+    height: 20px;
+    width: 30px;
+}
+.slick-arrow.slick-prev::before{
+ content: "";
+    background-image: url("./assets/images/right-arrow.png");
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center;
+  height: 100%;
+    width: 100%;
+    border: none !important;
+    position: absolute;
+    right: 0;
+    top: 0;
+    transition: all ease-in-out .5s;
+}
+.slick-arrow.slick-next{
+background-color: transparent;
+    font-size: 0;
+    height: 20px;
+    width: 30px;
+}
+.slick-arrow.slick-next::before{
+  content: "";
+    background-image: url("./assets/images/left1-arrow.png");
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center;
+  height: 100%;
+    width: 100%;
+    border: none !important;
+    position: absolute;
+    right: 0;
+    top: 0;
+    transition: all ease-in-out .5s;
+}
+
+@media (max-width: 768px){
+  .profile-img-left-box {
+    margin-top: -100px !important;
+    padding: 20px 10px;
+    margin: 0 10px;
+}
+.outer-profile-collection .filer-right-box ul li a {
+    font-size: 14px;
+    padding: 3px 10px;
+}
+.slick-arrow.slick-prev {
+    left: 0;
+}
+.slick-arrow.slick-next{
+  right: 0;
+}
+}
