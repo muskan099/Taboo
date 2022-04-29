@@ -268,20 +268,27 @@ const NftDetails=()=>{
                         
                         <div class="purchasing-notify">
                             <img src="images/dot-line.png" />
+
                             <div>
                                 <h6>Purchasing</h6>
                                 <p>Sending transaction with your wallet</p>
                             </div>
+                            
                         </div>
 
                         <div className="creator-erroer-notify creater-follow">
                             <img src="images/add-button.png" />
+
                             <div>
                                 <h6>This Creator is not verified</h6>
                                 <p>Purchase this item at your own risk</p>
                             </div>
+
                             <img className="user-img"  src="images/Team/team6.png" />
                         </div>
+
+
+
 
                        
                     </div>
