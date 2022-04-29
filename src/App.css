@@ -3013,3 +3013,140 @@ height: 250px;
 .news-details-sec{
   padding: 65px 0 60px;
 }
+
+.details-img{
+  margin: 30px 0;
+}
+
+.details-img img{
+width: 100%;
+}
+.news-details-sec .main-heading-inner {
+    position: relative;
+    font-size: 34px;
+    font-weight: 600;
+}
+.news-details-sec .main-heading-inner a {
+    position: absolute;
+    left: -50px;
+}
+.detail-content{
+  text-align: justify;
+}
+.comment-heading {
+    text-align: left;
+    font-size: 24px;
+    font-weight: 600;
+    margin: 30px 0 10px;
+}
+.owner-row-outer.comments-row {
+    border: none !important;
+}
+.owner-row-outer.comments-row h5 small {
+    font-size: 10px;
+    color: #aaa;
+}
+.form-comment-news{
+  text-align: left;
+  margin: 30px 0;
+}
+
+.form-comment-news .form-control {
+    border: 2px solid #b2b0b0 !important;
+    outline: none !important;
+    box-shadow: none !important;
+    background-color: transparent;
+    border-radius: 30px;
+    padding: 10px 20px;
+}
+
+@media (max-width: 768px){
+
+.news-sec-2.news-details-sec .row{
+  margin: 0 !important;
+}
+.news-details-sec {
+    padding: 0 15px 60px;
+}
+.news-details-sec .main-heading-inner {
+    font-size: 20px;
+}
+.news-details-sec .main-heading-inner a {
+    position: relative;
+    left: 0;
+} 
+}
+
+/*details popup css*/
+
+.creator-erroer-notify {
+    display: flex;
+    align-items: center;
+    background-color: #F0E4E8;
+    padding: 30px;
+    border-radius: 15px;
+    margin: 40px 20px;
+}
+.creator-erroer-notify img {
+    height: 32px;
+    margin-right: 10px;
+}
+.creator-erroer-notify h6 {
+    margin: 0;
+    color: #871434;
+    font-weight: 600;
+    margin-bottom: 5px;
+}
+.creator-erroer-notify p{
+  margin: 0;
+  color: #871434;
+  font-size: 12px;
+}
+.purchasing-notify {
+    display: flex;
+    align-items: center;
+    margin: 20px 20px 0;
+    max-width: 300px;
+}
+.purchasing-notify img{
+  height: 40px;
+    margin-right: 30px;
+}
+.purchasing-notify h6{
+  margin: 0;
+    font-weight: 600;
+    margin-bottom: 5px;
+}
+.purchasing-notify p {
+    margin: 0;
+    font-size: 16px;
+}
+.creator-erroer-notify.creater-follow{
+  position: relative;
+}
+
+.creator-erroer-notify.creater-follow .user-img {
+    position: absolute;
+    margin: 0;
+    right: 25px;
+    height: 40px;
+    width: 40px;
+    border-radius: 50%;
+}
+
+@media (max-width: 768px){
+
+.creator-erroer-notify {
+    padding: 15px 50px 15px 15px;
+    margin: 20px 0px;
+}
+.creator-erroer-notify.creater-follow .user-img {
+    right: 10px;
+    height: 32px;
+    width: 32px;
+}
+.creator-erroer-notify h6 {
+    margin-bottom: 0;
+    font-size: 14px;
+}
+}

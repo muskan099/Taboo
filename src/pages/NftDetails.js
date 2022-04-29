@@ -17,6 +17,17 @@ const NftDetails=()=>{
   const handleClose1 = () => setShow1(false);
   const handleShow1 = () => setShow1(true);
 
+  const [show2, setShow2] = useState(false);
+
+  const handleClose2 = () => setShow2(false);
+  const handleShow2 = () => setShow2(true);
+
+
+   const [show3, setShow3] = useState(false);
+
+  const handleClose3 = () => setShow3(false);
+  const handleShow3 = () => setShow3(true);
+
     return(<>
 
         <section className="explore-info-sec">
@@ -79,8 +90,8 @@ const NftDetails=()=>{
                                  </div>
                               </div>
                                <div class="text-center">
-                                   <Button className="blue-btn" onClick={handleShow}>Purchase Now</Button>
-                                   <Button className="border-btn" onClick={handleShow1}>Place A Bid</Button>
+                                   <Button className="blue-btn" onClick={handleShow2}>Purchase Now</Button>
+                                   <Button className="border-btn" onClick={handleShow3}>Place A Bid</Button>
                                    
                                </div>
                             </div>
@@ -179,6 +190,105 @@ const NftDetails=()=>{
                 </Modal.Body>
                 
               </Modal>
+
+
+               <Modal 
+            show={show2}
+            className="modal-comming-soon bid-modal" 
+            backdrop="static"
+            keyboard={false} 
+            onHide={handleClose2}
+            centered>
+                <Modal.Header closeButton className="border-none p-0"></Modal.Header>
+                <Modal.Body>
+                  <div class="bid-modal-box">
+                        <h3>Checkout</h3>
+                        
+                        <br/>
+                        
+                        <Table>
+                          <thead>
+                            <tr>
+                              <th>Enter Bid</th>
+                              <th>$TABOO</th>
+                              
+                            </tr>
+                          </thead>
+                          <tbody>
+                            <tr>
+                              <td>Your Balance</td>
+                              <td>123 $TABOO</td>
+                              
+                            </tr>
+                            <tr>
+                              <td>Service Fee</td>
+                              <td>0 $TABOO</td>
+                              
+                            </tr>
+                            <tr>
+                              <td>Total will Pay</td>
+                              <td>123 $TABOO</td>
+                              
+                            </tr>
+                          </tbody>
+                        </Table>
+
+                        <div class="creator-erroer-notify">
+                            <img src="images/add-button.png" />
+                            <div>
+                                <h6>This Creator is not verified</h6>
+                                <p>Purchase this item at your own risk</p>
+                            </div>
+                        </div>
+
+                        <div>
+                            <a href="" className="blue-btn">I Understand, Continue</a>
+                            
+                            <a href="" className="border-btn">Cancel</a>
+                        </div>
+                    </div>
+                </Modal.Body>
+                
+              </Modal>
+
+
+                        <Modal 
+            show={show3}
+            className="modal-comming-soon bid-modal" 
+            backdrop="static"
+            keyboard={false} 
+            onHide={handleClose3}
+            centered>
+                <Modal.Header closeButton className="border-none p-0"></Modal.Header>
+                <Modal.Body>
+                  <div class="bid-modal-box">
+                        <h3>Follow Steps</h3>
+                        
+                        <br/>
+                        
+                        <div class="purchasing-notify">
+                            <img src="images/dot-line.png" />
+                            <div>
+                                <h6>Purchasing</h6>
+                                <p>Sending transaction with your wallet</p>
+                            </div>
+                        </div>
+
+                        <div className="creator-erroer-notify creater-follow">
+                            <img src="images/add-button.png" />
+                            <div>
+                                <h6>This Creator is not verified</h6>
+                                <p>Purchase this item at your own risk</p>
+                            </div>
+                            <img className="user-img"  src="images/Team/team6.png" />
+                        </div>
+
+                       
+                    </div>
+                </Modal.Body>
+                
+              </Modal>
+
                
         </section>
     </>)
