@@ -17,6 +17,7 @@ import Rank from "./pages/Rank";
 import Profile from "./pages/Profile";
 import News from "./pages/News";
 import NewsDetails from "./pages/NewsDetails";
+import ExploreLanding from "./pages/ExploreLanding";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
@@ -38,6 +39,9 @@ function App() {
           <Route path="/join-us" element={<JoinUs />} />
 
           <Route path="/news" element={<News />} />
+
+          <Route path="/explore-landing" element={<ExploreLanding />} />
+
 
           <Route path="/news-details" element={<NewsDetails />} />
           
