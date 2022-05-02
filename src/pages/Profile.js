@@ -179,7 +179,7 @@ const Profile=()=>{
               </Row>
               <Row>
                  <Col>
-                    <div class="favorite-model-heading">
+                    <div className="favorite-model-heading">
                         <span>Choose your Favorite Modal</span>
                     </div>
                     <Slider className="slider-favorite" {...settings}>
