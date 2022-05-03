@@ -97,7 +97,7 @@ const CreateNft=()=>{
 
 
                             <Form.Group className="mb-4">
-                                <Form.Control type="file" size="lg" />
+                                <Form.Control type="text" placeholder="Meta Tag" />
                             </Form.Group>
 
                             <Form.Group className="mb-4">
@@ -111,77 +111,32 @@ const CreateNft=()=>{
 
                             
                              <Row>
+                                 <Col md={4} sm={4} xs={12}>
+                                  <Form.Group className="mb-3">
+                                    <Form.Label>Price</Form.Label>
+                                    <Form.Control type="text" placeholder="" />
+                                </Form.Group>
+                                 </Col>
                                 <Col md={4} sm={4} xs={12}>
                                    <Form.Group className="mb-3">
                                         <Form.Label>Quantity</Form.Label>
                                         <Form.Control type="text" placeholder="" />
                                     </Form.Group>
                                  </Col>
-                             </Row>
-
-                             <Row>
-                                <Col md={4} sm={4} xs={12}>
-                                  <Form.Group className="mb-3">
-                                    <Form.Label>Price</Form.Label>
-                                    <Form.Control type="text" placeholder="" />
-                                </Form.Group>
-                                 </Col>
                                  <Col md={4} sm={4} xs={12}>
                                    <Form.Group className="mb-3">
-                                        <Form.Label>Royalities</Form.Label>
-                                        <Form.Control type="text" placeholder="" />
-                                    </Form.Group>
-                                 </Col>
-                             </Row>
-
-                             <h5>Attributes</h5>
-
-
-                             <Row>
-                                <Col md={3} sm={3} xs={12}>
-                                   <Form.Group className="mb-3">
                                         <Form.Label>Category</Form.Label>
-                                        <Form.Control type="text" placeholder="" />
+                                        <Form.Select aria-label="Default select example">
+                                          <option>Selct Category</option>
+                                          <option value="1">One</option>
+                                          <option value="2">Two</option>
+                                          <option value="3">Three</option>
+                                        </Form.Select>
                                     </Form.Group>
                                  </Col>
-                                 <Col md={3} sm={3} xs={12}>
-                                    <Form.Group className="mb-3">
-                                        <Form.Label>Trait</Form.Label>
-                                        <Form.Control type="text" placeholder="" />
-                                    </Form.Group>
-                                 </Col>
-                                 <Col md={3} sm={3} xs={12}>
-                                     <Form.Group className="mb-3">
-                                        <Form.Label>Percentage</Form.Label>
-                                        <Form.Control type="text" placeholder="" />
-                                    </Form.Group>
-                                 </Col>
-                                 <Col md={3} sm={3} xs={12}>
-                                    <div className="mt-4">
-                                        <button className="blue-btn">Add Attributes</button>
-                                    </div>
-                                 </Col>
-                             </Row>
 
-                             <Row className="mt-3">
-                                <Col md={12} sm={12} xs={12}>
-
-                                   <Table striped bordered hover>
-                                      <thead>
-                                        <tr>
-                                           <th>Category</th>
-                                            <th>Trait</th>
-                                            <th>%</th>
-                                            <th>Option</th>
-                                        </tr>
-                                      </thead>
-                                      <tbody>
-                                      </tbody>
-                                    </Table>
-                                  
-                                 </Col>
-                                 
                              </Row>
+                             
 
                              <div >
                                  <button className="blue-btn">Create Item</button>

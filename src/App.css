@@ -3756,7 +3756,8 @@ filter: grayscale(0);
 .outer-create-form{
   text-align: left;
 }
-.outer-create-form .form-control {
+.outer-create-form .form-control,
+.outer-create-form .form-select {
     border: 2px solid #ddd;
     padding: 10px 15px;
     font-size: 16px;
