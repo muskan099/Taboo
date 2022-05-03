@@ -3684,3 +3684,132 @@ text-align: left;
     font-size: 12px;
 }
 }
+
+/*create page css*/
+
+.crate-page-sec {
+    padding: 100px 0;
+    background-color: #fdfdfd;
+}
+.select-transaction-list {
+    padding: 0;
+    margin-bottom: 30px;
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    margin: 30px 0;
+}
+.select-transaction-list li {
+    list-style: none;
+    width: 20%;
+    margin-right: 5%;
+}
+.select-transaction-list li .radio {
+    display: block;
+    text-align: center;
+    position: relative;
+}
+.select-transaction-list li .radio label {
+    display: block;
+}
+.select-transaction-list li .radio .cr {
+    border-radius: 50%;
+    position: absolute;
+    left: 0;
+    top: 0;
+    border: none;
+    margin: 0;
+    
+}
+.select-transaction-list li .radio .cr .cr-icon{
+  color: #fff;
+}
+.bsc-block {
+    padding: 20px 22px;
+    border-radius: 5px;
+    border: 2px solid #aaa;
+    color: #871434;
+    font-weight: 600;
+}
+
+.bsc-block img {
+    height: 35px;
+    margin-bottom: 5px;
+    filter: grayscale(1);
+}
+.bsc-block span {
+    display: block;
+    font-weight: 700;
+    color: #aaa;
+}
+.select-transaction-list li .radio label input[type="radio"]:checked ~ .bsc-block {
+    border: 2px solid #871434;
+    background-color: #871434;
+    color: #fff;
+}
+.select-transaction-list li .radio label input[type="radio"]:checked ~ .bsc-block img{
+filter: grayscale(0);
+}
+.select-transaction-list li .radio label input[type="radio"]:checked ~ .bsc-block span{
+  color: #fff;
+}
+.outer-create-form{
+  text-align: left;
+}
+.outer-create-form .form-control {
+    border: 2px solid #ddd;
+    padding: 10px 15px;
+    font-size: 16px;
+    background-color: #fff;
+    outline: none !important;
+    box-shadow: none !important;
+}
+.outer-create-form .form-label {
+    color: #871434;
+    font-weight: 600;
+    font-size: 18px;
+}
+
+.outer-create-form h5{
+  color: #000;
+    font-weight: 600;
+    font-size: 24px;
+    margin: 30px 0;
+}
+.upload-img-box {
+    border: 2px dashed #ddd;
+    padding: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    margin-bottom: 30px;
+    border-radius: 20px;
+    background-color: #f4f4f4;
+    color: #871434;
+    font-weight: 600;
+    font-size: 18px;
+}
+.upload-btn-wrapper {
+  position: relative;
+  overflow: hidden;
+  display: inline-block;
+}
+.upload-btn-wrapper input[type=file] {
+  font-size: 100px;
+  position: absolute;
+  left: 0;
+  top: 0;
+  opacity: 0;
+}
+
+@media (max-width: 768px){
+  
+  .select-transaction-list li {
+    width: 30%;
+    margin-right: 2%;
+}
+.bsc-block {
+    padding: 10px 10px;
+}
+}
