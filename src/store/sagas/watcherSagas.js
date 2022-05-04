@@ -15,6 +15,8 @@ import { ratesSaga } from "./upperStripRate/rate";
 import { getTransactionsSaga } from "./transactions/transactionSaga";
 import { getDashboardSaga } from "./dashboard/dashboardSaga";
 
+import { getNftSaga,createNftSaga } from "./nft/nftSaga";
+
 // tmep
 // console.log(action.getRatesSaga.type);
 // console.log(action.loginSaga.type);
@@ -30,6 +32,10 @@ export function* watchAuthentication() {
   yield all([takeLatest("auth/forgotPasswordSaga", forgotPasswordSaga)]);
   yield all([takeLatest("auth/verifyOtpSaga", verifyOtpSaga)]);
   yield all([takeLatest("auth/passwordResetSaga", passwordResetSaga)]);
+  yield all([takeLatest("nft/getNftSaga",getNftSaga)]);
+  yield all([takeLatest("nft/createNftSaga",createNftSaga)]);
+
+
 }
 export function* watchRates() {
   yield all([takeLatest("upperStripRates/getRatesSaga", ratesSaga)]);
