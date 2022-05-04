@@ -16,7 +16,7 @@ import {
 import { Link, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import Connect from "../../helpers/Connect";
-
+import { Provider } from "../../helpers/Web3Helper";
 import userIcon from "../../assets/user-icon.png";
 
 import { loginSaga, logout } from "../../store/reducers/authReducer";
@@ -48,6 +48,45 @@ const Header = () => {
   const handleLogout = async () => {
     dispatch(logout({}));
   };
+
+
+
+
+
+  useEffect(async () => {
+   if(isAuthenticated){
+        
+    let provider = await Provider();
+    provider.on("accountsChanged", (accounts) => {
+        console.log(accounts);
+        handleLogin();
+    });
+
+    // Subscribe to chainId change
+    provider.on("chainChanged", (chainId) => {
+        console.log(chainId);
+        handleLogin();
+    });
+
+    // Subscribe to provider connection
+    provider.on("connect",(info)  => {
+        console.log(info);
+    });
+
+    // Subscribe to provider disconnection
+    provider.on("disconnect", (error) => {
+        console.log(error);
+
+        handleLogout();
+    });
+   }
+});
+
+
+
+
+
+
   return (
     <header className="header-main">
       <Navbar bg="light" expand="lg">
