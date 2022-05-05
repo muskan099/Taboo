@@ -14,7 +14,7 @@ import {
 export function* getNftSaga(action) {
   yield put(getNftStart());
   try {
-    const response = yield axios.post(`/explore`, action.payload);
+    const response = yield axios.post(`/explore-content`, action.payload);
     if (response.status === 200) {
       yield put(getNftSuccess(response.data.data));
     } else {
@@ -29,7 +29,7 @@ export function* getNftSaga(action) {
 export function* createNftSaga(action) {
     yield put(createNftStart());
     try {
-      const response = yield axios.post(`/create-nft`, action.payload);
+      const response = yield axios.post(`/create-content`, action.payload);
       if (response.status === 200) {
         yield put(createNftSuccess(response.data.data));
       } else {

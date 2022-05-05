@@ -1,9 +1,20 @@
 import React, { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { Row, Col, Container, Button, Dropdown, Table, Form} from "react-bootstrap";
 import { toast } from "react-toastify";
-
+import { createNftSaga } from "../store/reducers/nftReducer";
+import { ipfsMint } from "../helpers/ipfs";
+import { Mint } from "../helpers/Mint";
 
 const CreateNft=()=>{
+
+
+    const dispatch = useDispatch();
+
+    /* const {
+       nft,
+      } = useSelector((state) => state.nft); */
+    
 
   const [name,setName]=useState('')
 
@@ -26,12 +37,24 @@ const CreateNft=()=>{
     photoUrl: null,
   });
 
-
+  const [contentImage, setContentImage] = useState(null);
   
   const { file, photoUrl, loading } = photo;
 
   const photoUploadHandler = (event, setState) => {
     const { files } = event.target;
+
+      
+    const reader = new window.FileReader();
+    reader.readAsArrayBuffer(files[0]);
+
+    reader.onloadend = () => {
+      setContentImage(reader.result);
+    };
+
+
+
+
     if (files[0]) {
       if (files[0].type.includes("image")) {
         const filename = files[0].name;
@@ -102,9 +125,14 @@ const CreateNft=()=>{
 
     let value=e.target.value;
 
-    if(value){
-        setQuantity(value);
-    }
+   if(isNaN(value)){ //alert("hell")
+           setQuantity('');
+      }else
+        {
+            if(value){
+                setQuantity(value);
+            }
+        }
 
    }
 
@@ -155,11 +183,35 @@ const CreateNft=()=>{
         }else 
           {
 
-               
 
-          }
+
+            setPhoto({ ...photo, loading: true });
+
+            const data={name:name,price:price,description:description}
+            let ipfs_hash=await ipfsMint(contentImage,data)
+            let voucher=await Mint(ipfs_hash,price)
+            const formData = new FormData();
+            console.log('file',file)
+            formData.append("file", file);
+            formData.append("name",name);
+            formData.append("meta_tag",metaTag);
+            formData.append("description",description);
+            formData.append("price",price);
+            formData.append("quantity",quantity);
+            formData.append("category",category);
+            formData.append('ipfs',ipfs_hash)
+            formData.append('signature',voucher.voucher.signature)
+            formData.append('token_id',voucher.voucher.tokenId)
+            formData.append("user_id","62733f0715eb380c440489ee");
+             
+            dispatch(
+                createNftSaga(
+                  formData
+                  ))
+               
         
     }
+}
 
     return(<>
            <section className="crate-page-sec">
@@ -213,7 +265,7 @@ const CreateNft=()=>{
                                     </div>
                                     
                                 </li>
-                                 <li>
+                                {/* <li>
                                     <div class="radio">
                                         <label>
                                             <input type="radio" onClick={(e)=>handleChain(e)}  name="blockchain" class="blockchain" value="MATIC" chain="137" alert="Please switch to Matic network!!" rpc="https://polygon-rpc.com/" />
@@ -238,7 +290,7 @@ const CreateNft=()=>{
                                         </label>
                                     </div>
                                     
-                                </li>
+                                </li> */}
 
                             </ul>
 
@@ -248,7 +300,7 @@ const CreateNft=()=>{
                                     <div>PNG,JPG,GIF,WEBP or MP4, Max 20mb</div>
                                     <div class="upload-btn-wrapper">
                                        <button class="blue-btn">Upload</button>
-                                       <input type="file" name="myfile" 
+                                       <input type="file" name="file" 
                                         onChange={(e) =>
                                         photoUploadHandler(e, setPhoto)
                                          } />
@@ -281,13 +333,13 @@ const CreateNft=()=>{
                                 <Col md={4} sm={4} xs={12}>
                                    <Form.Group className="mb-3">
                                         <Form.Label>Quantity</Form.Label>
-                                        <Form.Control type="text" placeholder="" onKeyUp={(e)=>handleQuantity(e)} />
+                                        <Form.Control type="text"  placeholder="" onKeyUp={(e)=>handleQuantity(e)}  />
                                     </Form.Group>
                                  </Col>
                                  <Col md={4} sm={4} xs={12}>
                                    <Form.Group className="mb-3">
                                         <Form.Label>Category</Form.Label>
-                                        <Form.Select aria-label="Default select example"onSelect={(e)=>handleCategory(e)}>
+                                        <Form.Select aria-label="Default select example"onChange={(e)=>handleCategory(e)}>
                                           <option>Selct Category</option>
                                           <option value="1">One</option>
                                           <option value="2">Two</option>

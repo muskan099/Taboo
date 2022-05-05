@@ -1,8 +1,31 @@
+import React, { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
 import { Row, Col, Container, Accordion, Dropdown,Form,FormControl,Button, InputGroup, } from "react-bootstrap";
-
+import { getNftSaga } from "../store/reducers/nftReducer";
 
 
 const Explore =()=>{
+	const dispatch = useDispatch();
+
+	const { isAuthenticated, walletAddress } = useSelector((state) => state.auth);
+
+	const { nft} = useSelector((state) => state.nft);
+    console.log('nft',nft.length)
+const getData=()=>{
+	console.log('hh')
+	let data={tier:"3 Tier",
+              page:1,
+			  limit:40}
+	dispatch(getNftSaga(data));
+}
+
+useEffect(()=>{
+
+	getData()
+
+},[])
+
 
 	return(<>
 		 <section className="team-sec-new">
@@ -196,7 +219,43 @@ const Explore =()=>{
 	               	 	</Col>		
 	               	 </Row>
 	               	 <Row>
-	               	 	 <Col lg={4} md={6} sm={6} xs={12}>
+
+					    {nft.length>0?
+						 nft.map((item)=>
+
+							<Col lg={4} md={6} sm={6} xs={12}>
+							<div class="outer-explor-box">
+								<Link to={`/details/${item._id}`}>
+								<img className="img-main"  src={item.image} />
+								</Link>
+								 
+								  <div className="exploror-list-box">
+									   <div className="price-line">
+										   <h5>{item.name}<span>{item.quantity}</span> </h5>
+										  <h6>{item.price} Taboo</h6>
+									   </div>
+									   <div className="stoke-line">
+											<ul>
+												<li><img  src={"images/Team/team4.png"} /></li>
+												<li><img  src={"images/Team/team2.png"} /></li>
+												<li><img  src={"images/Team/team3.png"} /></li>
+											</ul>
+											<h6>3 in stock</h6>
+									   </div>
+									   <hr></hr>
+									   <div class="bid-row">
+										   <span><img  src={"images/up-arrow.png"} /> Highest Bid</span>
+										   <span><b>0 $ Taboo</b></span>
+										   <span> New Bid <img  src={"images/up-arrow.png"} /> </span>
+									   </div>
+								  </div>
+							</div>
+						 </Col>
+
+						 ) 
+						 :""}		
+	               	 	
+		               	{/* <Col lg={4} md={6} sm={6} xs={12}>
 	               	 	   <div class="outer-explor-box">
 	               	 	   	  <img className="img-main"  src={"images/Team/team7.png"} />
 	               	 	   	  <div className="exploror-list-box">
@@ -320,32 +379,7 @@ const Explore =()=>{
 	               	 	   	  	 </div>
 	               	 	   	  </div>
 	               	 	   </div>
-		               	 </Col>
-		               	 <Col lg={4} md={6} sm={6} xs={12}>
-	               	 	   <div class="outer-explor-box">
-	               	 	   	  <img className="img-main"  src={"images/Team/team7.png"} />
-	               	 	   	  <div className="exploror-list-box">
-	               	 	   	  	 <div className="price-line">
-	               	 	   	  	 	<h5>Hot Skin<span>53</span> </h5>
-	               	 	   	  	    <h6>90000$ Taboo</h6>
-	               	 	   	  	 </div>
-	               	 	   	  	 <div className="stoke-line">
-	               	 	   	  	 	 <ul>
-	               	 	   	  	 	 	<li><img  src={"images/Team/team4.png"} /></li>
-	               	 	   	  	 	 	<li><img  src={"images/Team/team2.png"} /></li>
-	               	 	   	  	 	 	<li><img  src={"images/Team/team3.png"} /></li>
-	               	 	   	  	 	 </ul>
-	               	 	   	  	 	 <h6>3 in stock</h6>
-	               	 	   	  	 </div>
-	               	 	   	  	 <hr></hr>
-	               	 	   	  	 <div class="bid-row">
-	               	 	   	  	 	<span><img  src={"images/up-arrow.png"} /> Highest Bid</span>
-	               	 	   	  	 	<span><b>702$ Taboo</b></span>
-	               	 	   	  	 	<span> New Bid <img  src={"images/up-arrow.png"} /> </span>
-	               	 	   	  	 </div>
-	               	 	   	  </div>
-	               	 	   </div>
-		               	 </Col>
+		               	 </Col> */}
 		              </Row>
 	               </div>
 	            </Col>

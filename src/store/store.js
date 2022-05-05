@@ -3,6 +3,7 @@ import authReducer from "./reducers/authReducer";
 import upperStripRateReducer from "./reducers/upperStripRateReducer";
 import transactionReducer from "./reducers/transactionReducer";
 import dashboardReducer from "./reducers/dashboardReducer";
+import nftReducer from "./reducers/nftReducer";
 import createSagaMiddleWare from "redux-saga";
 import {
   watchAuthentication,
@@ -19,6 +20,7 @@ export const store = configureStore({
     dashboard: dashboardReducer,
     rates: upperStripRateReducer,
     transactions: transactionReducer,
+    nft:nftReducer,
   },
   middleware: [saga],
 });

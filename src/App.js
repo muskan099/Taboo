@@ -50,7 +50,7 @@ function App() {
           
           <Route path="/profile" element={<Profile />} />
           <Route path="/rank" element={<Rank />} />
-          <Route path="/details" element={<NftDetails />} />
+          <Route path="/details/:id" element={<NftDetails />} />
               
           <Route path="/stakes" element={<Stakes />} />
         </Routes>

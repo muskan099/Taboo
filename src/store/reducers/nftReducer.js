@@ -4,7 +4,7 @@ const nftReducer = createSlice({
   name: "nft",
   initialState: {
     isLoading: false,
-    data: {},
+    nft:[],
     errorMsg: "",
   },
 
@@ -24,13 +24,13 @@ const nftReducer = createSlice({
       return {
         ...state,
         isLoading: false,
-        data: action.payload,
+        nft: action.payload,
       };
     },
     getNftFail: (state, action) => {
       return {
         ...state,
-        data: {},
+         nft: {},
         isLoading: false,
         errorMsg: action.payload,
       };

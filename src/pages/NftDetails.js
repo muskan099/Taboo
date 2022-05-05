@@ -7,6 +7,8 @@ import { Row, Col, Container, Tabs,Tab,Table, Modal, Button} from "react-bootstr
 
 const NftDetails=()=>{
 
+  const { id } = useParams();
+
  const [show, setShow] = useState(false);
 
   const handleClose = () => setShow(false);
