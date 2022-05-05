@@ -67,6 +67,35 @@ const nftReducer = createSlice({
       },
 
 
+      getNftDetailSaga: (state, action) => {
+        return { ...state };
+      },
+  
+      getNftDetailStart: (state) => {
+        return {
+          ...state,
+          isLoading: true,
+        };
+      },
+  
+      getNftDetailSuccess: (state, action) => {
+        return {
+          ...state,
+          isLoading: false,
+          nft: action.payload,
+        };
+      },
+      getNftDetailFail: (state, action) => {
+        return {
+          ...state,
+           nft: {},
+          isLoading: false,
+          errorMsg: action.payload,
+        };
+      },
+      
+
+
   },
 });
 
@@ -78,6 +107,10 @@ export const {
   createNftSaga,
   createNftStart,
   createNftSuccess,
-  createNftFail
+  createNftFail,
+  getNftDetailFail,
+  getNftDetailSaga,
+  getNftDetailStart,
+  getNftDetailSuccess,
 } = nftReducer.actions;
 export default nftReducer.reducer;

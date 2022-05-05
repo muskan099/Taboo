@@ -8,7 +8,11 @@ import {
   getNftFail,
   createNftStart,
   createNftSuccess,
-  createNftFail
+  createNftFail,
+  getNftDetailStart,
+  getNftDetailFail,
+  getNftDetailSuccess,
+
 } from "../../reducers/nftReducer";
 
 export function* getNftSaga(action) {
@@ -40,3 +44,21 @@ export function* createNftSaga(action) {
     }
   }
   
+
+
+  
+export function* getNftDetailSaga(action) {
+  yield put(getNftDetailStart());
+  try {
+    const response = yield axios.post(`/content-detail`, action.payload);
+    if (response.status === 200) {
+      console.log(response.data)
+
+      yield put(getNftDetailSuccess(response.data));
+    } else {
+      yield put(getNftDetailFail("Something went wrong! Please try again."));
+    }
+  } catch (error) {
+    yield call(catchHandler, error,getNftDetailFail);
+  }
+}

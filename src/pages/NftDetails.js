@@ -1,11 +1,18 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import { useNavigate, useParams } from "react-router-dom";
 import { Row, Col, Container, Tabs,Tab,Table, Modal, Button} from "react-bootstrap";
+import { useDispatch, useSelector } from "react-redux";
 
-
+import { getNftDetailSaga } from "../store/reducers/nftReducer";
 
 
 
 const NftDetails=()=>{
+
+
+  const dispatch = useDispatch();
+
+  const { nft} = useSelector((state) => state.nft);
 
   const { id } = useParams();
 
@@ -30,6 +37,22 @@ const NftDetails=()=>{
   const handleClose3 = () => setShow3(false);
   const handleShow3 = () => setShow3(true);
 
+
+
+  const getData=()=>{
+
+    const data={id:id,tier:"3 Tier"}
+
+    dispatch(getNftDetailSaga(data));
+
+  }
+
+  useEffect(()=>{
+    getData();
+  },[])
+
+
+
     return(<>
 
         <section className="explore-info-sec">
@@ -37,20 +60,21 @@ const NftDetails=()=>{
               <Row className="align-items-top">
                 <Col md={6} sm={6} xs={12}>
                     <div class="detail-box-img">
-                        <img className="img-main"  src={"images/Team/team7.png"} />
+                        <img className="img-main"  src={nft.image} />
                     </div>
                 </Col>
                 <Col md={5} sm={6} xs={12}>
                     <div class="detail-side-text">
                         <a href="" className="add-icon"><img  src={"images/add-button.png"} /></a>
-                        <h3>Tempor Incididunt</h3>
+                        <h3>{nft.name&& nft.name}</h3>
                         <h6>
-                            <span className="price">900$ Taboo</span>
-                            <span className="price2">700$</span>
+                            <span className="price">{nft.price} Taboo</span>
+                            <span className="price2">{nft.price}</span>
                             <span className="stoke-1">10 in stock</span>
                         </h6>
                         <p>
-                            Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.  
+                           {nft.description}
+                           
                         </p>
                         <div className="details-tab-outer">
                             <Tabs defaultActiveKey="info" className="mb-3">
@@ -60,10 +84,10 @@ const NftDetails=()=>{
                                          <img  src={"images/Team/team7.png"} />
                                          <div>
                                              <p>Owner</p>
-                                             <h5>Requel Will</h5>
+                                             <h5>{nft.user&& nft.user.name}</h5>
                                          </div>
                                      </div>
-                                     <div class="owner-row-outer">
+                                     <div class="owner-row-outer d-none">
                                          <img  src={"images/Team/team7.png"} />
                                          <div>
                                              <p>Owner</p>
