@@ -2,12 +2,14 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const isAuthenticated = localStorage.getItem("isAuthenticated");
 const walletAddress = localStorage.getItem("walletAddress");
+const balance=localStorage.getItem('balance')
 const authSlice = createSlice({
   name: "auth",
   initialState: {
     isLoading: false,
     walletAddress: !!walletAddress ? walletAddress : "",
     isAuthenticated: !!isAuthenticated ? true : false,
+    balance:!!balance>0?balance:'',
     errorMsg: "",
   },
 
@@ -32,7 +34,8 @@ const authSlice = createSlice({
       return {
         ...state,
         isLoading: false,
-        walletAddress: action.payload,
+        walletAddress: action.payload.address,
+        balance:action.payload.balance,
         isAuthenticated: true,
         errorMsg: "",
       };

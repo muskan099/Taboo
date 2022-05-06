@@ -1,10 +1,11 @@
 import { createSlice } from "@reduxjs/toolkit";
+const transactions=localStorage.getItem('transactions')
 
 const transactionsReducer = createSlice({
   name: "transactions",
   initialState: {
     isLoading: false,
-    transactions: [],
+    transactions:!!transactions?transactions : "",
     errorMsg: "",
   },
 
@@ -35,6 +36,37 @@ const transactionsReducer = createSlice({
         errorMsg: action.payload,
       };
     },
+
+
+
+    createTransactionsSaga: (state, action) => {
+      return { ...state };
+    },
+
+    createTransactionsStart: (state) => {
+      return {
+        ...state,
+        isLoading: true,
+      };
+    },
+
+    createTransactionsSuccess: (state, action) => {
+      return {
+        ...state,
+        isLoading: false,
+        transactions: action.payload,
+      };
+    },
+    createTransactionsFail: (state, action) => {
+      return {
+        ...state,
+        transactions: [],
+        isLoading: false,
+        errorMsg: action.payload,
+      };
+    },
+
+
   },
 });
 
@@ -43,5 +75,9 @@ export const {
   getTransactionsStart,
   getTransactionsSuccess,
   getTransactionsFail,
+  createTransactionsSaga,
+  createTransactionsStart,
+  createTransactionsSuccess,
+  createTransactionsFail,
 } = transactionsReducer.actions;
 export default transactionsReducer.reducer;

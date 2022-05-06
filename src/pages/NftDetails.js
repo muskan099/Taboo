@@ -1,12 +1,16 @@
 import React, { useEffect, useState } from "react";
+import axios from "axios";
 import { useNavigate, useParams } from "react-router-dom";
 import { Row, Col, Container, Tabs,Tab,Table, Modal, Button} from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
-
+import {Transaction} from'../helpers/Transaction'
 import { getNftDetailSaga } from "../store/reducers/nftReducer";
+import { createTransactionsSaga } from "../store/reducers/transactionReducer";
+import { toast } from "react-toastify";
 
-
-
+import { TabooBalance } from "../helpers/TabooHelper";
+import { BuyNFT } from "../helpers/BuyNFT";
+import { updateNftStatusSaga } from "../store/reducers/nftReducer";
 const NftDetails=()=>{
 
 
@@ -14,6 +18,13 @@ const NftDetails=()=>{
 
   const { nft} = useSelector((state) => state.nft);
 
+  const { isAuthenticated, walletAddress,balance } = useSelector((state) => state.auth);
+
+  let { transactions } = useSelector((state) => state.transactions);
+
+
+
+  console.log('balance',balance)
   const { id } = useParams();
 
  const [show, setShow] = useState(false);
@@ -26,6 +37,8 @@ const NftDetails=()=>{
   const handleClose1 = () => setShow1(false);
   const handleShow1 = () => setShow1(true);
 
+  const[nftHash,setNftHash]=useState('')
+
   const [show2, setShow2] = useState(false);
 
   const handleClose2 = () => setShow2(false);
@@ -37,7 +50,7 @@ const NftDetails=()=>{
   const handleClose3 = () => setShow3(false);
   const handleShow3 = () => setShow3(true);
 
-
+ const [tabooBalance,setTabooBalance]=useState('')
 
   const getData=()=>{
 
@@ -47,11 +60,56 @@ const NftDetails=()=>{
 
   }
 
-  useEffect(()=>{
+  useEffect(async()=>{
+
     getData();
+
   },[])
 
 
+const handleBuy=async(e)=>{
+  let price=parseFloat(nft.price)
+  if(balance<price){
+
+    toast.warn("You don't have sufficient taboo token!")
+
+  }else
+    {
+      console.log("hello")
+       
+     // dispatch(createTransactionsSaga({address:walletAddress,content_id:nft._id}))
+        let tx=await axios.post("https://api.taboo.io/make-order",{address:walletAddress,content_id:nft._id})
+
+      if(tx){
+
+        console.log('tx',tx)
+        // let {tx}=transactions;
+        let taboo_hash= await Transaction(tx.data)
+       
+        if(taboo_hash){
+          let hash=await BuyNFT(nft.token_id,nft.ipfs,nft.price,nft.signature)
+          if(hash){
+            //toast.success("Order placed successfully!")
+            hash=hash.transactionHash;
+            hash= hash.substring(0, 5)+"....."+hash.substring(38, 42);
+            setNftHash(hash)
+            let orderObj={'id':nft._id,'status':"sold"}
+            dispatch(updateNftStatusSaga(orderObj))
+            handleClose2()
+            handleShow1();
+
+
+
+              getData();
+
+            setTimeout(handleClose1, 3000);
+
+          }
+        }
+      }
+
+    }
+}
 
     return(<>
 
@@ -74,7 +132,7 @@ const NftDetails=()=>{
                         </h6>
                         <p>
                            {nft.description}
-                           
+
                         </p>
                         <div className="details-tab-outer">
                             <Tabs defaultActiveKey="info" className="mb-3">
@@ -111,12 +169,12 @@ const NftDetails=()=>{
                               <div className="owner-row-outer">
                                  <img  src={"images/Team/team7.png"} />
                                  <div>
-                                     <p>Highest bid by <b>Kohaku Tora</b></p>
-                                     <h5>10000000$ TABOO $3000</h5>
+                                     {/* <p>Highest bid by <b>Kohaku Tora</b></p>
+                                     <h5>10000000$ TABOO $3000</h5> */}
                                  </div>
                               </div>
                                <div class="text-center">
-                                   <Button className="blue-btn" onClick={handleShow2}>Purchase Now</Button>
+                                   <Button className="blue-btn" disabled={nft.status=="sold"?true:false} onClick={handleShow2}>{nft.status=="sold"?"Sold Out":"Purchase Now"}</Button>
                                    <Button className="border-btn" onClick={handleShow3}>Place A Bid</Button>
                                    
                                </div>
@@ -151,7 +209,7 @@ const NftDetails=()=>{
                           <tbody>
                             <tr>
                               <td>Your Balance</td>
-                              <td>123 $TABOO</td>
+                              <td>{balance} TABOO</td>
                               
                             </tr>
                             <tr>
@@ -198,7 +256,7 @@ const NftDetails=()=>{
                                 </tr>
                                 <tr>
                                   <td><span className="color-green">Processing</span></td>
-                                  <td><b>oiuoiuo7i7o776....6896hgh8989</b></td>
+                                  <td><b>{nftHash&&nftHash}</b></td>
                                   
                                 </tr>
                                 
@@ -243,7 +301,7 @@ const NftDetails=()=>{
                           <tbody>
                             <tr>
                               <td>Your Balance</td>
-                              <td>123 $TABOO</td>
+                              <td> {balance} $TABOO</td>
                               
                             </tr>
                             <tr>
@@ -253,7 +311,7 @@ const NftDetails=()=>{
                             </tr>
                             <tr>
                               <td>Total will Pay</td>
-                              <td>123 $TABOO</td>
+                              <td>{nft&& nft.price} $TABOO</td>
                               
                             </tr>
                           </tbody>
@@ -268,9 +326,9 @@ const NftDetails=()=>{
                         </div>
 
                         <div>
-                            <a href="" className="blue-btn">I Understand, Continue</a>
+                            <a href="#" onClick={handleBuy} className="blue-btn">I Understand, Continue</a>
                             
-                            <a href="" className="border-btn">Cancel</a>
+                            <a href="#" onClick={handleClose2} className="border-btn">Cancel</a>
                         </div>
                     </div>
                 </Modal.Body>

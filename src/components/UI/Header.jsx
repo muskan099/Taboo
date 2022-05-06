@@ -18,22 +18,28 @@ import { useDispatch, useSelector } from "react-redux";
 import Connect from "../../helpers/Connect";
 import { Provider } from "../../helpers/Web3Helper";
 import userIcon from "../../assets/user-icon.png";
-
+import { TabooBalance } from "../../helpers/TabooHelper";
 import { loginSaga, logout } from "../../store/reducers/authReducer";
 
 const Header = () => {
+
   const dispatch = useDispatch();
   const navigate = useNavigate();
-
+  
   // Modal Code
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
 
+
   const handleLogin = async () => {
     let address = await Connect();
+
+    let balance= await TabooBalance(address[0])
+    console.log("balance",balance)
+
     if (address && address.length) {
-      dispatch(loginSaga({ address: address[0] }));
+      dispatch(loginSaga({ address: address[0],balance:balance}));
     }
   };
 
@@ -48,10 +54,6 @@ const Header = () => {
   const handleLogout = async () => {
     dispatch(logout({}));
   };
-
-
-
-
 
   useEffect(async () => {
    if(isAuthenticated){

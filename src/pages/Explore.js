@@ -240,7 +240,7 @@ useEffect(()=>{
 												<li><img  src={"images/Team/team2.png"} /></li>
 												<li><img  src={"images/Team/team3.png"} /></li>
 											</ul>
-											<h6>3 in stock</h6>
+											<h6>{item.status=="sold"?"Sold out":"in stock"} </h6>
 									   </div>
 									   <hr></hr>
 									   <div class="bid-row">

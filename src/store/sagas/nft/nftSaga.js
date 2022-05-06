@@ -12,6 +12,9 @@ import {
   getNftDetailStart,
   getNftDetailFail,
   getNftDetailSuccess,
+  updateNftStatusFail,
+  updateNftStatusSuccess,
+  updateNftStatusStart
 
 } from "../../reducers/nftReducer";
 
@@ -60,5 +63,21 @@ export function* getNftDetailSaga(action) {
     }
   } catch (error) {
     yield call(catchHandler, error,getNftDetailFail);
+  }
+}
+
+export function* updateNftStatusSaga(action) {
+  yield put(updateNftStatusStart());
+  try {
+    const response = yield axios.post(`/content-status`, action.payload);
+    if (response.status === 200) {
+      console.log(response.data)
+
+      yield put(updateNftStatusSuccess(response.data));
+    } else {
+      yield put(updateNftStatusFail("Something went wrong! Please try again."));
+    }
+  } catch (error) {
+    yield call(catchHandler, error,updateNftStatusFail);
   }
 }
