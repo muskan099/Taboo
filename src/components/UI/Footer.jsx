@@ -48,7 +48,7 @@ const Footer = () => {
           <Col md={4} sm={4}>
             <div>
               <img
-                src={"images/Logo_Small.png"}
+                src={"https://taboonft.s3.us-east-2.amazonaws.com/icons/Logo_Small.png"}
                 className="foot-logo"
                 alt="logo"
               />
@@ -147,7 +147,7 @@ const Footer = () => {
                     id="button-addon2"
                     onClick={subscribeHandle}
                   >
-                    <img src={"images/left-arrow.png"} alt="logo" />
+                    <img src={"https://taboonft.s3.us-east-2.amazonaws.com/icons/left-arrow.png"} alt="logo" />
                   </Button>
                 </InputGroup>
               </div>

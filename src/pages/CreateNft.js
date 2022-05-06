@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { Link, useNavigate } from "react-router-dom";
 import { Row, Col, Container, Button, Dropdown, Table, Form} from "react-bootstrap";
 import { toast } from "react-toastify";
 import { createNftSaga } from "../store/reducers/nftReducer";
@@ -15,6 +16,12 @@ const CreateNft=()=>{
        nft,
       } = useSelector((state) => state.nft); */
     
+      const navigate = useNavigate();
+  
+      const { nft,isLoading} = useSelector((state) => state.nft);
+
+
+
 
   const [name,setName]=useState('')
 
@@ -27,6 +34,8 @@ const CreateNft=()=>{
   const [category,setCategory]=useState('')
 
   const [description,SetDescription]=useState('');
+
+  const[createStart,setCreateStart]=useState(false)
 
   const [chain,setChain]=useState('');
 
@@ -183,7 +192,7 @@ const CreateNft=()=>{
         }else 
           {
 
-
+             setCreateStart(true)
 
             setPhoto({ ...photo, loading: true });
 
@@ -209,7 +218,11 @@ const CreateNft=()=>{
                   formData
                   ))
                
-        
+                 toast.success('Nft created successfully!')
+                
+                 setCreateStart(false)
+
+                 setTimeout(navigate('/explore'),8000)
     }
 }
 
@@ -352,7 +365,7 @@ const CreateNft=()=>{
                              
 
                              <div >
-                                 <button className="blue-btn" onClick={(e)=>handleSubmit(e)}>Create Item</button>
+                                 <button className="blue-btn" disabled={createStart} onClick={(e)=>handleSubmit(e)}>{createStart?"Processing":"Create Item"}</button>
                              </div>
                            </div>
                          </Col>

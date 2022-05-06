@@ -84,24 +84,19 @@ const Header = () => {
    }
 });
 
-
-
-
-
-
   return (
     <header className="header-main">
       <Navbar bg="light" expand="lg">
         <Container className="header-container">
           <Navbar.Brand>
             <Link to="/">
-              <img src={"images/Logo_big-red.png"} alt="logo" />
+              <img src={"https://taboonft.s3.us-east-2.amazonaws.com/images/Logo_big-red.png"} alt="logo" />
             </Link>
           </Navbar.Brand>
           <Navbar.Toggle aria-controls="navbarScroll" />
           <Navbar.Collapse id="navbarScroll">
             <Nav className="me-auto my-2 my-lg-0">
-              <Nav.Link onClick={handleShow}>Explore</Nav.Link>
+              <Nav.Link href="/explore">Explore</Nav.Link>
               <a href="https://punks.taboo.io/" target={'_blank'} className="nav-link">
                 TabooPunks
               </a>
@@ -204,6 +199,12 @@ const Header = () => {
                   <Dropdown.Item>
                     <Link to="/stakes" className="dropdown-item">
                       Stakes
+                    </Link>
+                  </Dropdown.Item>
+
+                  <Dropdown.Item>
+                    <Link to="/create-nft" className="dropdown-item">
+                      Create NFT
                     </Link>
                   </Dropdown.Item>
                   <Dropdown.Item>

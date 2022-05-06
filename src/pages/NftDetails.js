@@ -123,12 +123,12 @@ const handleBuy=async(e)=>{
                 </Col>
                 <Col md={5} sm={6} xs={12}>
                     <div class="detail-side-text">
-                        <a href="" className="add-icon"><img  src={"images/add-button.png"} /></a>
+                        <a href="" className="add-icon"><img  src={"https://taboonft.s3.us-east-2.amazonaws.com/icons/add-button.png"} /></a>
                         <h3>{nft.name&& nft.name}</h3>
                         <h6>
                             <span className="price">{nft.price} Taboo</span>
                             <span className="price2">{nft.price}</span>
-                            <span className="stoke-1">10 in stock</span>
+                            <span className="stoke-1">{nft.status=="sold"?'0': 1} in stock</span>
                         </h6>
                         <p>
                            {nft.description}
@@ -139,14 +139,14 @@ const handleBuy=async(e)=>{
                               <Tab eventKey="info" title="Info">
                                  <div className="">
                                      <div class="owner-row-outer">
-                                         <img  src={"images/Team/team7.png"} />
+                                         <img  src={"https://taboonft.s3.us-east-2.amazonaws.com/icons/Taboo-logo-3.61280c399d2252.47125802.png"} />
                                          <div>
                                              <p>Owner</p>
                                              <h5>{nft.user&& nft.user.name}</h5>
                                          </div>
                                      </div>
                                      <div class="owner-row-outer d-none">
-                                         <img  src={"images/Team/team7.png"} />
+                                         <img  src={"https://taboonft.s3.us-east-2.amazonaws.com/icons/Taboo-logo-3.61280c399d2252.47125802.png"} />
                                          <div>
                                              <p>Owner</p>
                                              <h5>Requel Will</h5>
@@ -156,7 +156,7 @@ const handleBuy=async(e)=>{
                                  </div>
                               </Tab>
                               <Tab eventKey="owners" title="Owners">
-                                hffh
+                                {nft.user&&nft.user.name}
                               </Tab>
                               <Tab eventKey="history" title="History">
                                khkhk
@@ -167,7 +167,7 @@ const handleBuy=async(e)=>{
                             </Tabs>
                             <div className="outer-purchase-box">
                               <div className="owner-row-outer">
-                                 <img  src={"images/Team/team7.png"} />
+                                 <img  src={"https://taboonft.s3.us-east-2.amazonaws.com/icons/Taboo-logo-3.61280c399d2252.47125802.png"} />
                                  <div>
                                      {/* <p>Highest bid by <b>Kohaku Tora</b></p>
                                      <h5>10000000$ TABOO $3000</h5> */}
@@ -175,7 +175,7 @@ const handleBuy=async(e)=>{
                               </div>
                                <div class="text-center">
                                    <Button className="blue-btn" disabled={nft.status=="sold"?true:false} onClick={handleShow2}>{nft.status=="sold"?"Sold Out":"Purchase Now"}</Button>
-                                   <Button className="border-btn" onClick={handleShow3}>Place A Bid</Button>
+                                   <Button className="border-btn" disabled={nft.status=="sold"?true:false} onClick={handleShow3}>Place A Bid</Button>
                                    
                                </div>
                             </div>
@@ -241,7 +241,7 @@ const handleBuy=async(e)=>{
             keyboard={false} 
             onHide={handleClose1}
             centered>
-                <Modal.Header closeButton className="border-none p-0"></Modal.Header>
+                <Modal.Header closeButton className="border-none p-0" ></Modal.Header>
                 <Modal.Body>
                    <div class="bid-modal-box success-bid-box">
                         <h3>Yay!</h3>
@@ -318,7 +318,7 @@ const handleBuy=async(e)=>{
                         </Table>
 
                         <div class="creator-erroer-notify">
-                            <img src="images/add-button.png" />
+                            <img src={"https://taboonft.s3.us-east-2.amazonaws.com/icons/add-button.png"} />
                             <div>
                                 <h6>This Creator is not verified</h6>
                                 <p>Purchase this item at your own risk</p>
@@ -339,8 +339,7 @@ const handleBuy=async(e)=>{
                         <Modal 
             show={show3}
             className="modal-comming-soon bid-modal" 
-            backdrop="static"
-            keyboard={false} 
+           
             onHide={handleClose3}
             centered>
                 <Modal.Header closeButton className="border-none p-0"></Modal.Header>
@@ -351,7 +350,7 @@ const handleBuy=async(e)=>{
                         <br/>
                         
                         <div class="purchasing-notify">
-                            <img src="images/dot-line.png" />
+                            <img src="https://taboonft.s3.us-east-2.amazonaws.com/icons/dot-line.png" />
 
                             <div>
                                 <h6>Purchasing</h6>
@@ -361,14 +360,14 @@ const handleBuy=async(e)=>{
                         </div>
 
                         <div className="creator-erroer-notify creater-follow">
-                            <img src="images/add-button.png" />
+                            <img src="https://taboonft.s3.us-east-2.amazonaws.com/icons/add-button.png" />
 
                             <div>
                                 <h6>This Creator is not verified</h6>
                                 <p>Purchase this item at your own risk</p>
                             </div>
 
-                            <img className="user-img"  src="images/Team/team6.png" />
+                            <img className="user-img"  src={"https://taboonft.s3.us-east-2.amazonaws.com/icons/Taboo-logo-3.61280c399d2252.47125802.png"} />
                         </div>
 
 
