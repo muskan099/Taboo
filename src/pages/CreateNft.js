@@ -183,6 +183,16 @@ const CreateNft=()=>{
         }
         else if(description==""){
             toast.error("Description is required!")
+        }else if(price==""){
+            toast.error("Price is required!")
+        }else if(isNaN(price)){
+             toast.error("Please enter correct price!")
+        }
+        else if(quantity==""){
+            toast.error("Quantity is required!")
+        }
+        else if(isNaN(quantity)){
+            toast.error("Please enter correct quantity!")
         }
         else if(category==""){
             toast.error("category is required!")
