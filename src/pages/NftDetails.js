@@ -29,6 +29,8 @@ const NftDetails=()=>{
 
  const [show, setShow] = useState(false);
 
+ const [buyStart, setBuyStart] = useState(false);
+
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
 
@@ -76,7 +78,7 @@ const handleBuy=async(e)=>{
   }else
     {
       console.log("hello")
-       
+       setBuyStart(true)
      // dispatch(createTransactionsSaga({address:walletAddress,content_id:nft._id}))
         let tx=await axios.post("https://api.taboo.io/make-order",{address:walletAddress,content_id:nft._id})
 
@@ -84,7 +86,16 @@ const handleBuy=async(e)=>{
 
         console.log('tx',tx)
         // let {tx}=transactions;
-        let taboo_hash= await Transaction(tx.data)
+        let taboo_hash=false;
+          try{
+
+             taboo_hash= await Transaction(tx.data)
+
+          }catch(e){
+             setBuyStart(false)
+            console.log(e)
+
+          }
        
         if(taboo_hash){
           let hash=await BuyNFT(nft.token_id,nft.ipfs,nft.price,nft.signature)
@@ -98,14 +109,17 @@ const handleBuy=async(e)=>{
             handleClose2()
             handleShow1();
 
-
+            setBuyStart(false)
 
               getData();
 
             setTimeout(handleClose1, 3000);
 
           }
-        }
+        }else
+          {
+            setBuyStart(false)
+          }
       }
 
     }
@@ -326,7 +340,7 @@ const handleBuy=async(e)=>{
                         </div>
 
                         <div>
-                            <a href="#" onClick={handleBuy} className="blue-btn">I Understand, Continue</a>
+                            <a href="#" disabled={buyStart} onClick={handleBuy} className="blue-btn">{buyStart?"Processing":"I Understand, Continue"}</a>
                             
                             <a href="#" onClick={handleClose2} className="border-btn">Cancel</a>
                         </div>
