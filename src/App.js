@@ -18,6 +18,7 @@ import Profile from "./pages/Profile";
 import News from "./pages/News";
 import NewsDetails from "./pages/NewsDetails";
 import ExploreLanding from "./pages/ExploreLanding";
+import Dashboard from "./pages/creators/Dashboard";
 import CreateNft from "./pages/CreateNft";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -47,6 +48,9 @@ function App() {
           <Route path="/news-details" element={<NewsDetails />} />
 
           <Route path="/create-nft" element={<CreateNft />} />
+
+          <Route path="/dashboard" element={<Dashboard />} />
+
           
           <Route path="/profile" element={<Profile />} />
           <Route path="/rank" element={<Rank />} />
