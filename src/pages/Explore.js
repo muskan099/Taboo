@@ -7,22 +7,23 @@ import { getNftSaga } from "../store/reducers/nftReducer";
 
 const Explore =()=>{
 	const dispatch = useDispatch();
-
+   const [currentPage,setCurrentPage]=useState(1)
 	const { isAuthenticated, walletAddress } = useSelector((state) => state.auth);
 
 	const { nft} = useSelector((state) => state.nft);
     console.log('nft',nft.length)
-const getData=()=>{
+const getData=(page,limit=60,tier,search_tag)=>{
 	console.log('hh')
-	let data={tier:"3 Tier",
-              page:1,
-			  limit:40}
+	let data={tier:tier,
+              page:page,
+			  limit:limit,
+			  search_tag:search_tag}
 	dispatch(getNftSaga(data));
 }
 
 useEffect(()=>{
 
-	getData()
+	getData(currentPage,60,"3 Tier","")
 
 },[])
 
