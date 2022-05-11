@@ -7,17 +7,27 @@ import 'react-circular-progressbar/dist/styles.css';
 const Dashboard=()=>{
     const value = 0.10;  
     const data = [
-        ["Year", "Sales", "Expenses"],
-        ["2013", 1000, 400],
-        ["2014", 1170, 460],
-        ["2015", 660, 1120],
-        ["2016", 1030, 540],
+        ["Month", "Sales"],
+        ["Jan", 1000],
+        ["Feb", 1170],
+        ["Mar", 660],
+        ["Apr", 1030],
+        ["May", 1000],
+        ["Jun", 1170],
+        ["Jul", 660],
+        ["Aug", 1030],
+        ["Sept", 1170],
+        ["Oct", 660],
+        ["Nov", 1030],
+        ["Dec", 1030]
       ];
 
       const options = {
         isStacked: true,
-        height: 300,
-        legend: { position: "top", maxLines: 3 },
+        legend: { position: "none" },
+        curveType: 'function',
+        height:250,
+        colors: ['#871434'],
         vAxis: { minValue: 0 },
       };
 
@@ -27,7 +37,7 @@ const Dashboard=()=>{
         <section className="creater-dash-sec">
              <Container fluid className="p-0">
                <Row>
-                <Col md={1} sm={1} xs={1}>
+                <Col lg={1} md={12} sm={12} xs={12}>
                     <div className="sidemenu-creater">
                         <ul>
                             <li>
@@ -45,7 +55,7 @@ const Dashboard=()=>{
                         </ul>
                     </div>
                 </Col>
-                <Col md={8} sm={8} xs={8}>
+                <Col lg={8} md={12} sm={12} xs={12}>
                     <div className="top-collect-creater">
                     <h3 className="main-heading-inner mb-0"> Top Collectables</h3>
                       <Row>
@@ -203,18 +213,22 @@ const Dashboard=()=>{
                       </Col>
                     </Row>
 
-                    <Row>
-                      <Col lg={6} md={6} sm={6} xs={12}>
-                      <Chart
-                        chartType="AreaChart"
-                        width="100%"
-                        height="400px"
-                        data={data}
-                        options={options}
-                        />
+                    <Row className="mt-5">
+                      <Col lg={8} md={8} sm={6} xs={12}>
+                         <div className="area-chart shadow-graph-box">
+                         <h3 className="main-heading-inner">Visitors Overview</h3>
+                           <Chart
+                            chartType="AreaChart"
+                            width="100%"
+                            height="400px"
+                            data={data}
+                            options={options}
+                            />
+                         </div>
                       </Col>
-                      <Col lg={6} md={6} sm={6} xs={12}>
-                        <div>
+                      <Col lg={4} md={4} sm={6} xs={12}>
+                        <div className="shadow-graph-box">
+                        <h3 className="main-heading-inner">Sale</h3>
                             <CircularProgressbar value={value} maxValue={1} text={`${value * 100}%`} />;
                         </div>
                       </Col>
@@ -228,7 +242,7 @@ const Dashboard=()=>{
                     </div>
                 </Col>
 
-                <Col md={3} sm={3} xs={3} className="pr-0">
+                <Col lg={3} md={12} sm={12} xs={12} className="pr-0">
                 <div className="profile-img-left-box">
                 <h3 className="main-heading-inner mb-0 text-center"> My Profile</h3>
                      <img className="profile-main-img"  src={"images/Team/team7.png"} />
