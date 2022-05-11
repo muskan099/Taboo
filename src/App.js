@@ -19,6 +19,9 @@ import News from "./pages/News";
 import NewsDetails from "./pages/NewsDetails";
 import ExploreLanding from "./pages/ExploreLanding";
 import Dashboard from "./pages/creators/Dashboard";
+
+import TransactionPage from "./pages/TransactionPage";
+
 import CreateNft from "./pages/CreateNft";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -42,8 +45,9 @@ function App() {
 
           <Route path="/news" element={<News />} />
 
-          <Route path="/explore-landing" element={<ExploreLanding />} />
+          <Route path="/transactions" element={<TransactionPage />} />
 
+          <Route path="/explore-landing" element={<ExploreLanding />} />
 
           <Route path="/news-details" element={<NewsDetails />} />
 
@@ -51,7 +55,6 @@ function App() {
 
           <Route path="/dashboard" element={<Dashboard />} />
 
-          
           <Route path="/profile" element={<Profile />} />
           <Route path="/rank" element={<Rank />} />
           <Route path="/details/:id" element={<NftDetails />} />

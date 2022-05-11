@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import Web3 from "web3";
 import {
   Form,
   FormControl,
@@ -20,6 +21,7 @@ import { Provider } from "../../helpers/Web3Helper";
 import userIcon from "../../assets/user-icon.png";
 import { TabooBalance } from "../../helpers/TabooHelper";
 import { loginSaga, logout } from "../../store/reducers/authReducer";
+
 
 const Header = () => {
 
@@ -83,6 +85,8 @@ const Header = () => {
     });
    }
 });
+
+
 
   return (
     <header className="header-main">
@@ -196,9 +200,11 @@ const Header = () => {
                   <img src={userIcon} alt="" height={30} width={30} />
                 </Dropdown.Toggle>
                 <Dropdown.Menu>
+                 
+
                   <Dropdown.Item>
-                    <Link to="/stakes" className="dropdown-item">
-                      Stakes
+                    <Link to="/transactions" className="dropdown-item">
+                      Collections
                     </Link>
                   </Dropdown.Item>
 
@@ -207,6 +213,13 @@ const Header = () => {
                       Create NFT
                     </Link>
                   </Dropdown.Item>
+
+                  <Dropdown.Item>
+                    <Link to="/stakes" className="dropdown-item">
+                      Stakes
+                    </Link>
+                  </Dropdown.Item>
+                  
                   <Dropdown.Item>
                     <button className="dropdown-item" onClick={handleLogout}>
                       Logout
