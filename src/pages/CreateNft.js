@@ -364,9 +364,11 @@ const CreateNft=()=>{
                                         <Form.Label>Category</Form.Label>
                                         <Form.Select aria-label="Default select example"onChange={(e)=>handleCategory(e)}>
                                           <option>Selct Category</option>
-                                          <option value="1">One</option>
-                                          <option value="2">Two</option>
-                                          <option value="3">Three</option>
+                                          <option value="Sexy">Sexy</option>
+                                          <option value="Metaverse">Metaverse</option>
+                                          <option value="Lifestyle">lifestyle</option>
+                                          <option value="Premium">Premium</option>
+
                                         </Form.Select>
                                     </Form.Group>
                                  </Col>
@@ -405,7 +407,7 @@ const CreateNft=()=>{
                                  <hr></hr>
                                  <div class="bid-row">
                                     <span><img  src={"images/up-arrow.png"} /> Highest Bid</span>
-                                    <span><b>702$ Taboo</b></span>
+                                    <span><b>0 $ Taboo</b></span>
                                     <span> New Bid <img  src={"images/up-arrow.png"} /> </span>
                                  </div>
                               </div>

@@ -8,6 +8,9 @@ import { getNftSaga } from "../store/reducers/nftReducer";
 const Explore =()=>{
 	const dispatch = useDispatch();
    const [currentPage,setCurrentPage]=useState(1)
+   
+   const[category,setCategory]=useState('');
+
 	const { isAuthenticated, walletAddress } = useSelector((state) => state.auth);
 
 	const { nft} = useSelector((state) => state.nft);
@@ -22,10 +25,10 @@ const getData=(page,limit=60,tier,search_tag)=>{
 }
 
 useEffect(()=>{
+    console.log("category",category)
+	getData(currentPage,60,"3 Tier",category)
 
-	getData(currentPage,60,"3 Tier","")
-
-},[])
+},[currentPage,category])
 
 
 	return(<>
@@ -210,11 +213,11 @@ useEffect(()=>{
 								</Dropdown>
 								<ul>
 									<li className="active"><a href="">All items</a></li>
-									<li><a href="">Sexy</a></li>
-									<li><a href="">Models</a></li>
-									<li><a href="">Metavers</a></li>
-									<li><a href="">Lifestyle</a></li>
-									<li><a href="">Premium</a></li>
+									<li><a href="#"onClick={()=>setCategory('Sexy')}>Sexy</a></li>
+									<li><a href="#"onClick={()=>setCategory('Models')}>Models</a></li>
+									<li><a href="#"onClick={()=>setCategory('Metaverse')}>Metavers</a></li>
+									<li><a href="#"onClick={()=>setCategory('Lifestyles')}>Lifestyle</a></li>
+									<li><a href="#"onClick={()=>setCategory('Premium')}>Premium</a></li>
 								</ul>
 	               	 		</div>
 	               	 	</Col>		

@@ -27,12 +27,17 @@ function* setItemToLocalStorage(key, value) {
 export function* loginSaga(action) {
   yield put(loginStart());
   try {
-    const { address,balance } = action.payload;
+    const { address,balance,tabooPunk ,tier} = action.payload;
     if (address) {
       yield call(setItemToLocalStorage, "isAuthenticated", true);
       yield call(setItemToLocalStorage, "walletAddress", address);
       yield call(setItemToLocalStorage, "balance",balance);
-      yield put(loginSuccess({address:address,balance:balance}));
+      yield call(setItemToLocalStorage, "tabooPunk",tabooPunk);
+
+      yield call(setItemToLocalStorage, "tier",tier);
+
+
+      yield put(loginSuccess({address:address,balance:balance,tabooPunk:tabooPunk,tier:tier}));
     } else {
       yield put(loginFail("Something went wrong! Please try again."));
     }

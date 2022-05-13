@@ -3,6 +3,9 @@ import { createSlice } from "@reduxjs/toolkit";
 const isAuthenticated = localStorage.getItem("isAuthenticated");
 const walletAddress = localStorage.getItem("walletAddress");
 const balance=localStorage.getItem('balance')
+const tabooPunk=localStorage.getItem('tabooPunk')
+const tier=localStorage.getItem('tier')
+
 const authSlice = createSlice({
   name: "auth",
   initialState: {
@@ -11,6 +14,7 @@ const authSlice = createSlice({
     isAuthenticated: !!isAuthenticated ? true : false,
     balance:!!balance>0?balance:'',
     errorMsg: "",
+    tier:!!tier?tier:""
   },
 
   reducers: {
@@ -36,6 +40,8 @@ const authSlice = createSlice({
         isLoading: false,
         walletAddress: action.payload.address,
         balance:action.payload.balance,
+        tabooPunk:action.payload.tabooPunk,
+        tier:action.payload.tier,
         isAuthenticated: true,
         errorMsg: "",
       };
@@ -54,6 +60,8 @@ const authSlice = createSlice({
         ...state,
         isLoading: false,
         walletAddress: "",
+        tabooPunk:"",
+        balance:"",
         isAuthenticated: false,
         errorMsg: "",
       };

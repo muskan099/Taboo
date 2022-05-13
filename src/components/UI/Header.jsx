@@ -20,6 +20,7 @@ import Connect from "../../helpers/Connect";
 import { Provider } from "../../helpers/Web3Helper";
 import userIcon from "../../assets/user-icon.png";
 import { TabooBalance } from "../../helpers/TabooHelper";
+import { TabooPunk } from "../../helpers/TabooPunk";
 import { loginSaga, logout } from "../../store/reducers/authReducer";
 
 
@@ -37,11 +38,14 @@ const Header = () => {
   const handleLogin = async () => {
     let address = await Connect();
 
+    let punk= await TabooPunk(address[0]);
+    // console.log("punks",punk)
+    let tier=punk>0?"3 Tier":"1 Tier"
     let balance= await TabooBalance(address[0])
     console.log("balance",balance)
 
     if (address && address.length) {
-      dispatch(loginSaga({ address: address[0],balance:balance}));
+      dispatch(loginSaga({ address: address[0],balance:balance,tabooPunk:punk,tier:tier}));
     }
   };
 
@@ -58,8 +62,11 @@ const Header = () => {
   };
 
   useEffect(async () => {
+
+    
    if(isAuthenticated){
-        
+
+  
     let provider = await Provider();
     provider.on("accountsChanged", (accounts) => {
         console.log(accounts);
