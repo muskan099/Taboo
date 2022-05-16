@@ -12,7 +12,7 @@ const Explore =()=>{
    
    const[category,setCategory]=useState('');
 
-	const { isAuthenticated, walletAddress } = useSelector((state) => state.auth);
+	const { isAuthenticated, walletAddress,tier } = useSelector((state) => state.auth);
 
 	const { nft} = useSelector((state) => state.nft);
     console.log('nft',nft.length)
@@ -27,7 +27,7 @@ const getData=(page,limit=60,tier,search_tag)=>{
 
 useEffect(()=>{
     console.log("category",category)
-	getData(currentPage,60,"3 Tier",category)
+	getData(currentPage,60,tier,category)
 
 },[currentPage,category])
 
@@ -213,7 +213,7 @@ useEffect(()=>{
 									  </Dropdown.Menu>
 								</Dropdown>
 								<ul>
-									<li className="active"><a href="">All items</a></li>
+									<li className="active"><a href="#" onClick={()=>setCategory('')}>All items</a></li>
 									<li><a href="#"onClick={()=>setCategory('Sexy')}>Sexy</a></li>
 									<li><a href="#"onClick={()=>setCategory('Models')}>Models</a></li>
 									<li><a href="#"onClick={()=>setCategory('Metaverse')}>Metavers</a></li>

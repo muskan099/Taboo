@@ -18,7 +18,7 @@ const NftDetails=()=>{
 
   const { nft} = useSelector((state) => state.nft);
 
-  const { isAuthenticated, walletAddress,balance } = useSelector((state) => state.auth);
+  const { isAuthenticated, walletAddress,balance ,tier} = useSelector((state) => state.auth);
 
   let { transactions } = useSelector((state) => state.transactions);
 
@@ -56,7 +56,7 @@ const NftDetails=()=>{
 
   const getData=()=>{
 
-    const data={id:id,tier:"3 Tier"}
+    const data={id:id,tier:tier}
 
     dispatch(getNftDetailSaga(data));
 
