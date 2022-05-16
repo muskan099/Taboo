@@ -53,6 +53,20 @@ const Footer = () => {
                 alt="logo"
               />
               <h4>The Playboy of Crypto</h4>
+              <div className="social-links">
+                
+
+                
+                <a href="https://t.me/TABOO_OFFICIAL" target={'_blank'}>
+                  <img src="https://taboonft.s3.us-east-2.amazonaws.com/icons/telegram.png" width={'40'} />
+                  </a>
+
+                <a href="https://instagram.com/taboo.token?igshid=YmMyMTA2M2Y=" target={'_blank'} className="insta-link">
+                  <img src="https://taboonft.s3.us-east-2.amazonaws.com/icons/instagram.png" width={'40'} />
+                </a>
+
+                
+                </div>
             </div>
           </Col>
           <Col md={2} sm={2}>
