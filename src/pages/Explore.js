@@ -6,7 +6,8 @@ import { getNftSaga } from "../store/reducers/nftReducer";
 
 
 const Explore =()=>{
-	const dispatch = useDispatch();
+   
+   const dispatch = useDispatch();
    const [currentPage,setCurrentPage]=useState(1)
    
    const[category,setCategory]=useState('');
