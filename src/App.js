@@ -22,7 +22,7 @@ import Dashboard from "./pages/creators/Dashboard";
 import CreateStake from "./pages/CreateStake";
 import AdminDashboard from "./pages/admin/AdminDashboard";
 import TransactionPage from "./pages/TransactionPage";
-
+import Farm from "./pages/Farm";
 import CreateNft from "./pages/CreateNft";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -53,6 +53,9 @@ function App() {
           <Route path="/news-details" element={<NewsDetails />} />
 
           <Route path="/create-nft" element={<CreateNft />} />
+
+          <Route path="/farm" element={<Farm />} />
+
 
           <Route path="/create-stake" element={<CreateStake />} />
 
