@@ -4035,3 +4035,138 @@ min-height: 100vh;
   clear: both;
 }
 }
+
+.shadow-graph-box.prograss-box-admin {
+  margin-top: 0;
+  height: auto;
+  min-height: auto;
+}
+.shadow-graph-box.prograss-box-admin ul{
+  display: flex;
+  align-items: center;
+}
+.shadow-graph-box.prograss-box-admin ul li{
+  padding: 15px;
+  list-style: none;
+  text-align: center;
+}
+.shadow-graph-box.prograss-box-admin ul li h3 {
+  text-align: center;
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.stack-edit{
+  margin-top: -200px;
+}
+.stake-edit-left {
+  padding: 40px 20px 30px;
+  background-color: rgb(244, 244, 244);
+  border-radius: 10px;
+  text-align: left;
+  margin-bottom: 20px;
+  box-shadow: 0 0 10px rgb(0 0 0 / 20%);
+}
+.stake-edit-left .stake-img{
+  height: 70px;
+  width: 70px;
+  border-radius: 50%;
+}
+.stake-edit-left h4{
+  color: #871434;
+  font-weight: 600;
+  margin: 10px 0 10px;
+}
+.stake-edit-left .form-label{
+  font-weight: 600;
+  color: rgb(88, 88, 88);
+}
+.stake-edit-right {
+  padding: 0 0px 10px;
+  background-color: rgb(244, 244, 244);
+  border-radius: 10px;
+  text-align: left;
+  border-radius: 10px;
+  overflow: hidden;
+  min-height: 325px;
+  margin-bottom: 20px;
+  box-shadow: 0 0 10px rgb(0 0 0 / 20%);
+}
+.stake-edit-right .nav-tabs{
+  background-color: #eee;
+}
+.stake-edit-right .form-control, 
+.stake-edit-left .form-control  {
+  background-color: #e2e2e2;
+  border-radius: 0;
+  border: none;
+}
+.stake-edit-right .nav-tabs .nav-item{
+  min-width: 33.33%;
+}
+.stake-edit-right .nav-tabs .nav-item .nav-link {
+  padding: 15px;
+  color: #871333;
+  font-weight: 600;
+  font-size: 18px;
+  border-radius: 0 !important;
+  width: 100%;
+}
+.stake-edit-right .nav-tabs .nav-item.show .nav-link, .stake-edit-right .nav-tabs .nav-link.active {
+  color: #871333;
+  background-color: #fff;
+  border-color: transparent;
+  border-bottom: 2px solid #871333;
+}
+.stake-edit-right .tab-content{
+padding: 20px 20px;
+text-align: center;
+}
+.stake-edit-right .tab-content p{
+  text-align: center;
+}
+.stake-edit-right .tab-content p small{
+  font-size: 12px;
+}
+.stake-edit-right .tab-content .common-btn{
+  min-width: 120px;
+}
+.form-heading{
+  text-align: left;
+  color: #fff;
+  font-size: 50px;
+}
+.stake-edit-left.stack-edit.stake-step-add {
+  margin-top: -100px;
+}
+.list-stake-step{
+
+}
+.list-stake-step ul{
+margin-left: 30px;
+}
+.list-stake-step ul li{
+  padding: 7px 20px;
+  list-style: none;
+  position: relative;
+}
+.list-stake-step ul li::before{
+  position: absolute;
+  content: "";
+  height: 8px;
+  width: 8px;
+  border-radius: 50%;
+  background-color: #871333;
+  left: 0;
+  top: 15px;
+}
+
+@media (max-width: 768px) {
+  .list-stake-step {
+    margin-top: 30px;
+}
+  .list-stake-step ul {
+    margin-left: 0;
+    padding-left: 0;
+}
+}
