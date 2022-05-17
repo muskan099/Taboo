@@ -80,7 +80,7 @@ const AdminDashboard=()=>{
                                </li>
                                <li>
                                
-                               <CircularProgressbar value4={value} maxValue={1} text={`${value * 100}%`} />
+                               <CircularProgressbar value={value} maxValue={1} text={`${value * 100}%`} />
                                <h3 className="main-heading-inner">Total Register Users</h3>
                                </li>
                                <li>
@@ -90,6 +90,124 @@ const AdminDashboard=()=>{
                                </li>
                            </ul>
                          </div>
+
+
+                         <div className="latest-user-row">
+                             <h3 className="main-heading-inner mb-0"> Latest Users</h3>
+                             <a href="" className="view-all-link">See All</a>
+                         </div>
+
+                         <div className="shadow-box">
+                         <Table className="table-tank" responsive>
+                              <thead>
+                                <tr>
+                                   <th>S.No</th>
+                                  <th>Collection</th>
+                                  <th>Email Address</th>
+                                  <th>Wallet Address</th>
+                                  <th>Create Date</th>
+                                  
+                                </tr>
+                              </thead>
+                              <tbody>
+                                <tr>
+                                  <td>01</td>
+                                  <td>
+                                      <div class="owner-row-outer">
+                                          <img src="images/Team/team7.png" />
+                                          <div><h5>Clementines Nightmare</h5></div>
+                                      </div>
+                                  </td>
+                                 
+                                  <td>
+                                        abcd@gmail.com
+                                  </td>
+                                  <td>
+                                        54b54b45bm4nb455bm,bm45,mb5,4b3nb3nmbnbn,mmb
+                                  </td>
+                                  <td>
+                                         01 May, 2022
+                                  </td>
+                                  
+                                </tr>
+                                 <tr>
+                                  <td>02</td>
+                                  <td>
+                                      <div class="owner-row-outer">
+                                          <img src="images/Team/team7.png" />
+                                          <div><h5>Clementines Nightmare</h5></div>
+                                      </div>
+                                  </td>
+                                  <td>
+                                        abcd@gmail.com
+                                  </td>
+                                  <td>
+                                        54b54b45bm4nb455bm,bm45,mb5,4b3nb3nmbnbn,mmb
+                                  </td>
+                                  <td>
+                                         01 May, 2022
+                                  </td>
+                                </tr>
+                                 <tr>
+                                  <td>03</td>
+                                  <td>
+                                      <div class="owner-row-outer">
+                                          <img src="images/Team/team7.png" />
+                                          <div><h5>Clementines Nightmare</h5></div>
+                                      </div>
+                                  </td>
+                                  <td>
+                                        abcd@gmail.com
+                                  </td>
+                                  <td>
+                                        54b54b45bm4nb455bm,bm45,mb5,4b3nb3nmbnbn,mmb
+                                  </td>
+                                  <td>
+                                         01 May, 2022
+                                  </td>
+                                </tr>
+                                 <tr>
+                                  <td>04</td>
+                                  <td>
+                                      <div class="owner-row-outer">
+                                          <img src="images/Team/team7.png" />
+                                          <div><h5>Clementines Nightmare</h5></div>
+                                      </div>
+                                  </td>
+                                  <td>
+                                        abcd@gmail.com
+                                  </td>
+                                  <td>
+                                        54b54b45bm4nb455bm,bm45,mb5,4b3nb3nmbnbn,mmb
+                                  </td>
+                                  <td>
+                                         01 May, 2022
+                                  </td>
+                                </tr>
+                                 <tr>
+                                  <td>05</td>
+                                  <td>
+                                      <div class="owner-row-outer">
+                                          <img src="images/Team/team7.png" />
+                                          <div><h5>Clementines Nightmare</h5></div>
+                                      </div>
+                                  </td>
+                                  <td>
+                                        abcd@gmail.com
+                                  </td>
+                                  <td>
+                                        54b54b45bm4nb455bm,bm45,mb5,4b3nb3nmbnbn,mmb
+                                  </td>
+                                  <td>
+                                         01 May, 2022
+                                  </td>
+                                </tr>
+                               
+                              </tbody>
+                            </Table>
+                         </div>
+
+
                        </Col>
                     </Row>
                           

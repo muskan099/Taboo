@@ -4044,6 +4044,7 @@ min-height: 100vh;
 .shadow-graph-box.prograss-box-admin ul{
   display: flex;
   align-items: center;
+  padding: 0;
 }
 .shadow-graph-box.prograss-box-admin ul li{
   padding: 15px;
@@ -4160,6 +4161,34 @@ margin-left: 30px;
   left: 0;
   top: 15px;
 }
+.shadow-box{
+box-shadow: 0 0 10px rgba(0,0,0,0.3);
+padding: 20px;
+border-radius: 5px;
+}
+.latest-user-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 20px 0 20px;
+}
+.creater-dash-sec  .latest-user-row h3{
+  margin: 0 !important;
+}
+.latest-user-row .view-all-link {
+  color: #871434;
+  font-size: 16px;
+}
+@media (max-width: 1350px){
+  .shadow-graph-box.prograss-box-admin ul li h3 {
+    font-size: 16px;
+}
+}
+@media (max-width: 1280px){
+  .shadow-graph-box.prograss-box-admin ul li h3 {
+    font-size: 14px;
+}
+}
 
 @media (max-width: 768px) {
   .list-stake-step {
@@ -4168,5 +4197,14 @@ margin-left: 30px;
   .list-stake-step ul {
     margin-left: 0;
     padding-left: 0;
+}
+.shadow-graph-box.prograss-box-admin ul {
+  display: block;
+}
+.shadow-graph-box.prograss-box-admin ul {
+  padding: 0;
+}
+.shadow-graph-box.prograss-box-admin {
+  max-height: initial;
 }
 }
