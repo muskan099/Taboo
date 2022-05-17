@@ -19,7 +19,8 @@ import News from "./pages/News";
 import NewsDetails from "./pages/NewsDetails";
 import ExploreLanding from "./pages/ExploreLanding";
 import Dashboard from "./pages/creators/Dashboard";
-
+import CreateStake from "./pages/CreateStake";
+import AdminDashboard from "./pages/admin/AdminDashboard";
 import TransactionPage from "./pages/TransactionPage";
 
 import CreateNft from "./pages/CreateNft";
@@ -52,6 +53,10 @@ function App() {
           <Route path="/news-details" element={<NewsDetails />} />
 
           <Route path="/create-nft" element={<CreateNft />} />
+
+          <Route path="/create-stake" element={<CreateStake />} />
+
+          <Route path="/admin-dashboard" element={<AdminDashboard />} />
 
           <Route path="/dashboard" element={<Dashboard />} />
 
