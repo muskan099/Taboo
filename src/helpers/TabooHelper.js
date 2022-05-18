@@ -19,8 +19,8 @@ export const TabooBalance=async(address)=>{
             from :contractAddress
             });
             balance=balance/1000000000;
-           let usd_balance= await tabooRate(balance)
-          return usd_balance;
+          // let usd_balance= await tabooRate(balance)
+          return balance;
        }catch(e){
         console.log(e);
     }

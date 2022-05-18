@@ -23,9 +23,12 @@ const CreateStake=()=>{
  
    const handleToken=(e)=>{
      let value=e.target.value;
-     if(value){
-       setTabooToken(value)
-     }
+     if(isNaN(value)){
+       e.target.value="";
+     }else
+      {
+        setTabooToken(value)
+      }
    }
 
   const handleSubmit=async()=>{
