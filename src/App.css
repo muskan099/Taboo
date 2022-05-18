@@ -3843,9 +3843,20 @@ filter: grayscale(0);
   padding: 30px;
   text-align: center;
 }
-.sidemenu-creater ul li img {
-  height: 26px;
+.sidemenu-creater ul li a{
+  display: block;
+  cursor: pointer;
 }
+.sidemenu-creater ul li a img {
+  height: 26px;
+  opacity: 0.4;
+}
+.sidemenu-creater ul li.active a img,
+.sidemenu-creater ul li:hover a img,
+.sidemenu-creater ul li:focus a img{
+  opacity: 1;
+}
+
 .top-collect-creater{
   padding: 30px 0;
 }
@@ -4206,5 +4217,92 @@ border-radius: 5px;
 }
 .shadow-graph-box.prograss-box-admin {
   max-height: initial;
+}
+}
+
+.nft-list-btn-row {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+  flex-wrap: wrap;
+}
+.creater-dash-sec  .nft-list-btn-row .main-heading-inner {
+  margin: 0 !important;
+  margin-right: 15px !important;
+}
+.top-collect-creater.nft-collector{
+  padding-right: 20px;
+}
+.outer-multiple-drop {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+}
+.outer-multiple-drop .dropdown{
+margin: 10px 20px 10px 0px;
+}
+.filer-right-box.allcategory-filter.filter-nft-list{
+  justify-content: space-between;
+}
+.filter-nft-list .newsletter-box .input-group{
+  margin: 10px 0 !important;
+}
+.form-check-input[type=checkbox] {
+  border-radius: .25em;
+  background-color: #871333 !important;
+  border: 1px solid #871333 !important;
+  height: 22px;
+  width: 22px;
+  outline: none !important;
+  box-shadow: none !important;
+}
+.status-box{
+  background-color: #871333;
+  padding: 3px 10px;
+  text-align: center;
+  color: #fff;
+  border-radius: 5px;
+}
+.view-icon{
+  color: #871333;
+  font-size: 20px;
+}
+.trans-commision-box{
+  padding: 20px;
+  background-color: rgb(244, 244, 244);
+  border-radius: 10px;
+  margin-bottom: 40px;
+  box-shadow: 0 0 10px rgb(0 0 0 / 20%);
+}
+.trans-commision-box p{
+  color: #871333;
+  font-size: 18px;
+  font-weight: 600;
+  margin-bottom: 10px;
+}
+.trans-commision-box .link-view{
+  color: #871333 !important; 
+}
+
+@media (max-width: 768px){
+  .outer-multiple-drop .dropdown {
+    width: 48%;
+    margin-right: 5px;
+}
+.filer-right-box.allcategory-filter .outer-multiple-drop .dropdown-toggle {
+  min-width: 100%;
+  font-size: 12px;
+}
+.creater-dash-sec  .nft-list-btn-row .main-heading-inner {
+  width: 100%;
+}
+.common-btn {
+  margin: 10px 10px 0 0;
+}
+.filer-right-box.allcategory-filter .outer-multiple-drop .dropdown-toggle:after {
+  height: 7px;
+  width: 7px;
+  right: 10px;
+  top: 12px;
 }
 }
