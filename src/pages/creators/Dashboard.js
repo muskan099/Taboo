@@ -40,19 +40,17 @@ const Dashboard=()=>{
                <Row>
                 <Col lg={1} md={12} sm={12} xs={12}>
                     <div className="sidemenu-creater">
-                        <ul>
-                            <li>
-                                <img className="img-fluid m-0"  src={"images/plus.png"} />
+                    <ul>
+                            <li className="active">
+                                <a href=""><img className="img-fluid m-0"  src={"images/dashboard.png"} /></a>
                             </li>
                             <li>
-                                <img className="img-fluid m-0"  src={"images/plus.png"} />
+                               <a href=""><img className="img-fluid m-0"  src={"images/list.png"} /></a>
                             </li>
                             <li>
-                                <img className="img-fluid m-0"  src={"images/plus.png"} />
+                               <a href=""><img className="img-fluid m-0"  src={"images/list22.png"} /></a>
                             </li>
-                            <li>
-                                <img className="img-fluid m-0"  src={"images/plus.png"} />
-                            </li>
+                            
                         </ul>
                     </div>
                 </Col>
