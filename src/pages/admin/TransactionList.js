@@ -26,7 +26,7 @@ const TransactionList=()=>{
                 <Col lg={11} md={12} sm={12} xs={12}>
                     <div className="top-collect-creater nft-collector">
                    <div className="nft-list-btn-row">
-                       <h3 className="main-heading-inner mb-0"> Admin Dashboard</h3>
+                       <h3 className="main-heading-inner mb-0"> Transaction History</h3>
                        <a className="common-btn" href="">Export to Exel</a>
                        <a  className="common-btn" href="">Export to CSV</a>
                    </div>
