@@ -222,6 +222,12 @@ const Header = () => {
                   </Dropdown.Item>
 
                   <Dropdown.Item>
+                    <Link to="/create-stake" className="dropdown-item">
+                      Create Stake
+                    </Link>
+                  </Dropdown.Item>
+
+                  <Dropdown.Item>
                     <Link to="/stakes" className="dropdown-item">
                       Stakes
                     </Link>
