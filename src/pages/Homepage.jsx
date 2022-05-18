@@ -214,9 +214,9 @@ const Homepage = () => {
                         </li>
                         <li>- More top CEX's.</li>
                         <li>- Strategic Crypto Partnerships</li>
-                        <li>
+                        {/*<li>
                           - Integration of a secondary token, for platform use.
-                        </li>
+                        </li>*/}
                         <li>
                           - Taboo Digital Periodical (Magazine) will begin.
                         </li>
