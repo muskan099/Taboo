@@ -53,6 +53,7 @@ function App() {
           <Route path="/news-details" element={<NewsDetails />} />
 
           <Route path="/create-nft" element={<CreateNft />} />
+          
 
           <Route path="/farm" element={<Farm />} />
 
