@@ -1,7 +1,28 @@
+import React, { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { axios } from "../http";
 import { Container,Row,Col, Button, Dropdown, Table } from "react-bootstrap";
 
 
 const TransactionPage=()=>{ 
+
+  const { isAuthenticated, walletAddress,tier } = useSelector((state) => state.auth);
+
+ const[data,setData]=useState('');
+
+ const getData=async()=>{
+
+   let res=await axios.post('https://api.taboo.io/user-nft',{address:walletAddress});
+   console.log("data",res)
+   setData(res.data)
+
+ }
+
+
+ useEffect(async()=>{
+    await getData();
+ },[])
+
 
     return(<>
 
@@ -17,7 +38,7 @@ const TransactionPage=()=>{
                     <div className="outer-rank-box">
                     <div className="profile-img-stakes">
                 <img src={"images/full-View.png"} alt="profile IMG" />
-                <p>0x8768EA5bB7144c39EC3Df69406DcA255d06ac4fC</p>
+                <p>{walletAddress}</p>
               </div>
                      
                        <div>
@@ -35,76 +56,51 @@ const TransactionPage=()=>{
                                 </tr>
                               </thead>
                               <tbody>
-                                <tr>
-                                  <td>01</td>
-                                  <td>
-                                  <div class="icon-img">
-                                         <img src="images/Team/team7.png" />
-                                         
-                                      </div>
-                                  </td>
-                                  <td>
-                                    giduiu4uii6i54iu4iiuo
-                                  </td>
-                                  <td>
-                                    giduiu4uii6i54iu4iiuo
-                                  </td>
-                                  <td>
-                                  giduiu4uii6i54iu4iiuo
-                                  </td>
-                                  <td><a href=""> giduiu4uii6i54iu4iiuo</a></td>
-                                  <td>
-                                         <span class="success">Successful</span>
-                                  </td>
-                                 
-                                </tr>
+                                
+                                {data&& data.map((item,index)=>
 
-                                <tr>
-                                  <td>02</td>
-                                  <td>
-                                  <div class="icon-img">
-                                         <img src="images/Team/team7.png" />
-                                         
-                                      </div>
-                                  </td>
-                                  <td>
-                                    giduiu4uii6i54iu4iiuo
-                                  </td>
-                                  <td>
-                                    giduiu4uii6i54iu4iiuo
-                                  </td>
-                                  <td>
-                                  giduiu4uii6i54iu4iiuo
-                                  </td>
-                                  <td><a href=""> giduiu4uii6i54iu4iiuo</a></td>
-                                  <td>
-                                  <span class="down">failed</span>
-                                  </td>
-                                 
-                                </tr>
 
-                                <tr>
-                                  <td>03</td>
-                                  <td>
-                                  <div class="icon-img">
-                                         <img src="images/Team/team7.png" />
-                                      </div>
-                                  </td>
-                                  <td>
-                                    giduiu4uii6i54iu4iiuo
-                                  </td>
-                                  <td>
-                                    giduiu4uii6i54iu4iiuo
-                                  </td>
-                                  <td>
-                                  giduiu4uii6i54iu4iiuo
-                                  </td>
-                                  <td><a href=""> giduiu4uii6i54iu4iiuo</a></td>
-                                  <td>
-                                         <span class="success">Successful</span>
-                                  </td>
-                                 
-                                </tr>
+                                        <tr>
+                                        <td>{index+1}</td>
+                                        <td>
+                                        <div class="icon-img">
+                                              <img src={"https://taboonft.s3.us-east-2.amazonaws.com/images/"+item.contentinfo.image} />
+                                              
+                                            </div>
+                                        </td>
+                                        <td>
+                                         
+
+                                          {`${item.user_wallet_address?.slice(0, 3)}...${item.user_wallet_address?.slice(
+                    -8
+                  )}`}
+                                        </td>
+                                        <td>
+                                          {}
+
+                                          
+                                          {`${item.trans_id?.slice(0, 3)}...${item.trans_id?.slice(
+                    -8
+                  )}`}
+                                        </td>
+                                        <td>
+                                           {item.contentinfo.token_id}
+                                        </td>
+                                        <td><a href={item.contentinfo.ipfs} target="_blank"> 
+                                        {`${item.contentinfo.ipfs?.slice(0, 3)}...${item.contentinfo.ipfs?.slice(
+                    -8
+                  )}`}</a></td>
+                                        <td>
+                                              <span class="success">{item.status}</span>
+                                        </td>
+
+                                        </tr>
+
+
+                                   
+                               ) }
+                                
+                               
 
 
                                
@@ -121,7 +117,7 @@ const TransactionPage=()=>{
 
           <div>
       <div className="padding-strip"></div>
-      <section className="section-stakes-table">
+     {/* <section className="section-stakes-table">
         <Container>
           <Row>
             <Col>
@@ -132,7 +128,7 @@ const TransactionPage=()=>{
             </Col>
           </Row>
         </Container>
-      </section>
+                                        </section> */}
     </div>
     
          </>)

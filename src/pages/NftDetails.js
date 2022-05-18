@@ -16,6 +16,9 @@ const NftDetails=()=>{
 
   const dispatch = useDispatch();
 
+  const navigate = useNavigate();
+  
+
   const { nft} = useSelector((state) => state.nft);
 
   const { isAuthenticated, walletAddress,balance ,tier} = useSelector((state) => state.auth);
@@ -101,11 +104,27 @@ const handleBuy=async(e)=>{
           let hash=await BuyNFT(nft.token_id,nft.ipfs,nft.price,nft.signature)
           if(hash){
             //toast.success("Order placed successfully!")
+            let Nft_hash=hash.transactionHash;
             hash=hash.transactionHash;
             hash= hash.substring(0, 5)+"....."+hash.substring(38, 42);
             setNftHash(hash)
             let orderObj={'id':nft._id,'status':"sold"}
             dispatch(updateNftStatusSaga(orderObj))
+           
+           let order=  await axios.post('https://api.taboo.io/create-order',{
+                                        content_id:nft._id,
+                                        to_account:"0x9632a9b8afe7CbA98236bCc66b4C019EDC1CD1Cc",
+                                        amount:nft.price,
+                                        address:walletAddress,
+                                        tx_id:taboo_hash.transactionHash,
+                                        nft_hash:Nft_hash,
+                                        tokenUrl:nft.ipfs,
+
+                          });
+
+
+             console.log("order",order)
+
             handleClose2()
             handleShow1();
 
@@ -114,6 +133,9 @@ const handleBuy=async(e)=>{
               getData();
 
             setTimeout(handleClose1, 3000);
+
+
+            navigate('/transactions')
 
           }
         }else
