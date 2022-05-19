@@ -12,7 +12,7 @@ const TransactionPage=()=>{
 
  const getData=async()=>{
 
-   let res=await axios.post('https://api.taboo.io/user-nft',{address:walletAddress});
+   let res=await axios.post('/user-nft',{address:walletAddress});
    console.log("data",res)
    setData(res.data)
 
