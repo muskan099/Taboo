@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import moment from 'moment'
@@ -6,7 +6,9 @@ import { axios } from "../http";
 import { Row, Col, Container, Accordion, Dropdown,Form,FormControl,Button, InputGroup, Tab, Tabs } from "react-bootstrap";
 import { toast } from "react-toastify";
 import { Transaction } from "../helpers/Transaction";
-
+import { TabooBalance } from "../helpers/TabooHelper";
+import { TabooPunk } from "../helpers/TabooPunk";
+import { loginSaga, logout } from "../store/reducers/authReducer";
 
 
 const CreateStake=()=>{
@@ -16,9 +18,39 @@ const CreateStake=()=>{
   const[tabooToken,setTabooToken]=useState('')
 
   const navigate = useNavigate();
-  
+  const dispatch = useDispatch();
+
 
   const[isStart,setIsStart]=useState(false)
+
+  const handleBalance = async (address) => {
+    //let address = await Connect();
+
+    let punk= await TabooPunk(address);
+    // console.log("punks",punk)
+    let tier=punk>0?"3 Tier":"1 Tier"
+    let balance= await TabooBalance(address)
+    console.log("balance",balance)
+
+    if (address && address.length) {
+      dispatch(loginSaga({ address: address,balance:balance,tabooPunk:punk,tier:tier}));
+    }
+  };
+
+
+
+
+  useEffect(async()=>{
+
+       if(isAuthenticated){
+        await handleBalance(walletAddress);
+
+       }else
+         {
+           navigate('/')
+         }
+  },[balance])
+
 
  
    const handleToken=(e)=>{
@@ -43,6 +75,8 @@ const CreateStake=()=>{
      }else
        {
           setIsStart(true)
+
+          await handleBalance(walletAddress);
 
           let today=new Date();
 

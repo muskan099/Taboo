@@ -65,6 +65,11 @@ const NftDetails=()=>{
 
   }
 
+
+
+
+  
+
   useEffect(async()=>{
 
     getData();
