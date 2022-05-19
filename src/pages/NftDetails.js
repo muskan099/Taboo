@@ -361,7 +361,7 @@ const handleBuy=async(e)=>{
                         <div class="creator-erroer-notify">
                             <img src={"https://taboonft.s3.us-east-2.amazonaws.com/icons/add-button.png"} />
                             <div>
-                                <h6>This Creator is not verified</h6>
+                                <h6>This Creator  verified</h6>
                                 <p>Purchase this item at your own risk</p>
                             </div>
                         </div>
