@@ -498,6 +498,22 @@ const Homepage = () => {
                       </div>
                     </div>
                   </li>
+                  <li>
+                    <div>
+                      <img
+                        className="aos-init aos-animate"
+                        data-aos="fade-down"
+                        data-aos-duration="900"
+                        data-aos-delay="500"
+                        src={"images/Team/teamn.jpg"}
+                        alt="team"
+                      />
+                      <div className="content-team">
+                        <h4 className="p-0">Nadeem</h4>
+                        <p>CEO</p>
+                      </div>
+                    </div>
+                  </li>
                 </ul>
               </div>
             </Col>
