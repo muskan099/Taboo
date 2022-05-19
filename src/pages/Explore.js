@@ -22,14 +22,16 @@ const getData=(page,limit=60,tier,search_tag)=>{
               page:page,
 			  limit:limit,
 			  search_tag:search_tag}
+			  
 	dispatch(getNftSaga(data));
+	
 }
 
 useEffect(()=>{
     console.log("category",category)
 	getData(currentPage,60,tier,category)
 
-},[currentPage,category])
+},[nft,category])
 
 
 	return(<>
