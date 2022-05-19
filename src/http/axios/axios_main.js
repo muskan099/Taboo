@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const axiosMain = axios.create({
-  baseURL: "https://api.taboo.io/",
+  baseURL: "https://3.21.69.76/",
   // process.env.NODE_ENV === 'development'
   //   ? process.env.REACT_APP_END_POINT_URL_DEV
   //   : process.env.REACT_APP_END_POINT_URL_PROD,

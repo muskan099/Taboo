@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import axios from "axios";
+import { axios } from "../http";
 import { useNavigate, useParams } from "react-router-dom";
 import { Row, Col, Container, Tabs,Tab,Table, Modal, Button} from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
@@ -83,7 +83,7 @@ const handleBuy=async(e)=>{
       console.log("hello")
        setBuyStart(true)
      // dispatch(createTransactionsSaga({address:walletAddress,content_id:nft._id}))
-        let tx=await axios.post("https://api.taboo.io/make-order",{address:walletAddress,content_id:nft._id})
+        let tx=await axios.post("/make-order",{address:walletAddress,content_id:nft._id})
 
       if(tx){
 
@@ -111,7 +111,7 @@ const handleBuy=async(e)=>{
             let orderObj={'id':nft._id,'status':"sold"}
             dispatch(updateNftStatusSaga(orderObj))
            
-           let order=  await axios.post('https://api.taboo.io/create-order',{
+           let order=  await axios.post('/create-order',{
                                         content_id:nft._id,
                                         to_account:"0x9632a9b8afe7CbA98236bCc66b4C019EDC1CD1Cc",
                                         amount:nft.price,
