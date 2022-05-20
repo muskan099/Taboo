@@ -21,6 +21,7 @@ import { Provider } from "../../helpers/Web3Helper";
 import userIcon from "../../assets/user-icon.png";
 import { TabooBalance } from "../../helpers/TabooHelper";
 import { TabooPunk } from "../../helpers/TabooPunk";
+import { TierHelper } from "../../helpers/TierHelper";
 import { loginSaga, logout } from "../../store/reducers/authReducer";
 
 
@@ -38,10 +39,11 @@ const Header = () => {
   const handleLogin = async () => {
     let address = await Connect();
 
-    let punk= 0 //await TabooPunk(address[0]);
+    let punk= await TabooPunk(address[0]);
     // console.log("punks",punk)
-    let tier=punk>0?"3 Tier":"1 Tier"
-    let balance=0// await TabooBalance(address[0])
+    //let tier=punk>0?"3 Tier":"1 Tier"
+    let balance= await TabooBalance(address[0])
+    let tier=await TierHelper(punk,balance);
     console.log("balance",balance)
 
     if (address && address.length) {
@@ -107,7 +109,7 @@ const Header = () => {
           <Navbar.Toggle aria-controls="navbarScroll" />
           <Navbar.Collapse id="navbarScroll">
             <Nav className="me-auto my-2 my-lg-0">
-              <Nav.Link onClick={handleShow} >Explore</Nav.Link>
+              <Nav.Link onClick="/explore" >Explore</Nav.Link>
 
               <a href="https://punks.taboo.io/" target={'_blank'} className="nav-link">
                 TabooPunks
@@ -210,7 +212,7 @@ const Header = () => {
                 <Dropdown.Menu>
                  
 
-                 {/* <Dropdown.Item>
+                  <Dropdown.Item>
                     <Link to="/transactions" className="dropdown-item">
                       Collections
                     </Link>
@@ -226,7 +228,7 @@ const Header = () => {
                     <Link to="/create-stake" className="dropdown-item">
                       Create Stake
                     </Link>
-                  </Dropdown.Item>*/}
+                  </Dropdown.Item>
 
                   <Dropdown.Item>
                     <Link to="/stakes" className="dropdown-item">
