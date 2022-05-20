@@ -412,7 +412,7 @@ const Homepage = () => {
                       />
                       <div className="content-team">
                         <h4>Majid</h4>
-                        <p>CEO/Business Strategist</p>
+                        <p>COO/Business Strategist</p>
                       </div>
                     </div>
                   </li>
