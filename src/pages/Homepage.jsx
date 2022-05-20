@@ -451,19 +451,20 @@ const Homepage = () => {
                   <li>
                     <div>
                       <img
-                        className="aos-init aos-animate "
-                        data-aos="fade-up"
-                        data-aos-duration="1000"
-                        data-aos-delay="300"
+                        className="aos-init aos-animate"
+                        data-aos="fade-down"
+                        data-aos-duration="900"
+                        data-aos-delay="500"
                         src={"images/Team/teamn.jpg"}
                         alt="team"
                       />
                       <div className="content-team">
-                        <h4>Eli</h4>
-                        <p>Social Media Manager</p>
+                        <h4 className="p-0">Nadeem</h4>
+                        <p>CTO</p>
                       </div>
                     </div>
                   </li>
+                 
                   <li>
                     <div>
                       <img
@@ -501,19 +502,20 @@ const Homepage = () => {
                   <li>
                     <div>
                       <img
-                        className="aos-init aos-animate"
-                        data-aos="fade-down"
-                        data-aos-duration="900"
-                        data-aos-delay="500"
+                        className="aos-init aos-animate "
+                        data-aos="fade-up"
+                        data-aos-duration="1000"
+                        data-aos-delay="300"
                         src={"images/Team/teamn.jpg"}
                         alt="team"
                       />
                       <div className="content-team">
-                        <h4 className="p-0">Nadeem</h4>
-                        <p>CEO</p>
+                        <h4>Eli</h4>
+                        <p>Social Media Manager</p>
                       </div>
                     </div>
                   </li>
+                
                 </ul>
               </div>
             </Col>
