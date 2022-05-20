@@ -11,6 +11,8 @@ const Explore =()=>{
    const [currentPage,setCurrentPage]=useState(1)
    
    const[category,setCategory]=useState('');
+   const[RecentlyAdded,setRecentlyAdded]=useState(false);
+
 
    const [meta,setMeta]=useState('')
 
@@ -24,7 +26,8 @@ const getData=(page,limit=60,tier,search_tag,category)=>{
               page:page,
 			  limit:limit,
 			  search_tag:search_tag,
-			  category:category}
+			  category:category,
+			  recentlyAdded:RecentlyAdded}
 			  
 	dispatch(getNftSaga(data));
 	
@@ -32,7 +35,7 @@ const getData=(page,limit=60,tier,search_tag,category)=>{
 
 useEffect(()=>{
     console.log("category",category)
-	getData(currentPage,60,tier,meta,category)
+	getData(currentPage,60,tier,meta,category,RecentlyAdded)
 
 },[nft,category,meta])
 
@@ -46,6 +49,24 @@ const handleSearch=async(e)=>{
 	}
 }
 
+
+const handleRecent=(e)=>{
+	let value=e.target.value;
+
+
+	if(value){
+		setRecentlyAdded(true)
+	}
+}
+
+
+const handleAll=()=>{
+	setRecentlyAdded(false)
+
+	setCategory('')
+
+	setMeta('')
+}
 
 	return(<>
 		 <section className="team-sec-new">
@@ -223,13 +244,13 @@ const handleSearch=async(e)=>{
 									  </Dropdown.Toggle>
 
 									  <Dropdown.Menu>
-									    <Dropdown.Item href="#/action-1">Action</Dropdown.Item>
-									    <Dropdown.Item href="#/action-2">Another action</Dropdown.Item>
-									    <Dropdown.Item href="#/action-3">Something else</Dropdown.Item>
+									    <Dropdown.Item href="#"onClick={(e)=>setRecentlyAdded(true)}>Recently Added</Dropdown.Item>
+									   {/* <Dropdown.Item href="#/action-2">Another action</Dropdown.Item>
+									    <Dropdown.Item href="#/action-3">Something else</Dropdown.Item> */}
 									  </Dropdown.Menu>
 								</Dropdown>
 								<ul>
-									<li className="active"><a href="#" onClick={()=>setCategory('')}>All items</a></li>
+									<li className="active"><a href="#" onClick={()=>handleAll()}>All items</a></li>
 									<li><a href="#"onClick={()=>setCategory('Sexy')}>Sexy</a></li>
 									<li><a href="#"onClick={()=>setCategory('Models')}>Models</a></li>
 									<li><a href="#"onClick={()=>setCategory('Metaverse')}>Metavers</a></li>
