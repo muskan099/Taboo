@@ -109,7 +109,7 @@ const Header = () => {
           <Navbar.Toggle aria-controls="navbarScroll" />
           <Navbar.Collapse id="navbarScroll">
             <Nav className="me-auto my-2 my-lg-0">
-              <Nav.Link onClick="/explore" >Explore</Nav.Link>
+              <Nav.Link href="/explore" >Explore</Nav.Link>
 
               <a href="https://punks.taboo.io/" target={'_blank'} className="nav-link">
                 TabooPunks
