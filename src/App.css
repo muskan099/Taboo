@@ -798,6 +798,30 @@ body {
 .team-list li:nth-child(7) img {
   height: 130px;
 }
+
+
+.team-list li:nth-child(8) {
+  top: 75%;
+  left: 623px;
+}
+.team-list li:nth-child(8) .content-team {
+  border: none;
+  border-right: 2px solid #747272;
+  left: 125px;
+  top: 5px;
+  text-align: center;
+  transform: rotate(-90deg);
+  min-height: 140px;
+  padding-top: 10px;
+}
+.team-list li:nth-child(8) img {
+  height: 130px;
+}
+
+
+
+
+
 .about-box-new {
   color: #fff;
 }
