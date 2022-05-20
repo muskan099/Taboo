@@ -756,7 +756,7 @@ body {
   content: "";
   position: absolute;
   border-right: 2px solid #747272;
-  bottom: -60px;
+  top: -20px;
   left: 0;
   height: 60px;
 }
@@ -871,7 +871,7 @@ body {
   object-position: center -135px;
   display: none;
 }
-.how-it-image-box .show-btn {
+.how-it-image-box .show-btn {   
   background-color: transparent;
   border: none;
   position: absolute;
