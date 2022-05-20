@@ -12,16 +12,19 @@ const Explore =()=>{
    
    const[category,setCategory]=useState('');
 
+   const [meta,setMeta]=useState('')
+
 	const { isAuthenticated, walletAddress,tier } = useSelector((state) => state.auth);
 
 	const { nft} = useSelector((state) => state.nft);
     console.log('nft',nft.length)
-const getData=(page,limit=60,tier,search_tag)=>{
+const getData=(page,limit=60,tier,search_tag,category)=>{
 	console.log('hh')
 	let data={tier:tier,
               page:page,
 			  limit:limit,
-			  search_tag:search_tag}
+			  search_tag:search_tag,
+			  category:category}
 			  
 	dispatch(getNftSaga(data));
 	
@@ -29,9 +32,19 @@ const getData=(page,limit=60,tier,search_tag)=>{
 
 useEffect(()=>{
     console.log("category",category)
-	getData(currentPage,60,tier,category)
+	getData(currentPage,60,tier,meta,category)
 
-},[nft,category])
+},[nft,category,meta])
+
+
+
+const handleSearch=async(e)=>{
+	let value=e.target.value;
+
+	if(value){
+		setMeta(value);
+	}
+}
 
 
 	return(<>
@@ -51,6 +64,7 @@ useEffect(()=>{
 								      placeholder="Search....."
 								      aria-label="Recipient's username"
 								      aria-describedby="basic-addon2"
+									  onKeyUp={(e)=>handleSearch(e)}
 								    />
 								    <Button
 					                    
@@ -205,7 +219,7 @@ useEffect(()=>{
 	               	 		<div className="filer-right-box">
 	               	 			<Dropdown>
 								  <Dropdown.Toggle id="dropdown-basic">
-									   Rcently Added
+									   Recently Added
 									  </Dropdown.Toggle>
 
 									  <Dropdown.Menu>

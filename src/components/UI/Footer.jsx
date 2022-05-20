@@ -56,14 +56,29 @@ const Footer = () => {
               <div className="social-links">
                 
 
+
+              <a href="https://mobile.twitter.com/taboo_io" target={'_blank'}>
+                  <img src="https://taboonft.s3.us-east-2.amazonaws.com/icons/twitter.png" width={'40'} />
+                  </a>
+
+
                 
-                <a href="https://t.me/TABOO_OFFICIAL" target={'_blank'}>
+                <a href="https://t.me/TABOO_OFFICIAL" target={'_blank'} className="telegram-link">
                   <img src="https://taboonft.s3.us-east-2.amazonaws.com/icons/telegram.png" width={'40'} />
                   </a>
+
+                       
+                  <a href="https://discord.gg/fuYDVuVwnd" target={'_blank'} className="insta-link">
+                  <img src="https://taboonft.s3.us-east-2.amazonaws.com/icons/discord.png" width={'40'} />
+                </a>
+
+
+
 
                 <a href="https://instagram.com/taboo.token?igshid=YmMyMTA2M2Y=" target={'_blank'} className="insta-link">
                   <img src="https://taboonft.s3.us-east-2.amazonaws.com/icons/instagram.png" width={'40'} />
                 </a>
+
 
                 
                 </div>
