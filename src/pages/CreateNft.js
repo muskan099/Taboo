@@ -402,10 +402,10 @@ const CreateNft=()=>{
                                         <li><img  src={"images/Team/team2.png"} /></li>
                                         <li><img  src={"images/Team/team3.png"} /></li>
                                      </ul>
-                                     <h6>3 in stock</h6>
+                                    {/*<h6>3 in stock</h6>  */}
                                  </div>
                                  <hr></hr>
-                                 <div class="bid-row">
+                                 <div class="bid-row d-none">
                                     <span><img  src={"images/up-arrow.png"} /> Highest Bid</span>
                                     <span><b>0 $ Taboo</b></span>
                                     <span> New Bid <img  src={"images/up-arrow.png"} /> </span>
