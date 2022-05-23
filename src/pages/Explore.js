@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import {
@@ -14,12 +14,62 @@ import {
 } from "react-bootstrap";
 import { getNftSaga } from "../store/reducers/nftReducer";
 
+const jQuery = window.jQuery;
+function debounce(func, timeout = 300) {
+  let timer;
+  return (...args) => {
+    clearTimeout(timer);
+    timer = setTimeout(() => {
+      func.apply(this, args);
+    }, timeout);
+  };
+}
+
+function enableSlider($, changeStateFn) {
+  $("#slider-range").slider({
+    range: true,
+    min: 0,
+    max: 25000,
+    values: [0, 15000],
+    slide: function (event, ui) {
+      changeStateFn((p) => ({
+        ...p,
+        startPrice: Number(ui.values[0]),
+        endPrice: Number(ui.values[1]),
+      }));
+      //   console.log({ range: `${ui.values[0]} - ${ui.values[1]}` });
+      $("#amount").val("Taboo " + ui.values[0] + " - Taboo " + ui.values[1]);
+    },
+  });
+  $("#amount").val(
+    "Taboo " +
+      $("#slider-range").slider("values", 0) +
+      " - Taboo " +
+      $("#slider-range").slider("values", 1)
+  );
+}
+
 const Explore = () => {
+  const inputRangeRef = useRef(null);
   const dispatch = useDispatch();
   const [currentPage, setCurrentPage] = useState(1);
 
   const [category, setCategory] = useState("All items");
   const [RecentlyAdded, setRecentlyAdded] = useState(false);
+  const [filterSearch, setFilterSearch] = useState({
+    A_TO_Z: false,
+    price: "",
+    letest: false,
+    startPrice: 0,
+    nftTier: {
+      tier1: false,
+      tier2: false,
+      tier3: false,
+    },
+    endPrice: 20000,
+  });
+
+  const { startPrice, endPrice, A_TO_Z, price, letest, nftTier } = filterSearch;
 
   const [meta, setMeta] = useState("");
 
@@ -28,9 +78,23 @@ const Explore = () => {
   );
 
   const { nft } = useSelector((state) => state.nft);
-  console.log("nft", nft.length);
-  const getData = (page, limit = 60, tier, search_tag, category) => {
-    console.log("hh");
+  // console.log("nft", nft.length);
+  const getData = (
+    page,
+    limit = 60,
+    tier,
+    search_tag,
+    category,
+    RecentlyAdded,
+    startPrice,
+    endPrice,
+    A_TO_Z,
+    price,
+    letest
+  ) => {
+    console.log("get nft saga function \n");
+    console.log("nft tier inside getNftSaga \n", nftTier);
+
     let data = {
       tier: tier,
       page: page,
@@ -38,15 +102,50 @@ const Explore = () => {
       search_tag: search_tag,
       category: category === "All items" ? "" : category,
       recentlyAdded: RecentlyAdded,
+      startPrice,
+      endPrice,
+      A_TO_Z,
+      price,
+      letest,
+      nftTier,
     };
 
     dispatch(getNftSaga(data));
   };
 
+  console.log("nft tier \n", nftTier);
+
   useEffect(() => {
-    console.log("category", category);
-    getData(currentPage, 60, tier, meta, category, RecentlyAdded);
-  }, [category, meta]);
+    enableSlider(jQuery, setFilterSearch);
+  }, []);
+
+  // console.log({ range: `${startPrice} ${endPrice}` });
+  useEffect(() => {
+    // console.log("category", category);
+    getData(
+      currentPage,
+      60,
+      tier,
+      meta,
+      category,
+      RecentlyAdded,
+      startPrice,
+      endPrice,
+      A_TO_Z,
+      price,
+      letest
+    );
+  }, [
+    category,
+    meta,
+    RecentlyAdded,
+    startPrice,
+    endPrice,
+    A_TO_Z,
+    price,
+    letest,
+    nftTier,
+  ]);
 
   const handleSearch = async (e) => {
     let value = e.target.value;
@@ -70,6 +169,32 @@ const Explore = () => {
     setCategory("");
 
     setMeta("");
+  };
+
+  const handleLikeFilter = (e) => {
+    let value = e.target.value;
+    if (value === "A_TO_Z") {
+      setFilterSearch((prev) => ({
+        ...prev,
+        A_TO_Z: true,
+        letest: false,
+        price: "",
+      }));
+    } else if (value === "letest") {
+      setFilterSearch((prev) => ({
+        ...prev,
+        A_TO_Z: false,
+        letest: true,
+        price: "",
+      }));
+    } else {
+      setFilterSearch((prev) => ({
+        ...prev,
+        A_TO_Z: false,
+        letest: false,
+        price: value,
+      }));
+    }
   };
 
   return (
@@ -118,7 +243,12 @@ const Explore = () => {
                 <div className="price-range-box">
                   <div id="slider-range"></div>
                   <p>
-                    <input type="text" id="amount" readOnly></input>
+                    <input
+                      type="text"
+                      id="amount"
+                      onChange={(e) => console.log(e.target.value)}
+                      ref={inputRangeRef}
+                    ></input>
                   </p>
                 </div>
 
@@ -130,7 +260,12 @@ const Explore = () => {
                     <Accordion.Body>
                       <div className="radio">
                         <label>
-                          <input type="radio" name="o1" value=""></input>
+                          <input
+                            type="radio"
+                            name="o1"
+                            value={"high_to_low"}
+                            onChange={handleLikeFilter}
+                          ></input>
                           <span className="cr">
                             <i className="cr-icon fa fa-circle"></i>
                           </span>
@@ -139,7 +274,12 @@ const Explore = () => {
                       </div>
                       <div className="radio">
                         <label>
-                          <input type="radio" name="o1" value=""></input>
+                          <input
+                            type="radio"
+                            name="o1"
+                            value={"low_to_high"}
+                            onChange={handleLikeFilter}
+                          ></input>
                           <span className="cr">
                             <i className="cr-icon fa fa-circle"></i>
                           </span>
@@ -148,7 +288,12 @@ const Explore = () => {
                       </div>
                       <div className="radio">
                         <label>
-                          <input type="radio" name="o1" value=""></input>
+                          <input
+                            type="radio"
+                            name="o1"
+                            value={"A_TO_Z"}
+                            onChange={handleLikeFilter}
+                          ></input>
                           <span className="cr">
                             <i className="cr-icon fa fa-circle"></i>
                           </span>
@@ -157,7 +302,12 @@ const Explore = () => {
                       </div>
                       <div className="radio">
                         <label>
-                          <input type="radio" name="o1" value=""></input>
+                          <input
+                            type="radio"
+                            name="o1"
+                            value={"letest"}
+                            onChange={handleLikeFilter}
+                          ></input>
                           <span className="cr">
                             <i className="cr-icon fa fa-circle"></i>
                           </span>
@@ -167,20 +317,77 @@ const Explore = () => {
                     </Accordion.Body>
                   </Accordion.Item>
                   <Accordion.Item eventKey="1">
-                    <label className="heading-label">Style</label>
+                    <label className="heading-label">Tier</label>
                     <Accordion.Header>Love</Accordion.Header>
 
                     <Accordion.Body>
                       <div className="checkbox">
                         <label>
-                          <input type="checkbox" value=""></input>
+                          <input
+                            type="checkbox"
+                            value="1 Tier"
+                            checked={filterSearch.nftTier.tier1}
+                            onChange={() =>
+                              setFilterSearch((prev) => ({
+                                ...prev,
+                                nftTier: {
+                                  ...prev.nftTier,
+                                  tier1: !prev.nftTier.tier1,
+                                },
+                              }))
+                            }
+                          ></input>
                           <span className="cr">
                             <i className="cr-icon fa fa-check"></i>
                           </span>
-                          Option one is this
+                          1 Tier
                         </label>
                       </div>
                       <div className="checkbox">
+                        <label>
+                          <input
+                            type="checkbox"
+                            value="2 Tier"
+                            checked={filterSearch.nftTier.tier2}
+                            onChange={() =>
+                              setFilterSearch((prev) => ({
+                                ...prev,
+                                nftTier: {
+                                  ...prev.nftTier,
+                                  tier2: !prev.nftTier.tier2,
+                                },
+                              }))
+                            }
+                          ></input>
+                          <span className="cr">
+                            <i className="cr-icon fa fa-check"></i>
+                          </span>
+                          2 Tier
+                        </label>
+                      </div>
+                      <div className="checkbox">
+                        <label>
+                          <input
+                            type="checkbox"
+                            value="3 Tier"
+                            checked={filterSearch.nftTier.tier3}
+                            onChange={() =>
+                              setFilterSearch((prev) => ({
+                                ...prev,
+                                nftTier: {
+                                  ...prev.nftTier,
+                                  tier3: !prev.nftTier.tier3,
+                                },
+                              }))
+                            }
+                          ></input>
+                          <span className="cr">
+                            <i className="cr-icon fa fa-check"></i>
+                          </span>
+                          3 Tier
+                        </label>
+                      </div>
+                      {/* <div className="checkbox">
                         <label>
                           <input type="checkbox" value=""></input>
                           <span className="cr">
@@ -188,25 +395,7 @@ const Explore = () => {
                           </span>
                           Option one is this
                         </label>
-                      </div>
-                      <div className="checkbox">
-                        <label>
-                          <input type="checkbox" value=""></input>
-                          <span className="cr">
-                            <i className="cr-icon fa fa-check"></i>
-                          </span>
-                          Option one is this
-                        </label>
-                      </div>
-                      <div className="checkbox">
-                        <label>
-                          <input type="checkbox" value=""></input>
-                          <span className="cr">
-                            <i className="cr-icon fa fa-check"></i>
-                          </span>
-                          Option one is this
-                        </label>
-                      </div>
+                      </div> */}
                     </Accordion.Body>
                   </Accordion.Item>
                   <Accordion.Item eventKey="2">

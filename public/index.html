@@ -200,23 +200,23 @@
     />
     <script src="https://code.jquery.com/ui/1.13.1/jquery-ui.js"></script>
     <script>
-      $(function () {
-        $("#slider-range").slider({
-          range: true,
-          min: 0,
-          max: 25000,
-          values: [0, 15000],
-          slide: function (event, ui) {
-            $("#amount").val("$" + ui.values[0] + " - $" + ui.values[1]);
-          },
-        });
-        $("#amount").val(
-          "$" +
-            $("#slider-range").slider("values", 0) +
-            " - $" +
-            $("#slider-range").slider("values", 1)
-        );
-      });
+      // $(function () {
+      //   $("#slider-range").slider({
+      //     range: true,
+      //     min: 0,
+      //     max: 25000,
+      //     values: [0, 15000],
+      //     slide: function (event, ui) {
+      //       $("#amount").val("$" + ui.values[0] + " - $" + ui.values[1]);
+      //     },
+      //   });
+      //   $("#amount").val(
+      //     "$" +
+      //       $("#slider-range").slider("values", 0) +
+      //       " - $" +
+      //       $("#slider-range").slider("values", 1)
+      //   );
+      // });
     </script>
   </body>
 </html>
