@@ -168,7 +168,7 @@ const handleBuy=async(e)=>{
                         <h3>{nft.name&& nft.name}</h3>
                         <h6>
                             <span className="price">{nft.price} Taboo</span>
-                            <span className="price2">{nft.price}</span>
+                            <span className="price2">{nft.status=="sold"?'0': 1}</span>
                             <span className="stoke-1">{nft.status=="sold"?'0': 1} in stock</span>
                         </h6>
                         <p>
@@ -200,10 +200,10 @@ const handleBuy=async(e)=>{
                                 {nft.user&&nft.user.name}
                               </Tab>
                               <Tab eventKey="history" title="History">
-                               khkhk
+                               No History Found
                               </Tab>
                               <Tab eventKey="bids" title="Bids">
-                               khkhk
+                               No bids
                               </Tab>
                             </Tabs>
                             <div className="outer-purchase-box">

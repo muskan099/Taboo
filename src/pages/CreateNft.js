@@ -29,7 +29,7 @@ const CreateNft=()=>{
 
   const [price,setPrice]=useState('');
 
-  const [quantity,setQuantity]=useState('')
+  const [quantity,setQuantity]=useState(1)
 
   const [category,setCategory]=useState('')
 
@@ -124,9 +124,14 @@ const CreateNft=()=>{
 
     let value=e.target.value;
 
-    if(value){
-        setPrice(value);
-    }
+    if(isNaN(value)){
+
+        e.target.value="";
+        
+      }else 
+        {
+            setPrice(value);
+        }
 
    }
 
@@ -356,7 +361,7 @@ const CreateNft=()=>{
                                 <Col md={4} sm={4} xs={12}>
                                    <Form.Group className="mb-3">
                                         <Form.Label>Quantity</Form.Label>
-                                        <Form.Control type="text"  placeholder="" onKeyUp={(e)=>handleQuantity(e)}  />
+                                        <Form.Control type="text" value={quantity} placeholder="" onKeyUp={(e)=>handleQuantity(e)}  readOnly />
                                     </Form.Group>
                                  </Col>
                                  <Col md={4} sm={4} xs={12}>
@@ -396,16 +401,16 @@ const CreateNft=()=>{
                                     <h5>{name}<span>{quantity}</span> </h5>
                                     <h6>{price} Taboo</h6>
                                  </div>
-                                 <div className="stoke-line">
+                                 <div className="stoke-line d-none">
                                      <ul>
                                         <li><img  src={"images/Team/team4.png"} /></li>
                                         <li><img  src={"images/Team/team2.png"} /></li>
                                         <li><img  src={"images/Team/team3.png"} /></li>
                                      </ul>
-                                     <h6>3 in stock</h6>
+                                    {/*<h6>3 in stock</h6>  */}
                                  </div>
                                  <hr></hr>
-                                 <div class="bid-row">
+                                 <div class="bid-row d-none">
                                     <span><img  src={"images/up-arrow.png"} /> Highest Bid</span>
                                     <span><b>0 $ Taboo</b></span>
                                     <span> New Bid <img  src={"images/up-arrow.png"} /> </span>
