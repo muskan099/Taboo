@@ -462,9 +462,54 @@ const Explore = () => {
                         <Dropdown.Menu>
                           <Dropdown.Item
                             href="#"
-                            onClick={(e) => setRecentlyAdded(true)}
+                            onClick={(e) => {
+                              e.preventDefault();
+                              setRecentlyAdded(true);
+                            }}
                           >
                             Recently Added
+                          </Dropdown.Item>
+                          <Dropdown.Item
+                            href="#"
+                            onClick={(e) => {
+                              e.preventDefault();
+                              setFilterSearch((p) => ({
+                                ...p,
+                                A_TO_Z: true,
+                                letest: false,
+                                price: "",
+                              }));
+                            }}
+                          >
+                            Sort A to Z
+                          </Dropdown.Item>
+                          <Dropdown.Item
+                            href="#"
+                            onClick={(e) => {
+                              e.preventDefault();
+                              setFilterSearch((p) => ({
+                                ...p,
+                                A_TO_Z: false,
+                                letest: false,
+                                price: "low_to_high",
+                              }));
+                            }}
+                          >
+                            Low To High
+                          </Dropdown.Item>
+                          <Dropdown.Item
+                            href="#"
+                            onClick={(e) => {
+                              e.preventDefault();
+                              setFilterSearch((p) => ({
+                                ...p,
+                                price: "high_to_low",
+                                A_TO_Z: false,
+                                letest: false,
+                              }));
+                            }}
+                          >
+                            High To Low
                           </Dropdown.Item>
                           {/* <Dropdown.Item href="#/action-2">Another action</Dropdown.Item>
 									    <Dropdown.Item href="#/action-3">Something else</Dropdown.Item> */}
