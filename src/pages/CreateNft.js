@@ -401,7 +401,7 @@ const CreateNft=()=>{
                                     <h5>{name}<span>{quantity}</span> </h5>
                                     <h6>{price} Taboo</h6>
                                  </div>
-                                 <div className="stoke-line">
+                                 <div className="stoke-line d-none">
                                      <ul>
                                         <li><img  src={"images/Team/team4.png"} /></li>
                                         <li><img  src={"images/Team/team2.png"} /></li>
