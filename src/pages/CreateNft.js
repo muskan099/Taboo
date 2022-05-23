@@ -29,7 +29,7 @@ const CreateNft=()=>{
 
   const [price,setPrice]=useState('');
 
-  const [quantity,setQuantity]=useState('')
+  const [quantity,setQuantity]=useState(1)
 
   const [category,setCategory]=useState('')
 
@@ -361,7 +361,7 @@ const CreateNft=()=>{
                                 <Col md={4} sm={4} xs={12}>
                                    <Form.Group className="mb-3">
                                         <Form.Label>Quantity</Form.Label>
-                                        <Form.Control type="text"  placeholder="" onKeyUp={(e)=>handleQuantity(e)}  />
+                                        <Form.Control type="text" value={quantity} placeholder="" onKeyUp={(e)=>handleQuantity(e)}  readOnly />
                                     </Form.Group>
                                  </Col>
                                  <Col md={4} sm={4} xs={12}>
