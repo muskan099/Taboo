@@ -239,7 +239,7 @@ const Explore = () => {
           <Row className="align-items-top">
             <Col xxl={3} xl={3} lg={4} md={4} sm={4} xs={12} className="">
               <div className="list-outer-box">
-                <label className="heading-label">Likes</label>
+                <label className="heading-label">Price</label>
                 <div className="price-range-box">
                   <div id="slider-range"></div>
                   <p>
@@ -255,8 +255,8 @@ const Explore = () => {
                 <hr></hr>
                 <Accordion defaultActiveKey="0">
                   <Accordion.Item eventKey="0">
-                    <label className="heading-label">Likes</label>
-                    <Accordion.Header>Most Liked</Accordion.Header>
+                    <label className="heading-label">Sort By</label>
+                    <Accordion.Header>All</Accordion.Header>
                     <Accordion.Body>
                       <div className="radio">
                         <label>
@@ -317,8 +317,8 @@ const Explore = () => {
                     </Accordion.Body>
                   </Accordion.Item>
                   <Accordion.Item eventKey="1">
-                    <label className="heading-label">Tier</label>
-                    <Accordion.Header>Love</Accordion.Header>
+                    <label className="heading-label">Sort By Tier</label>
+                    <Accordion.Header>All</Accordion.Header>
 
                     <Accordion.Body>
                       <div className="checkbox">
@@ -408,10 +408,10 @@ const Explore = () => {
                           <span className="cr">
                             <i className="cr-icon fa fa-check"></i>
                           </span>
-                          Option one is this
+                          Verified Only
                         </label>
                       </div>
-                      <div className="checkbox">
+                      {/* <div className="checkbox">
                         <label>
                           <input type="checkbox" value=""></input>
                           <span className="cr">
@@ -437,7 +437,7 @@ const Explore = () => {
                           </span>
                           Option one is this
                         </label>
-                      </div>
+                      </div> */}
                     </Accordion.Body>
                   </Accordion.Item>
                 </Accordion>
@@ -456,7 +456,7 @@ const Explore = () => {
                     <div className="filer-right-box">
                       <Dropdown>
                         <Dropdown.Toggle id="dropdown-basic">
-                          Recently Added
+                          Filter By
                         </Dropdown.Toggle>
 
                         <Dropdown.Menu>
