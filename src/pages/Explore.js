@@ -1,304 +1,403 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { Row, Col, Container, Accordion, Dropdown,Form,FormControl,Button, InputGroup, } from "react-bootstrap";
+import {
+  Row,
+  Col,
+  Container,
+  Accordion,
+  Dropdown,
+  Form,
+  FormControl,
+  Button,
+  InputGroup,
+} from "react-bootstrap";
 import { getNftSaga } from "../store/reducers/nftReducer";
 
+const Explore = () => {
+  const dispatch = useDispatch();
+  const [currentPage, setCurrentPage] = useState(1);
 
-const Explore =()=>{
-   
-   const dispatch = useDispatch();
-   const [currentPage,setCurrentPage]=useState(1)
-   
-   const[category,setCategory]=useState('');
-   const[RecentlyAdded,setRecentlyAdded]=useState(false);
+  const [category, setCategory] = useState("All items");
+  const [RecentlyAdded, setRecentlyAdded] = useState(false);
 
+  const [meta, setMeta] = useState("");
 
-   const [meta,setMeta]=useState('')
+  const { isAuthenticated, walletAddress, tier } = useSelector(
+    (state) => state.auth
+  );
 
-	const { isAuthenticated, walletAddress,tier } = useSelector((state) => state.auth);
+  const { nft } = useSelector((state) => state.nft);
+  console.log("nft", nft.length);
+  const getData = (page, limit = 60, tier, search_tag, category) => {
+    console.log("hh");
+    let data = {
+      tier: tier,
+      page: page,
+      limit: limit,
+      search_tag: search_tag,
+      category: category === "All items" ? "" : category,
+      recentlyAdded: RecentlyAdded,
+    };
 
-	const { nft} = useSelector((state) => state.nft);
-    console.log('nft',nft.length)
-const getData=(page,limit=60,tier,search_tag,category)=>{
-	console.log('hh')
-	let data={tier:tier,
-              page:page,
-			  limit:limit,
-			  search_tag:search_tag,
-			  category:category,
-			  recentlyAdded:RecentlyAdded}
-			  
-	dispatch(getNftSaga(data));
-	
-}
+    dispatch(getNftSaga(data));
+  };
 
-useEffect(()=>{
-    console.log("category",category)
-	getData(currentPage,60,tier,meta,category,RecentlyAdded)
+  useEffect(() => {
+    console.log("category", category);
+    getData(currentPage, 60, tier, meta, category, RecentlyAdded);
+  }, [category, meta]);
 
-},[nft,category,meta])
+  const handleSearch = async (e) => {
+    let value = e.target.value;
 
+    if (value) {
+      setMeta(value);
+    }
+  };
 
+  const handleRecent = (e) => {
+    let value = e.target.value;
 
-const handleSearch=async(e)=>{
-	let value=e.target.value;
+    if (value) {
+      setRecentlyAdded(true);
+    }
+  };
 
-	if(value){
-		setMeta(value);
-	}
-}
+  const handleAll = () => {
+    setRecentlyAdded(false);
 
+    setCategory("");
 
-const handleRecent=(e)=>{
-	let value=e.target.value;
+    setMeta("");
+  };
 
+  return (
+    <>
+      <section className="team-sec-new">
+        <Container>
+          <Row className="align-items-top">
+            <Col className="">
+              <div className="outer-heading-line">
+                <Row className="justify-content-between">
+                  <Col md={6} sm={6} xs={12}>
+                    <h3 className="main-heading-inner mb-0">
+                      <a href="">
+                        <img src={"images/right-arrow.png"} />
+                      </a>{" "}
+                      Explore
+                    </h3>
+                  </Col>
+                  <Col md={4} sm={6} xs={12}>
+                    <div className="newsletter-box m-0">
+                      <InputGroup className="m-0">
+                        <FormControl
+                          placeholder="Search....."
+                          aria-label="Recipient's username"
+                          aria-describedby="basic-addon2"
+                          onKeyUp={(e) => handleSearch(e)}
+                        />
+                        <Button>
+                          <img
+                            className="search-icon"
+                            src={"images/icons-Search-Line.png"}
+                            alt="logo"
+                          />
+                        </Button>
+                      </InputGroup>
+                    </div>
+                  </Col>
+                </Row>
+              </div>
+            </Col>
+          </Row>
+          <Row className="align-items-top">
+            <Col xxl={3} xl={3} lg={4} md={4} sm={4} xs={12} className="">
+              <div className="list-outer-box">
+                <label className="heading-label">Likes</label>
+                <div className="price-range-box">
+                  <div id="slider-range"></div>
+                  <p>
+                    <input type="text" id="amount" readOnly></input>
+                  </p>
+                </div>
 
-	if(value){
-		setRecentlyAdded(true)
-	}
-}
+                <hr></hr>
+                <Accordion defaultActiveKey="0">
+                  <Accordion.Item eventKey="0">
+                    <label className="heading-label">Likes</label>
+                    <Accordion.Header>Most Liked</Accordion.Header>
+                    <Accordion.Body>
+                      <div className="radio">
+                        <label>
+                          <input type="radio" name="o1" value=""></input>
+                          <span className="cr">
+                            <i className="cr-icon fa fa-circle"></i>
+                          </span>
+                          Price: High to Low
+                        </label>
+                      </div>
+                      <div className="radio">
+                        <label>
+                          <input type="radio" name="o1" value=""></input>
+                          <span className="cr">
+                            <i className="cr-icon fa fa-circle"></i>
+                          </span>
+                          Price: Low to High
+                        </label>
+                      </div>
+                      <div className="radio">
+                        <label>
+                          <input type="radio" name="o1" value=""></input>
+                          <span className="cr">
+                            <i className="cr-icon fa fa-circle"></i>
+                          </span>
+                          A To Z
+                        </label>
+                      </div>
+                      <div className="radio">
+                        <label>
+                          <input type="radio" name="o1" value=""></input>
+                          <span className="cr">
+                            <i className="cr-icon fa fa-circle"></i>
+                          </span>
+                          Latest
+                        </label>
+                      </div>
+                    </Accordion.Body>
+                  </Accordion.Item>
+                  <Accordion.Item eventKey="1">
+                    <label className="heading-label">Style</label>
+                    <Accordion.Header>Love</Accordion.Header>
 
+                    <Accordion.Body>
+                      <div className="checkbox">
+                        <label>
+                          <input type="checkbox" value=""></input>
+                          <span className="cr">
+                            <i className="cr-icon fa fa-check"></i>
+                          </span>
+                          Option one is this
+                        </label>
+                      </div>
+                      <div className="checkbox">
+                        <label>
+                          <input type="checkbox" value=""></input>
+                          <span className="cr">
+                            <i className="cr-icon fa fa-check"></i>
+                          </span>
+                          Option one is this
+                        </label>
+                      </div>
+                      <div className="checkbox">
+                        <label>
+                          <input type="checkbox" value=""></input>
+                          <span className="cr">
+                            <i className="cr-icon fa fa-check"></i>
+                          </span>
+                          Option one is this
+                        </label>
+                      </div>
+                      <div className="checkbox">
+                        <label>
+                          <input type="checkbox" value=""></input>
+                          <span className="cr">
+                            <i className="cr-icon fa fa-check"></i>
+                          </span>
+                          Option one is this
+                        </label>
+                      </div>
+                    </Accordion.Body>
+                  </Accordion.Item>
+                  <Accordion.Item eventKey="2">
+                    <label className="heading-label">Creator</label>
+                    <Accordion.Header>Verified Only</Accordion.Header>
+                    <Accordion.Body>
+                      <div className="checkbox">
+                        <label>
+                          <input type="checkbox" value=""></input>
+                          <span className="cr">
+                            <i className="cr-icon fa fa-check"></i>
+                          </span>
+                          Option one is this
+                        </label>
+                      </div>
+                      <div className="checkbox">
+                        <label>
+                          <input type="checkbox" value=""></input>
+                          <span className="cr">
+                            <i className="cr-icon fa fa-check"></i>
+                          </span>
+                          Option one is this
+                        </label>
+                      </div>
+                      <div className="checkbox">
+                        <label>
+                          <input type="checkbox" value=""></input>
+                          <span className="cr">
+                            <i className="cr-icon fa fa-check"></i>
+                          </span>
+                          Option one is this
+                        </label>
+                      </div>
+                      <div className="checkbox">
+                        <label>
+                          <input type="checkbox" value=""></input>
+                          <span className="cr">
+                            <i className="cr-icon fa fa-check"></i>
+                          </span>
+                          Option one is this
+                        </label>
+                      </div>
+                    </Accordion.Body>
+                  </Accordion.Item>
+                </Accordion>
+                <div className="reset-link-outer">
+                  <a href="" className="reset-link">
+                    <img src={"images/cross.png"} alt="close" />
+                    Reset Filter
+                  </a>
+                </div>
+              </div>
+            </Col>
+            <Col xxl={9} xl={9} lg={9} md={8} sm={8} xs={12}>
+              <div>
+                <Row>
+                  <Col>
+                    <div className="filer-right-box">
+                      <Dropdown>
+                        <Dropdown.Toggle id="dropdown-basic">
+                          Recently Added
+                        </Dropdown.Toggle>
 
-const handleAll=()=>{
-	setRecentlyAdded(false)
-
-	setCategory('')
-
-	setMeta('')
-}
-
-	return(<>
-		 <section className="team-sec-new">
-	        <Container>
-	          <Row className="align-items-top">
-	            <Col className="" >
-	                <div className="outer-heading-line">
-	                	 <Row className="justify-content-between">
-	                       <Col md={6} sm={6} xs={12}>
-	                          <h3 className="main-heading-inner mb-0"><a href=""><img src={"images/right-arrow.png"} /></a> Explore</h3>
-	                       </Col>
-	                        <Col md={4} sm={6} xs={12}>
-	                          <div className="newsletter-box m-0">
-				               	   <InputGroup className="m-0">
-								  <FormControl
-								      placeholder="Search....."
-								      aria-label="Recipient's username"
-								      aria-describedby="basic-addon2"
-									  onKeyUp={(e)=>handleSearch(e)}
-								    />
-								    <Button
-					                    
-					                  >
-					                    <img className="search-icon" src={"images/icons-Search-Line.png"} alt="logo" />
-					                  </Button>
-								  </InputGroup>
-				              </div>
-	                       </Col>
-	                     </Row>
-	                	
-	                	
-	                </div>
-	             
-		        </Col>	
-		      </Row>
-	          <Row className="align-items-top">
-	            <Col
-	              xxl={3}
-	              xl={3}
-	              lg={4}
-	              md={4}
-	              sm={4}
-	              xs={12}
-	              className=""
-	            >
-	             <div className="list-outer-box">
-	             	<label className="heading-label">Likes</label>
-	             	<div className="price-range-box">
-			      		<div id="slider-range"></div>
-						<p>
-						  <input type="text" id="amount" readonly></input>
-						</p>
-			      	</div>
-
-			       <hr></hr>
-	             	<Accordion defaultActiveKey="0">
-					  <Accordion.Item eventKey="0">
-					  	<label className="heading-label">Likes</label>
-					    <Accordion.Header>Most Liked</Accordion.Header>
-					    <Accordion.Body>
-					      <div className="radio">
-				          <label>
-				            <input type="radio" name="o1" value="" checked></input>
-				            <span className="cr"><i className="cr-icon fa fa-circle"></i></span>
-				            Price: High to Low
-				          </label>
-				        </div>
-				        <div className="radio">
-				          <label>
-				            <input type="radio" name="o1" value="" checked></input>
-				            <span className="cr"><i className="cr-icon fa fa-circle"></i></span>
-				            Price: Low to High
-				          </label>
-				        </div>
-				        <div className="radio">
-				          <label>
-				            <input type="radio" name="o1" value="" checked></input>
-				            <span className="cr"><i className="cr-icon fa fa-circle"></i></span>
-				            A To Z
-				          </label>
-				        </div>
-				        <div className="radio">
-				          <label>
-				            <input type="radio" name="o1" value="" checked></input>
-				            <span className="cr"><i className="cr-icon fa fa-circle"></i></span>
-				            Latest
-				          </label>
-				        </div>
-					    </Accordion.Body>
-					  </Accordion.Item>
-					  <Accordion.Item eventKey="1">
-					  	<label className="heading-label">Style</label>
-					    <Accordion.Header>Love</Accordion.Header>
-					    
-					    <Accordion.Body>
-					      <div className="checkbox">
-				          <label>
-				            <input type="checkbox" value=""></input>
-				            <span className="cr"><i className="cr-icon fa fa-check"></i></span>
-				            Option one is this 
-				          </label>
-				        </div>
-				        <div className="checkbox">
-				          <label>
-				            <input type="checkbox" value=""></input>
-				            <span className="cr"><i className="cr-icon fa fa-check"></i></span>
-				            Option one is this 
-				          </label>
-				        </div>
-				        <div className="checkbox">
-				          <label>
-				            <input type="checkbox" value=""></input>
-				            <span className="cr"><i className="cr-icon fa fa-check"></i></span>
-				            Option one is this 
-				          </label>
-				        </div>
-				        <div className="checkbox">
-				          <label>
-				            <input type="checkbox" value=""></input>
-				            <span className="cr"><i className="cr-icon fa fa-check"></i></span>
-				            Option one is this 
-				          </label>
-				        </div>
-					    </Accordion.Body>
-					  </Accordion.Item>
-					   <Accordion.Item eventKey="2">
-					   	<label className="heading-label">Creator</label>
-					    <Accordion.Header>Verified Only</Accordion.Header>
-					    <Accordion.Body>
-					      <div className="checkbox">
-				          <label>
-				            <input type="checkbox" value=""></input>
-				            <span className="cr"><i className="cr-icon fa fa-check"></i></span>
-				            Option one is this 
-				          </label>
-				        </div>
-				        <div className="checkbox">
-				          <label>
-				            <input type="checkbox" value=""></input>
-				            <span className="cr"><i className="cr-icon fa fa-check"></i></span>
-				            Option one is this 
-				          </label>
-				        </div>
-				        <div className="checkbox">
-				          <label>
-				            <input type="checkbox" value=""></input>
-				            <span className="cr"><i className="cr-icon fa fa-check"></i></span>
-				            Option one is this 
-				          </label>
-				        </div>
-				        <div className="checkbox">
-				          <label>
-				            <input type="checkbox" value=""></input>
-				            <span className="cr"><i className="cr-icon fa fa-check"></i></span>
-				            Option one is this 
-				          </label>
-				        </div>
-					    </Accordion.Body>
-					  </Accordion.Item>
-					</Accordion>
-					<div className="reset-link-outer">
-						<a href=""className="reset-link" ><img src={"images/cross.png"} alt="close" />Reset Filter</a>
-					</div>
-	             </div>
-	             
-	            </Col>
-	            <Col xxl={9} xl={9} lg={9} md={8} sm={8} xs={12}>
-	               <div>
-	               	 <Row>
-	               	 	<Col>
-	               	 		<div className="filer-right-box">
-	               	 			<Dropdown>
-								  <Dropdown.Toggle id="dropdown-basic">
-									   Recently Added
-									  </Dropdown.Toggle>
-
-									  <Dropdown.Menu>
-									    <Dropdown.Item href="#"onClick={(e)=>setRecentlyAdded(true)}>Recently Added</Dropdown.Item>
-									   {/* <Dropdown.Item href="#/action-2">Another action</Dropdown.Item>
+                        <Dropdown.Menu>
+                          <Dropdown.Item
+                            href="#"
+                            onClick={(e) => setRecentlyAdded(true)}
+                          >
+                            Recently Added
+                          </Dropdown.Item>
+                          {/* <Dropdown.Item href="#/action-2">Another action</Dropdown.Item>
 									    <Dropdown.Item href="#/action-3">Something else</Dropdown.Item> */}
-									  </Dropdown.Menu>
-								</Dropdown>
-								<ul>
-									<li className="active"><a href="#" onClick={()=>handleAll()}>All items</a></li>
-									<li><a href="#"onClick={()=>setCategory('Sexy')}>Sexy</a></li>
-									<li><a href="#"onClick={()=>setCategory('Models')}>Models</a></li>
-									<li><a href="#"onClick={()=>setCategory('Metaverse')}>Metavers</a></li>
-									<li><a href="#"onClick={()=>setCategory('Lifestyles')}>Lifestyle</a></li>
-									<li><a href="#"onClick={()=>setCategory('Premium')}>Premium</a></li>
-								</ul>
-	               	 		</div>
-	               	 	</Col>		
-	               	 </Row>
-	               	 <Row>
+                        </Dropdown.Menu>
+                      </Dropdown>
+                      <ul>
+                        {[
+                          "All items",
+                          "Sexy",
+                          "Models",
+                          "Metavers",
+                          "Lifestyles",
+                          "Premium",
+                        ].map((item) => (
+                          <li
+                            className={category === item ? "active" : ""}
+                            key={item}
+                          >
+                            <a
+                              href="#"
+                              onClick={(e) => {
+                                e.preventDefault();
+                                setCategory(item);
+                              }}
+                            >
+                              {item}
+                            </a>
+                          </li>
+                        ))}
+                        {/* <li className="active">
+                          <a href="#" onClick={() => handleAll()}>
+                            All items
+                          </a>
+                        </li>
+                        <li>
+                          <a href="#" onClick={() => setCategory("Sexy")}>
+                            Sexy
+                          </a>
+                        </li>
+                        <li>
+                          <a href="#" onClick={() => setCategory("Models")}>
+                            Models
+                          </a>
+                        </li>
+                        <li>
+                          <a href="#" onClick={() => setCategory("Metaverse")}>
+                            Metavers
+                          </a>
+                        </li>
+                        <li>
+                          <a href="#" onClick={() => setCategory("Lifestyles")}>
+                            Lifestyle
+                          </a>
+                        </li>
+                        <li>
+                          <a href="#" onClick={() => setCategory("Premium")}>
+                            Premium
+                          </a>
+                        </li> */}
+                      </ul>
+                    </div>
+                  </Col>
+                </Row>
+                <Row>
+                  {nft?.length > 0
+                    ? nft.map((item) => (
+                        <Col lg={4} md={6} sm={6} xs={12} key={item._id}>
+                          <div className="outer-explor-box">
+                            <Link to={`/details/${item._id}`}>
+                              <img className="img-main" src={item.image} />
+                            </Link>
 
-					    {nft.length>0?
-						 nft.map((item)=>
+                            <div className="exploror-list-box">
+                              <div className="price-line">
+                                <h5>
+                                  {item.name}
+                                  <span>{item.quantity}</span>{" "}
+                                </h5>
+                                <h6>{item.price} Taboo</h6>
+                              </div>
+                              <div className="stoke-line">
+                                <ul>
+                                  <li>
+                                    <img src={"images/Team/team4.png"} />
+                                  </li>
+                                  <li>
+                                    <img src={"images/Team/team2.png"} />
+                                  </li>
+                                  <li>
+                                    <img src={"images/Team/team3.png"} />
+                                  </li>
+                                </ul>
+                                <h6>
+                                  {item.status == "sold"
+                                    ? "Sold out"
+                                    : "in stock"}{" "}
+                                </h6>
+                              </div>
+                              <hr></hr>
+                              <div className="bid-row">
+                                <span>
+                                  <img src={"images/up-arrow.png"} /> Highest
+                                  Bid
+                                </span>
+                                <span>
+                                  <b>0 $ Taboo</b>
+                                </span>
+                                <span>
+                                  {" "}
+                                  New Bid <img
+                                    src={"images/up-arrow.png"}
+                                  />{" "}
+                                </span>
+                              </div>
+                            </div>
+                          </div>
+                        </Col>
+                      ))
+                    : ""}
 
-							<Col lg={4} md={6} sm={6} xs={12}>
-							<div class="outer-explor-box">
-								<Link to={`/details/${item._id}`}>
-								<img className="img-main"  src={item.image} />
-								</Link>
-								 
-								  <div className="exploror-list-box">
-									   <div className="price-line">
-										   <h5>{item.name}<span>{item.quantity}</span> </h5>
-										  <h6>{item.price} Taboo</h6>
-									   </div>
-									   <div className="stoke-line">
-											<ul>
-												<li><img  src={"images/Team/team4.png"} /></li>
-												<li><img  src={"images/Team/team2.png"} /></li>
-												<li><img  src={"images/Team/team3.png"} /></li>
-											</ul>
-											<h6>{item.status=="sold"?"Sold out":"in stock"} </h6>
-									   </div>
-									   <hr></hr>
-									   <div class="bid-row">
-										   <span><img  src={"images/up-arrow.png"} /> Highest Bid</span>
-										   <span><b>0 $ Taboo</b></span>
-										   <span> New Bid <img  src={"images/up-arrow.png"} /> </span>
-									   </div>
-								  </div>
-							</div>
-						 </Col>
-
-						 ) 
-						 :""}		
-	               	 	
-		               	{/* <Col lg={4} md={6} sm={6} xs={12}>
-	               	 	   <div class="outer-explor-box">
+                  {/* <Col lg={4} md={6} sm={6} xs={12}>
+	               	 	   <div className="outer-explor-box">
 	               	 	   	  <img className="img-main"  src={"images/Team/team7.png"} />
 	               	 	   	  <div className="exploror-list-box">
 	               	 	   	  	 <div className="price-line">
@@ -314,7 +413,7 @@ const handleAll=()=>{
 	               	 	   	  	 	 <h6>3 in stock</h6>
 	               	 	   	  	 </div>
 	               	 	   	  	 <hr></hr>
-	               	 	   	  	 <div class="bid-row">
+	               	 	   	  	 <div className="bid-row">
 	               	 	   	  	 	<span><img  src={"images/up-arrow.png"} /> Highest Bid</span>
 	               	 	   	  	 	<span><b>702$ Taboo</b></span>
 	               	 	   	  	 	<span> New Bid <img  src={"images/up-arrow.png"} /> </span>
@@ -323,7 +422,7 @@ const handleAll=()=>{
 	               	 	   </div>
 		               	 </Col>
 		               	 <Col lg={4} md={6} sm={6} xs={12}>
-	               	 	   <div class="outer-explor-box">
+	               	 	   <div className="outer-explor-box">
 	               	 	   	  <img className="img-main"  src={"images/Team/team7.png"} />
 	               	 	   	  <div className="exploror-list-box">
 	               	 	   	  	 <div className="price-line">
@@ -339,7 +438,7 @@ const handleAll=()=>{
 	               	 	   	  	 	 <h6>3 in stock</h6>
 	               	 	   	  	 </div>
 	               	 	   	  	 <hr></hr>
-	               	 	   	  	 <div class="bid-row">
+	               	 	   	  	 <div className="bid-row">
 	               	 	   	  	 	<span><img  src={"images/up-arrow.png"} /> Highest Bid</span>
 	               	 	   	  	 	<span><b>702$ Taboo</b></span>
 	               	 	   	  	 	<span> New Bid <img  src={"images/up-arrow.png"} /> </span>
@@ -348,7 +447,7 @@ const handleAll=()=>{
 	               	 	   </div>
 		               	 </Col>
 		               	 <Col lg={4} md={6} sm={6} xs={12}>
-	               	 	   <div class="outer-explor-box">
+	               	 	   <div className="outer-explor-box">
 	               	 	   	  <img className="img-main"  src={"images/Team/team7.png"} />
 	               	 	   	  <div className="exploror-list-box">
 	               	 	   	  	 <div className="price-line">
@@ -364,7 +463,7 @@ const handleAll=()=>{
 	               	 	   	  	 	 <h6>3 in stock</h6>
 	               	 	   	  	 </div>
 	               	 	   	  	 <hr></hr>
-	               	 	   	  	 <div class="bid-row">
+	               	 	   	  	 <div className="bid-row">
 	               	 	   	  	 	<span><img  src={"images/up-arrow.png"} /> Highest Bid</span>
 	               	 	   	  	 	<span><b>702$ Taboo</b></span>
 	               	 	   	  	 	<span> New Bid <img  src={"images/up-arrow.png"} /> </span>
@@ -373,7 +472,7 @@ const handleAll=()=>{
 	               	 	   </div>
 		               	 </Col>
 		               	 <Col lg={4} md={6} sm={6} xs={12}>
-	               	 	   <div class="outer-explor-box">
+	               	 	   <div className="outer-explor-box">
 	               	 	   	  <img className="img-main"  src={"images/Team/team7.png"} />
 	               	 	   	  <div className="exploror-list-box">
 	               	 	   	  	 <div className="price-line">
@@ -389,7 +488,7 @@ const handleAll=()=>{
 	               	 	   	  	 	 <h6>3 in stock</h6>
 	               	 	   	  	 </div>
 	               	 	   	  	 <hr></hr>
-	               	 	   	  	 <div class="bid-row">
+	               	 	   	  	 <div className="bid-row">
 	               	 	   	  	 	<span><img  src={"images/up-arrow.png"} /> Highest Bid</span>
 	               	 	   	  	 	<span><b>702$ Taboo</b></span>
 	               	 	   	  	 	<span> New Bid <img  src={"images/up-arrow.png"} /> </span>
@@ -398,7 +497,7 @@ const handleAll=()=>{
 	               	 	   </div>
 		               	 </Col>
 		               	 <Col lg={4} md={6} sm={6} xs={12}>
-	               	 	   <div class="outer-explor-box">
+	               	 	   <div className="outer-explor-box">
 	               	 	   	  <img className="img-main"  src={"images/Team/team7.png"} />
 	               	 	   	  <div className="exploror-list-box">
 	               	 	   	  	 <div className="price-line">
@@ -414,7 +513,7 @@ const handleAll=()=>{
 	               	 	   	  	 	 <h6>3 in stock</h6>
 	               	 	   	  	 </div>
 	               	 	   	  	 <hr></hr>
-	               	 	   	  	 <div class="bid-row">
+	               	 	   	  	 <div className="bid-row">
 	               	 	   	  	 	<span><img  src={"images/up-arrow.png"} /> Highest Bid</span>
 	               	 	   	  	 	<span><b>702$ Taboo</b></span>
 	               	 	   	  	 	<span> New Bid <img  src={"images/up-arrow.png"} /> </span>
@@ -422,15 +521,14 @@ const handleAll=()=>{
 	               	 	   	  </div>
 	               	 	   </div>
 		               	 </Col> */}
-		              </Row>
-	               </div>
-	            </Col>
-	          </Row>
-	        </Container>
-	       
-	      </section>
-		</>)
-
-}
+                </Row>
+              </div>
+            </Col>
+          </Row>
+        </Container>
+      </section>
+    </>
+  );
+};
 
 export default Explore;

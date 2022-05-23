@@ -9,30 +9,31 @@
       content="width=device-width, initial-scale=1.0, user-scalable=1.0, minimum-scale=1.0, maximum-scale=1.0"
     />
     <meta name="theme-color" content="#000000" />
-    <meta
-      name="description"
-      content="TABOO,PLAYBOY OF CRYPTO"
-    />
+    <meta name="description" content="TABOO,PLAYBOY OF CRYPTO" />
     <link rel="apple-touch-icon" href="%PUBLIC_URL%/images/Logo_Small.png" />
 
     <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
-    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
     <link
       rel="stylesheet"
       type="text/css"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/fontawesome.min.css"
     />
     <link
-  rel="stylesheet"
-  type="text/css"
-  charset="UTF-8"
-  href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.6.0/slick.min.css"
-/>
-<link
-  rel="stylesheet"
-  type="text/css"
-  href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.6.0/slick-theme.min.css"
-/>
+      rel="stylesheet"
+      type="text/css"
+      charset="UTF-8"
+      href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.6.0/slick.min.css"
+    />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.6.0/slick-theme.min.css"
+    />
     <script
       src="https://code.jquery.com/jquery-3.6.0.min.js"
       integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
@@ -42,8 +43,6 @@
   </head>
   <body>
     <div id="root"></div>
-
-
 
     <script>
       $.fn.isInViewport = function () {
@@ -68,76 +67,77 @@
 
         const roadmapbuttons = document.getElementsByClassName("button-plus");
 
-        $(window).scroll(function () {
-          const isFirstBannerVisible = firstBanner.isInViewport();
-          const isSecondBannerVisible = secondBanner.isInViewport();
+        if (window.location.pathname === "/") {
+          $(window).scroll(function () {
+            const isFirstBannerVisible = firstBanner.isInViewport();
+            const isSecondBannerVisible = secondBanner.isInViewport();
 
-          const isBannerSection_2_InViewport = secondBanner.isInViewport();
+            const isBannerSection_2_InViewport = secondBanner.isInViewport();
 
-          const isRoadMapInViewport = $(".roadmap-new-box").isInViewport();
-          const isTabooLogoInViewport = $(".taboo-logo").isInViewport();
+            const isRoadMapInViewport = $(".roadmap-new-box").isInViewport();
+            const isTabooLogoInViewport = $(".taboo-logo").isInViewport();
 
-          const scrollPos = $(window).scrollTop();
-          const scrollPosPercentage = scrollPos / 2;
+            const scrollPos = $(window).scrollTop();
+            const scrollPosPercentage = scrollPos / 2;
 
-          if (scrollPosPercentage > 1) {
-            firstBanner.css({
-              backgroundPosition: "center bottom 0px",
-              transition: "all 1800ms",
-            });
-          }
-          if (scrollPosPercentage < 1) {
-            firstBanner.css({
-              backgroundPosition: "center bottom -400px",
-              transition: "all 1800ms",
-            });
-          }
+            if (scrollPosPercentage > 1) {
+              firstBanner.css({
+                backgroundPosition: "center bottom 0px",
+                transition: "all 1800ms",
+              });
+            }
+            if (scrollPosPercentage < 1) {
+              firstBanner.css({
+                backgroundPosition: "center bottom -400px",
+                transition: "all 1800ms",
+              });
+            }
 
-          if (firstBanner.isInViewport() && secondBanner.isInViewport()) {
-            // document.getElementById("taboo-about-us-nft").style = "";
-            // tabooAboutUsNft.addClass("opacity-zero");
-            tabooAboutUsNft.css({
-              // transform: "translateX(-300px)",
-            });
-          }
+            if (firstBanner.isInViewport() && secondBanner.isInViewport()) {
+              // document.getElementById("taboo-about-us-nft").style = "";
+              // tabooAboutUsNft.addClass("opacity-zero");
+              tabooAboutUsNft.css({
+                // transform: "translateX(-300px)",
+              });
+            }
 
-          if (isTabooLogoInViewport && !isBannerSection_2_InViewport) {
-            tabooAboutUsNft.addClass("nft-box-fadeout-animation");
-            tabooAboutUsBox.addClass("taboo-box-fadeout-animation");
-          }
+            if (isTabooLogoInViewport && !isBannerSection_2_InViewport) {
+              tabooAboutUsNft.addClass("nft-box-fadeout-animation");
+              tabooAboutUsBox.addClass("taboo-box-fadeout-animation");
+            }
 
-          if (isBannerSection_2_InViewport && isTabooLogoInViewport) {
-            tabooAboutUsNft.removeAttr("style");
-            tabooAboutUsBox.removeAttr("style");
-            secondBanner.css({
-              backgroundPosition: `bottom 20% center`,
-              transition: "all 2000ms ease-out",
-            });
-            tabooAboutUsNft.addClass("nft-box-fadeout-animation");
-            tabooAboutUsBox.addClass("taboo-box-fadeout-animation");
-          }
+            if (isBannerSection_2_InViewport && isTabooLogoInViewport) {
+              tabooAboutUsNft.removeAttr("style");
+              tabooAboutUsBox.removeAttr("style");
+              secondBanner.css({
+                backgroundPosition: `bottom 20% center`,
+                transition: "all 2000ms ease-out",
+              });
+              tabooAboutUsNft.addClass("nft-box-fadeout-animation");
+              tabooAboutUsBox.addClass("taboo-box-fadeout-animation");
+            }
 
-          if (isBannerSection_2_InViewport && isRoadMapInViewport) {
-            console.log("banner section & road map in view");
-            tabooAboutUsNft.removeAttr("style");
-            tabooAboutUsBox.removeAttr("style");
-            secondBanner.css({
-              backgroundPosition: `bottom -10% center`,
-              transition: "all 2000ms ease-out",
-            });
-            tabooAboutUsNft.addClass("nft-box-fadeout-animation");
-            tabooAboutUsBox.addClass("taboo-box-fadeout-animation");
-          }
+            if (isBannerSection_2_InViewport && isRoadMapInViewport) {
+              console.log("banner section & road map in view");
+              tabooAboutUsNft.removeAttr("style");
+              tabooAboutUsBox.removeAttr("style");
+              secondBanner.css({
+                backgroundPosition: `bottom -10% center`,
+                transition: "all 2000ms ease-out",
+              });
+              tabooAboutUsNft.addClass("nft-box-fadeout-animation");
+              tabooAboutUsBox.addClass("taboo-box-fadeout-animation");
+            }
 
-          if (!secondBanner.isInViewport()) {
-            secondBanner.css({
-              backgroundPosition: `bottom 20% center`,
-              transition: "all 500ms",
-            });
-          }
+            if (!secondBanner.isInViewport()) {
+              secondBanner.css({
+                backgroundPosition: `bottom 20% center`,
+                transition: "all 500ms",
+              });
+            }
 
-          /* prettier-ignore */
-          if (!firstBanner.isInViewport() && secondBanner.isInViewport() && !isRoadMapInViewport) {
+            /* prettier-ignore */
+            if (!firstBanner.isInViewport() && secondBanner.isInViewport() && !isRoadMapInViewport) {
             secondBanner.css({
               backgroundPosition: `bottom 90% center`,
               transition: "all 3000ms",
@@ -154,8 +154,8 @@
             });
           }
 
-          /* prettier-ignore */
-          if (!isFirstBannerVisible && isSecondBannerVisible && !isRoadMapInViewport
+            /* prettier-ignore */
+            if (!isFirstBannerVisible && isSecondBannerVisible && !isRoadMapInViewport
           ) {
             $(".header-main").css({
               opacity: 0,
@@ -163,15 +163,15 @@
             }); 
           }
 
-          /* prettier-ignore */
-          if (isSecondBannerVisible && (isFirstBannerVisible || isRoadMapInViewport)) {
+            /* prettier-ignore */
+            if (isSecondBannerVisible && (isFirstBannerVisible || isRoadMapInViewport)) {
             $(".header-main").css({
               opacity: 1,
               transition: "opacity 500ms ease-in-out",
             });
           }
-        });
-
+          });
+        }
         $(".button-plus").click(function () {
           $(this).parent().toggleClass("show-roadmap-content");
           // if ($(this).parent().hasClass("show-roadmap-content")) {
@@ -194,24 +194,29 @@
       });
     </script>
 
-    <link rel="stylesheet" href="//code.jquery.com/ui/1.13.1/themes/base/jquery-ui.css">
-  <script src="https://code.jquery.com/ui/1.13.1/jquery-ui.js"></script>
-  <script>
-  $( function() {
-    $( "#slider-range" ).slider({
-      range: true,
-      min: 0,
-      max: 25000,
-      values: [ 0, 15000 ],
-      slide: function( event, ui ) {
-        $( "#amount" ).val( "$" + ui.values[ 0 ] + " - $" + ui.values[ 1 ] );
-      }
-    });
-    $( "#amount" ).val( "$" + $( "#slider-range" ).slider( "values", 0 ) +
-      " - $" + $( "#slider-range" ).slider( "values", 1 ) );
-  } );
-  </script>
-
-
+    <link
+      rel="stylesheet"
+      href="//code.jquery.com/ui/1.13.1/themes/base/jquery-ui.css"
+    />
+    <script src="https://code.jquery.com/ui/1.13.1/jquery-ui.js"></script>
+    <script>
+      $(function () {
+        $("#slider-range").slider({
+          range: true,
+          min: 0,
+          max: 25000,
+          values: [0, 15000],
+          slide: function (event, ui) {
+            $("#amount").val("$" + ui.values[0] + " - $" + ui.values[1]);
+          },
+        });
+        $("#amount").val(
+          "$" +
+            $("#slider-range").slider("values", 0) +
+            " - $" +
+            $("#slider-range").slider("values", 1)
+        );
+      });
+    </script>
   </body>
 </html>
