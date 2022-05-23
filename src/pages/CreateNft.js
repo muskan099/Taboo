@@ -265,7 +265,7 @@ const CreateNft=()=>{
                                     </div>
                                 </li>
                                 <li>
-                                    <div class="radio">
+                                    <div class="radio d-none">
                                         <label>
                                             <input type="radio" name="mint_type" value="normal" />
                                             <span class="cr"><i class="cr-icon fa fa-check"></i></span>

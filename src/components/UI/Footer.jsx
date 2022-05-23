@@ -90,10 +90,7 @@ const Footer = () => {
               <ul>
                 <li>
                   <a
-                    onClick={(e) => {
-                      e.preventDefault();
-                      setShow(true);
-                    }}
+                    href="/explore"
                   >
                     Discover
                   </a>
@@ -110,12 +107,9 @@ const Footer = () => {
                 </li>
                 <li>
                   <a
-                    onClick={(e) => {
-                      e.preventDefault();
-                      setShow(true);
-                    }}
+                    href="/create-nft"
                   >
-                    Create Item
+                    Create NFT
                   </a>
                 </li>
               </ul>

@@ -168,7 +168,7 @@ const handleBuy=async(e)=>{
                         <h3>{nft.name&& nft.name}</h3>
                         <h6>
                             <span className="price">{nft.price} Taboo</span>
-                            <span className="price2">{nft.status=="sold"?'0': 1}</span>
+                            <span className="price2 d-none">{nft.status=="sold"?'0': 1}</span>
                             <span className="stoke-1">{nft.status=="sold"?'0': 1} in stock</span>
                         </h6>
                         <p>
