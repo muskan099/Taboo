@@ -124,9 +124,14 @@ const CreateNft=()=>{
 
     let value=e.target.value;
 
-    if(value){
-        setPrice(value);
-    }
+    if(isNaN(value)){
+
+        e.target.value="";
+        
+      }else 
+        {
+            setPrice(value);
+        }
 
    }
 
