@@ -200,10 +200,10 @@ const handleBuy=async(e)=>{
                                 {nft.user&&nft.user.name}
                               </Tab>
                               <Tab eventKey="history" title="History">
-                               khkhk
+                               No History Found
                               </Tab>
                               <Tab eventKey="bids" title="Bids">
-                               khkhk
+                               No bids
                               </Tab>
                             </Tabs>
                             <div className="outer-purchase-box">
