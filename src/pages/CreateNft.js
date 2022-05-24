@@ -370,34 +370,55 @@ const CreateNft = () => {
                       </Form.Group>
 
                       <Form.Group className="mb-3">
-                        <Form.Label>Available TO</Form.Label>
-                        <Form.Check
-                          label="1 Tier"
-                          name="tier"
-                          type={"checkbox"}
-                          checked={availableTo.t1}
-                          onChange={() =>
-                            setAvailableTo((p) => ({ ...p, t1: !p.t1 }))
-                          }
-                        />
-                        <Form.Check
-                          label="2 Tier"
-                          name="tier"
-                          type={"checkbox"}
-                          checked={availableTo.t2}
-                          onChange={() =>
-                            setAvailableTo((p) => ({ ...p, t2: !p.t2 }))
-                          }
-                        />
-                        <Form.Check
-                          label="3 Tier"
-                          name="tier"
-                          type={"checkbox"}
-                          checked={availableTo.t3}
-                          onChange={() =>
-                            setAvailableTo((p) => ({ ...p, t3: !p.t3 }))
-                          }
-                        />
+                        <Form.Label>Available To</Form.Label>
+                          <Row>
+                            <Col md={4} sm={4} xs={12}>
+                            <Form.Check
+                              label="1 Tier"
+                              name="tier"
+                              type={"checkbox"}
+                              checked={availableTo.t1}
+                              onChange={() =>
+                                setAvailableTo((p) => ({ ...p, t1: !p.t1 }))
+                              }
+                            />
+                            </Col>
+
+
+
+                            <Col md={4} sm={4} xs={12}>
+                            <Form.Check
+                              label="2 Tier"
+                              name="tier"
+                              type={"checkbox"}
+                              checked={availableTo.t2}
+                              onChange={() =>
+                                setAvailableTo((p) => ({ ...p, t2: !p.t2 }))
+                              }
+                            />
+                            </Col>
+
+
+                            <Col md={4} sm={4} xs={12}>
+                            <Form.Check
+                              label="3 Tier"
+                              name="tier"
+                              type={"checkbox"}
+                              checked={availableTo.t3}
+                              onChange={() =>
+                                setAvailableTo((p) => ({ ...p, t3: !p.t3 }))
+                              }
+                            />
+                            </Col>
+
+
+
+
+
+
+
+
+                          </Row>
                       </Form.Group>
 
                       <Row>
