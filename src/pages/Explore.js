@@ -11,6 +11,8 @@ import {
   FormControl,
   Button,
   InputGroup,
+  Spinner,
+  Pagination,
 } from "react-bootstrap";
 import { getNftSaga } from "../store/reducers/nftReducer";
 
@@ -54,6 +56,12 @@ const Explore = () => {
   const dispatch = useDispatch();
   const [currentPage, setCurrentPage] = useState(1);
 
+  const [paginationData, setPaginationData] = useState({
+    skip: 0,
+    limit: 10,
+    pages: [],
+  });
+
   const [category, setCategory] = useState("All items");
   const [RecentlyAdded, setRecentlyAdded] = useState(false);
   const [filterSearch, setFilterSearch] = useState({
@@ -77,11 +85,12 @@ const Explore = () => {
     (state) => state.auth
   );
 
-  const { nft } = useSelector((state) => state.nft);
+  const { nft, isLoading, totalNfts } = useSelector((state) => state.nft);
   // console.log("nft", nft.length);
   const getData = (
     page,
-    limit = 60,
+    limit = 10,
+    skip = 0,
     tier,
     search_tag,
     category,
@@ -92,12 +101,13 @@ const Explore = () => {
     price,
     letest
   ) => {
-    console.log("get nft saga function \n");
-    console.log("nft tier inside getNftSaga \n", nftTier);
+    // console.log("get nft saga function \n");
+    // console.log("nft tier inside getNftSaga \n", nftTier);
 
     let data = {
       tier: tier,
       page: page,
+      skip,
       limit: limit,
       search_tag: search_tag,
       category: category === "All items" ? "" : category,
@@ -113,7 +123,7 @@ const Explore = () => {
     dispatch(getNftSaga(data));
   };
 
-  console.log("nft tier \n", nftTier);
+  // console.log("nft tier \n", nftTier);
 
   useEffect(() => {
     enableSlider(jQuery, setFilterSearch);
@@ -124,7 +134,8 @@ const Explore = () => {
     // console.log("category", category);
     getData(
       currentPage,
-      60,
+      paginationData.limit,
+      paginationData.skip,
       tier,
       meta,
       category,
@@ -145,7 +156,21 @@ const Explore = () => {
     price,
     letest,
     nftTier,
+    currentPage,
+    paginationData.limit,
   ]);
+
+  useEffect(() => {
+    setPaginationData((p) => ({
+      ...p,
+      pages: Array.from(
+        { length: Math.ceil(totalNfts / p.limit) },
+        (_, i) => i + 1
+      ),
+    }));
+  }, [nft, paginationData.limit]);
+
+  console.log("Pagination Pages \n", paginationData.pages);
 
   const handleSearch = async (e) => {
     let value = e.target.value;
@@ -574,7 +599,57 @@ const Explore = () => {
                   </Col>
                 </Row>
                 <Row>
-                  {nft?.length > 0
+                  <Col
+                    lg={4}
+                    md={2}
+                    sm={6}
+                    xs={12}
+                    style={{ display: "flex", alignItems: "self-start" }}
+                  >
+                    <Form.Label style={{ minWidth: "200px" }}>
+                      Set Limit
+                    </Form.Label>
+                    <Form.Select
+                      onChange={(e) => {
+                        setPaginationData((p) => ({
+                          ...p,
+                          limit: e.target.value,
+                        }));
+                        setCurrentPage(1);
+                      }}
+                    >
+                      <option value="10">10</option>
+                      <option value="25">25</option>
+                      <option value="50">50</option>
+                    </Form.Select>
+                  </Col>
+                  <Col lg={2} md={3} sm={6} xs={12}></Col>
+                  <Col lg={6} md={3} sm={6} xs={12}>
+                    {!isLoading &&
+                      nft?.length > 0 &&
+                      paginationData.pages?.length > 0 && (
+                        <Pagination style={{ justifyContent: "flex-end" }}>
+                          {paginationData.pages.map((page, index) => (
+                            <Pagination.Item
+                              key={page}
+                              active={currentPage === page}
+                              onClick={() => setCurrentPage(page)}
+                            >
+                              {page}
+                            </Pagination.Item>
+                          ))}
+                        </Pagination>
+                      )}
+                  </Col>
+                  {isLoading && (
+                    <div className="text-center">
+                      <Spinner animation="border" role="status" />
+                    </div>
+                  )}
+                  {!isLoading && nft?.length === 0 && (
+                    <div className="text-center">No Record Found</div>
+                  )}
+                  {!isLoading && nft?.length > 0
                     ? nft.map((item) => (
                         <Col lg={4} md={6} sm={6} xs={12} key={item._id}>
                           <div className="outer-explor-box">
@@ -629,132 +704,6 @@ const Explore = () => {
                         </Col>
                       ))
                     : ""}
-
-                  {/* <Col lg={4} md={6} sm={6} xs={12}>
-	               	 	   <div className="outer-explor-box">
-	               	 	   	  <img className="img-main"  src={"images/Team/team7.png"} />
-	               	 	   	  <div className="exploror-list-box">
-	               	 	   	  	 <div className="price-line">
-	               	 	   	  	 	<h5>Hot Skin<span>53</span> </h5>
-	               	 	   	  	    <h6>90000$ Taboo</h6>
-	               	 	   	  	 </div>
-	               	 	   	  	 <div className="stoke-line">
-	               	 	   	  	 	 <ul>
-	               	 	   	  	 	 	<li><img  src={"images/Team/team4.png"} /></li>
-	               	 	   	  	 	 	<li><img  src={"images/Team/team2.png"} /></li>
-	               	 	   	  	 	 	<li><img  src={"images/Team/team3.png"} /></li>
-	               	 	   	  	 	 </ul>
-	               	 	   	  	 	 <h6>3 in stock</h6>
-	               	 	   	  	 </div>
-	               	 	   	  	 <hr></hr>
-	               	 	   	  	 <div className="bid-row">
-	               	 	   	  	 	<span><img  src={"images/up-arrow.png"} /> Highest Bid</span>
-	               	 	   	  	 	<span><b>702$ Taboo</b></span>
-	               	 	   	  	 	<span> New Bid <img  src={"images/up-arrow.png"} /> </span>
-	               	 	   	  	 </div>
-	               	 	   	  </div>
-	               	 	   </div>
-		               	 </Col>
-		               	 <Col lg={4} md={6} sm={6} xs={12}>
-	               	 	   <div className="outer-explor-box">
-	               	 	   	  <img className="img-main"  src={"images/Team/team7.png"} />
-	               	 	   	  <div className="exploror-list-box">
-	               	 	   	  	 <div className="price-line">
-	               	 	   	  	 	<h5>Hot Skin<span>53</span> </h5>
-	               	 	   	  	    <h6>90000$ Taboo</h6>
-	               	 	   	  	 </div>
-	               	 	   	  	 <div className="stoke-line">
-	               	 	   	  	 	 <ul>
-	               	 	   	  	 	 	<li><img  src={"images/Team/team4.png"} /></li>
-	               	 	   	  	 	 	<li><img  src={"images/Team/team2.png"} /></li>
-	               	 	   	  	 	 	<li><img  src={"images/Team/team3.png"} /></li>
-	               	 	   	  	 	 </ul>
-	               	 	   	  	 	 <h6>3 in stock</h6>
-	               	 	   	  	 </div>
-	               	 	   	  	 <hr></hr>
-	               	 	   	  	 <div className="bid-row">
-	               	 	   	  	 	<span><img  src={"images/up-arrow.png"} /> Highest Bid</span>
-	               	 	   	  	 	<span><b>702$ Taboo</b></span>
-	               	 	   	  	 	<span> New Bid <img  src={"images/up-arrow.png"} /> </span>
-	               	 	   	  	 </div>
-	               	 	   	  </div>
-	               	 	   </div>
-		               	 </Col>
-		               	 <Col lg={4} md={6} sm={6} xs={12}>
-	               	 	   <div className="outer-explor-box">
-	               	 	   	  <img className="img-main"  src={"images/Team/team7.png"} />
-	               	 	   	  <div className="exploror-list-box">
-	               	 	   	  	 <div className="price-line">
-	               	 	   	  	 	<h5>Hot Skin<span>53</span> </h5>
-	               	 	   	  	    <h6>90000$ Taboo</h6>
-	               	 	   	  	 </div>
-	               	 	   	  	 <div className="stoke-line">
-	               	 	   	  	 	 <ul>
-	               	 	   	  	 	 	<li><img  src={"images/Team/team4.png"} /></li>
-	               	 	   	  	 	 	<li><img  src={"images/Team/team2.png"} /></li>
-	               	 	   	  	 	 	<li><img  src={"images/Team/team3.png"} /></li>
-	               	 	   	  	 	 </ul>
-	               	 	   	  	 	 <h6>3 in stock</h6>
-	               	 	   	  	 </div>
-	               	 	   	  	 <hr></hr>
-	               	 	   	  	 <div className="bid-row">
-	               	 	   	  	 	<span><img  src={"images/up-arrow.png"} /> Highest Bid</span>
-	               	 	   	  	 	<span><b>702$ Taboo</b></span>
-	               	 	   	  	 	<span> New Bid <img  src={"images/up-arrow.png"} /> </span>
-	               	 	   	  	 </div>
-	               	 	   	  </div>
-	               	 	   </div>
-		               	 </Col>
-		               	 <Col lg={4} md={6} sm={6} xs={12}>
-	               	 	   <div className="outer-explor-box">
-	               	 	   	  <img className="img-main"  src={"images/Team/team7.png"} />
-	               	 	   	  <div className="exploror-list-box">
-	               	 	   	  	 <div className="price-line">
-	               	 	   	  	 	<h5>Hot Skin<span>53</span> </h5>
-	               	 	   	  	    <h6>90000$ Taboo</h6>
-	               	 	   	  	 </div>
-	               	 	   	  	 <div className="stoke-line">
-	               	 	   	  	 	 <ul>
-	               	 	   	  	 	 	<li><img  src={"images/Team/team4.png"} /></li>
-	               	 	   	  	 	 	<li><img  src={"images/Team/team2.png"} /></li>
-	               	 	   	  	 	 	<li><img  src={"images/Team/team3.png"} /></li>
-	               	 	   	  	 	 </ul>
-	               	 	   	  	 	 <h6>3 in stock</h6>
-	               	 	   	  	 </div>
-	               	 	   	  	 <hr></hr>
-	               	 	   	  	 <div className="bid-row">
-	               	 	   	  	 	<span><img  src={"images/up-arrow.png"} /> Highest Bid</span>
-	               	 	   	  	 	<span><b>702$ Taboo</b></span>
-	               	 	   	  	 	<span> New Bid <img  src={"images/up-arrow.png"} /> </span>
-	               	 	   	  	 </div>
-	               	 	   	  </div>
-	               	 	   </div>
-		               	 </Col>
-		               	 <Col lg={4} md={6} sm={6} xs={12}>
-	               	 	   <div className="outer-explor-box">
-	               	 	   	  <img className="img-main"  src={"images/Team/team7.png"} />
-	               	 	   	  <div className="exploror-list-box">
-	               	 	   	  	 <div className="price-line">
-	               	 	   	  	 	<h5>Hot Skin<span>53</span> </h5>
-	               	 	   	  	    <h6>90000$ Taboo</h6>
-	               	 	   	  	 </div>
-	               	 	   	  	 <div className="stoke-line">
-	               	 	   	  	 	 <ul>
-	               	 	   	  	 	 	<li><img  src={"images/Team/team4.png"} /></li>
-	               	 	   	  	 	 	<li><img  src={"images/Team/team2.png"} /></li>
-	               	 	   	  	 	 	<li><img  src={"images/Team/team3.png"} /></li>
-	               	 	   	  	 	 </ul>
-	               	 	   	  	 	 <h6>3 in stock</h6>
-	               	 	   	  	 </div>
-	               	 	   	  	 <hr></hr>
-	               	 	   	  	 <div className="bid-row">
-	               	 	   	  	 	<span><img  src={"images/up-arrow.png"} /> Highest Bid</span>
-	               	 	   	  	 	<span><b>702$ Taboo</b></span>
-	               	 	   	  	 	<span> New Bid <img  src={"images/up-arrow.png"} /> </span>
-	               	 	   	  	 </div>
-	               	 	   	  </div>
-	               	 	   </div>
-		               	 </Col> */}
                 </Row>
               </div>
             </Col>

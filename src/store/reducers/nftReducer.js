@@ -4,8 +4,9 @@ const nftReducer = createSlice({
   name: "nft",
   initialState: {
     isLoading: false,
-    nft:[],
+    nft: [],
     errorMsg: "",
+    totalNfts: 0,
   },
 
   reducers: {
@@ -24,107 +25,101 @@ const nftReducer = createSlice({
       return {
         ...state,
         isLoading: false,
-        nft: action.payload,
+        nft: action.payload.data,
+        totalNfts: action.payload?.total || 0,
       };
     },
     getNftFail: (state, action) => {
       return {
         ...state,
-         nft: {},
+        nft: [],
+        isLoading: false,
+        errorMsg: action.payload,
+        totalNfts: 0,
+      };
+    },
+
+    createNftSaga: (state, action) => {
+      return { ...state };
+    },
+
+    createNftStart: (state) => {
+      return {
+        ...state,
+        isLoading: true,
+      };
+    },
+
+    createNftSuccess: (state, action) => {
+      return {
+        ...state,
+        isLoading: false,
+        isCreated: true,
+        nft: action.payload,
+        errorMsg: "",
+      };
+    },
+
+    createNftFail: (state) => {
+      return {
+        ...state,
+        isLoading: false,
+      };
+    },
+
+    getNftDetailSaga: (state, action) => {
+      return { ...state };
+    },
+
+    getNftDetailStart: (state) => {
+      return {
+        ...state,
+        isLoading: true,
+      };
+    },
+
+    getNftDetailSuccess: (state, action) => {
+      return {
+        ...state,
+        isLoading: false,
+        nft: action.payload,
+      };
+    },
+    getNftDetailFail: (state, action) => {
+      return {
+        ...state,
+        nft: {},
         isLoading: false,
         errorMsg: action.payload,
       };
     },
-    
-    createNftSaga: (state, action) => {
-        return { ...state };
-      },
-     
-     createNftStart:(state)=>{
-        return {
-            ...state,
-            isLoading:true,
-           
-          };
-      },
 
-      createNftSuccess: (state, action) => {
-        return {
-          ...state,
-          isLoading: false,
-          isCreated: true,
-          nft: action.payload,
-          errorMsg: "",
-        };
-      },
+    updateNftStatusSaga: (state, action) => {
+      return { ...state };
+    },
 
-      createNftFail:(state)=>{
-        return {
-            ...state,
-            isLoading:false,
-           
-          };
-      },
+    updateNftStatusStart: (state) => {
+      return {
+        ...state,
+        isLoading: true,
+      };
+    },
 
-
-      getNftDetailSaga: (state, action) => {
-        return { ...state };
-      },
-  
-      getNftDetailStart: (state) => {
-        return {
-          ...state,
-          isLoading: true,
-        };
-      },
-  
-      getNftDetailSuccess: (state, action) => {
-        return {
-          ...state,
-          isLoading: false,
-          nft: action.payload,
-        };
-      },
-      getNftDetailFail: (state, action) => {
-        return {
-          ...state,
-           nft: {},
-          isLoading: false,
-          errorMsg: action.payload,
-        };
-      },
-      
-      
-      updateNftStatusSaga: (state, action) => {
-        return { ...state };
-      },
-  
-      updateNftStatusStart: (state) => {
-        return {
-          ...state,
-          isLoading: true,
-        };
-      },
-  
-      updateNftStatusSuccess: (state, action) => {
-        return {
-          ...state,
-          isLoading: false,
-          nft: action.payload,
-        };
-      },
-      updateNftStatusFail: (state, action) => {
-        return {
-          ...state,
-           nft: {},
-          isLoading: false,
-          errorMsg: action.payload,
-        };
-      },
-      
-
-
-
+    updateNftStatusSuccess: (state, action) => {
+      return {
+        ...state,
+        isLoading: false,
+        nft: action.payload,
+      };
+    },
+    updateNftStatusFail: (state, action) => {
+      return {
+        ...state,
+        nft: {},
+        isLoading: false,
+        errorMsg: action.payload,
+      };
+    },
   },
 });
 
@@ -144,6 +139,6 @@ export const {
   updateNftStatusSaga,
   updateNftStatusStart,
   updateNftStatusSuccess,
-  updateNftStatusFail
+  updateNftStatusFail,
 } = nftReducer.actions;
 export default nftReducer.reducer;
