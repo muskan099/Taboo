@@ -55,7 +55,7 @@ const Explore = () => {
   const inputRangeRef = useRef(null);
   const dispatch = useDispatch();
   const [currentPage, setCurrentPage] = useState(1);
-
+  console.log(this);
   const [paginationData, setPaginationData] = useState({
     skip: 0,
     limit: 10,
