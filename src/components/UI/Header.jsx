@@ -24,37 +24,45 @@ import { TabooPunk } from "../../helpers/TabooPunk";
 import { TierHelper } from "../../helpers/TierHelper";
 import { loginSaga, logout } from "../../store/reducers/authReducer";
 
-
 const Header = () => {
-
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  
+
   // Modal Code
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
 
-
   const handleLogin = async () => {
     let address = await Connect();
 
-    let punk= await TabooPunk(address[0]);
+    let punk = await TabooPunk(address[0]);
     // console.log("punks",punk)
     //let tier=punk>0?"3 Tier":"1 Tier"
-    let balance= await TabooBalance(address[0])
-    let tier=await TierHelper(punk,balance);
-    console.log("balance",balance)
+    let balance = await TabooBalance(address[0]);
+    let tier = await TierHelper(punk, balance);
+    console.log("balance", balance);
 
     if (address && address.length) {
-      dispatch(loginSaga({ address: address[0],balance:balance,tabooPunk:punk,tier:tier}));
+      dispatch(
+        loginSaga({
+          address: address[0],
+          balance: balance,
+          tabooPunk: punk,
+          tier: tier,
+        })
+      );
     }
   };
 
   const { isAuthenticated, walletAddress } = useSelector((state) => state.auth);
 
   useEffect(() => {
-    if (!isAuthenticated) {
+    if (!isAuthenticated && window.location.pathname === "/login") {
+      navigate("/login");
+    } else if (!isAuthenticated && window.location.pathname === "/signup") {
+      navigate("/signup");
+    } else if (!isAuthenticated) {
       navigate("/");
     }
   }, [isAuthenticated]);
@@ -64,38 +72,32 @@ const Header = () => {
   };
 
   useEffect(async () => {
-
-    
-   if(isAuthenticated){
-
-  
-    let provider = await Provider();
-    provider.on("accountsChanged", (accounts) => {
+    if (isAuthenticated) {
+      let provider = await Provider();
+      provider.on("accountsChanged", (accounts) => {
         console.log(accounts);
         handleLogin();
-    });
+      });
 
-    // Subscribe to chainId change
-    provider.on("chainChanged", (chainId) => {
+      // Subscribe to chainId change
+      provider.on("chainChanged", (chainId) => {
         console.log(chainId);
         handleLogin();
-    });
+      });
 
-    // Subscribe to provider connection
-    provider.on("connect",(info)  => {
+      // Subscribe to provider connection
+      provider.on("connect", (info) => {
         console.log(info);
-    });
+      });
 
-    // Subscribe to provider disconnection
-    provider.on("disconnect", (error) => {
+      // Subscribe to provider disconnection
+      provider.on("disconnect", (error) => {
         console.log(error);
 
         handleLogout();
-    });
-   }
-});
-
-
+      });
+    }
+  });
 
   return (
     <header className="header-main">
@@ -103,15 +105,20 @@ const Header = () => {
         <Container className="header-container">
           <Navbar.Brand>
             <Link to="/">
-              <img src={"https://taboonft.s3.us-east-2.amazonaws.com/images/Logo_big-red.png"} alt="logo" />
+              <img
+                src={
+                  "https://taboonft.s3.us-east-2.amazonaws.com/images/Logo_big-red.png"
+                }
+                alt="logo"
+              />
             </Link>
           </Navbar.Brand>
           <Navbar.Toggle aria-controls="navbarScroll" />
           <Navbar.Collapse id="navbarScroll">
             <Nav className="me-auto my-2 my-lg-0">
-              <Nav.Link href="/explore" >Explore</Nav.Link>
+              <Nav.Link href="/explore">Explore</Nav.Link>
 
-              <a href="https://punks.taboo.io/"  className="nav-link">
+              <a href="https://punks.taboo.io/" className="nav-link">
                 TabooPunks
               </a>
               <Nav.Link onClick={handleShow}>Magazine</Nav.Link>
@@ -210,8 +217,6 @@ const Header = () => {
                   <img src={userIcon} alt="" height={30} width={30} />
                 </Dropdown.Toggle>
                 <Dropdown.Menu>
-                 
-
                   <Dropdown.Item>
                     <Link to="/transactions" className="dropdown-item">
                       Collections
@@ -235,7 +240,7 @@ const Header = () => {
                       Stakes
                     </Link>
                   </Dropdown.Item>
-                  
+
                   <Dropdown.Item>
                     <button className="dropdown-item" onClick={handleLogout}>
                       Logout

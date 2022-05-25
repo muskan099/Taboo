@@ -9,7 +9,7 @@ import Header from "./components/UI/Header";
 import Footer from "./components/UI/Footer";
 import Homepage from "./pages/Homepage";
 import Stakes from "./pages/Stakes";
-import Explore from "./pages/Explore"
+import Explore from "./pages/Explore";
 import NftDetails from "./pages/NftDetails";
 import JoinUs from "./pages/JoinUs";
 import Magzine from "./pages/Magzine";
@@ -28,6 +28,8 @@ import NFTList from "./pages/admin/NFTList";
 import TransactionList from "./pages/admin/TransactionList";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import Login from "./pages/Login";
+import SignUp from "./pages/SignUp";
 
 function App() {
   useEffect(() => {
@@ -40,7 +42,9 @@ function App() {
         <Header />
         <Routes>
           <Route path="/" element={<Homepage />} />
-             
+          <Route path="/login" element={<Login />} />
+          <Route path="/signup" element={<SignUp />} />
+
           <Route path="/explore" element={<Explore />} />
 
           <Route path="/magzine" element={<Magzine />} />
@@ -55,16 +59,12 @@ function App() {
           <Route path="/news-details" element={<NewsDetails />} />
 
           <Route path="/create-nft" element={<CreateNft />} />
-          
 
           <Route path="/farm" element={<Farm />} />
-
 
           <Route path="/nft-list" element={<NFTList />} />
 
           <Route path="/transaction-list" element={<TransactionList />} />
-
-
 
           <Route path="/create-stake" element={<CreateStake />} />
 
@@ -75,7 +75,7 @@ function App() {
           <Route path="/profile" element={<Profile />} />
           <Route path="/rank" element={<Rank />} />
           <Route path="/details/:id" element={<NftDetails />} />
-              
+
           <Route path="/stakes" element={<Stakes />} />
         </Routes>
         <Footer />
