@@ -5,9 +5,9 @@ import { toast } from "react-toastify";
 import {axios} from '../../http'
 import {createAuction} from '../../helpers/AuctionHelper'
 import {Transaction} from '../../helpers/Transaction'
+import { NFTBalance } from "../../helpers/NFTBalance";
 import Connect from '../../helpers/Connect'
 import { Row, Col, Container, Tabs,Tab,Table, Modal, FormControl,Button, InputGroup, Form, Dropdown,} from "react-bootstrap";
-
 
 const NFTList=()=>{
 
@@ -95,12 +95,18 @@ const NFTList=()=>{
              console.log("tx",tx)
              let data={tx:tx};
              let trx=await Transaction(data);
+               if(trx){
+
+                 let token=await NFTBalance();
+                      console.log("token",token)
+                    let res=await axios.post('/update-content',{status:"auction","token_id":token})
+               }
               toast.warn("Auction Started Successfully!")
             }
 
     }
 
-   console.log('nft',nft.data)
+   console.log('nft',nft.data)  
 
    const getData=async(page,limit=60,query)=>{
 
@@ -162,76 +168,83 @@ const NFTList=()=>{
                                      All Paintings Name
                                      </Dropdown.Toggle>
 
-                                     <Dropdown.Menu>
-                                       <Dropdown.Item href="#/action-1">Action</Dropdown.Item>
-                                       <Dropdown.Item href="#/action-2">Another action</Dropdown.Item>
-                                       <Dropdown.Item href="#/action-3">Something else</Dropdown.Item>
-                                     </Dropdown.Menu>
-                            </Dropdown>
-                            <Dropdown>
-                              <Dropdown.Toggle id="dropdown-basic">
-                                      All Artist 
-                                     </Dropdown.Toggle>
 
-                                     <Dropdown.Menu>
-                                       <Dropdown.Item href="#/action-1">Action</Dropdown.Item>
-                                       <Dropdown.Item href="#/action-2">Another action</Dropdown.Item>
-                                       <Dropdown.Item href="#/action-3">Something else</Dropdown.Item>
-                                     </Dropdown.Menu>
-                            </Dropdown>
-                            <Dropdown>
-                              <Dropdown.Toggle id="dropdown-basic">
-                                      All Category
-                                     </Dropdown.Toggle>
+                      <Dropdown.Menu>
+                        <Dropdown.Item href="#/action-1">Action</Dropdown.Item>
+                        <Dropdown.Item href="#/action-2">
+                          Another action
+                        </Dropdown.Item>
+                        <Dropdown.Item href="#/action-3">
+                          Something else
+                        </Dropdown.Item>
+                      </Dropdown.Menu>
+                    </Dropdown>
+                    <Dropdown>
+                      <Dropdown.Toggle id="dropdown-basic">
+                        All Category
+                      </Dropdown.Toggle>
 
-                                     <Dropdown.Menu>
-                                       <Dropdown.Item href="#/action-1">Action</Dropdown.Item>
-                                       <Dropdown.Item href="#/action-2">Another action</Dropdown.Item>
-                                       <Dropdown.Item href="#/action-3">Something else</Dropdown.Item>
-                                     </Dropdown.Menu>
-                            </Dropdown>
-                            <Dropdown>
-                              <Dropdown.Toggle id="dropdown-basic">
-                                      Type
-                                     </Dropdown.Toggle>
+                      <Dropdown.Menu>
+                        <Dropdown.Item href="#/action-1">Action</Dropdown.Item>
+                        <Dropdown.Item href="#/action-2">
+                          Another action
+                        </Dropdown.Item>
+                        <Dropdown.Item href="#/action-3">
+                          Something else
+                        </Dropdown.Item>
+                      </Dropdown.Menu>
+                    </Dropdown>
+                    <Dropdown>
+                      <Dropdown.Toggle id="dropdown-basic">
+                        Type
+                      </Dropdown.Toggle>
 
-                                     <Dropdown.Menu>
-                                       <Dropdown.Item href="#/action-1">Action</Dropdown.Item>
-                                       <Dropdown.Item href="#/action-2">Another action</Dropdown.Item>
-                                       <Dropdown.Item href="#/action-3">Something else</Dropdown.Item>
-                                     </Dropdown.Menu>
-                            </Dropdown>
-                            <Dropdown>
-                              <Dropdown.Toggle id="dropdown-basic">
-                                     Status
-                                     </Dropdown.Toggle>
+                      <Dropdown.Menu>
+                        <Dropdown.Item href="#/action-1">Action</Dropdown.Item>
+                        <Dropdown.Item href="#/action-2">
+                          Another action
+                        </Dropdown.Item>
+                        <Dropdown.Item href="#/action-3">
+                          Something else
+                        </Dropdown.Item>
+                      </Dropdown.Menu>
+                    </Dropdown>
+                    <Dropdown>
+                      <Dropdown.Toggle id="dropdown-basic">
+                        Status
+                      </Dropdown.Toggle>
 
-                                     <Dropdown.Menu>
-                                       <Dropdown.Item href="#/action-1">Action</Dropdown.Item>
-                                       <Dropdown.Item href="#/action-2">Another action</Dropdown.Item>
-                                       <Dropdown.Item href="#/action-3">Something else</Dropdown.Item>
-                                     </Dropdown.Menu>
-                            </Dropdown>
-                          </div>
+                      <Dropdown.Menu>
+                        <Dropdown.Item href="#/action-1">Action</Dropdown.Item>
+                        <Dropdown.Item href="#/action-2">
+                          Another action
+                        </Dropdown.Item>
+                        <Dropdown.Item href="#/action-3">
+                          Something else
+                        </Dropdown.Item>
+                      </Dropdown.Menu>
+                    </Dropdown>
+                  </div>
 
-                            <div className="newsletter-box m-0">
-				               	   <InputGroup className="m-0">
-								  <FormControl
-								      placeholder="Search....."
-								      aria-label="Recipient's username"
-								      aria-describedby="basic-addon2"
-								    />
-								    <Button
-					                    
-					                  >
-					                    <img className="search-icon" src={"images/icons-Search-Line.png"} alt="logo" />
-					                  </Button>
-								  </InputGroup>
-				              </div>
-                            
-                            
-                       </div>
+                  <div className="newsletter-box m-0">
+                    <InputGroup className="m-0">
+                      <FormControl
+                        placeholder="Search....."
+                        aria-label="Recipient's username"
+                        aria-describedby="basic-addon2"
+                      />
+                      <Button>
+                        <img
+                          className="search-icon"
+                          src={"images/icons-Search-Line.png"}
+                          alt="logo"
+                        />
+                      </Button>
+                    </InputGroup>
+                  </div>
+                </div>
 
+               
                     <div className="shadow-box ">
                          <Table className="table-tank" responsive>
                               <thead>
@@ -333,79 +346,79 @@ const NFTList=()=>{
                                   </td>
                                   <td>
 
-                                      
-                                  <div className="text-center">
-                                      
-                                        {['checkbox'].map((type) => (
-                                            <div key={`default-${type}`} className="text-center">
-                                            <Form.Check 
-                                                type={type}
-                                                id={`default-${type}`}
-                                                label={` `}
-                                            />
-                                            </div>
-                                        ))}
-                                  </div>
-                                      
-                                  </td>
-                                  <td>
-                                      <span className="status-box">Approved</span>
-                                  </td>
-                                  <td>
-                                      <a href="" className="view-icon"><i className="fa fa-eye"></i></a>
-                                  </td>
-                                  
-                                </tr>
+                        <td>Sam G</td>
+                        <td>-</td>
+                        <td>Art</td>
+                        <td>Yes</td>
+                        <td>100 ETH</td>
+                        <td>
+                          <div className="text-center">
+                            {["checkbox"].map((type) => (
+                              <div
+                                key={`default-${type}`}
+                                className="text-center"
+                              >
+                                <Form.Check
+                                  type={type}
+                                  id={`default-${type}`}
+                                  label={` `}
+                                />
+                              </div>
+                            ))}
+                          </div>
+                        </td>
+                        <td>
+                          <span className="status-box">Approved</span>
+                        </td>
+                        <td>
+                          <a href="" className="view-icon">
+                            <i className="fa fa-eye"></i>
+                          </a>
+                        </td>
+                      </tr>
 
-                                <tr>
-                                  <td>01</td>
-                                  <td>
-                                      <div class="owner-row-outer">
-                                          <img src="images/Team/team7.png" />
-                                          <div><h5>Clementines Nightmare</h5></div>
-                                      </div>
-                                  </td>
-                                 
-                                  <td>
-                                        Sam G
-                                  </td>
-                                  <td>
-                                        -
-                                  </td>
-                                  <td>
-                                       Art
-                                  </td>
-                                  <td>
-                                       Yes
-                                  </td>
-                                  <td>
-                                      100 ETH
-                                  </td>
-                                  <td>
+                      <tr>
+                        <td>01</td>
+                        <td>
+                          <div class="owner-row-outer">
+                            <img src="images/Team/team7.png" />
+                            <div>
+                              <h5>Clementines Nightmare</h5>
+                            </div>
+                          </div>
+                        </td>
 
-                                      
-                                  <div className="text-center">
-                                      
-                                        {['checkbox'].map((type) => (
-                                            <div key={`default-${type}`} className="text-center">
-                                            <Form.Check 
-                                                type={type}
-                                                id={`default-${type}`}
-                                                label={` `}
-                                            />
-                                            </div>
-                                        ))}
-                                  </div>
-                                      
-                                  </td>
-                                  <td>
-                                      <span className="status-box">Approved</span>
-                                  </td>
-                                  <td>
-                                      <a href="" className="view-icon"><i className="fa fa-eye"></i></a>
-                                  </td>
-                                  
-                                </tr>
+                        <td>Sam G</td>
+                        <td>-</td>
+                        <td>Art</td>
+                        <td>Yes</td>
+                        <td>100 ETH</td>
+                        <td>
+                          <div className="text-center">
+                            {["checkbox"].map((type) => (
+                              <div
+                                key={`default-${type}`}
+                                className="text-center"
+                              >
+                                <Form.Check
+                                  type={type}
+                                  id={`default-${type}`}
+                                  label={` `}
+                                />
+                              </div>
+                            ))}
+                          </div>
+                        </td>
+                        <td>
+                          <span className="status-box">Approved</span>
+                        </td>
+                        <td>
+                          <a href="" className="view-icon">
+                            <i className="fa fa-eye"></i>
+                          </a>
+                        </td>
+                      </tr>
+
 
 
                                
