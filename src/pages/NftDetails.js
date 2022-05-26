@@ -36,6 +36,9 @@ const NftDetails = () => {
   console.log("balance", balance);
   const { id } = useParams();
 
+  const [offerPrice,setOffferPrice]=useState('');
+
+
   const [show, setShow] = useState(false);
 
   const [buyStart, setBuyStart] = useState(false);
@@ -61,6 +64,22 @@ const NftDetails = () => {
   const handleShow3 = () => setShow3(true);
 
   const [tabooBalance, setTabooBalance] = useState("");
+
+
+  const handleOfferPrice=(e)=>{
+
+             let value=e.target.value;
+
+              if(isNaN(value)){
+                e.target.value="";
+              }else
+                {
+
+                  setOffferPrice(value);
+
+                }
+      
+        }
 
   const getData = () => {
     const data = { id: id, tier: tier };
@@ -141,6 +160,31 @@ const NftDetails = () => {
       }
     }
   };
+
+
+  const handleOffer=async()=>{
+        if(offerPrice==""){
+          toast.warn("Offer price is required!");
+         }
+        else
+          {
+
+            let res=await axios.post('/make-offer',{address:walletAddress,taboo_amount:offerPrice});
+
+            if(res.data){
+
+                  let tx=await Transaction(res.data);
+
+                  if(tx){
+                          
+                          let res=await axios.post('/');
+                  }
+
+
+            }
+
+          }
+  }
 
   return (
     <>
