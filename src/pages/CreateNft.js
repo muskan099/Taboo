@@ -75,7 +75,8 @@ const CreateNft = () => {
           fileExtension.toLowerCase() === "png" ||
           fileExtension.toLowerCase() === "jpg" ||
           fileExtension.toLowerCase() === "gif" ||
-          fileExtension.toLowerCase() === "jpeg"
+          fileExtension.toLowerCase() === "jpeg" ||
+          fileExtension.toLowerCase() === "webp"
         ) {
           setState({
             file: event.currentTarget.files[0],
@@ -371,8 +372,8 @@ const CreateNft = () => {
 
                       <Form.Group className="mb-3">
                         <Form.Label>Available To</Form.Label>
-                          <Row>
-                            <Col md={4} sm={4} xs={12}>
+                        <Row>
+                          <Col md={4} sm={4} xs={12}>
                             <Form.Check
                               label="1 Tier"
                               name="tier"
@@ -382,11 +383,9 @@ const CreateNft = () => {
                                 setAvailableTo((p) => ({ ...p, t1: !p.t1 }))
                               }
                             />
-                            </Col>
+                          </Col>
 
-
-
-                            <Col md={4} sm={4} xs={12}>
+                          <Col md={4} sm={4} xs={12}>
                             <Form.Check
                               label="2 Tier"
                               name="tier"
@@ -396,10 +395,9 @@ const CreateNft = () => {
                                 setAvailableTo((p) => ({ ...p, t2: !p.t2 }))
                               }
                             />
-                            </Col>
+                          </Col>
 
-
-                            <Col md={4} sm={4} xs={12}>
+                          <Col md={4} sm={4} xs={12}>
                             <Form.Check
                               label="3 Tier"
                               name="tier"
@@ -409,16 +407,8 @@ const CreateNft = () => {
                                 setAvailableTo((p) => ({ ...p, t3: !p.t3 }))
                               }
                             />
-                            </Col>
-
-
-
-
-
-
-
-
-                          </Row>
+                          </Col>
+                        </Row>
                       </Form.Group>
 
                       <Row>
