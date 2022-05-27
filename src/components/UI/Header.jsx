@@ -62,9 +62,10 @@ const Header = () => {
       navigate("/login");
     } else if (!isAuthenticated && window.location.pathname === "/signup") {
       navigate("/signup");
-    } else if (!isAuthenticated) {
-      navigate("/");
     }
+    // else if (!isAuthenticated) {
+    //   navigate("/");
+    // }
   }, [isAuthenticated]);
 
   const handleLogout = async () => {
