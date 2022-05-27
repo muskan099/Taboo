@@ -30,6 +30,7 @@ import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import Login from "./pages/Login";
 import SignUp from "./pages/SignUp";
+import AdminRoute from "./components/AdminRoute";
 
 function App() {
   useEffect(() => {
@@ -62,13 +63,27 @@ function App() {
 
           <Route path="/farm" element={<Farm />} />
 
-          <Route path="/nft-list" element={<NFTList />} />
+          <Route
+            path="/nft-list"
+            element={
+              <AdminRoute>
+                <NFTList />
+              </AdminRoute>
+            }
+          />
 
           <Route path="/transaction-list" element={<TransactionList />} />
 
           <Route path="/create-stake" element={<CreateStake />} />
 
-          <Route path="/admin-dashboard" element={<AdminDashboard />} />
+          <Route
+            path="/admin-dashboard"
+            element={
+              <AdminRoute>
+                <AdminDashboard />
+              </AdminRoute>
+            }
+          />
 
           <Route path="/dashboard" element={<Dashboard />} />
 
