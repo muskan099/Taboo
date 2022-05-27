@@ -140,6 +140,7 @@ const NFTList = () => {
             content_id: ANft._id,
             status: "auction",
             token: token,
+            bid_price: auctionData.minPrice,
           });
         }
         toast.success("Auction Started Successfully!");
