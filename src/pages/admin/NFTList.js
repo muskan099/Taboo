@@ -99,7 +99,7 @@ const NFTList=()=>{
 
                  let token=await NFTBalance();
                       console.log("token",token)
-                    let res=await axios.post('/update-content',{status:"auction","token_id":token})
+                    let res=await axios.post('/update-content',{status:"auction","token":token,content_id:ANft._id})
                }
               toast.warn("Auction Started Successfully!")
             }
