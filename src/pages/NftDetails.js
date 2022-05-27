@@ -39,7 +39,14 @@ const NftDetails = () => {
   console.log("balance", balance);
   const { id } = useParams();
 
-  const [offerPrice, setOffferPrice] = useState("");
+  // const [offerPrice, setOffferPrice] = useState("");
+  const [auctionData, setAuctionData] = useState({
+    offerPrice: "",
+    auctionProcessing: false,
+    buttonMessage: "",
+  });
+
+  const { offerPrice, auctionProcessing, buttonMessage } = auctionData;
 
   const [offerStart, setOfferStart] = useState("");
 
@@ -76,7 +83,7 @@ const NftDetails = () => {
     if (isNaN(value)) {
       e.target.value = "";
     } else {
-      setOffferPrice(value);
+      // setOffferPrice(value);
     }
   };
 
@@ -166,6 +173,11 @@ const NftDetails = () => {
     if (offerPrice == "") {
       toast.warn("Offer price is required!");
     } else {
+      setAuctionData((p) => ({
+        ...p,
+        auctionProcessing: true,
+        buttonMessage: "Processing Please Wait...",
+      }));
       let approve = await ApproveTaboo(offerPrice, walletAddress);
 
       if (approve) {
@@ -185,6 +197,11 @@ const NftDetails = () => {
                 wallet_address: walletAddress,
                 price: offerPrice,
               });
+              setAuctionData((p) => ({
+                ...p,
+                auctionProcessing: false,
+                buttonMessage: "",
+              }));
             } else {
               toast.warn("Transaction Failed!");
             }
@@ -195,6 +212,12 @@ const NftDetails = () => {
           toast.warn("Amount approval failed!");
         }
       }
+      setAuctionData((p) => ({
+        ...p,
+        auctionProcessing: false,
+        buttonMessage: "",
+      }));
+      handleOfferStart();
     }
   };
 
@@ -579,16 +602,31 @@ const NftDetails = () => {
                   <Form.Label>Min Price</Form.Label>
                   <Form.Control
                     type="text"
-                    onKeyUp={(e) => handleOfferPrice(e)}
+                    onChange={(e) => {
+                      let inputValue = e.target.value;
+                      setAuctionData((prev) => {
+                        if (!isNaN(inputValue)) {
+                          return { ...prev, offerPrice: inputValue };
+                        }
+                      });
+                    }}
+                    value={offerPrice}
                     placeholder="min price"
                   />
                 </Form.Group>
               </Form>
 
               <div>
-                <a href="#" className="blue-btn" onClick={handleOffer}>
-                  Start Bid
-                </a>
+                <button
+                  className="blue-btn"
+                  onClick={() => {
+                    if (!auctionProcessing) handleOffer();
+                  }}
+                  disabled={auctionProcessing}
+                  style={{ cursor: auctionProcessing ? "no-drop" : "pointer" }}
+                >
+                  {buttonMessage ? buttonMessage : "Start Bid"}
+                </button>
 
                 <a href="" className="border-btn">
                   Cancel
