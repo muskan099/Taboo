@@ -38,6 +38,7 @@ const NFTList = () => {
   const [show, setShow] = useState(false);
 
   const [ANft, setANft] = useState("");
+  console.log(ANft);
 
   const [auctionData, setAuctionData] = useState({
     minPrice: 0,
@@ -136,9 +137,9 @@ const NFTList = () => {
           let token = await NFTBalance();
           console.log("token", token);
           let res = await axios.post("/update-content", {
-            content_id:ANft._id,
+            content_id: ANft._id,
             status: "auction",
-            token_id: token,
+            token: token,
           });
         }
         toast.success("Auction Started Successfully!");
