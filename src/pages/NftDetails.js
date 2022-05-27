@@ -21,6 +21,7 @@ import { TabooBalance } from "../helpers/TabooHelper";
 import { BuyNFT } from "../helpers/BuyNFT";
 import { updateNftStatusSaga } from "../store/reducers/nftReducer";
 import { MakeOffer } from "../helpers/MakeOffer";
+import { ApproveTaboo } from "../helpers/Approve";
 const NftDetails = () => {
   const dispatch = useDispatch();
 
@@ -174,17 +175,30 @@ const NftDetails = () => {
          }
         else
           {
+               
+             
+            let approve=await ApproveTaboo(offerPrice,walletAddress)
 
-            let tx=await MakeOffer(offerPrice,nft.token_id,walletAddress)     //axios.post('/make-offer',{address:walletAddress,taboo_amount:offerPrice});
+           
 
-            if(tx){
+            if(approve){
 
-                  let txObj={tx:tx}
+              let txra=await Transaction({tx:approve});
 
-                  let tx=await Transaction(txObj);
+               if(txra){
 
-                  if(tx){
-                          
+                     
+
+                   let tx=await MakeOffer(offerPrice,nft.token_id,walletAddress)     //axios.post('/make-offer',{address:walletAddress,taboo_amount:offerPrice});
+               
+                    if(tx){
+
+                       let txObj={tx:tx}
+
+                       let tx=await Transaction(txObj);
+
+                      if(tx){
+                        
                           let res=await axios.post('/');
                        }else
                          {
@@ -192,7 +206,17 @@ const NftDetails = () => {
                          }
 
 
+                     }else{
+                       toast.warn("Please try after sometime!.")
+                     }
+               }else
+                 {
+                   toast.warn("Amount approval failed!")
+                 }
+
             }
+
+          
 
           }
   }
@@ -287,7 +311,7 @@ const NftDetails = () => {
                       </Button>
                       <Button
                         className="border-btn"
-                        disabled={nft.status == "sold" ? true : false}
+                        disabled={nft.status == "sold"||nft.status == "active" ? true : false}
                         onClick={()=>setOfferStart(true)}
                       >
                         Place A Bid

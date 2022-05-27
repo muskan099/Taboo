@@ -26,6 +26,8 @@ const CreateNft = () => {
 
   const { nft, isLoading } = useSelector((state) => state.nft);
 
+  const { isAuthenticated, walletAddress,balance ,tier} = useSelector((state) => state.auth);
+
   const [name, setName] = useState("");
 
   const [metaTag, setMetaTag] = useState("");
@@ -201,6 +203,8 @@ const CreateNft = () => {
 
       let ipfs_hash = await ipfsMint(contentImage, data);
       let voucher = await Mint(ipfs_hash, price);
+
+      console.log("voucher",voucher.address)
       const formData = new FormData();
       console.log("file", file);
       formData.append("file", file);
@@ -212,8 +216,13 @@ const CreateNft = () => {
       formData.append("category", category);
       formData.append("ipfs", ipfs_hash);
       formData.append("signature", voucher.voucher.signature);
+
       formData.append("token_id", voucher.voucher.tokenId);
+
       formData.append("user_id", "62733f0715eb380c440489ee");
+
+      formData.append("wallet_address",voucher.address);
+
       formData.append("available_to", available_to);
 
       dispatch(createNftSaga(formData));
