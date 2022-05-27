@@ -1,10 +1,13 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const isAuthenticated = localStorage.getItem("isAuthenticated");
+const isUserAuthenticated = localStorage.getItem("isUserAuthenticated");
+const userRole = localStorage.getItem("userRole");
+const userData = localStorage.getItem("userData");
 const walletAddress = localStorage.getItem("walletAddress");
-const balance=localStorage.getItem('balance')
-const tabooPunk=localStorage.getItem('tabooPunk')
-const tier=localStorage.getItem('tier')
+const balance = localStorage.getItem("balance");
+const tabooPunk = localStorage.getItem("tabooPunk");
+const tier = localStorage.getItem("tier");
 
 const authSlice = createSlice({
   name: "auth",
@@ -12,9 +15,13 @@ const authSlice = createSlice({
     isLoading: false,
     walletAddress: !!walletAddress ? walletAddress : "",
     isAuthenticated: !!isAuthenticated ? true : false,
-    balance:!!balance>0?balance:'',
+    isUserAuthenticated: !!isUserAuthenticated ? true : false,
+    userRole: !!userRole ? userRole : "",
+    user: !!userData ? JSON.parse(userData) : {},
+    authToken: "",
+    balance: !!balance > 0 ? balance : "",
     errorMsg: "",
-    tier:!!tier?tier:""
+    tier: !!tier ? tier : "",
   },
 
   reducers: {
@@ -24,6 +31,37 @@ const authSlice = createSlice({
 
     googleLoginSaga: (state, action) => {
       return { ...state };
+    },
+
+    userLoginSaga: (state, action) => {
+      return { ...state };
+    },
+    userLoginStart: (state) => {
+      return {
+        ...state,
+        isLoading: true,
+      };
+    },
+
+    userloginSuccess: (state, action) => {
+      console.log(action.payload);
+      return {
+        ...state,
+        isLoading: false,
+        isUserAuthenticated: true,
+        user: action.payload,
+        userRole: action.payload.user_role,
+      };
+    },
+
+    userLoginFail: (state, action) => {
+      return {
+        ...state,
+        isLoading: false,
+        isUserAuthenticated: false,
+        user: {},
+        errorMsg: action.payload,
+      };
     },
 
     loginStart: (state) => {
@@ -39,9 +77,9 @@ const authSlice = createSlice({
         ...state,
         isLoading: false,
         walletAddress: action.payload.address,
-        balance:action.payload.balance,
-        tabooPunk:action.payload.tabooPunk,
-        tier:action.payload.tier,
+        balance: action.payload.balance,
+        tabooPunk: action.payload.tabooPunk,
+        tier: action.payload.tier,
         isAuthenticated: true,
         errorMsg: "",
       };
@@ -60,8 +98,8 @@ const authSlice = createSlice({
         ...state,
         isLoading: false,
         walletAddress: "",
-        tabooPunk:"",
-        balance:"",
+        tabooPunk: "",
+        balance: "",
         isAuthenticated: false,
         errorMsg: "",
       };
@@ -234,6 +272,11 @@ export const {
   passwordResetStart,
   passwordResetSuccess,
   passwordResetFail,
+
+  userLoginSaga,
+  userLoginStart,
+  userloginSuccess,
+  userLoginFail,
 } = authSlice.actions;
 
 export default authSlice.reducer;
