@@ -9,7 +9,7 @@ import {
   Tab,
   Table,
   Modal,
-  Button,
+  Button,Form,
 } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import { Transaction } from "../helpers/Transaction";
@@ -20,6 +20,7 @@ import { toast } from "react-toastify";
 import { TabooBalance } from "../helpers/TabooHelper";
 import { BuyNFT } from "../helpers/BuyNFT";
 import { updateNftStatusSaga } from "../store/reducers/nftReducer";
+import { MakeOffer } from "../helpers/MakeOffer";
 const NftDetails = () => {
   const dispatch = useDispatch();
 
@@ -39,6 +40,9 @@ const NftDetails = () => {
   const [offerPrice,setOffferPrice]=useState('');
 
 
+  const [offerStart,setOfferStart]=useState('')
+
+ 
   const [show, setShow] = useState(false);
 
   const [buyStart, setBuyStart] = useState(false);
@@ -62,6 +66,8 @@ const NftDetails = () => {
 
   const handleClose3 = () => setShow3(false);
   const handleShow3 = () => setShow3(true);
+  const handleOfferStart=()=>setOfferStart(false)
+  
 
   const [tabooBalance, setTabooBalance] = useState("");
 
@@ -169,16 +175,21 @@ const NftDetails = () => {
         else
           {
 
-            let res=await axios.post('/make-offer',{address:walletAddress,taboo_amount:offerPrice});
+            let tx=await MakeOffer(offerPrice,nft.token_id,walletAddress)     //axios.post('/make-offer',{address:walletAddress,taboo_amount:offerPrice});
 
-            if(res.data){
+            if(tx){
 
-                  let tx=await Transaction(res.data);
+                  let txObj={tx:tx}
+
+                  let tx=await Transaction(txObj);
 
                   if(tx){
                           
                           let res=await axios.post('/');
-                  }
+                       }else
+                         {
+                           toast.warn("Transaction Failed!");
+                         }
 
 
             }
@@ -269,7 +280,7 @@ const NftDetails = () => {
                     <div class="text-center">
                       <Button
                         className="blue-btn"
-                        disabled={nft.status == "sold" ? true : false}
+                        disabled={nft.status == "sold" || nft.status=="auction"? true : false}
                         onClick={handleShow2}
                       >
                         {nft.status == "sold" ? "Sold Out" : "Purchase Now"}
@@ -277,7 +288,7 @@ const NftDetails = () => {
                       <Button
                         className="border-btn"
                         disabled={nft.status == "sold" ? true : false}
-                        onClick={handleShow3}
+                        onClick={()=>setOfferStart(true)}
                       >
                         Place A Bid
                       </Button>
@@ -519,6 +530,56 @@ const NftDetails = () => {
             </div>
           </Modal.Body>
         </Modal>
+
+
+        
+        <Modal
+          show={offerStart}
+          className="modal-comming-soon bid-modal"
+          backdrop="static"
+          keyboard={false}
+          onHide={handleOfferStart}
+          centered
+        >
+          <Modal.Header
+            closeButton
+            className="border-none p-0"
+            style={{ zIndex: "10000000" }}
+          ></Modal.Header>
+          <Modal.Body>
+            <div class="bid-modal-box">
+              <h3>Create a Auction</h3>
+              <p>You are about to place a bit for Tempor Incododunt</p>
+              
+               <Form>
+
+                  <Form.Group  className="mb-3">
+                    <Form.Label>Min Price</Form.Label>
+                    <Form.Control type="text" onKeyUp={(e)=>handleOfferPrice(e)} placeholder="min price" />
+                  </Form.Group>
+
+                 
+
+               </Form>
+              
+              
+              <div>
+                <a href="#" className="blue-btn"onClick={handleOffer}>
+                  Start Bid
+                </a>
+
+                <a href="" className="border-btn">
+                  Cancel
+                </a>
+              </div>
+            </div>
+          </Modal.Body>
+        </Modal>
+
+
+
+
+
       </section>
     </>
   );

@@ -8,18 +8,18 @@ const NftContractAddress="0x52E6c56E2cf00B1E79A5A56fED53d90761b76fEe";
 
 const tabooAddress="0xE7a9b31D284d524e87BF002D85Acfcf5d1c9EA67";
 
-export const MakeOffer=async(from_account)=>{
+export const MakeOffer=async(minPrice,token,from_account)=>{
         
     let web3js=await web3();
 
     const nftContract = new web3js.eth.Contract(abi, contractAddress);
-
+    const nonce = await web3js.eth.getTransactionCount(from_account, 'latest');
     
     
     let tx=0;
 
     try{
-        let estimates_gas = await web3.eth.estimateGas({
+        let estimates_gas = await web3js.eth.estimateGas({
             'from':from_account,
             'to':contractAddress,
             "data":nftContract.methods.makeBid(
@@ -30,9 +30,9 @@ export const MakeOffer=async(from_account)=>{
              ).encodeABI(),
           }); 
         
-          let gasLimit =web3.utils.toHex(estimates_gas *6);
-           let gasPrice_bal = await web3.eth.getGasPrice();
-          let gasPrice =web3.utils.toHex(gasPrice_bal*2);
+          let gasLimit =web3js.utils.toHex(estimates_gas *6);
+           let gasPrice_bal = await web3js.eth.getGasPrice();
+          let gasPrice =web3js.utils.toHex(gasPrice_bal*2);
       
           tx = {
             'from':from_account,
@@ -41,7 +41,7 @@ export const MakeOffer=async(from_account)=>{
             'gasPrice':gasPrice,
             'gasLimit':gasLimit,
             //'maxPriorityFeePerGas': 1999999987,
-            'data':nftContract.methods.createNewNftAuction(
+            'data':nftContract.methods.makeBid(
                 NftContractAddress,
                 token,
                 tabooAddress,
