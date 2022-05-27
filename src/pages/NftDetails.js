@@ -260,7 +260,19 @@ const NftDetails = () => {
                       {nft.user && nft.user.name}
                     </Tab>
                     <Tab eventKey="history" title="History">
-                      No History Found
+                      {"offers" in nft && nft.offers?.length > 0
+                        ? nft.offers.map((item, index) => (
+                            <div
+                              key={item._id}
+                              style={{ alignItems: "center" }}
+                            >
+                              <p>{`${item.wallet_address.slice(
+                                0,
+                                5
+                              )}......${item.wallet_address.slice(-5)}`}</p>
+                            </div>
+                          ))
+                        : "No History Found"}
                     </Tab>
                     <Tab eventKey="bids" title="Bids">
                       No bids

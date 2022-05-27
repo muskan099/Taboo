@@ -485,6 +485,7 @@ export const MakeOffer = async (minPrice, token, from_account) => {
   // token="10"
 
   let tx = 0;
+  minPrice = "0x" + (minPrice * 1000000000).toString(16);
 
   try {
     let estimates_gas = await web3js.eth.estimateGas({
