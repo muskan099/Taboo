@@ -23,6 +23,7 @@ import { BuyNFT } from "../helpers/BuyNFT";
 import { updateNftStatusSaga } from "../store/reducers/nftReducer";
 import { MakeOffer } from "../helpers/MakeOffer";
 import { ApproveTaboo } from "../helpers/Approve";
+
 const NftDetails = () => {
   const dispatch = useDispatch();
 
@@ -107,17 +108,19 @@ const NftDetails = () => {
       console.log("hello");
       setBuyStart(true);
       // dispatch(createTransactionsSaga({address:walletAddress,content_id:nft._id}))
-      let tx = await axios.post("/make-order", {
-        address: walletAddress,
-        content_id: nft._id,
-      });
+      // let tx = await axios.post("/make-order", {
+      // address: walletAddress,
+      // content_id: nft._id,
+      // });
+      let approveData = await ApproveTaboo(price, walletAddress);
 
+      let tx = await Transaction({ tx: approveData });
       if (tx) {
         console.log("tx", tx);
         // let {tx}=transactions;
-        let taboo_hash = false;
+        let taboo_hash = true;
         try {
-          taboo_hash = await Transaction(tx.data);
+          // taboo_hash = await Transaction(tx.data);
         } catch (e) {
           setBuyStart(false);
           console.log(e);
@@ -144,7 +147,7 @@ const NftDetails = () => {
               to_account: "0x9632a9b8afe7CbA98236bCc66b4C019EDC1CD1Cc",
               amount: nft.price,
               address: walletAddress,
-              tx_id: taboo_hash.transactionHash,
+              tx_id: Nft_hash,
               nft_hash: Nft_hash,
               tokenUrl: nft.ipfs,
             });
