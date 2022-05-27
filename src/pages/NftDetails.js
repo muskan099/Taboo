@@ -195,9 +195,9 @@ const NftDetails = () => {
 
                        let txObj={tx:tx}
 
-                       let tx=await Transaction(txObj);
+                       let txdd=await Transaction(txObj);
 
-                      if(tx){
+                      if(txdd){
                         
                           let res=await axios.post('/');
                        }else

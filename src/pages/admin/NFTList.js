@@ -122,9 +122,9 @@ const NFTList = () => {
         0,
         0,
         0,
-        auctionData.startTime,
-        0,
         auctionData.endTime,
+        0,
+        auctionData.startTime,
         ANft.ipfs,
         address[0]
       );
@@ -136,6 +136,7 @@ const NFTList = () => {
           let token = await NFTBalance();
           console.log("token", token);
           let res = await axios.post("/update-content", {
+            content_id:ANft._id,
             status: "auction",
             token_id: token,
           });

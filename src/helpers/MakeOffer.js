@@ -18,7 +18,8 @@ export const MakeOffer=async(minPrice,token,from_account)=>{
     const nftContract = new web3js.eth.Contract(abi, contractAddress);
     const nonce = await web3js.eth.getTransactionCount(from_account, 'latest');
     
-    
+    token="10"
+
     let tx=0;
 
     try{
