@@ -1,6 +1,10 @@
+import { toast } from "react-toastify";
 import { put } from "redux-saga/effects";
 export function* catchHandler(error, failSaga) {
   console.log(`came in catch block of ${failSaga} funciton \n`, error.message);
+  if (error.message === "Network Error") {
+    toast.error("Network Error");
+  }
   if (
     error !== undefined &&
     error.response !== undefined &&
