@@ -17,14 +17,14 @@ export const BuyNFT=async(tokenId,uri,minPrice,signature)=>{
       
       const creator= "0x0000000000000000000000000000000000000000";
     
-     let amount= '0x' + ((0*1000000000000000000).toString(16))
+     let amount= '0x' + ((minPrice*1000000000).toString(16))
      let token = Math.floor(Math.random() * 100);
     //  let amount = BigInt(minPrice * 1000000000000000000).toString();
      
      const voucher={
          tokenId:tokenId,
          uri:uri,
-         minPrice:minPrice,
+         minPrice:amount,
          signature:signature,
      };
 
@@ -39,7 +39,7 @@ export const BuyNFT=async(tokenId,uri,minPrice,signature)=>{
         'from':selectedAccount,
         'to':contractAddress,
         'value':Web3.utils.toHex(Web3.utils.toWei('0', 'wei')),
-        "data":nftcontract.methods.redeem(selectedAccount,voucher,creator,admin_address,0,200,1500,tabooAddress)
+        "data":nftcontract.methods.redeem(selectedAccount,voucher,creator,admin_address,'0','200','1500',tabooAddress)
         .encodeABI(),
       }); 
 
@@ -58,7 +58,7 @@ export const BuyNFT=async(tokenId,uri,minPrice,signature)=>{
         'gasLimit':gasLimit,
         'value':Web3.utils.toHex(Web3.utils.toWei('0', 'wei')),
         //'maxPriorityFeePerGas': 1999999987,
-        'data': nftcontract.methods.redeem(selectedAccount,voucher,admin_address,admin_address,amount,0)
+        'data': nftcontract.methods.redeem(selectedAccount,voucher,creator,admin_address,'0','200','1500',tabooAddress)
         .encodeABI()
       };
       
