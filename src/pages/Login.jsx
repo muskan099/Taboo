@@ -1,9 +1,16 @@
 import React, { useState } from "react";
+import { useDispatch } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
+import useAuth from "../hooks/useAuth";
 import axios from "../http/axios/axios_main";
+import { userLoginSaga } from "../store/reducers/authReducer";
 
 const Login = () => {
+  const auth = useAuth();
+  // console.log(auth);
   const navigate = useNavigate();
+  const dispatch = useDispatch();
   const [formData, setFormData] = useState({
     email: "",
     password: "",
@@ -15,14 +22,18 @@ const Login = () => {
 
   const submitHandler = async (e) => {
     e.preventDefault();
-
-    try {
-      const res = await axios.post("/users/login", formData);
-      console.log(res);
-      if (res.data?.user?.user_role === "admin") {
-        navigate("/admin-dashboard");
-      }
-    } catch (error) {}
+    if (!email || !password) {
+      toast.error("Please provide all values");
+      return;
+    }
+    dispatch(userLoginSaga({ formData, navigate }));
+    // try {
+    //   const res = await axios.post("/users/login", formData);
+    //   console.log(res);
+    //   if (res.data?.user?.user_role === "admin") {
+    //     navigate("/admin-dashboard");
+    //   }
+    // } catch (error) {}
   };
   return (
     <>
