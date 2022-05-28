@@ -215,7 +215,7 @@ const Header = () => {
                   )}`}{" "}
                 </div>
                 <Dropdown.Toggle className="Dropdown-wallet-new">
-                  <img src={userIcon} alt="" height={30} width={30} />
+                  <img src={"https://taboonft.s3.us-east-2.amazonaws.com/icons/Taboo-logo-3.61280c399d2252.47125802.png"} alt="" height={30} width={30} />
                 </Dropdown.Toggle>
                 <Dropdown.Menu>
                   <Dropdown.Item>

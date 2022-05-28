@@ -64,7 +64,13 @@ const Stakes = () => {
                     <tbody>
                       {stakesData.stakes.map((item) => (
                         <tr key={item._id}>
-                          <td width="30%">{item.wallet_address}</td>
+                          <td width="30%">
+
+                          {`${item.wallet_address?.slice(0, 5)}....${item.wallet_address?.slice(
+                    -5
+                  )}`}
+                            
+                           </td>
                           <td width="15%">{item.stakeinfo.deposit}</td>
                           <td width="15%">
                             {Number(item.stakeinfo.interest_earned).toFixed(4)}

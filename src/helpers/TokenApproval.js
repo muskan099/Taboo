@@ -9,7 +9,7 @@ const web3js = new Web3(
 
 const contractAddress = "0xE7a9b31D284d524e87BF002D85Acfcf5d1c9EA67";
 
-const spender = "0x1A8f2EE9B862Eba59F520754aA2dE537C7Be92b3";
+const spender = "0x5eaFB7dc02cBd533b729bb5450ed78A0bF967aEb";
 
 const abi = [
   {
@@ -324,7 +324,7 @@ const abi = [
   },
 ];
 
-export const ApproveTaboo = async (price, address) => {
+export const TokenApproval = async (price, address) => {
   //let web3Connect=await web3();
 
   const nftContract = new web3js.eth.Contract(abi, contractAddress);
@@ -332,6 +332,8 @@ export const ApproveTaboo = async (price, address) => {
   const nonce = await web3js.eth.getTransactionCount(address, "latest");
 
   console.log("data", address);
+
+  price=parseFloat(price)+10;
 
   price = "0x" + (price * 1000000000).toString(16);
 
