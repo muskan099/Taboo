@@ -69,22 +69,25 @@ const TransactionPage=()=>{
                                             </div>
                                         </td>
                                         <td>
-                                         
+                                        <a href={"https://testnet.bscscan.com/address/"+item.user_wallet_address} target={'_blank'}>
 
                                           {`${item.user_wallet_address?.slice(0, 3)}...${item.user_wallet_address?.slice(
                     -8
-                  )}`}
+                  )}`} </a>
                                         </td>
                                         <td>
+
+                                        <a href={"https://testnet.bscscan.com/tx/"+item.trans_id} target={'_blank'}>
                                           {}
 
                                           
                                           {`${item.trans_id?.slice(0, 3)}...${item.trans_id?.slice(
                     -8
-                  )}`}
+                  )}`}                </a>
                                         </td>
                                         <td>
                                            {item.contentinfo.token_id}
+                                          
                                         </td>
                                         <td><a href={item.contentinfo.ipfs} target="_blank"> 
                                         {`${item.contentinfo.ipfs?.slice(0, 3)}...${item.contentinfo.ipfs?.slice(
