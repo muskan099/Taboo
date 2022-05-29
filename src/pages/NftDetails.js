@@ -39,7 +39,8 @@ const NftDetails = () => {
 
   let { transactions } = useSelector((state) => state.transactions);
 
-  console.log("balance", nft.orders);
+  //console.log("balance", nft.orders);
+
   const { id } = useParams();
 
   // const [offerPrice, setOffferPrice] = useState("");
@@ -91,7 +92,8 @@ const NftDetails = () => {
   };
 
   const getData = () => {
-    const data = { id: id, tier: tier };
+    let userTier=tier?tier:"1 Tier";
+    const data = { id: id, tier:userTier };
 
     dispatch(getNftDetailSaga(data));
   };
@@ -104,7 +106,12 @@ const NftDetails = () => {
 
   const handleBuy = async (e) => {
     let price = parseFloat(nft.price);
-    if (balance < price) {
+    if(!isAuthenticated){
+
+      toast.warn("Please connect wallet!")
+
+    }
+    else if (balance < price) {
       toast.warn("You don't have sufficient taboo token!");
     } else {
       console.log("hello");
@@ -396,7 +403,7 @@ const NftDetails = () => {
                 <tbody>
                   <tr>
                     <td>Your Balance</td>
-                    <td>{balance} TABOO</td>
+                    <td>{balance && balance} TABOO</td>
                   </tr>
                   <tr>
                     <td>Service Fee</td>
