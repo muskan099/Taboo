@@ -333,7 +333,7 @@ export const TokenApproval = async (price, address) => {
 
   console.log("data", address);
 
-  price=parseFloat(price)+10;
+  price=parseInt(price)+parseInt(price);
 
   price = "0x" + (price * 1000000000).toString(16);
 

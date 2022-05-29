@@ -39,7 +39,7 @@ const NftDetails = () => {
 
   let { transactions } = useSelector((state) => state.transactions);
 
-  console.log("balance", balance);
+  console.log("balance", nft.orders);
   const { id } = useParams();
 
   // const [offerPrice, setOffferPrice] = useState("");
@@ -268,7 +268,7 @@ const NftDetails = () => {
                           />
                           <div>
                             <p>Owner</p>
-                            <h5>{nft.user && nft.user.name}</h5>
+                            <h5>{nft.orders?.user_wallet_address?nft.orders.user_wallet_address:nft.wallet_address}</h5>
                           </div>
                         </div>
                         <div class="owner-row-outer d-none">
@@ -285,22 +285,38 @@ const NftDetails = () => {
                       </div>
                     </Tab>
                     <Tab eventKey="owners" title="Owners">
-                      {nft.user && nft.user.name}
+                      <p>{nft.orders?.user_wallet_address?nft.orders.user_wallet_address:nft.wallet_address}</p>
+
+                      
                     </Tab>
                     <Tab eventKey="history" title="History">
-                      {"offers" in nft && nft.offers?.length > 0
-                        ? nft.offers.map((item, index) => (
-                            <div
-                              key={item._id}
-                              style={{ alignItems: "center" }}
-                            >
-                              <p>{`${item.wallet_address.slice(
+
+                   { nft.orders?.user_wallet_address? <table width={"400px"}>
+                         <tr>
+                          <th>Owner</th>
+
+                          <th>Price</th>
+                         </tr>
+
+                         <tr>
+                           <td>
+
+                          
+                              <p>{`${nft.orders.user_wallet_address.slice(
                                 0,
                                 5
-                              )}......${item.wallet_address.slice(-5)}`}</p>
-                            </div>
-                          ))
-                        : "No History Found"}
+                              )}......${nft.orders.user_wallet_address.slice(-5)}`}     </p>  
+                           
+                          
+
+                           </td>
+
+                           <td>
+                           {nft.price}
+                           </td>
+                         </tr>
+                       </table>: "No History Found"}
+                     
                     </Tab>
                     <Tab eventKey="bids" title="Bids">
                       No bids
@@ -496,15 +512,15 @@ const NftDetails = () => {
                 <tbody>
                   <tr>
                     <td>Your Balance</td>
-                    <td> {balance} $TABOO</td>
+                    <td> {balance} TABOO</td>
                   </tr>
                   <tr>
                     <td>Service Fee</td>
-                    <td>0 $TABOO</td>
+                    <td>0 TABOO</td>
                   </tr>
                   <tr>
                     <td>Total will Pay</td>
-                    <td>{nft && nft.price} $TABOO</td>
+                    <td>{nft && nft.price} TABOO</td>
                   </tr>
                 </tbody>
               </Table>
