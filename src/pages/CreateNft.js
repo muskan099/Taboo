@@ -451,6 +451,7 @@ const CreateNft = () => {
                               onChange={(e) => handleCategory(e)}
                             >
                               <option>Selct Category</option>
+                              <option value="Age">Age</option>
                               <option value="Sexy">Sexy</option>
                               <option value="Metaverse">Metaverse</option>
                               <option value="Lifestyle">lifestyle</option>
