@@ -124,7 +124,7 @@ const Header = () => {
               </a>
               <Nav.Link onClick={handleShow}>Magazine</Nav.Link>
               <Nav.Link onClick={handleShow}>News</Nav.Link>
-              <Nav.Link onClick={handleShow}>About</Nav.Link>
+              <Nav.Link href="/about">About</Nav.Link>
             </Nav>
           </Navbar.Collapse>
           {/*<InputGroup className="header-search">

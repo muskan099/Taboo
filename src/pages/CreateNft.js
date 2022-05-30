@@ -270,7 +270,7 @@ const CreateNft = () => {
                             </label>
                           </div>
                         </li>
-                        <li>
+                        <li className="d-none">
                           <div class="radio">
                             <label>
                               <input
