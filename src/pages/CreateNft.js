@@ -231,7 +231,7 @@ const CreateNft = () => {
 
       setCreateStart(false);
 
-      setTimeout(navigate("/explore"), 8000);
+      setTimeout(navigate("/explore"),120000);
     }
   };
 
@@ -452,6 +452,7 @@ const CreateNft = () => {
                             >
                               <option>Selct Category</option>
                               <option value="Age">Age</option>
+                              <option value="Jeni Summers">Jeni Summers</option>
                               <option value="Sexy">Sexy</option>
                               <option value="Metaverse">Metaverse</option>
                               <option value="Lifestyle">lifestyle</option>
