@@ -1,7 +1,7 @@
 import moment from "moment";
 import { web3 } from "./Web3Helper";
 
-const contractAddress = "0x1A8f2EE9B862Eba59F520754aA2dE537C7Be92b3";
+const contractAddress = "0xE51fD95ffb4206e876fE91F46002401CcbcC0250";
 
 const abi = [
   {
@@ -475,7 +475,7 @@ const abi = [
 
 const NftContractAddress = "0x0000000000000000000000000000000000000000";
 
-const tabooAddress = "0xE7a9b31D284d524e87BF002D85Acfcf5d1c9EA67";
+const tabooAddress = "0x9abDbA20EdFbA06B782126b4D8d72A5853918FD0";
 
 export const createAuction = async (
   token,
