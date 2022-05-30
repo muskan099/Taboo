@@ -26,6 +26,7 @@ import Farm from "./pages/Farm";
 import CreateNft from "./pages/CreateNft";
 import NFTList from "./pages/admin/NFTList";
 import TransactionList from "./pages/admin/TransactionList";
+import Aboutus from "./pages/Aboutus";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import Login from "./pages/Login";
@@ -62,6 +63,8 @@ function App() {
           <Route path="/create-nft" element={<CreateNft />} />
 
           <Route path="/farm" element={<Farm />} />
+
+          <Route path="/about" element={<Aboutus />} />
 
           <Route
             path="/nft-list"
