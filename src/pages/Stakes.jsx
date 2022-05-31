@@ -9,6 +9,8 @@ const Stakes = () => {
   const [stakesData, setStakesData] = useState(null);
   const [loading, setLoading] = useState(false);
 
+  const [processing,setProcessing]=useState(false)
+
 
   const handleWithdraw=async(data)=>{
       //console.log("helloS",data)
@@ -17,13 +19,21 @@ const Stakes = () => {
       if(stake_id){
         //console.log("stake id",stake_id)
 
+        setLoading(true);
+
+
         let res=await axios.post('https://blockchain.taboo.io/transfer-token',{stake_id:stake_id})
 
         console.log("res",res)
         if(res.data.status){
+
+          setLoading(false);
+
+          getData();
           toast.success("Withdraw request submitted successfully!")
         }else
           {
+            setLoading(false);
             toast.warn("Something went wrong")
           }
       }
@@ -115,9 +125,12 @@ const Stakes = () => {
                           <td width="15%">
                             <button  onClick={()=>handleWithdraw(item)}
                               className="common-btn white-btn withdrow-btn"
-                              disabled={item.stakeinfo.status=="closed"?true:false}
+                              disabled={item.stakeinfo.status=="closed"||processing?true:false}
                             >
-                              {item.stakeinfo.status=="closed"?'Closed':' Withdraw'}
+                              { 
+                                   item.stakeinfo.status=="closed"?'Closed':' Withdraw'
+                                
+                             }
                               
                             </button>
                           </td>
