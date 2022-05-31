@@ -76,6 +76,11 @@ const Header = () => {
   };
 
   useEffect(() => {
+
+      if(!hasWebsiteAccess){
+            navigate('/')
+          }
+          
     if (!isAuthenticated && window.location.pathname === "/login") {
       navigate("/login");
     } else if (!isAuthenticated && window.location.pathname === "/signup") {
