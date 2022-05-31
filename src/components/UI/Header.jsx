@@ -232,6 +232,9 @@ const Header = () => {
         className="modal-comming-soon"
         show={!hasWebsiteAccess}
         onHide={grantWebsiteAccess}
+
+        backdrop="static"
+        keyboard={false}
       >
         <Modal.Header closeButton className="border-none"></Modal.Header>
         <Modal.Body>
