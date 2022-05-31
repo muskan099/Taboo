@@ -261,7 +261,7 @@ const Header = () => {
                 }
               }}
             >
-              Enter Website
+              Submit
             </Button>
           </div>
         </Modal.Body>
