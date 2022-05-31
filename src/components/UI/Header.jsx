@@ -51,7 +51,7 @@ const Header = () => {
   );
   const grantWebsiteAccess = () => setHasWebsiteAccess(true);
 
-  const accessWebsite=()=>setHasWebsiteAccess(true);
+  const accessWebsite=()=>setHasWebsiteAccess(false);
 
   const handleLogin = async () => {
     let address = await Connect();
