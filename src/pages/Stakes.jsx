@@ -1,22 +1,39 @@
 import React, { useEffect, useState } from "react";
+import axios from "axios";
 import { Table, Row, Col, Container, Spinner } from "react-bootstrap";
 import { useSelector } from "react-redux";
-import axios from "../http/axios/axios_main";
+//import axios from "../http/axios/axios_main";
 
 const Stakes = () => {
   const { walletAddress } = useSelector((state) => state.auth);
   const [stakesData, setStakesData] = useState(null);
   const [loading, setLoading] = useState(false);
 
-  useEffect(() => {
-    async function getData() {
-      setLoading(true);
-      const res = await axios.post("/stakes", { address: walletAddress });
-      if (res.status === 200) {
-        setStakesData(res.data);
+
+  const handleWithdraw=async(data)=>{
+      let stake_id=data.stake_id;
+      
+      if(stake_id){
+        console.log("stake id",stake_id)
+
+        let res=await axios.post('https://blockchain.taboo.io/transfer-token',{stake_id:stake_id})
+
+        console.log("res",res)
       }
-      setLoading(false);
+
+  }
+
+  async function getData() {
+    setLoading(true);
+    const res = await axios.post("https://api.taboo.io/stakes", { address: walletAddress });
+    if (res.status === 200) {
+      setStakesData(res.data);
     }
+    setLoading(false);
+  }
+
+  useEffect(() => {
+    
     getData();
   }, []);
 
@@ -89,11 +106,12 @@ const Stakes = () => {
                             </span>
                           </td>
                           <td width="15%">
-                            <button
+                            <button  onClick={()=>handleWithdraw(item)}
                               className="common-btn white-btn withdrow-btn"
-                              disabled
+                              disabled={item.stakeinfo.status=="closed"?true:false}
                             >
-                              Withdraw
+                              {item.stakeinfo.status=="closed"?'Closed':' Withdraw'}
+                              
                             </button>
                           </td>
                         </tr>
