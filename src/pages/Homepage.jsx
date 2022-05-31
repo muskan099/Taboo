@@ -11,7 +11,8 @@ const Homepage = () => {
   console.log(isAbove18);
   const [showImg, setShowImg] = useState(false);
   const [show, setShow] = useState(false);
-  const [isBelow18, setIsBelow18] = useState(isAbove18 ? false : true);
+  // const [isBelow18, setIsBelow18] = useState(isAbove18 ? false : true);
+  const [isBelow18, setIsBelow18] = useState(false);
   const [ageError, setAgeError] = useState(false);
 
   const handleClose = () => setShow(false);
@@ -464,7 +465,7 @@ const Homepage = () => {
                       </div>
                     </div>
                   </li>
-                 
+
                   <li>
                     <div>
                       <img
@@ -515,7 +516,6 @@ const Homepage = () => {
                       </div>
                     </div>
                   </li>
-                
                 </ul>
               </div>
             </Col>

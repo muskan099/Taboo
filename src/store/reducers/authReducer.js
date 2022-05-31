@@ -1,5 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 
+const hasWebsiteAccess = localStorage.getItem("hasWebsiteAccess");
 const isAuthenticated = localStorage.getItem("isAuthenticated");
 const isUserAuthenticated = localStorage.getItem("isUserAuthenticated");
 const userRole = localStorage.getItem("userRole");
@@ -14,6 +15,7 @@ const authSlice = createSlice({
   initialState: {
     isLoading: false,
     walletAddress: !!walletAddress ? walletAddress : "",
+    hasWebsiteAccess: hasWebsiteAccess ? Boolean(hasWebsiteAccess) : false,
     isAuthenticated: !!isAuthenticated ? true : false,
     isUserAuthenticated: !!isUserAuthenticated ? true : false,
     userRole: !!userRole ? userRole : "",
@@ -25,6 +27,8 @@ const authSlice = createSlice({
   },
 
   reducers: {
+    grantWebsiteAccessAction: (state) => ({ ...state, hasWebsiteAccess: true }),
+
     loginSaga: (state, action) => {
       return { ...state };
     },
@@ -244,6 +248,7 @@ const authSlice = createSlice({
 });
 
 export const {
+  grantWebsiteAccessAction,
   googleLoginSaga,
   loginSaga,
   loginStart,

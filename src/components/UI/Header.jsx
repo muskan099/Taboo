@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import Web3 from "web3";
 import {
   Form,
@@ -22,16 +22,34 @@ import userIcon from "../../assets/user-icon.png";
 import { TabooBalance } from "../../helpers/TabooHelper";
 import { TabooPunk } from "../../helpers/TabooPunk";
 import { TierHelper } from "../../helpers/TierHelper";
-import { loginSaga, logout } from "../../store/reducers/authReducer";
+import {
+  grantWebsiteAccessAction,
+  loginSaga,
+  logout,
+} from "../../store/reducers/authReducer";
+import { toast } from "react-toastify";
 
 const Header = () => {
+  const websiteAccessPassCodeRef = useRef(null);
+  const secretPass = `Taboo@#$258`;
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const {
+    isAuthenticated,
+    walletAddress,
+    hasWebsiteAccess: hasWebsiteAccessRedux,
+  } = useSelector((state) => state.auth);
 
   // Modal Code
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
+
+  // website access authorisation Modal
+  const [hasWebsiteAccess, setHasWebsiteAccess] = useState(
+    hasWebsiteAccessRedux ? true : false
+  );
+  const grantWebsiteAccess = () => setHasWebsiteAccess(true);
 
   const handleLogin = async () => {
     let address = await Connect();
@@ -54,8 +72,6 @@ const Header = () => {
       );
     }
   };
-
-  const { isAuthenticated, walletAddress } = useSelector((state) => state.auth);
 
   useEffect(() => {
     if (!isAuthenticated && window.location.pathname === "/login") {
@@ -127,75 +143,6 @@ const Header = () => {
               <Nav.Link href="/about">About</Nav.Link>
             </Nav>
           </Navbar.Collapse>
-          {/*<InputGroup className="header-search">
-            <FormControl placeholder="Search By Username Or Hashtag" />
-            <InputGroup.Text>
-              <img src={"images/icons-Search-Line.png"} />
-            </InputGroup.Text>
-          </InputGroup>*/}
-
-          {/*<Dropdown>
-            <Dropdown.Toggle className="notfication-link">
-              <img src={"images/icons-Bell-Line.png"} alt="bell" />
-            </Dropdown.Toggle>
-
-            <Dropdown.Menu className="notify-dropdown">
-              <div>
-                <ul>
-                  <li>
-                    <div>
-                      <p>
-                        <small>Today</small>
-                      </p>
-                      <h6>Lorem Ipsum is simply dummy</h6>
-
-                      <p>Lorem Ipsum is simply dummy text ...</p>
-                    </div>
-                  </li>
-                  <li>
-                    <div>
-                      <p>
-                        <small>Today</small>
-                      </p>
-                      <h6>Lorem Ipsum is simply dummy</h6>
-
-                      <p>Lorem Ipsum is simply dummy text ...</p>
-                    </div>
-                  </li>
-                  <li>
-                    <div>
-                      <p>
-                        <small>Today</small>
-                      </p>
-                      <h6>Lorem Ipsum is simply dummy</h6>
-
-                      <p>Lorem Ipsum is simply dummy text ...</p>
-                    </div>
-                  </li>
-                  <li>
-                    <div>
-                      <p>
-                        <small>Today</small>
-                      </p>
-                      <h6>Lorem Ipsum is simply dummy</h6>
-
-                      <p>Lorem Ipsum is simply dummy text ...</p>
-                    </div>
-                  </li>
-                  <li>
-                    <div>
-                      <p>
-                        <small>Today</small>
-                      </p>
-                      <h6>Lorem Ipsum is simply dummy</h6>
-
-                      <p>Lorem Ipsum is simply dummy text ...</p>
-                    </div>
-                  </li>
-                </ul>
-              </div>
-            </Dropdown.Menu>
-          </Dropdown>*/}
 
           {!isAuthenticated ? (
             <Button
@@ -215,7 +162,14 @@ const Header = () => {
                   )}`}{" "}
                 </div>
                 <Dropdown.Toggle className="Dropdown-wallet-new">
-                  <img src={"https://taboonft.s3.us-east-2.amazonaws.com/icons/Taboo-logo-3.61280c399d2252.47125802.png"} alt="" height={30} width={30} />
+                  <img
+                    src={
+                      "https://taboonft.s3.us-east-2.amazonaws.com/icons/Taboo-logo-3.61280c399d2252.47125802.png"
+                    }
+                    alt=""
+                    height={30}
+                    width={30}
+                  />
                 </Dropdown.Toggle>
                 <Dropdown.Menu>
                   <Dropdown.Item>
@@ -266,6 +220,39 @@ const Header = () => {
           <div className="outer-div">
             <img src={"images/coming-soon.png"} className="img-fluid" />
             <h5>This page will be Added Soon</h5>
+          </div>
+        </Modal.Body>
+      </Modal>
+
+      {/* Website Authorisation Modal */}
+      <Modal
+        size="lg"
+        aria-labelledby="contained-modal-title-vcenter"
+        centered
+        className="modal-comming-soon"
+        show={!hasWebsiteAccess}
+        onHide={grantWebsiteAccess}
+      >
+        <Modal.Header closeButton className="border-none"></Modal.Header>
+        <Modal.Body>
+          <div className="outer-div">
+            <h5>Enter Pass Code To Access Website</h5>
+            <input type="password" ref={websiteAccessPassCodeRef} />
+            <Button
+              className="common-btn"
+              variant="outline-success"
+              onClick={() => {
+                if (secretPass === websiteAccessPassCodeRef.current.value) {
+                  setHasWebsiteAccess(true);
+                  localStorage.setItem("hasWebsiteAccess", true);
+                  dispatch(grantWebsiteAccessAction());
+                } else {
+                  toast.error("InValid Password");
+                }
+              }}
+            >
+              Enter Website
+            </Button>
           </div>
         </Modal.Body>
       </Modal>
