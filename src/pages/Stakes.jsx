@@ -3,7 +3,7 @@ import axios from "axios";
 import { Table, Row, Col, Container, Spinner } from "react-bootstrap";
 import { useSelector } from "react-redux";
 //import axios from "../http/axios/axios_main";
-
+import { toast } from "react-toastify";
 const Stakes = () => {
   const { walletAddress } = useSelector((state) => state.auth);
   const [stakesData, setStakesData] = useState(null);
@@ -11,14 +11,21 @@ const Stakes = () => {
 
 
   const handleWithdraw=async(data)=>{
-      let stake_id=data.stake_id;
+      //console.log("helloS",data)
+      let stake_id=data._id;
       
       if(stake_id){
-        console.log("stake id",stake_id)
+        //console.log("stake id",stake_id)
 
         let res=await axios.post('https://blockchain.taboo.io/transfer-token',{stake_id:stake_id})
 
         console.log("res",res)
+        if(res.data.status){
+          toast.success("Withdraw request submitted successfully!")
+        }else
+          {
+            toast.warn("Something went wrong")
+          }
       }
 
   }
