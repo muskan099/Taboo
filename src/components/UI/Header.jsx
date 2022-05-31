@@ -51,6 +51,8 @@ const Header = () => {
   );
   const grantWebsiteAccess = () => setHasWebsiteAccess(true);
 
+  const accessWebsite=()=>setHasWebsiteAccess(true);
+
   const handleLogin = async () => {
     let address = await Connect();
 
@@ -231,7 +233,7 @@ const Header = () => {
         centered
         className="modal-comming-soon"
         show={!hasWebsiteAccess}
-        onHide={grantWebsiteAccess}
+        onHide={accessWebsite}
 
         backdrop="static"
         keyboard={false}
