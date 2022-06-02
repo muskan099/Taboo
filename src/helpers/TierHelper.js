@@ -1,8 +1,8 @@
 import axios from "axios";
 
-export const TierHelper=async(punk,balance)=>{
+export const TierHelper=async(punk,balance,walletAddress)=>{
 
-    let usd_balance=await tabooRate(balance);
+    let usd_balance=await tabooRate(balance,walletAddress);
 
       if(punk>0){
             return "3 Tier";
@@ -21,7 +21,13 @@ export const TierHelper=async(punk,balance)=>{
 }
 
 
-const tabooRate=async(taboo)=>{
+const tabooRate=async(taboo,walletAddress)=>{
+
+   const res = await axios.post("https://api.taboo.io/stakes", { address: walletAddress });
+
+   console.log("res",res.data.total_stake)
+
+   taboo=taboo+parseFloat(res.data.total_stake)
  
     let response = await axios.get('https://api.coingecko.com/api/v3/simple/price?ids=taboo-token&vs_currencies=usd&include_market_cap=true&include_24hr_vol=true&include_24hr_change=true&include_last_updated_at=true');
   //console.log('response',response)

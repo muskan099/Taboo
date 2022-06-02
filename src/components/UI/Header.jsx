@@ -60,7 +60,7 @@ const Header = () => {
     // console.log("punks",punk)
     //let tier=punk>0?"3 Tier":"1 Tier"
     let balance = await TabooBalance(address[0]);
-    let tier = await TierHelper(punk, balance);
+    let tier = await TierHelper(punk, balance,address[0]);
     console.log("balance", balance);
 
     if (address && address.length) {
