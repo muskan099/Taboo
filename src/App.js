@@ -97,7 +97,7 @@ function App() {
 
           <Route path="/stakes" element={<Stakes />} />
 
-          <Route path="/artist" element={<Artist />} />
+          <Route path="/models" element={<Artist />} />
         </Routes>
         <Footer />
       </BrowserRouter>

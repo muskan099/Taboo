@@ -99,7 +99,7 @@ const handleSearch=async(e)=>{
 
 							<Col xl={3} lg={4} md={6} sm={6} xs={12}>
 							<div class="outer-explor-box artist-list-box">
-								<Link to={`/details/${item._id}`}>
+								<Link to="#">
 								<img className="img-main"  src={item.image} />
 								</Link>
 								 
