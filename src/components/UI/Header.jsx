@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import Web3 from "web3";
 import {
   Form,
@@ -21,40 +21,74 @@ import { Provider } from "../../helpers/Web3Helper";
 import userIcon from "../../assets/user-icon.png";
 import { TabooBalance } from "../../helpers/TabooHelper";
 import { TabooPunk } from "../../helpers/TabooPunk";
-import { loginSaga, logout } from "../../store/reducers/authReducer";
-
+import { TierHelper } from "../../helpers/TierHelper";
+import {
+  grantWebsiteAccessAction,
+  loginSaga,
+  logout,
+} from "../../store/reducers/authReducer";
+import { toast } from "react-toastify";
 
 const Header = () => {
-
+  const websiteAccessPassCodeRef = useRef(null);
+  const secretPass = `Taboo@#$258`;
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  
+  const {
+    isAuthenticated,
+    walletAddress,
+    hasWebsiteAccess: hasWebsiteAccessRedux,
+  } = useSelector((state) => state.auth);
+
   // Modal Code
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
 
+  // website access authorisation Modal
+  const [hasWebsiteAccess, setHasWebsiteAccess] = useState(
+    hasWebsiteAccessRedux ? true : false
+  );
+  const grantWebsiteAccess = () => setHasWebsiteAccess(true);
+
+  const accessWebsite=()=>setHasWebsiteAccess(false);
 
   const handleLogin = async () => {
     let address = await Connect();
 
-    let punk= 0 //await TabooPunk(address[0]);
+    let punk = await TabooPunk(address[0]);
     // console.log("punks",punk)
-    let tier=punk>0?"3 Tier":"1 Tier"
-    let balance=0// await TabooBalance(address[0])
-    console.log("balance",balance)
+    //let tier=punk>0?"3 Tier":"1 Tier"
+    let balance = await TabooBalance(address[0]);
+    let tier = await TierHelper(punk, balance,address[0]);
+    console.log("balance", balance);
 
     if (address && address.length) {
-      dispatch(loginSaga({ address: address[0],balance:balance,tabooPunk:punk,tier:tier}));
+      dispatch(
+        loginSaga({
+          address: address[0],
+          balance: balance,
+          tabooPunk: punk,
+          tier: tier,
+        })
+      );
     }
   };
 
-  const { isAuthenticated, walletAddress } = useSelector((state) => state.auth);
-
   useEffect(() => {
-    if (!isAuthenticated) {
-      navigate("/");
+
+      if(!hasWebsiteAccess){
+            navigate('/')
+          }
+          
+    if (!isAuthenticated && window.location.pathname === "/login") {
+      navigate("/login");
+    } else if (!isAuthenticated && window.location.pathname === "/signup") {
+      navigate("/signup");
     }
+    // else if (!isAuthenticated) {
+    //   navigate("/");
+    // }
   }, [isAuthenticated]);
 
   const handleLogout = async () => {
@@ -62,38 +96,32 @@ const Header = () => {
   };
 
   useEffect(async () => {
-
-    
-   if(isAuthenticated){
-
-  
-    let provider = await Provider();
-    provider.on("accountsChanged", (accounts) => {
+    if (isAuthenticated) {
+      let provider = await Provider();
+      provider.on("accountsChanged", (accounts) => {
         console.log(accounts);
         handleLogin();
-    });
+      });
 
-    // Subscribe to chainId change
-    provider.on("chainChanged", (chainId) => {
+      // Subscribe to chainId change
+      provider.on("chainChanged", (chainId) => {
         console.log(chainId);
         handleLogin();
-    });
+      });
 
-    // Subscribe to provider connection
-    provider.on("connect",(info)  => {
+      // Subscribe to provider connection
+      provider.on("connect", (info) => {
         console.log(info);
-    });
+      });
 
-    // Subscribe to provider disconnection
-    provider.on("disconnect", (error) => {
+      // Subscribe to provider disconnection
+      provider.on("disconnect", (error) => {
         console.log(error);
 
         handleLogout();
-    });
-   }
-});
-
-
+      });
+    }
+  });
 
   return (
     <header className="header-main">
@@ -101,91 +129,27 @@ const Header = () => {
         <Container className="header-container">
           <Navbar.Brand>
             <Link to="/">
-              <img src={"https://taboonft.s3.us-east-2.amazonaws.com/images/Logo_big-red.png"} alt="logo" />
+              <img
+                src={
+                  "https://taboonft.s3.us-east-2.amazonaws.com/images/Logo_big-red.png"
+                }
+                alt="logo"
+              />
             </Link>
           </Navbar.Brand>
           <Navbar.Toggle aria-controls="navbarScroll" />
           <Navbar.Collapse id="navbarScroll">
             <Nav className="me-auto my-2 my-lg-0">
-              <Nav.Link onClick={handleShow} >Explore</Nav.Link>
+              <Link to="/explore" className="nav-link">Explore</Link>
 
-              <a href="https://punks.taboo.io/" target={'_blank'} className="nav-link">
+              <a href="https://opensea.io/collection/taboopunks" className="nav-link">
                 TabooPunks
               </a>
               <Nav.Link onClick={handleShow}>Magazine</Nav.Link>
               <Nav.Link onClick={handleShow}>News</Nav.Link>
-              <Nav.Link onClick={handleShow}>About</Nav.Link>
+              <Nav.Link href="/about">About</Nav.Link>
             </Nav>
           </Navbar.Collapse>
-          {/*<InputGroup className="header-search">
-            <FormControl placeholder="Search By Username Or Hashtag" />
-            <InputGroup.Text>
-              <img src={"images/icons-Search-Line.png"} />
-            </InputGroup.Text>
-          </InputGroup>*/}
-
-          {/*<Dropdown>
-            <Dropdown.Toggle className="notfication-link">
-              <img src={"images/icons-Bell-Line.png"} alt="bell" />
-            </Dropdown.Toggle>
-
-            <Dropdown.Menu className="notify-dropdown">
-              <div>
-                <ul>
-                  <li>
-                    <div>
-                      <p>
-                        <small>Today</small>
-                      </p>
-                      <h6>Lorem Ipsum is simply dummy</h6>
-
-                      <p>Lorem Ipsum is simply dummy text ...</p>
-                    </div>
-                  </li>
-                  <li>
-                    <div>
-                      <p>
-                        <small>Today</small>
-                      </p>
-                      <h6>Lorem Ipsum is simply dummy</h6>
-
-                      <p>Lorem Ipsum is simply dummy text ...</p>
-                    </div>
-                  </li>
-                  <li>
-                    <div>
-                      <p>
-                        <small>Today</small>
-                      </p>
-                      <h6>Lorem Ipsum is simply dummy</h6>
-
-                      <p>Lorem Ipsum is simply dummy text ...</p>
-                    </div>
-                  </li>
-                  <li>
-                    <div>
-                      <p>
-                        <small>Today</small>
-                      </p>
-                      <h6>Lorem Ipsum is simply dummy</h6>
-
-                      <p>Lorem Ipsum is simply dummy text ...</p>
-                    </div>
-                  </li>
-                  <li>
-                    <div>
-                      <p>
-                        <small>Today</small>
-                      </p>
-                      <h6>Lorem Ipsum is simply dummy</h6>
-
-                      <p>Lorem Ipsum is simply dummy text ...</p>
-                    </div>
-                  </li>
-                </ul>
-              </div>
-            </Dropdown.Menu>
-          </Dropdown>*/}
 
           {!isAuthenticated ? (
             <Button
@@ -205,35 +169,40 @@ const Header = () => {
                   )}`}{" "}
                 </div>
                 <Dropdown.Toggle className="Dropdown-wallet-new">
-                  <img src={userIcon} alt="" height={30} width={30} />
+                  <img
+                    src={
+                      "https://taboonft.s3.us-east-2.amazonaws.com/icons/Taboo-logo-3.61280c399d2252.47125802.png"
+                    }
+                    alt=""
+                    height={30}
+                    width={30}
+                  />
                 </Dropdown.Toggle>
                 <Dropdown.Menu>
-                 
-
-                 {/* <Dropdown.Item>
+                  <Dropdown.Item>
                     <Link to="/transactions" className="dropdown-item">
                       Collections
                     </Link>
                   </Dropdown.Item>
 
-                  <Dropdown.Item>
+                {/*  <Dropdown.Item>
                     <Link to="/create-nft" className="dropdown-item">
                       Create NFT
                     </Link>
-                  </Dropdown.Item>
+                  </Dropdown.Item> */}
 
                   <Dropdown.Item>
                     <Link to="/create-stake" className="dropdown-item">
                       Create Stake
                     </Link>
-                  </Dropdown.Item>*/}
+                  </Dropdown.Item>
 
                   <Dropdown.Item>
                     <Link to="/stakes" className="dropdown-item">
                       Stakes
                     </Link>
                   </Dropdown.Item>
-                  
+
                   <Dropdown.Item>
                     <button className="dropdown-item" onClick={handleLogout}>
                       Logout
@@ -260,6 +229,42 @@ const Header = () => {
           <div className="outer-div">
             <img src={"images/coming-soon.png"} className="img-fluid" />
             <h5>This page will be Added Soon</h5>
+          </div>
+        </Modal.Body>
+      </Modal>
+
+      {/* Website Authorisation Modal */}
+      <Modal
+        size="lg"
+        aria-labelledby="contained-modal-title-vcenter"
+        centered
+        className="modal-comming-soon"
+        show={!hasWebsiteAccess}
+        onHide={accessWebsite}
+
+        backdrop="static"
+        keyboard={false}
+      >
+        <Modal.Header closeButton className="border-none"></Modal.Header>
+        <Modal.Body>
+          <div className="outer-div">
+            <h5>Enter Pass Code To Access Website</h5>
+            <input type="password" ref={websiteAccessPassCodeRef} />
+            <Button
+              className="common-btn"
+              variant="outline-success"
+              onClick={() => {
+                if (secretPass === websiteAccessPassCodeRef.current.value) {
+                  setHasWebsiteAccess(true);
+                  localStorage.setItem("hasWebsiteAccess", true);
+                  dispatch(grantWebsiteAccessAction());
+                } else {
+                  toast.error("InValid Password");
+                }
+              }}
+            >
+              Submit
+            </Button>
           </div>
         </Modal.Body>
       </Modal>
