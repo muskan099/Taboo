@@ -530,7 +530,7 @@ body {
 .footer-upper-row ul li a {
   font-size: 13px;
   text-decoration: none;
-  color: #aaa;
+  color: #000;
   display: inline-block;
   margin: 8px 0;
   cursor: pointer;
