@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { Row, Col, Container, Accordion, Dropdown,Form,FormControl,Button, InputGroup, } from "react-bootstrap";
 import { getNftSaga } from "../store/reducers/nftReducer";
-
+import { axios } from "../http";
 
 const Artist =()=>{
    
@@ -16,9 +16,9 @@ const Artist =()=>{
 
 	const { isAuthenticated, walletAddress,tier } = useSelector((state) => state.auth);
 
-	const { nft} = useSelector((state) => state.nft);
-    console.log('nft',nft.length)
-const getData=(page,limit=60,tier,search_tag,category)=>{
+const [nft,setNft]=useState('')
+
+const getData=async(page,limit=60,tier,search_tag,category)=>{
 	console.log('hh')
 	let data={tier:tier,
               page:page,
@@ -26,7 +26,13 @@ const getData=(page,limit=60,tier,search_tag,category)=>{
 			  search_tag:search_tag,
 			  category:category}
 			  
-	dispatch(getNftSaga(data));
+	let res=await axios.post('/users/getCreaterUserList',data)
+
+	console.log('res',res.data)
+
+	 if(res.data.status){
+		 setNft(res.data.data)
+	 }
 	
 }
 
