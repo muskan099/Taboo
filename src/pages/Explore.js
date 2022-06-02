@@ -261,8 +261,9 @@ const Explore = () => {
               </div>
             </Col>
           </Row>
+		  
           <Row className="align-items-top">
-            <Col xxl={3} xl={3} lg={4} md={4} sm={4} xs={12} className="">
+            <Col xxl={3} xl={3} lg={3} md={4} sm={6} xs={12} className="">
               <div className="list-outer-box">
                 <label className="heading-label">Price</label>
                 <div className="price-range-box">
@@ -474,8 +475,54 @@ const Explore = () => {
                 </div>
               </div>
             </Col>
-            <Col xxl={9} xl={9} lg={9} md={8} sm={8} xs={12}>
+            <Col xxl={9} xl={9} lg={9} md={8} sm={6} xs={12}>
               <div>
+				   <Row className="justify-content-end">
+                  <Col
+				  className="set-limit"
+                    lg={3}
+                    md={6}
+                    sm={6}
+                    xs={12}
+                    style={{ display: "flex", alignItems: "self-start" }}
+                  >
+                    <Form.Label  style={{ minWidth: "100px" }}>
+                      Set Limit
+                    </Form.Label>
+                    <Form.Select
+                      onChange={(e) => {
+                        setPaginationData((p) => ({
+                          ...p,
+                          limit: e.target.value,
+                        }));
+                        setCurrentPage(1);
+                      }}
+                    >
+                      
+                      <option value="25">25</option>
+                      <option value="50">50</option>
+                    </Form.Select>
+                  </Col>
+                  
+                  <Col className="d-none" lg={6} md={3} sm={6} xs={12}>
+                    {!isLoading &&
+                      nft?.length > 0 &&
+                      paginationData.pages?.length > 0 && (
+						  
+                        <Pagination style={{ justifyContent: "flex-end" }}>
+                          {paginationData.pages.map((page, index) => (
+                            <Pagination.Item
+                              key={page}
+                              active={currentPage === page}
+                              onClick={() => setCurrentPage(page)}
+                            >
+                              {page}
+                            </Pagination.Item>
+                          ))}
+                        </Pagination>
+                      )}
+                  </Col>
+				  </Row>
                 <Row>
                   <Col>
                     <div className="filer-right-box">
@@ -598,49 +645,8 @@ const Explore = () => {
                     </div>
                   </Col>
                 </Row>
-                <Row>
-                  <Col
-                    lg={4}
-                    md={2}
-                    sm={6}
-                    xs={12}
-                    style={{ display: "flex", alignItems: "self-start" }}
-                  >
-                    <Form.Label style={{ minWidth: "200px" }}>
-                      Set Limit
-                    </Form.Label>
-                    <Form.Select
-                      onChange={(e) => {
-                        setPaginationData((p) => ({
-                          ...p,
-                          limit: e.target.value,
-                        }));
-                        setCurrentPage(1);
-                      }}
-                    >
-                      
-                      <option value="25">25</option>
-                      <option value="50">50</option>
-                    </Form.Select>
-                  </Col>
-                  <Col lg={2} md={3} sm={6} xs={12}></Col>
-                  <Col lg={6} md={3} sm={6} xs={12}>
-                    {!isLoading &&
-                      nft?.length > 0 &&
-                      paginationData.pages?.length > 0 && (
-                        <Pagination style={{ justifyContent: "flex-end" }}>
-                          {paginationData.pages.map((page, index) => (
-                            <Pagination.Item
-                              key={page}
-                              active={currentPage === page}
-                              onClick={() => setCurrentPage(page)}
-                            >
-                              {page}
-                            </Pagination.Item>
-                          ))}
-                        </Pagination>
-                      )}
-                  </Col>
+               
+				  <Row>
                   {isLoading && (
                     <div className="text-center">
                       <Spinner animation="border" role="status" />
@@ -651,7 +657,7 @@ const Explore = () => {
                   )}
                   {!isLoading && nft?.length > 0
                     ? nft.map((item) => (
-                        <Col lg={4} md={6} sm={6} xs={12} key={item._id}>
+                        <Col lg={4} md={12} sm={12} xs={12} key={item._id}>
                           <div className="outer-explor-box">
                             <Link to={`/details/${item._id}`}>
                               <img className="img-main" src={item.image} />
@@ -705,6 +711,22 @@ const Explore = () => {
                       ))
                     : ""}
                 </Row>
+
+				<div className="pagination-new-exploror">
+				<Pagination>
+					<Pagination.Prev />
+					<Pagination.Item>{1}</Pagination.Item>
+					<Pagination.Item active>{2}</Pagination.Item>
+					<Pagination.Item>{3}</Pagination.Item>
+					<Pagination.Ellipsis />
+
+					
+					
+					<Pagination.Item>{25}</Pagination.Item>
+					<Pagination.Next />
+					
+					</Pagination>
+				</div>
               </div>
             </Col>
           </Row>

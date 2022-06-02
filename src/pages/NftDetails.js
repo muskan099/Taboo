@@ -239,12 +239,12 @@ const NftDetails = () => {
       <section className="explore-info-sec">
         <Container>
           <Row className="align-items-top">
-            <Col md={6} sm={6} xs={12}>
+            <Col md={6} sm={12} xs={12}>
               <div class="detail-box-img">
                 <img className="img-main" src={nft.image} />
               </div>
             </Col>
-            <Col md={5} sm={6} xs={12}>
+            <Col md={5} sm={12} xs={12}>
               <div class="detail-side-text">
                 <a href="" className="add-icon">
                   <img
