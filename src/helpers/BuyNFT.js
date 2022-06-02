@@ -1,6 +1,6 @@
 import { web3 } from "./Web3Helper";
 import {NFTBalance} from "./NFTBalance"
-export const BuyNFT = async (tokenId, uri, minPrice, signature) => {
+export const BuyNFT = async (tokenId, uri, minPrice, signature,tier) => {
   const Web3 = await web3();
 
   const accounts = await Web3.eth.getAccounts();
@@ -18,7 +18,7 @@ export const BuyNFT = async (tokenId, uri, minPrice, signature) => {
 
     const creator = "0x0000000000000000000000000000000000000000";
 
-    let amount = "0x" + (minPrice * 1000000000).toString(16);
+    let amount = "0x" + (2* 1000000000).toString(16);
     minPrice = minPrice.toString();
     // let amount = new Web3.utils.toWei(minPrice, "GWei");
     let token = await NFTBalance(); //Math.floor(Math.random() * 100);
@@ -40,8 +40,21 @@ export const BuyNFT = async (tokenId, uri, minPrice, signature) => {
 
     let admin_address = "0x41Bd0b0386B03BE3F543506DE7AA558171eEc07c";
     let adminPercent = 100;
-    let royaltyPercent = 200;
+    let royaltyPercent = 1000;
     let platformPercent = 1500;
+
+       if(tier=="3 Tier"){
+
+        royaltyPercent=500;
+
+      }else if(tier=="2 Tier")
+       {
+
+          royaltyPercent=700;
+
+       }
+
+
 
     console.log({
       selectedAccount,

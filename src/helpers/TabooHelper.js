@@ -54,3 +54,27 @@ const tabooRate=async(taboo)=>{
   return totalUsd
 }
 }
+
+
+export const tabooMarketData=async()=>{
+
+  let res=await axios.get("https://api.coingecko.com/api/v3/coins/taboo-token?market_data=true");
+
+  console.log("market data",res.data.market_data);
+
+  let market_cap=res.data.market_data.market_cap.usd;
+
+  let volume=res.data.market_data.total_volume.usd;
+
+  let price=res.data.market_data.current_price.usd;
+
+  //console.log("market cap",market_cap,volume,price);
+
+  let mObj={market_cap:market_cap,
+           volume:volume,
+          price:price}
+
+    return mObj;
+
+
+}

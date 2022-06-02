@@ -1,6 +1,10 @@
-import React, { useState } from "react";
+import CurrencyFormat from 'react-currency-format';
+import React, { useEffect, useState } from "react";
 import { Row, Col, Container, Modal } from "react-bootstrap";
 import { toast } from "react-toastify";
+
+
+import { tabooMarketData } from "../helpers/TabooHelper";
 
 const onClose = () => {
   window.close();
@@ -15,6 +19,8 @@ const Homepage = () => {
   const [isBelow18, setIsBelow18] = useState(false);
   const [ageError, setAgeError] = useState(false);
 
+  const[marketData,setMarketData]=useState(false)
+
   const handleClose = () => setShow(false);
   const handleAbove18 = () => {
     setIsBelow18(false);
@@ -25,6 +31,14 @@ const Homepage = () => {
     navigator.clipboard.writeText("0x9abdba20edfba06b782126b4d8d72a5853918fd0");
     toast.success("Smart Contract Copied To Clipboard");
   };
+
+  useEffect(async()=>{
+     let mdata=  await tabooMarketData();
+
+     setMarketData(mdata);
+
+
+  })
 
   return (
     <>
@@ -48,19 +62,26 @@ const Homepage = () => {
             <li>
               <div>
                 <p>Total Market Cap</p>
-                <h5>$27,030,368</h5>
+                <h5>
+                  
+                  <CurrencyFormat value={marketData.market_cap} displayType={'text'} thousandSeparator={true} prefix={'$'} />
+
+                 </h5>
               </div>
             </li>
             <li>
               <div>
                 <p>Current Price</p>
-                <h5>$0.002765</h5>
+                <h5>${marketData&&marketData.price}</h5>
               </div>
             </li>
             <li>
               <div>
                 <p>Volume 24H</p>
-                <h5>$1,089,578</h5>
+                <h5>
+                <CurrencyFormat value={marketData.volume} displayType={'text'} thousandSeparator={true} prefix={'$'} />
+                  
+                  </h5>
               </div>
             </li>
           </ul>

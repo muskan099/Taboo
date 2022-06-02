@@ -105,7 +105,7 @@ const NftDetails = () => {
   }, []);
 
   const handleBuy = async (e) => {
-    let price = parseFloat(nft.price);
+    let price = parseFloat(2);
     if(!isAuthenticated){
 
       toast.warn("Please connect wallet!")
@@ -140,7 +140,8 @@ const NftDetails = () => {
             nft.token_id,
             nft.ipfs,
             nft.price,
-            nft.signature
+            nft.signature,
+            tier
           );
           if (hash) {
             //toast.success("Order placed successfully!")

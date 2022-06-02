@@ -140,9 +140,9 @@ const Header = () => {
           <Navbar.Toggle aria-controls="navbarScroll" />
           <Navbar.Collapse id="navbarScroll">
             <Nav className="me-auto my-2 my-lg-0">
-              <Nav.Link href="/explore">Explore</Nav.Link>
+              <Link to="/explore" className="nav-link">Explore</Link>
 
-              <a href="https://punks.taboo.io/" className="nav-link">
+              <a href="https://opensea.io/collection/taboopunks" className="nav-link">
                 TabooPunks
               </a>
               <Nav.Link onClick={handleShow}>Magazine</Nav.Link>
@@ -185,11 +185,11 @@ const Header = () => {
                     </Link>
                   </Dropdown.Item>
 
-                  <Dropdown.Item>
+                {/*  <Dropdown.Item>
                     <Link to="/create-nft" className="dropdown-item">
                       Create NFT
                     </Link>
-                  </Dropdown.Item>
+                  </Dropdown.Item> */}
 
                   <Dropdown.Item>
                     <Link to="/create-stake" className="dropdown-item">

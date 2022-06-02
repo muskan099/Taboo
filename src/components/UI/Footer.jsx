@@ -5,11 +5,12 @@ import {
   Button,
   Row,
   Col,
-  Link,
   Modal,
   InputGroup,
   Container,
 } from "react-bootstrap";
+import { Link, useNavigate } from "react-router-dom";
+
 import { toast } from "react-toastify";
 import axiosMain from "../../http/axios/axios_main";
 
@@ -84,16 +85,16 @@ const Footer = () => {
                 </div>
             </div>
           </Col>
-          <Col md={2} sm={2}>
+          <Col md={4} sm={2}>
             <div>
               <h6>Crypto</h6>
               <ul>
                 <li>
-                  <a
-                    href="/explore"
+                  <Link
+                    to="/explore"
                   >
                     Discover
-                  </a>
+                  </Link>
                 </li>
                 <li>
                   <a
@@ -107,7 +108,10 @@ const Footer = () => {
                 </li>
                 <li>
                   <a
-                    href="/create-nft"
+                     onClick={(e) => {
+                      e.preventDefault();
+                      setShow(true);
+                    }}
                   >
                     Create NFT
                   </a>
@@ -115,7 +119,7 @@ const Footer = () => {
               </ul>
             </div>
           </Col>
-          <Col md={2} sm={2}>
+          <Col md={2} sm={2} className="d-none">
             <div>
               <h6>Info</h6>
               <ul>

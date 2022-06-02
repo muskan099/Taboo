@@ -19,7 +19,9 @@ p.align-item-left {
   text-align: justify;
 }
 
-
+a.telegram-link {
+  margin-left: 10px;
+}
 .social-links {
   padding: 27px 1px;
 }

@@ -49,8 +49,8 @@ const TransactionPage=()=>{
                                    <th>Image</th>
                                    <th>Wallet Address</th>
                                   <th>Trasaction Hash</th>
-                                  <th>Token</th>
-                                  <th>Ipfs Link</th>
+                                  <th className="d-none">Token</th>
+                                  <th className="d-none">Ipfs Link</th>
                                   <th>Status</th>
                                   
                                 </tr>
@@ -69,7 +69,7 @@ const TransactionPage=()=>{
                                             </div>
                                         </td>
                                         <td>
-                                        <a href={"https://testnet.bscscan.com/address/"+item.user_wallet_address} target={'_blank'}>
+                                        <a href={"https://www.bscscan.com/address/"+item.user_wallet_address} target={'_blank'}>
 
                                           {`${item.user_wallet_address?.slice(0, 3)}...${item.user_wallet_address?.slice(
                     -8
@@ -77,7 +77,7 @@ const TransactionPage=()=>{
                                         </td>
                                         <td>
 
-                                        <a href={"https://testnet.bscscan.com/tx/"+item.trans_id} target={'_blank'}>
+                                        <a href={"https://www.bscscan.com/tx/"+item.trans_id} target={'_blank'}>
                                           {}
 
                                           
@@ -85,11 +85,11 @@ const TransactionPage=()=>{
                     -8
                   )}`}                </a>
                                         </td>
-                                        <td>
+                                        <td className="d-none">
                                            {item.contentinfo.token_id}
                                           
                                         </td>
-                                        <td><a href={item.contentinfo.ipfs} target="_blank"> 
+                                        <td className="d-none"><a href={item.contentinfo.ipfs} target="_blank"> 
                                         {`${item.contentinfo.ipfs?.slice(0, 3)}...${item.contentinfo.ipfs?.slice(
                     -8
                   )}`}</a></td>
