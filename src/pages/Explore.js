@@ -1,6 +1,7 @@
 import React, { useEffect, useState, useRef } from "react";
-import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
+import { Link, useNavigate } from "react-router-dom";
+
 import {
   Row,
   Col,
@@ -54,6 +55,9 @@ function enableSlider($, changeStateFn) {
 const Explore = () => {
   const inputRangeRef = useRef(null);
   const dispatch = useDispatch();
+
+  const navigate=useNavigate()
+
   const [currentPage, setCurrentPage] = useState(1);
   console.log(this);
   const [paginationData, setPaginationData] = useState({
@@ -125,7 +129,14 @@ const Explore = () => {
 
   // console.log("nft tier \n", nftTier);
 
+  useEffect(()=>{
+    if(category=="Models"){
+      navigate('/models')
+    }
+  },[category])
+
   useEffect(() => {
+    
     enableSlider(jQuery, setFilterSearch);
   }, []);
 
@@ -590,11 +601,8 @@ const Explore = () => {
                       <ul>
                         {[
                           "All items",
-                          "Sexy",
+                          "Age",
                           "Models",
-                          "Metavers",
-                          "Lifestyles",
-                          "Premium",
                         ].map((item) => (
                           <li
                             className={category === item ? "active" : ""}
