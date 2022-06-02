@@ -142,12 +142,8 @@ const Homepage = () => {
                 </p>
                 <div className="d-flex align-items-center">
                   <a
-                    href=""
-                    className="common-btn"
-                    onClick={(e) => {
-                      e.preventDefault();
-                      setShow(true);
-                    }}
+                    href="/explore"
+                   
                   >
                     Marketplace{" "}
                   </a>

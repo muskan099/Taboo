@@ -453,6 +453,10 @@ const CreateNft = () => {
                               <option>Selct Category</option>
                               <option value="Age">Age</option>
                               <option value="Nude">Nude</option>
+                              <option value="Supercar">Supercar</option>
+                              <option value="Cabo">Cabo</option>
+                              <option value="Sporty">Sporty</option>
+                              <option value="SFW">SFW</option>
                               <option value="Khloe Terae">Khloe Terae</option>
                               <option value="Jeni Summers">Jeni Summers</option>
                               <option value="Sexy">Sexy</option>
