@@ -983,6 +983,20 @@ body {
   text-transform: initial;
   font-weight: 400;
 }
+.outer-explor-box.artist-list-box .price-line{
+  justify-content: center;
+  margin-top: 30px;
+}
+.outer-explor-box.artist-list-box .price-line h5 {
+  font-size: 20px;
+  font-weight: 600;
+}
+.outer-explor-box.artist-list-box .img-main{
+  height: 220px;
+  width: 220px;
+  border-radius: 50%;
+  object-fit: cover;
+}
 
 @media (max-width: 1300px) {
   .team-list {
@@ -1029,6 +1043,12 @@ body {
   .nft-side-about-us {
     right: -40px;
   }
+}
+@media (max-width: 1190px){
+  body .banner-section {
+    min-height: 600px;
+    background-position: center !important;
+}
 }
 
 @media (max-width: 1150px) {
@@ -1148,6 +1168,11 @@ body {
     min-height: 600px;
     background-position: center bottom 0 !important;
   }
+  .filer-right-box ul li a {
+    margin: 15px 0px 0 10px !important;
+    padding: 3px 5px !important;
+    
+}
 }
 @media (max-width: 820px) {
   .team-list {
@@ -2643,22 +2668,27 @@ text-align: left;
 .profile-img-left-box  .follow-row{
 
 }
-.profile-img-left-box  .follow-row a {
-    display: inline-block;
-    margin: 10px 5px;
+.profile-img-left-box  .follow-row a.icon-fl {
+  display: inline-block;
+  margin: 10px 5px;
+  height: 40px;
+  width: 40px;
+  border-radius: 50%;
+  border: 1px solid #ddd;
+  padding: 0 11px;
 }
 .profile-img-left-box  .follow-row a img {
-    height: 40px;
-    width: 40px;
-    border-radius: 50%;
+    height: 100%;
+    width: 100%;
+    object-fit: contain;
 }
 .social-media-icon a {
     display: inline-block;
-    margin: 30px 6px 20px;
+    margin: 30px 10px 20px;
 }
-.social-media-icon a img{
-  height: 28px;
-  width: 28px;
+.social-media-icon a img {
+  height: 20px;
+  width: 20px;
   object-fit: contain;
 }
 .slick-arrow.slick-prev {

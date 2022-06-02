@@ -85,7 +85,7 @@ const handleSearch=async(e)=>{
 	            <Col
 	              xxl={3}
 	              xl={3}
-	              lg={4}
+	              lg={3}
 	              md={4}
 	              sm={4}
 	              xs={12}
@@ -244,7 +244,7 @@ const handleSearch=async(e)=>{
 					    {nft.length>0?
 						 nft.map((item)=>
 
-							<Col lg={4} md={6} sm={6} xs={12}>
+							<Col lg={4} md={6} sm={12} xs={12}>
 							<div class="outer-explor-box">
 								<Link to={`/details/${item._id}`}>
 								<img className="img-main"  src={item.image} />

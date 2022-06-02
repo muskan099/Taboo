@@ -245,6 +245,8 @@ const Header = () => {
           )}
         </Container>
       </Navbar>
+
+      
       <Modal
         size="lg"
         aria-labelledby="contained-modal-title-vcenter"

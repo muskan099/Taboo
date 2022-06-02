@@ -25,6 +25,7 @@ import TransactionPage from "./pages/TransactionPage";
 import Farm from "./pages/Farm";
 import CreateNft from "./pages/CreateNft";
 import NFTList from "./pages/admin/NFTList";
+import Artist from "./pages/Artist";
 import TransactionList from "./pages/admin/TransactionList";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -77,6 +78,8 @@ function App() {
           <Route path="/details/:id" element={<NftDetails />} />
               
           <Route path="/stakes" element={<Stakes />} />
+
+          <Route path="/artist" element={<Artist />} />
         </Routes>
         <Footer />
       </BrowserRouter>

@@ -62,16 +62,16 @@ const Profile=()=>{
                              <small>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</small>
                          </p>
                      </div>
-                     <h5><a href=""><img  src={"images/Team/team7.png"} /> Https://www.Cjsparxx.com</a></h5>
+                     <h5><a href=""><img  src={"images/Shape.png"} /> Https://www.Cjsparxx.com</a></h5>
                      <div class="follow-row">
                          <a href="" className="blue-btn">Follow</a>
-                         <a href=""><img  src={"images/Team/team7.png"} /></a>
-                         <a href=""><img  src={"images/Team/team7.png"} /></a>
+                         <a href="" className="icon-fl"><img  src={"images/icons-Share Square-Line.png"} /></a>
+                         <a href="" className="icon-fl"><img  src={"images/icons-More-Line.png"} /></a>
                      </div>
                      <div class="social-media-icon">
-                        <a href=""><img  src={"images/Team/team7.png"} /></a>
-                         <a href=""><img  src={"images/Team/team7.png"} /></a> 
-                         <a href=""><img  src={"images/Team/team7.png"} /></a> 
+                        <a href=""><img  src={"images/Icons-Twitter-Line.png"} /></a>
+                         <a href=""><img  src={"images/Icons-Instagram-Line.png"} /></a> 
+                         <a href=""><img  src={"images/Icons-Facebook-Line.png"} /></a> 
                      </div>
 
                      <hr/>
