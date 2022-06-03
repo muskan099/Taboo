@@ -1,6 +1,8 @@
 import React, { useEffect, useState, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
+import OverlayTrigger from "react-bootstrap/OverlayTrigger";
+import Tooltip from "react-bootstrap/Tooltip";
 
 import {
   Row,
@@ -233,9 +235,14 @@ const Explore = () => {
     }
   };
 
+  const renderTooltip = props => (
+    <Tooltip {...props}>To unlock this content you must connect your wallet and hold a minimum $5000 of Taboo or a taboopunk.</Tooltip>
+  );
+
   return (
     <>
       <section className="team-sec-new">
+     
         <Container>
           <Row className="align-items-top">
             <Col className="">
@@ -667,7 +674,10 @@ const Explore = () => {
                         <Col lg={4} md={12} sm={12} xs={12} key={item._id}>
                           <div className="outer-explor-box">
                             <Link to={`/details/${item._id}`}>
-                              <img className="img-main" src={item.image} />
+                            <OverlayTrigger placement="top" overlay={renderTooltip}>
+                            <img className="img-main" src={item.image} />
+                            </OverlayTrigger>
+                             
                             </Link>
 
                             <div className="exploror-list-box">

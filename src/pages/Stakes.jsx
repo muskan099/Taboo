@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import { Table, Row, Col, Container, Spinner } from "react-bootstrap";
+import { Table, Row, Col, Container, Spinner,Modal } from "react-bootstrap";
 import { useSelector } from "react-redux";
 //import axios from "../http/axios/axios_main";
 import { toast } from "react-toastify";
@@ -11,6 +11,15 @@ const Stakes = () => {
 
   const [processing,setProcessing]=useState(false)
 
+  const [showModal, setShowModal] = useState(false);
+  const [ageError, setAgeError] = useState(false);
+
+  const[marketData,setMarketData]=useState(false)
+
+  const handleAbove18 = () => {
+    setShowModal(false);
+    localStorage.setItem("below-18", false);
+  };
 
   const handleWithdraw=async(data)=>{
       //console.log("helloS",data)
@@ -59,6 +68,7 @@ const Stakes = () => {
     <div>
       <div className="padding-strip"></div>
       <section className="section-stakes-table">
+        <button onClick={()=>setShowModal(true)}>Dummy Button</button>
         <Container>
           <Row>
             <Col>
@@ -133,6 +143,7 @@ const Stakes = () => {
                              }
                               
                             </button>
+
                           </td>
                         </tr>
                       ))}
@@ -146,6 +157,32 @@ const Stakes = () => {
           </Row>
         </Container>
       </section>
+      <Modal
+          size="lg"
+          aria-labelledby="contained-modal-title-vcenter"
+          centered
+          className="modal-comming-soon below-18-popup"
+          backdrop="static"
+          keyboard={false}
+          show={showModal}
+          onHide={handleAbove18}
+        >
+          <Modal.Header className="border-none p-0"></Modal.Header>
+          <Modal.Body className="outer-age-box">
+            {!ageError ? (
+              <>
+                <div className="outer-div">Are You sure you want to withdraw you stake amount.</div>
+                <button onClick={() => setAgeError(true)}>Submit</button>
+                <button onClick={handleAbove18}>Cancel</button>
+              </>
+            ) : (
+              <div className="outer-div mb-0">
+                <h3>Successfully withdraw...!!!</h3>
+                
+              </div>
+            )}
+          </Modal.Body>
+        </Modal>
     </div>
   );
 };
