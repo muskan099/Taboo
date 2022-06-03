@@ -9,6 +9,8 @@ const Stakes = () => {
   const [stakesData, setStakesData] = useState(null);
   const [loading, setLoading] = useState(false);
 
+  const [withdrawData,setWithdrawData]=useState(false)
+
   const [processing,setProcessing]=useState(false)
 
   const [showModal, setShowModal] = useState(false);
@@ -21,20 +23,37 @@ const Stakes = () => {
     localStorage.setItem("below-18", false);
   };
 
+
+  const handleWithdrawRequest=(data)=>{
+
+    setWithdrawData(data)
+    setShowModal(true)
+
+  }
+
+  const startWithdraw=async()=>{ //alert("Hello")
+      
+       await handleWithdraw(withdrawData);
+        
+  }
+
   const handleWithdraw=async(data)=>{
       //console.log("helloS",data)
       let stake_id=data._id;
-      
-      if(stake_id){
-        //console.log("stake id",stake_id)
 
+     
+      
+       if(stake_id){
+        //console.log("stake id",stake_id)
+        
         setLoading(true);
 
-
+        setShowModal(false)
         let res=await axios.post('https://blockchain.taboo.io/transfer-token',{stake_id:stake_id})
-
+       
         console.log("res",res)
         if(res.data.status){
+          setWithdrawData(false)
 
           setLoading(false);
 
@@ -42,6 +61,8 @@ const Stakes = () => {
           toast.success("Withdraw request submitted successfully!")
         }else
           {
+            setWithdrawData(false)
+
             setLoading(false);
             toast.warn("Something went wrong")
           }
@@ -68,7 +89,7 @@ const Stakes = () => {
     <div>
       <div className="padding-strip"></div>
       <section className="section-stakes-table">
-        <button onClick={()=>setShowModal(true)}>Dummy Button</button>
+        {/* <button onClick={()=>setShowModal(true)}>Dummy Button</button>  */}
         <Container>
           <Row>
             <Col>
@@ -133,7 +154,7 @@ const Stakes = () => {
                             </span>
                           </td>
                           <td width="15%">
-                            <button  onClick={()=>handleWithdraw(item)}
+                            <button  onClick={()=>handleWithdrawRequest(item)}
                               className="common-btn white-btn withdrow-btn"
                               disabled={item.stakeinfo.status=="closed"||processing?true:false}
                             >
@@ -171,8 +192,8 @@ const Stakes = () => {
           <Modal.Body className="outer-age-box">
             {!ageError ? (
               <>
-                <div className="outer-div">Are You sure you want to withdraw you stake amount.</div>
-                <button onClick={() => setAgeError(true)}>Submit</button>
+                <div className="outer-div">Are You sure you want to withdraw your stake amount.</div>
+                <button onClick={() => startWithdraw()}>Submit</button>
                 <button onClick={handleAbove18}>Cancel</button>
               </>
             ) : (
