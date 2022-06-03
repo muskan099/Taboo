@@ -61,7 +61,7 @@ const handleSearch=async(e)=>{
 	                <div className="outer-heading-line">
 	                	 <Row className="justify-content-between">
 	                       <Col md={6} sm={6} xs={12}>
-	                          <h3 className="main-heading-inner mb-0"><a href=""><img src={"images/right-arrow.png"} /></a> Artist</h3>
+	                          <h3 className="main-heading-inner mb-0"><a href=""><img src={"images/right-arrow.png"} /></a>Models</h3>
 	                       </Col>
 	                        <Col md={4} sm={6} xs={12}>
 	                          <div className="newsletter-box m-0">
@@ -99,9 +99,9 @@ const handleSearch=async(e)=>{
 
 							<Col xl={3} lg={4} md={6} sm={6} xs={12}>
 							<div class="outer-explor-box artist-list-box">
-								<Link to="#">
+								<a href={item.instagram} target={'_blank'}>
 								<img className="img-main"  src={item.image} />
-								</Link>
+								</a>
 								 
 								  <div className="exploror-list-box">
 									   <div className="price-line">

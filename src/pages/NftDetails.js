@@ -524,11 +524,11 @@ const NftDetails = () => {
                   </tr>
                   <tr>
                     <td>Service Fee</td>
-                    <td>0 TABOO</td>
+                    <td>15 TABOO</td>
                   </tr>
                   <tr>
                     <td>Total will Pay</td>
-                    <td>{nft && nft.price} TABOO</td>
+                    <td>{nft && parseFloat(nft.price)+15} TABOO</td>
                   </tr>
                 </tbody>
               </Table>
@@ -540,8 +540,8 @@ const NftDetails = () => {
                   }
                 />
                 <div>
-                  <h6>This Creator verified</h6>
-                  <p>Purchase this item at your own risk</p>
+                  <h6 style={{color:'10c743'}}>This Creator verified</h6>
+                  <p className="d-none">Purchase this item at your own risk</p>
                 </div>
               </div>
 

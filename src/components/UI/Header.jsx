@@ -47,7 +47,7 @@ const Header = () => {
 
   // website access authorisation Modal
   const [hasWebsiteAccess, setHasWebsiteAccess] = useState(
-    hasWebsiteAccessRedux ? true : false
+    hasWebsiteAccessRedux ? true : true
   );
   const grantWebsiteAccess = () => setHasWebsiteAccess(true);
 
@@ -142,12 +142,14 @@ const Header = () => {
             <Nav className="me-auto my-2 my-lg-0">
               <Link to="/explore" className="nav-link">Explore</Link>
 
-              <a href="https://opensea.io/collection/taboopunks" className="nav-link">
+              <a href="https://opensea.io/collection/taboopunks" target={'_blank'} className="nav-link">
                 TabooPunks
               </a>
               <Nav.Link onClick={handleShow}>Magazine</Nav.Link>
               <Nav.Link onClick={handleShow}>News</Nav.Link>
-              <Nav.Link href="/about">About</Nav.Link>
+              <Link to="/about" className="nav-link">About</Link>
+              <Link to="/models" className="nav-link">Models</Link>
+
             </Nav>
           </Navbar.Collapse>
 

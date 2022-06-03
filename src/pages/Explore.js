@@ -515,7 +515,7 @@ const Explore = () => {
                     </Form.Select>
                   </Col>
                   
-                  <Col className="d-none" lg={6} md={3} sm={6} xs={12}>
+                  <Col className="" lg={6} md={3} sm={6} xs={12}>
                     {!isLoading &&
                       nft?.length > 0 &&
                       paginationData.pages?.length > 0 && (
@@ -601,7 +601,6 @@ const Explore = () => {
                       <ul>
                         {[
                           "All items",
-                          "Age",
                           "Models",
                         ].map((item) => (
                           <li
@@ -720,7 +719,7 @@ const Explore = () => {
                     : ""}
                 </Row>
 
-				<div className="pagination-new-exploror">
+				<div className="pagination-new-exploror d-none">
 				<Pagination>
 					<Pagination.Prev />
 					<Pagination.Item>{1}</Pagination.Item>

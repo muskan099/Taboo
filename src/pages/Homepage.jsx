@@ -16,7 +16,7 @@ const Homepage = () => {
   const [showImg, setShowImg] = useState(false);
   const [show, setShow] = useState(false);
   // const [isBelow18, setIsBelow18] = useState(isAbove18 ? false : true);
-  const [isBelow18, setIsBelow18] = useState(false);
+  const [isBelow18, setIsBelow18] = useState(true);
   const [ageError, setAgeError] = useState(false);
 
   const[marketData,setMarketData]=useState(false)
@@ -52,7 +52,7 @@ const Homepage = () => {
                   alt="logo"
                   className="taboo-logo"
                 />
-                <h4>TABOO IS AN ADULT NFT PLATFORM & PLAYBOY OF CRYPTO</h4>
+                <h4>TABOO IS THE PLAYBOY OF CRYPTO</h4>
               </div>
             </Col>
           </Row>
