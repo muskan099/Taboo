@@ -1043,7 +1043,9 @@ body {
   justify-content: center;
   text-decoration: none !important;
 }
-
+.common-btn.buy-taboo-btn{
+  padding: 5px 20px !important;
+}
 .pagination-new-exploror{
   margin: 20px 0;
 }

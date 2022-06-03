@@ -1,8 +1,7 @@
 import React, { useEffect, useState, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
-import OverlayTrigger from "react-bootstrap/OverlayTrigger";
-import Tooltip from "react-bootstrap/Tooltip";
+
 import { Modal } from "react-bootstrap";
 
 import {
@@ -272,9 +271,7 @@ const Explore = () => {
 
           }
 
-  const renderTooltip = props => (
-    <Tooltip {...props}>To unlock this content you must connect your wallet and hold a minimum $5000 of Taboo or a taboopunk.</Tooltip>
-  );
+ 
 
   return (
     <>
@@ -711,9 +708,7 @@ const Explore = () => {
                         <Col lg={4} md={12} sm={12} xs={12} key={item._id}>
                           <div className="outer-explor-box">
                             <Link to="#"onClick={()=>handleNFTRedirect(item)}>
-                            <OverlayTrigger placement="top" overlay={renderTooltip}>
                             <img className="img-main" src={item.image} />
-                            </OverlayTrigger>
                              
                             </Link>
 
@@ -801,8 +796,8 @@ const Explore = () => {
           <Modal.Body className="outer-age-box">
            
                 <div className="outer-div">You need min $ {tierAmount&& tierAmount}k Taboo to unlock content.</div>
-                <button>Buy Taboo</button>
-                <button onClick={handleTierCheck}>Cancel</button>
+               <a href="" className="common-btn buy-taboo-btn">Buy Taboo</a>
+                <button className="common-btn" onClick={handleTierCheck}>Cancel</button>
              
            
           </Modal.Body>
