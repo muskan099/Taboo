@@ -811,7 +811,6 @@ const Explore = () => {
 
 
 
-
       </section>
     </>
   );
