@@ -99,9 +99,13 @@ const handleSearch=async(e)=>{
 
 							<Col xl={3} lg={4} md={6} sm={6} xs={12}>
 							<div class="outer-explor-box artist-list-box">
-								<a href={item.instagram} target={'_blank'}>
-								<img className="img-main"  src={item.image} />
-								</a>
+							  <div className="img-box-artist">
+							  <img className="img-main"  src={item.image} />
+
+								<div className="insta-link">
+									<a className="link-main" href={item.instagram} target={'_blank'}><i className="fa fa-instagram" ></i></a>
+								</div>
+							  </div>
 								 
 								  <div className="exploror-list-box">
 									   <div className="price-line">
