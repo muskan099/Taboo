@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import OverlayTrigger from "react-bootstrap/OverlayTrigger";
 import Tooltip from "react-bootstrap/Tooltip";
+import { Modal } from "react-bootstrap";
 
 import {
   Row,
@@ -61,7 +62,12 @@ const Explore = () => {
   const navigate=useNavigate()
 
   const [currentPage, setCurrentPage] = useState(1);
-  console.log(this);
+  //console.log(this);
+
+  const [tierCheck,setTierCheck]=useState(false)
+
+  const [tierAmount,setTierAmount]=useState('')
+
   const [paginationData, setPaginationData] = useState({
     skip: 0,
     limit: 25,
@@ -92,6 +98,9 @@ const Explore = () => {
   );
 
   const { nft, isLoading, totalNfts } = useSelector((state) => state.nft);
+
+  const handleTierCheck=()=>setTierCheck(false);
+
   // console.log("nft", nft.length);
   const getData = (
     page,
@@ -234,6 +243,34 @@ const Explore = () => {
       }));
     }
   };
+
+  const handleNFTRedirect=(data)=>{
+
+             console.log("data",data)
+
+             
+
+             if(data.lock){
+
+                 if(data.available_to.includes("3 Tier"))
+                 {
+                   setTierAmount(25)
+                 }else{
+                   setTierAmount(10)
+                 }
+
+                setTierCheck(true)
+
+             }else
+               { //alert("dgr")
+
+               setTimeout(()=>{navigate("/details/"+data._id)},500);
+                
+                 
+               }
+               
+
+          }
 
   const renderTooltip = props => (
     <Tooltip {...props}>To unlock this content you must connect your wallet and hold a minimum $5000 of Taboo or a taboopunk.</Tooltip>
@@ -673,7 +710,7 @@ const Explore = () => {
                     ? nft.map((item) => (
                         <Col lg={4} md={12} sm={12} xs={12} key={item._id}>
                           <div className="outer-explor-box">
-                            <Link to={`/details/${item._id}`}>
+                            <Link to="#"onClick={()=>handleNFTRedirect(item)}>
                             <OverlayTrigger placement="top" overlay={renderTooltip}>
                             <img className="img-main" src={item.image} />
                             </OverlayTrigger>
@@ -748,6 +785,33 @@ const Explore = () => {
             </Col>
           </Row>
         </Container>
+
+
+        <Modal
+          size="lg"
+          aria-labelledby="contained-modal-title-vcenter"
+          centered
+          className="modal-comming-soon below-18-popup"
+          backdrop="static"
+          keyboard={false}
+          show={tierCheck}
+          onHide={handleTierCheck}
+        >
+          <Modal.Header className="border-none p-0"></Modal.Header>
+          <Modal.Body className="outer-age-box">
+           
+                <div className="outer-div">You need min $ {tierAmount&& tierAmount}k Taboo to unlock content.</div>
+                <button>Buy Taboo</button>
+                <button onClick={handleTierCheck}>Cancel</button>
+             
+           
+          </Modal.Body>
+        </Modal>
+
+
+
+
+
       </section>
     </>
   );
