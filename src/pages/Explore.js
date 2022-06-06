@@ -34,8 +34,8 @@ function enableSlider($, changeStateFn) {
   $("#slider-range").slider({
     range: true,
     min: 0,
-    max: 25000,
-    values: [0, 15000],
+    max: 1000000,
+    values: [0, 1000000],
     slide: function (event, ui) {
       changeStateFn((p) => ({
         ...p,
@@ -69,7 +69,7 @@ const Explore = () => {
 
   const [paginationData, setPaginationData] = useState({
     skip: 0,
-    limit: 25,
+    limit:60,
     pages: [],
   });
 
@@ -103,7 +103,7 @@ const Explore = () => {
   // console.log("nft", nft.length);
   const getData = (
     page,
-    limit = 25,
+    limit =60,
     skip = 0,
     tier,
     search_tag,
@@ -253,12 +253,20 @@ const Explore = () => {
 
                  if(data.available_to.includes("3 Tier"))
                  {
-                   setTierAmount(25)
-                 }else{
-                   setTierAmount(10)
+                   setTierAmount(5000)
+                   setTierCheck(true)
+                 }else if(data.available_to.includes("2 Tier")){
+                   setTierAmount(1000)
+
+                   setTierCheck(true)
+                 }else
+                 {
+                  setTimeout(()=>{navigate("/details/"+data._id)},500);
+                
+
                  }
 
-                setTierCheck(true)
+                
 
              }else
                { //alert("dgr")
@@ -551,8 +559,8 @@ const Explore = () => {
                       }}
                     >
                       
-                      <option value="25">25</option>
-                      <option value="50">50</option>
+                      <option value="60">60</option>
+                      <option value="120">120</option>
                     </Form.Select>
                   </Col>
                   
@@ -795,8 +803,12 @@ const Explore = () => {
           <Modal.Header className="border-none p-0"></Modal.Header>
           <Modal.Body className="outer-age-box">
            
-                <div className="outer-div">You need min $ {tierAmount&& tierAmount}k Taboo to unlock content.</div>
-               <a href="" className="common-btn buy-taboo-btn">Buy Taboo</a>
+                <div className="outer-div">
+                
+                To unlock this content you must connect your wallet and hold a minimum ${tierAmount&& tierAmount} of Taboo or a Taboopunk
+                
+                </div>
+               <a href="https://pancakeswap.finance/swap" target={'_blank'} className="common-btn buy-taboo-btn">Buy Taboo</a>
                 <button className="common-btn" onClick={handleTierCheck}>Cancel</button>
              
            

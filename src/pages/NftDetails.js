@@ -23,6 +23,8 @@ import { BuyNFT } from "../helpers/BuyNFT";
 import { updateNftStatusSaga } from "../store/reducers/nftReducer";
 import { MakeOffer } from "../helpers/MakeOffer";
 import { TokenApproval } from "../helpers/TokenApproval";
+import {NFTBalance} from "../helpers/NFTBalance"
+
 
 import {ApproveTaboo} from "../helpers/Approve"
 
@@ -105,7 +107,7 @@ const NftDetails = () => {
   }, []);
 
   const handleBuy = async (e) => {
-    let price = parseFloat(2);
+    let price = parseFloat(nft.price);
     if(!isAuthenticated){
 
       toast.warn("Please connect wallet!")
@@ -136,17 +138,26 @@ const NftDetails = () => {
         }
 
         if (taboo_hash) {
+
+         // let token = await NFTBalance();
+
+
+         // console.log("ss",token)
+
           let hash = await BuyNFT(
             nft.token_id,
             nft.ipfs,
             nft.price,
             nft.signature,
             tier
-          );
+            );
+
           if (hash) {
+           // token=token+1;
             //toast.success("Order placed successfully!")
-            let Nft_hash = hash.transactionHash;
-            hash = hash.transactionHash;
+            let hashNFT=hash;
+            let Nft_hash = hash.hash.transactionHash;
+            hash = hash.hash.transactionHash;
             hash = hash.substring(0, 5) + "....." + hash.substring(38, 42);
             setNftHash(hash);
             let orderObj = { id: nft._id, status: "sold" };
@@ -160,6 +171,7 @@ const NftDetails = () => {
               tx_id: Nft_hash,
               nft_hash: Nft_hash,
               tokenUrl: nft.ipfs,
+              token:hashNFT.token,
             });
 
             console.log("order", order);

@@ -49,7 +49,7 @@ const TransactionPage=()=>{
                                    <th>Image</th>
                                    <th>Wallet Address</th>
                                   <th>Trasaction Hash</th>
-                                  <th className="d-none">Token</th>
+                                  <th className="">Token</th>
                                   <th className="d-none">Ipfs Link</th>
                                   <th>Status</th>
                                   
@@ -85,7 +85,7 @@ const TransactionPage=()=>{
                     -8
                   )}`}                </a>
                                         </td>
-                                        <td className="d-none">
+                                        <td className="">
                                            {item.contentinfo.token_id}
                                           
                                         </td>

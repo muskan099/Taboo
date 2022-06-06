@@ -16,7 +16,7 @@ const Homepage = () => {
   const [showImg, setShowImg] = useState(false);
   const [show, setShow] = useState(false);
   // const [isBelow18, setIsBelow18] = useState(isAbove18 ? false : true);
-  const [isBelow18, setIsBelow18] = useState(true);
+  const [isBelow18, setIsBelow18] = useState(false);
   const [ageError, setAgeError] = useState(false);
 
   const[marketData,setMarketData]=useState(false)
