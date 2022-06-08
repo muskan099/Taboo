@@ -4449,11 +4449,13 @@ margin: 10px 20px 10px 0px;
 }
 .buy-coin-shadow-box label {
   text-align: left;
-  display: block;
+  display: flex;
   margin-bottom: 12px;
   color: #871333;
   font-weight: 600;
   font-size: 16px;
+  align-items: center;
+  justify-content: space-between;
 }
 .buy-coin-shadow-box label img{
   height: 36px;
@@ -4544,6 +4546,13 @@ font-size: 14px;
   background-color: #871333;
   color: #fff;
 }
+.swap-icon{
+  margin: 30px 0 0;
+}
+.swap-icon img{
+  height: 32px;
+}
+
 
 @media (max-width: 768px){
   .outer-multiple-drop .dropdown {

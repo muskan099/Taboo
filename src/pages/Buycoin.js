@@ -46,39 +46,23 @@ const Profile=()=>{
                    <Col lg={10} className="m-auto">
                        <div class="buy-coin-box-outer">
                         <Row className="align-items-top">
-                            <Col  xl={8} lg={8} md={8} sm={12} xs={12}>
-                                    <div class="buy-coin-shadow-box ">
-                                        <div className="swap-row-new">
-                                            <label><img className="profile-main-img"  src={"images/Team/team7.png"} /> BNB</label>
-                                            <label><img className="profile-main-img"  src={"images/Team/team7.png"} /></label>
-                                            <label><img className="profile-main-img"  src={"images/Team/team7.png"} /> BNB</label>
-                                        </div>
-                                        <div className="taboo-price-row">
-                                            <div className="price-persent">
-                                                <span>65.54</span>
-                                                <small>BNB/TABOO -1.234(2.29%)</small>
-                                            </div>
-                                            <ul>
-                                                <li className="active"> <a  href="">24 H</a></li>
-                                                <li> <a href="">24 H</a></li>
-                                                <li> <a href="">24 H</a></li>
-                                                <li> <a href="">24 H</a></li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                   
-                                </Col>  
+                           
                                 <Col
                                 
-                                xl={4}
-                                lg={4}
-                                md={4}
+                                xl={8}
+                                lg={8}
+                                md={8}
                                 sm={12}
                                 xs={12}
-                                className=""
+                                className="m-auto"
                                 >
                                 <div class="buy-coin-shadow-box">
-                                    <label><img className="profile-main-img"  src={"images/Team/team7.png"} /> BNB</label>
+                                    <label>
+                                        <div>
+                                            <img className="profile-main-img"  src={"images/bnb1.png"} /> BNB
+                                        </div>
+                                        <small>0.00</small>
+                                    </label>
                                     <InputGroup className="mb-3">
                                         <FormControl
                                         placeholder=""
@@ -86,11 +70,20 @@ const Profile=()=>{
                                         <InputGroup.Text id="basic-addon2">0.00</InputGroup.Text>
                                     </InputGroup> 
 
-                                    <br />
+                                   
+
+                                   <div className="swap-icon">
+                                   <img className="img-fluid m-0"  src={"images/swap1.png"} />
+                                   </div>
                                     
 
 
-                                    <label><img className="profile-main-img"  src={"images/Team/team7.png"} /> BNB</label>
+                                    <label>
+                                         <div>
+                                            <img className="profile-main-img"  src={"images/bnb2.png"} /> Taboo
+                                        </div>
+                                        <small>0.00</small>
+                                    </label>
 
                                     <InputGroup className="mb-3">
                                         <FormControl
