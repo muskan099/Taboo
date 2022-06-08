@@ -85,7 +85,7 @@ const Explore = () => {
       tier2: false,
       tier3: false,
     },
-    endPrice: 20000,
+    endPrice:100000000,
   });
 
   const { startPrice, endPrice, A_TO_Z, price, letest, nftTier } = filterSearch;
