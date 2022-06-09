@@ -13,6 +13,7 @@ import {
   Nav,
   NavDropdown,
   Container,
+  Ratio,
 } from "react-bootstrap";
 import { Link, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
@@ -123,6 +124,13 @@ const Header = () => {
     }
   });
 
+  const [showModal1, setShowModal1] = useState(false);
+
+  const handleModalClose1 = () => {
+    setShowModal1(false);
+  };
+
+
   return (
     <header className="header-main">
       <Navbar bg="light" expand="lg">
@@ -214,6 +222,16 @@ const Header = () => {
               </Dropdown>
             </>
           )}
+
+           <Button
+              className="common-btn"
+              variant="outline-success"
+              onClick={() => {
+                setShowModal1(true);
+              }}
+            >
+              Coming Up
+            </Button>
         </Container>
       </Navbar>
 
@@ -270,6 +288,28 @@ const Header = () => {
           </div>
         </Modal.Body>
       </Modal>
+
+      <Modal
+          show={showModal1}
+          onHide={handleModalClose1}
+          backdrop="static"
+          keyboard={false}
+          aria-labelledby="contained-modal-title-vcenter"
+          centered
+          className="video-new"
+        >
+          <Modal.Header closeButton={handleModalClose1}></Modal.Header>
+          <Modal.Body>
+            <div>
+            <video loop autoPlay>
+                <source
+                  src="images/Taboo-video.mp4"
+                  type="video/mp4"
+                />
+                </video>
+            </div>
+          </Modal.Body>
+        </Modal>
     </header>
   );
 };

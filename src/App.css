@@ -442,6 +442,7 @@ body {
   border: none !important;
   margin: 5px;
   color: #fff !important;
+  box-shadow: none !important;
 }
 .how-to-buy-sec img {
   max-height: 350px;
@@ -4552,7 +4553,19 @@ font-size: 14px;
 .swap-icon img{
   height: 32px;
 }
-
+.video-new .modal-dialog{
+  max-width: 800px;
+}
+.video-new .modal-header{
+  border: none !important;
+  padding-bottom: 0;
+}
+.video-new video{
+  max-width: 100%;
+}
+.video-new .modal-header .btn-close{
+  box-shadow: none !important;
+}
 
 @media (max-width: 768px){
   .outer-multiple-drop .dropdown {

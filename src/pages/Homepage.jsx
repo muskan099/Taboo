@@ -199,7 +199,7 @@ const Homepage = () => {
                       <img src={"images/plus-24.png"} alt="icon" />
                     </button>
                     <div>
-                      <h4>Q1 2022</h4>
+                      <h4>Q2 2022</h4>
                       <ul>
                         <li>
                           - Cross chain SDK integration will have begun by now,
@@ -224,7 +224,7 @@ const Homepage = () => {
                       <img src={"images/plus-24.png"} alt="icon" />
                     </button>
                     <div>
-                      <h4>Q2 2022</h4>
+                      <h4>Q3 2022</h4>
                       <ul>
                         <li>
                           - Full integration of the Adult Crypto Currency Dex
@@ -256,7 +256,7 @@ const Homepage = () => {
                       <img src={"images/plus-24.png"} alt="icon" />
                     </button>
                     <div>
-                      <h4>Q3 2022</h4>
+                      <h4>Q4 2022</h4>
                       <ul>
                         <li>
                           - Launching V2 of the marketplace, with full features.
@@ -275,13 +275,14 @@ const Homepage = () => {
                       <img src={"images/plus-24.png"} alt="icon" />
                     </button>
                     <div>
-                      <h4>Q4 2022</h4>
+                      <h4>Q1 2023</h4>
                       <ul>
                         <li>- Marketplace V3, with VR integration.</li>
                         <li>- Metaverse integration.</li>
                       </ul>
                     </div>
                   </li>
+                  
                 </ul>
               </div>
             </Col>
