@@ -4436,6 +4436,123 @@ margin: 10px 20px 10px 0px;
 .trans-commision-box .link-view{
   color: #871333 !important; 
 }
+.buy-coin-box-outer{
+    margin-top: -150px !important;
+}
+.buy-coin-shadow-box{
+  background-color: #fff;
+    border-radius: 15px;
+    box-shadow: 0 0 10px rgb(0 0 0 / 30%);
+    padding: 40px 15px;
+    color: #848383;
+    margin: 0;
+}
+.buy-coin-shadow-box label {
+  text-align: left;
+  display: flex;
+  margin-bottom: 12px;
+  color: #871333;
+  font-weight: 600;
+  font-size: 16px;
+  align-items: center;
+  justify-content: space-between;
+}
+.buy-coin-shadow-box label img{
+  height: 36px;
+  width: auto;
+}
+.buy-coin-shadow-box .input-group {
+  background-color: #871333;
+  border-radius: 10px;
+  padding: 5px;
+  margin-bottom: 0px !important;
+}
+.buy-coin-shadow-box .input-group .form-control {
+  background-color: transparent;
+  border: none !important;
+  color: #fff;
+  box-shadow: none !important;
+  outline: none !important;
+}
+.buy-coin-shadow-box .input-group .form-control::placeholder{
+  color: #fff;
+}
+.buy-coin-shadow-box .input-group .input-group-text {
+  border: none !important;
+  background-color: transparent;
+  color: #fff;
+  box-shadow: none !important;
+  outline: none !important;
+  font-weight: 600;
+}
+.buy-coin-shadow-box .tol-line {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  color: #871333;
+  font-size: 14px;
+  margin: 5px 0 10px;
+  font-weight: 600;
+}
+.buy-coin-shadow-box .common-btn {
+  display: block;
+  width: 100%;
+  max-width: 100%;
+  margin: 30px 0 0;
+}
+.buy-coin-shadow-box .swap-row-new{
+  display: flex;
+  align-items: center;
+}
+.buy-coin-shadow-box .swap-row-new label{
+  margin: 0 15px;
+}
+.taboo-price-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 20px 15px;
+  flex-wrap: wrap;
+}
+.taboo-price-row .price-persent span {
+  font-size: 33px;
+  margin-right: 10px;
+  color: #871333;
+}
+.taboo-price-row .price-persent small{
+font-size: 14px;
+}
+.taboo-price-row ul {
+  display: flex;
+  align-items: center;
+  padding: 0;
+  background-color: #f8cbd7;
+  border-radius: 15px;
+  padding: 0px;
+  margin: 0;
+}
+.taboo-price-row ul li{
+  list-style: none;
+}
+.taboo-price-row ul li a {
+  color: #871333;
+  display: block;
+  padding: 5px 12px;
+  text-decoration: none;
+  font-weight: 600;
+  border-radius: 20px;
+}
+.taboo-price-row ul li.active a {
+  background-color: #871333;
+  color: #fff;
+}
+.swap-icon{
+  margin: 30px 0 0;
+}
+.swap-icon img{
+  height: 32px;
+}
+
 
 @media (max-width: 768px){
   .outer-multiple-drop .dropdown {
@@ -4457,5 +4574,11 @@ margin: 10px 20px 10px 0px;
   width: 7px;
   right: 10px;
   top: 12px;
+}
+.App {
+  overflow-x: hidden !important;
+}
+.buy-coin-shadow-box {
+  margin: 10px 0;
 }
 }

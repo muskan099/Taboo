@@ -33,6 +33,7 @@ import "react-toastify/dist/ReactToastify.css";
 import Login from "./pages/Login";
 import SignUp from "./pages/SignUp";
 import AdminRoute from "./components/AdminRoute";
+import Buycoin from "./pages/Buycoin";
 
 function App() {
   useEffect(() => {
@@ -66,6 +67,7 @@ function App() {
           <Route path="/farm" element={<Farm />} />
 
           <Route path="/about" element={<Aboutus />} />
+          <Route path="/buycoin" element={<Buycoin />} />
 
           <Route
             path="/nft-list"
