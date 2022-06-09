@@ -82,7 +82,7 @@ const Stakes = () => {
   useEffect(() => {
     
     getData();
-  }, []);
+  }, [walletAddress]);
 
   console.log(stakesData);
   return (
@@ -118,18 +118,19 @@ const Stakes = () => {
                   >
                     <thead>
                       <tr>
-                        <th width="30%">Wallet Address</th>
+                        <th width="20%">Wallet Address</th>
                         <th width="15%">Amount</th>
                         <th width="15%">Total Interest Earn</th>
                         <th width="15%">Total Amount</th>
                         <th width="10%">Status</th>
                         <th width="15%">Action</th>
+                        <th width="10%">APY(%)</th>
                       </tr>
                     </thead>
                     <tbody>
                       {stakesData.stakes.map((item) => (
                         <tr key={item._id}>
-                          <td width="30%">
+                          <td width="20%">
 
                           {`${item.wallet_address?.slice(0, 5)}....${item.wallet_address?.slice(
                     -5
@@ -166,6 +167,8 @@ const Stakes = () => {
                             </button>
 
                           </td>
+
+                          <td width="10%">{item.stakeinfo.interest_rate}</td>
                         </tr>
                       ))}
                     </tbody>

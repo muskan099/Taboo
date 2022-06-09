@@ -69,7 +69,7 @@ const Explore = () => {
 
   const [paginationData, setPaginationData] = useState({
     skip: 0,
-    limit:60,
+    limit:25,
     pages: [],
   });
 
@@ -103,7 +103,7 @@ const Explore = () => {
   // console.log("nft", nft.length);
   const getData = (
     page,
-    limit =60,
+    limit =25,
     skip = 0,
     tier,
     search_tag,

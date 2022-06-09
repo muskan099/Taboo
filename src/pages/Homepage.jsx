@@ -142,7 +142,7 @@ const Homepage = () => {
                 </p>
                 <div className="d-flex align-items-center">
                   <a
-                    href="/explore"
+                    href="/explore"  className="common-btn white-btn"
                    
                   >
                     Marketplace{" "}
