@@ -34,8 +34,8 @@ function enableSlider($, changeStateFn) {
   $("#slider-range").slider({
     range: true,
     min: 0,
-    max: 1000000,
-    values: [0, 1000000],
+    max: 3000000,
+    values: [0, 3000000],
     slide: function (event, ui) {
       changeStateFn((p) => ({
         ...p,
@@ -69,7 +69,7 @@ const Explore = () => {
 
   const [paginationData, setPaginationData] = useState({
     skip: 0,
-    limit:25,
+    limit:50,
     pages: [],
   });
 
@@ -103,7 +103,7 @@ const Explore = () => {
   // console.log("nft", nft.length);
   const getData = (
     page,
-    limit =25,
+    limit =50,
     skip = 0,
     tier,
     search_tag,
@@ -559,8 +559,8 @@ const Explore = () => {
                       }}
                     >
                       
-                      <option value="60">60</option>
-                      <option value="120">120</option>
+                      <option value="50">50</option>
+                      <option value="100">100</option>
                     </Form.Select>
                   </Col>
                   

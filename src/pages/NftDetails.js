@@ -379,7 +379,7 @@ const NftDetails = () => {
                         }
                         onClick={() => setOfferStart(true)}
                       >
-                        Place A Bid
+                        Place An Offer
                       </Button>
                     </div>
                   </div>
