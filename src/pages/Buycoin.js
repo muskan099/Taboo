@@ -191,13 +191,13 @@ const BuyCoin=()=>{
                                         <div>
                                             <img className="profile-main-img"  src={"images/bnb1.png"} /> BNB
                                         </div>
-                                        <small>{bnbBalance&&bnbBalance}</small>
+                                        <small className="d-none">Current Balance {bnbBalance&&bnbBalance}</small>
                                     </label>
                                     <InputGroup className="mb-3">
                                         <FormControl
                                         placeholder="" onKeyUp={(e)=>handleBNB(e)}
                                         />
-                                        <InputGroup.Text id="basic-addon2">0.00</InputGroup.Text>
+                                        <InputGroup.Text id="basic-addon2"></InputGroup.Text>
                                     </InputGroup> 
 
                                    
@@ -212,7 +212,7 @@ const BuyCoin=()=>{
                                          <div>
                                             <img className="profile-main-img"  src={"images/bnb2.png"} /> Taboo
                                         </div>
-                                        <small>{balance&&balance}</small>
+                                        <small className="d-none">{balance&&balance}</small>
                                     </label>
 
                                     <InputGroup className="mb-3">
