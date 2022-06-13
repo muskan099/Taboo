@@ -95,6 +95,8 @@ const BuyCoin=()=>{
 
      console.log('taboo',taboo)
      taboo=taboo/1000000000;
+
+     taboo=taboo.toFixed(2)
      setTabooAmount(taboo)
 
    }
@@ -148,13 +150,23 @@ const BuyCoin=()=>{
 
             setIsloading(true);
  
-           let hash=await BuyTaboo(bnbAmount,tabooAmount)
+             let hash=await BuyTaboo(bnbAmount,tabooAmount)
  
             if(hash){
+
+
               setIsloading(false);
+
+              getBNBBalance(walletAddress)
  
               toast.success("Transaction submitted successfully!")
-            }
+
+            }else
+              {
+                setIsloading(false);
+
+                toast.warn("Please change Amount")
+              }
  
          }else
            {
@@ -207,7 +219,7 @@ const BuyCoin=()=>{
                                         <div>
                                             <img className="profile-main-img"  src={"images/bnb1.png"} /> BNB
                                         </div>
-                                        <small className="d-none">Current Balance {bnbBalance&&bnbBalance}</small>
+                                        <small className="">Current Balance {bnbBalance&&bnbBalance}</small>
                                     </label>
                                     <InputGroup className="mb-3">
                                         <FormControl
