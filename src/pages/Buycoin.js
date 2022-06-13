@@ -103,6 +103,8 @@ const BuyCoin=()=>{
      let value=e.target.value;
      
 
+     if(isAuthenticated){
+          
       if(isNaN(value)){
         e.target.value=0;
       }else
@@ -126,6 +128,10 @@ const BuyCoin=()=>{
             }
           
         }
+     }else
+       {
+        toast.warn("Please connect wallet!")
+       }
    }
 
 
