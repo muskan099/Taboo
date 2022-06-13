@@ -157,6 +157,7 @@ const Header = () => {
               <Nav.Link onClick={handleShow}>News</Nav.Link>
               <Link to="/about" className="nav-link">About</Link>
               <Link to="/models" className="nav-link">Models</Link>
+              <Link to="/buycoin" className="nav-link">Buy Taboo</Link>
 
             </Nav>
           </Navbar.Collapse>

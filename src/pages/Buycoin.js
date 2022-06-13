@@ -1,4 +1,4 @@
-import { Row, Col, Container, Accordion, Dropdown,Form,FormControl,Button, InputGroup, } from "react-bootstrap";
+import { Row, Col, Container, Accordion, Dropdown,Form,FormControl,Button, InputGroup, ToastHeader, } from "react-bootstrap";
 import React, { useEffect, useState } from "react";
 import axios from'axios'
 import { useDispatch, useSelector } from "react-redux";
@@ -134,23 +134,33 @@ const BuyCoin=()=>{
    const handleBuyCoin=async()=>{
 
       
+        if(isAuthenticated){
+            
 
-        if(bnbAmount>0&&tabooAmount>0){
 
-           setIsloading(true);
+          if(bnbAmount>0&&tabooAmount>0){
 
-          let hash=await BuyTaboo(bnbAmount,tabooAmount)
-
-           if(hash){
-             setIsloading(false);
-
-             toast.success("Transaction submitted successfully!")
+            setIsloading(true);
+ 
+           let hash=await BuyTaboo(bnbAmount,tabooAmount)
+ 
+            if(hash){
+              setIsloading(false);
+ 
+              toast.success("Transaction submitted successfully!")
+            }
+ 
+         }else
+           {
+             toast.warn("Please enter amount first!.")
            }
 
         }else
           {
-            toast.warn("Please enter amount first!.")
+            toast.warn("please connect wallet!")
           }
+
+       
               
    }
 
