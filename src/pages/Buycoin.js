@@ -96,7 +96,7 @@ const BuyCoin=()=>{
      console.log('taboo',taboo)
      taboo=taboo/1000000000;
 
-     taboo=taboo.toFixed(2)
+     taboo=taboo.toFixed(0)
      setTabooAmount(taboo)
 
    }
@@ -165,7 +165,7 @@ const BuyCoin=()=>{
               {
                 setIsloading(false);
 
-                toast.warn("Please change Amount")
+                toast.warn("Something went wrong. please check with other amount")
               }
  
          }else
