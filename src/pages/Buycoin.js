@@ -216,8 +216,14 @@ const BuyCoin=()=>{
                                 >
                                 <div class="buy-coin-shadow-box">
                                     <label>
-                                        <div>
-                                            <img className="profile-main-img"  src={"images/bnb1.png"} /> BNB
+                                        <div className="flex-box-bnb">
+                                            <img className="profile-main-img"  src={"images/bnb1.png"} /> 
+                                            <Form.Select aria-label="Default select example">
+                                              <option>BNB</option>
+                                              <option value="1">ETH</option>
+                                              <option value="2">Tether</option>
+                                              <option value="3">USD</option>
+                                            </Form.Select>
                                         </div>
                                         <small className="">Current Balance {bnbBalance&&bnbBalance}</small>
                                     </label>
@@ -231,7 +237,7 @@ const BuyCoin=()=>{
                                    
 
                                    <div className="swap-icon">
-                                   <img className="img-fluid m-0"  src={"images/swap1.png"} />
+                                   <img className="img-fluid m-0"  src={"images/arrow.png"} />
                                    </div>
                                     
 
