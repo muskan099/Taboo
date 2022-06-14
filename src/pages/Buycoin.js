@@ -5,7 +5,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { toast } from "react-toastify";
 import {BNBBalance} from '../helpers/BNBHelper';
 
-import { BuyTaboo,TabooPrice } from "../helpers/BuyCoin";
+import { BuyTaboo,TabooPrice, getBalance,BuyTabooByETH,BuyTabooByUSDT,BuyTabooByMatic,TabooPriceByMatic,
+TabooPriceByUSDT,TabooPriceByEth } from "../helpers/BuyCoin";
 
 import Slider from "react-slick";
 
@@ -20,6 +21,9 @@ const BuyCoin=()=>{
   const [tabooAmount,setTabooAmount]=useState(0)
 
   const [isLoading,setIsloading]=useState(false);
+
+  const [currencyType,setCurrencyType]=useState("BNB");
+
 
 
     var settings = {
@@ -89,14 +93,27 @@ const BuyCoin=()=>{
 
     // let taboo= (1/price)*value;
 
-    let taboo=await TabooPrice(value)
+    let taboo=0;
+
+    if(currencyType=="BNB"){
+      taboo=await TabooPrice(value)
+    }else if(currencyType=="ETH"){
+       taboo=await TabooPriceByEth(value)
+    }else if(currencyType=="USDT"){
+       taboo=await TabooPriceByUSDT(value)
+
+       console.log("taboo",taboo)
+    }else if(currencyType=="Matic"){
+      taboo=await TabooPriceByMatic(value)
+    }
+   
 
      taboo=taboo.toFixed(0)
 
      console.log('taboo',taboo)
      taboo=taboo/1000000000;
 
-     taboo=taboo.toFixed(0)
+    /// taboo=taboo.toFixed(0)
      setTabooAmount(taboo)
 
    }
@@ -117,7 +134,7 @@ const BuyCoin=()=>{
 
             e.target.value=0;
 
-            toast.warn("You do not have sufficient BNB.")
+            toast.warn("You do not have sufficient "+currencyType+".")
 
           }else
             {
@@ -149,8 +166,27 @@ const BuyCoin=()=>{
           if(bnbAmount>0&&tabooAmount>0){
 
             setIsloading(true);
+
+              let hash=false;
+
+
+              if(currencyType=="BNB"){
+
+                 hash=await BuyTaboo(bnbAmount,tabooAmount)
+
+              }else if(currencyType=="ETH"){
+
+                 hash=await BuyTabooByETH(bnbAmount,tabooAmount)
+              }else if(currencyType=="USDT"){
+                 hash=await BuyTabooByUSDT(bnbAmount,tabooAmount)
+              }else if(currencyType=="Matic"){
+
+
+                 hash=await BuyTabooByMatic(bnbAmount,tabooAmount)
+
+              }
  
-             let hash=await BuyTaboo(bnbAmount,tabooAmount)
+            
  
             if(hash){
 
@@ -165,7 +201,7 @@ const BuyCoin=()=>{
               {
                 setIsloading(false);
 
-                toast.warn("Something went wrong. please check with other amount")
+                toast.warn("You do not have sufficient "+currencyType+". ")
               }
  
          }else
@@ -180,6 +216,33 @@ const BuyCoin=()=>{
 
        
               
+   }
+
+
+
+   const handleCurrecy=async(e)=>{
+
+
+      let value=e.target.value;
+
+
+      setCurrencyType(value);
+
+
+      if(value=="BNB"){
+
+        let balance=await BNBBalance(walletAddress);
+
+        setBnbBalance(balance);
+      }else
+       {
+
+          let balance=await getBalance(walletAddress,value)
+
+          setBnbBalance(balance);
+
+       }
+
    }
 
 
@@ -218,11 +281,18 @@ const BuyCoin=()=>{
                                     <label>
                                         <div className="flex-box-bnb">
                                             <img className="profile-main-img"  src={"images/bnb1.png"} /> 
-                                            <Form.Select aria-label="Default select example">
-                                              <option>BNB</option>
-                                              <option value="1">ETH</option>
-                                              <option value="2">Tether</option>
-                                              <option value="3">USD</option>
+                                            <Form.Select aria-label="Default select example" onChange={(e)=>handleCurrecy(e)}>
+                                              
+
+
+                                              <option value="BNB">BNB</option>
+                                              <option value="ETH">ETH</option>
+                                              <option value="Matic">Matic</option>
+                                              <option value="USDT">USDT</option>
+                                              
+
+                                                 
+
                                             </Form.Select>
                                         </div>
                                         <small className="">Current Balance {bnbBalance&&bnbBalance}</small>

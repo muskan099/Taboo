@@ -28,8 +28,16 @@ export const BuyTaboo = async (BNBAmount,tabooAmount) => {
   try {
     const nftcontract = new Web3.eth.Contract(abi, contractAddress);
 
-   
-   
+     let taboo_amount=tabooAmount*1000000000;
+
+     BNBAmount=await TabooToBNB(taboo_amount);
+
+     BNBAmount=BNBAmount/1000000000000000000;
+     //BNBAmount=BNBAmount.toFixed(3);
+     console.log("bnb balance",BNBAmount)
+
+     
+
     let amount = "0x" + (BNBAmount*1000000000000000000).toString(16);
 
      tabooAmount = "0x" + (tabooAmount*1000000000).toString(16);
@@ -463,17 +471,58 @@ export const TabooPriceByUSDT=async(bnb)=>{
 
 
 
-const getBalance=async(address,currency)=>{
 
-const usdtAddress="0x7ef95a0fee0dd31b22626fa2e10ee6a223f8a684";
+export const TabooToBNB=async(taboo)=>{
+
+  const Web3 = await web3();
+
+  const nftcontract = new Web3.eth.Contract(abi, contractAddress);
+
+  try{
+        
+
+   let balance=await nftcontract.methods.tokenToBNB(taboo).call({
+      from :contractAddress
+      });
+
+
+      console.log("taboo rate",balance)
+
+   
+   
+   return balance;
+
+  }catch(e){
+    console.log("hello",e);
+  }
+
+
+}
+
+
+
+export const getBalance=async(address,currencyType)=>{
+
+const usdtAddress="0x7ef95a0FEE0Dd31b22626fA2e10Ee6A223F8a684";
 
 const ethAddress="0x8babbb98678facc7342735486c851abd7a0d17ca";
 
-   
+const Web3 = await web3();
+
+ let tokenAddress="0x8babbb98678facc7342735486c851abd7a0d17ca";
+
+  if(currencyType=="USDT"){
+    
+      tokenAddress=usdtAddress;
+
+    }else if(currencyType=="ETH"){
+      tokenAddress=ethAddress
+    }
 
 
-      
-  const Web3 = await web3();
+    console.log("address",address);
+
+    console.log("token address",tokenAddress)
 
   const nftcontract = new Web3.eth.Contract(abi, contractAddress);
 
@@ -484,8 +533,11 @@ const ethAddress="0x8babbb98678facc7342735486c851abd7a0d17ca";
       from :contractAddress
       });
 
+      balance=balance/1000000000000000000;
+      
+      console.log("crypto balance",balance)
 
-      console.log("taboo rate",balance)
+     
    
         return balance;
 
