@@ -8,12 +8,20 @@ import {BNBBalance} from '../helpers/BNBHelper';
 import { BuyTaboo,TabooPrice, getBalance,BuyTabooByETH,BuyTabooByUSDT,BuyTabooByMatic,TabooPriceByMatic,
 TabooPriceByUSDT,TabooPriceByEth } from "../helpers/BuyCoin";
 
+import {ApproveETH} from '../helpers/ApproveETH'
+
+import {Approve, ApproveUSDT} from "../helpers/ApproveUSDT";
+
+import {ApproveMatic} from '../helpers/ApproveMatic'
+
+import {Transaction} from '../helpers/Transaction'
+
 import Slider from "react-slick";
 
 
 const BuyCoin=()=>{
 
-  const { isAuthenticated, walletAddress,balance ,tier} = useSelector((state) => state.auth);
+ const { isAuthenticated, walletAddress,balance ,tier} = useSelector((state) => state.auth);
 
  const[bnbBalance,setBnbBalance]=useState(0);
   const [bnbAmount,setBNBAmount]=useState(0)
@@ -108,7 +116,7 @@ const BuyCoin=()=>{
     }
    
 
-     taboo=taboo.toFixed(0)
+    
 
      console.log('taboo',taboo)
      taboo=taboo/1000000000;
@@ -176,9 +184,42 @@ const BuyCoin=()=>{
 
               }else if(currencyType=="ETH"){
 
-                 hash=await BuyTabooByETH(bnbAmount,tabooAmount)
+
+                try{
+
+                  let usdt=await ApproveETH(bnbAmount,walletAddress);
+
+                  let txObj={tx:usdt};
+
+                  let trx=await Transaction(txObj);
+
+                  hash=await BuyTabooByETH(bnbAmount,tabooAmount)
+
+                }catch(e){console.log(e)
+                     hash=false;
+                }
+
+                
               }else if(currencyType=="USDT"){
-                 hash=await BuyTabooByUSDT(bnbAmount,tabooAmount)
+                 //alert("hello")
+
+                  try{
+
+                    let usdt=await ApproveUSDT(bnbAmount,walletAddress);
+
+                    let txObj={tx:usdt};
+
+                    let trx=await Transaction(txObj);
+
+                    hash=await BuyTabooByUSDT(bnbAmount,tabooAmount)
+
+                  }catch(e){console.log(e)
+                       hash=false;
+                  }
+              
+
+                
+
               }else if(currencyType=="Matic"){
 
 

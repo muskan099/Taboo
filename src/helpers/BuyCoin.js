@@ -1,13 +1,9 @@
 import { web3 } from "./Web3Helper";
 
 
-let contractAddress = "0x3794cFe3c57dD2AAB48C558F3fd420f12748C278";
+let contractAddress = "0xF36f2ACBe99B887aAb02a1835bE33c6C0217DF7D";
 
-const abi =[{"inputs":[{"internalType":"address","name":"_taboo","type":"address"},{"internalType":"address","name":"_wallet","type":"address"},{"internalType":"contract IProviderPair","name":"_tabooBnbPair","type":"address"},{"internalType":"contract IProviderPair","name":"_ethBNBPair","type":"address"},{"internalType":"contract IProviderPair","name":"_maticBNBPair","type":"address"},{"internalType":"contract IProviderPair","name":"_usdtBNBPair","type":"address"},{"internalType":"contract IPancakeFactory","name":"_factory","type":"address"}],"stateMutability":"nonpayable","type":"constructor"},{"anonymous":false,"inputs":[{"indexed":true,"internalType":"address","name":"previousOwner","type":"address"},{"indexed":true,"internalType":"address","name":"newOwner","type":"address"}],"name":"OwnershipTransferred","type":"event"},{"inputs":[{"internalType":"uint256","name":"_amount","type":"uint256"}],"name":"buyWithBNB","outputs":[],"stateMutability":"payable","type":"function"},{"inputs":[{"internalType":"uint256","name":"_amount","type":"uint256"}],"name":"buyWithEth","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"uint256","name":"_amount","type":"uint256"}],"name":"buyWithMatic","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"uint256","name":"_amount","type":"uint256"},{"internalType":"address","name":"_token","type":"address"}],"name":"buyWithTokenX","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"uint256","name":"_amount","type":"uint256"}],"name":"buyWithUSDT","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"uint256","name":"_amount","type":"uint256"}],"name":"convertToEth","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"uint256","name":"_amount","type":"uint256"}],"name":"convertToMatic","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"uint256","name":"_amount","type":"uint256"}],"name":"convertToUSDT","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"emergencyShutDown","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[],"name":"ethBNBPair","outputs":[{"internalType":"contract IProviderPair","name":"","type":"address"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"factory","outputs":[{"internalType":"contract IPancakeFactory","name":"","type":"address"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"address","name":"_token","type":"address"},{"internalType":"address","name":"_user","type":"address"}],"name":"getBalance","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"getTabooPriceWithBNB","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"uint256","name":"_amountOfTokens","type":"uint256"}],"name":"getTabooPriceWithEth","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"uint256","name":"_amountOfTokens","type":"uint256"}],"name":"getTabooPriceWithMatic","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"uint256","name":"_amountOfTokens","type":"uint256"}],"name":"getTabooPriceWithUSDT","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"address","name":"_pairAddress","type":"address"}],"name":"getTabooPriceWithX","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"maticBNBPair","outputs":[{"internalType":"contract IProviderPair","name":"","type":"address"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"owner","outputs":[{"internalType":"address","name":"","type":"address"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"renounceOwnership","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"contract IProviderPair","name":"_usdtBNBPair","type":"address"}],"name":"setBNBUSDTPair","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"contract IProviderPair","name":"_ethBnbPair","type":"address"}],"name":"setEthBNBPair","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"contract IProviderPair","name":"_maticBnbPair","type":"address"}],"name":"setMaticBNBPair","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"address","name":"_taboo","type":"address"}],"name":"setTaboo","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"contract IProviderPair","name":"_tabooBnbPair","type":"address"}],"name":"setTabooBNBPair","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[],"name":"taboo","outputs":[{"internalType":"address","name":"","type":"address"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"tabooBnbPair","outputs":[{"internalType":"contract IProviderPair","name":"","type":"address"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"uint256","name":"_amountOfTokens","type":"uint256"}],"name":"tokenToBNB","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"address","name":"_pairAddress","type":"address"},{"internalType":"uint256","name":"_amountOfTokens","type":"uint256"}],"name":"tokenToX","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"address","name":"newOwner","type":"address"}],"name":"transferOwnership","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[],"name":"usdtBNBPair","outputs":[{"internalType":"contract IProviderPair","name":"","type":"address"}],"stateMutability":"view","type":"function"}]
-
-
-
-
+const abi =[{"inputs":[{"internalType":"address","name":"_taboo","type":"address"},{"internalType":"address","name":"_wallet","type":"address"},{"internalType":"contract IProviderPair","name":"_tabooBnbPair","type":"address"},{"internalType":"contract IProviderPair","name":"_ethBNBPair","type":"address"},{"internalType":"contract IProviderPair","name":"_maticBNBPair","type":"address"},{"internalType":"contract IProviderPair","name":"_usdtBNBPair","type":"address"},{"internalType":"contract IPancakeFactory","name":"_factory","type":"address"}],"stateMutability":"nonpayable","type":"constructor"},{"anonymous":false,"inputs":[{"indexed":true,"internalType":"address","name":"previousOwner","type":"address"},{"indexed":true,"internalType":"address","name":"newOwner","type":"address"}],"name":"OwnershipTransferred","type":"event"},{"inputs":[],"name":"ETH","outputs":[{"internalType":"address","name":"","type":"address"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"USDT","outputs":[{"internalType":"address","name":"","type":"address"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"buyWithBNB","outputs":[],"stateMutability":"payable","type":"function"},{"inputs":[{"internalType":"uint256","name":"_amount","type":"uint256"}],"name":"buyWithEth","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"uint256","name":"_amount","type":"uint256"}],"name":"buyWithMatic","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"uint256","name":"_amount","type":"uint256"},{"internalType":"address","name":"_token","type":"address"}],"name":"buyWithTokenX","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"uint256","name":"_amount","type":"uint256"}],"name":"buyWithUSDT","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"contract IProviderPair","name":"_provider","type":"address"},{"internalType":"uint256","name":"_amount","type":"uint256"}],"name":"convertToBnb","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"emergencyShutDown","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[],"name":"ethBNBPair","outputs":[{"internalType":"contract IProviderPair","name":"","type":"address"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"factory","outputs":[{"internalType":"contract IPancakeFactory","name":"","type":"address"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"address","name":"_token","type":"address"},{"internalType":"address","name":"_user","type":"address"}],"name":"getBalance","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"uint256","name":"_bnbAmount","type":"uint256"}],"name":"getTabooAmountForXBNB","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"uint256","name":"_ethAmount","type":"uint256"}],"name":"getTabooAmountForXETH","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"uint256","name":"_maticAmount","type":"uint256"}],"name":"getTabooAmountForXMatic","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"uint256","name":"_USDTAmount","type":"uint256"}],"name":"getTabooAmountForXUSDT","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"getTabooPriceWithBNB","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"address","name":"_pairAddress","type":"address"}],"name":"getTabooPriceWithX","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"matic","outputs":[{"internalType":"address","name":"","type":"address"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"maticBNBPair","outputs":[{"internalType":"contract IProviderPair","name":"","type":"address"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"owner","outputs":[{"internalType":"address","name":"","type":"address"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"renounceOwnership","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"contract IProviderPair","name":"_usdtBNBPair","type":"address"}],"name":"setBNBUSDTPair","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"address","name":"_ETH","type":"address"}],"name":"setETHAddress","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"contract IProviderPair","name":"_ethBnbPair","type":"address"}],"name":"setEthBNBPair","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"address","name":"_matic","type":"address"}],"name":"setMaticAddress","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"contract IProviderPair","name":"_maticBnbPair","type":"address"}],"name":"setMaticBNBPair","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"address","name":"_taboo","type":"address"}],"name":"setTaboo","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"contract IProviderPair","name":"_tabooBnbPair","type":"address"}],"name":"setTabooBNBPair","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"address","name":"_USDT","type":"address"}],"name":"setUSDTAddress","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[],"name":"taboo","outputs":[{"internalType":"address","name":"","type":"address"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"tabooBnbPair","outputs":[{"internalType":"contract IProviderPair","name":"","type":"address"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"address","name":"_pairAddress","type":"address"},{"internalType":"uint256","name":"_amountOfTokens","type":"uint256"}],"name":"tokenToX","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"address","name":"newOwner","type":"address"}],"name":"transferOwnership","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[],"name":"usdtBNBPair","outputs":[{"internalType":"contract IProviderPair","name":"","type":"address"}],"stateMutability":"view","type":"function"}]
 
 
 export const BuyTaboo = async (BNBAmount,tabooAmount) => {
@@ -30,9 +26,9 @@ export const BuyTaboo = async (BNBAmount,tabooAmount) => {
 
      let taboo_amount=tabooAmount*1000000000;
 
-     BNBAmount=await TabooToBNB(taboo_amount);
+     //BNBAmount=await TabooToBNB(taboo_amount);
 
-     BNBAmount=BNBAmount/1000000000000000000;
+     //BNBAmount=BNBAmount/1000000000000000000;
      //BNBAmount=BNBAmount.toFixed(3);
      console.log("bnb balance",BNBAmount)
 
@@ -58,7 +54,7 @@ export const BuyTaboo = async (BNBAmount,tabooAmount) => {
       // value:'1'
       // value: BigInt(0 * 1000000000000000000).toString(),
       data: nftcontract.methods.buyWithBNB(
-            tabooAmount
+            
         )
         .encodeABI(),
     });
@@ -78,7 +74,7 @@ export const BuyTaboo = async (BNBAmount,tabooAmount) => {
       value:amount,
       //'maxPriorityFeePerGas': 1999999987,
       data: nftcontract.methods.buyWithBNB(
-            tabooAmount
+           
         )
         .encodeABI(),
     };
@@ -138,11 +134,11 @@ export const BuyTabooByETH = async (BNBAmount,tabooAmount) => {
     let estimates_gas = await Web3.eth.estimateGas({
       from: selectedAccount,
       to: contractAddress,
-      value:amount,
+     // value:amount,
       // value:'1'
       // value: BigInt(0 * 1000000000000000000).toString(),
       data: nftcontract.methods.buyWithEth(
-            tabooAmount
+           amount
         )
         .encodeABI(),
     });
@@ -159,10 +155,10 @@ export const BuyTabooByETH = async (BNBAmount,tabooAmount) => {
       nonce: nonce,
       gasPrice: gasPrice,
       gasLimit: gasLimit,
-      value:amount,
+      //value:amount,
       //'maxPriorityFeePerGas': 1999999987,
       data: nftcontract.methods.buyWithEth(
-            tabooAmount
+            amount
         )
         .encodeABI(),
     };
@@ -223,11 +219,11 @@ export const BuyTabooByMatic = async (BNBAmount,tabooAmount) => {
     let estimates_gas = await Web3.eth.estimateGas({
       from: selectedAccount,
       to: contractAddress,
-      value:amount,
+     // value:amount,
       // value:'1'
       // value: BigInt(0 * 1000000000000000000).toString(),
       data: nftcontract.methods.buyWithMatic(
-            tabooAmount
+            amount
         )
         .encodeABI(),
     });
@@ -244,10 +240,10 @@ export const BuyTabooByMatic = async (BNBAmount,tabooAmount) => {
       nonce: nonce,
       gasPrice: gasPrice,
       gasLimit: gasLimit,
-      value:amount,
+     // value:amount,
       //'maxPriorityFeePerGas': 1999999987,
       data: nftcontract.methods.buyWithMatic(
-            tabooAmount
+            amount
         )
         .encodeABI(),
     };
@@ -307,11 +303,11 @@ export const BuyTabooByUSDT = async (BNBAmount,tabooAmount) => {
     let estimates_gas = await Web3.eth.estimateGas({
       from: selectedAccount,
       to: contractAddress,
-      value:amount,
+     // value:amount,
       // value:'1'
       // value: BigInt(0 * 1000000000000000000).toString(),
       data: nftcontract.methods.buyWithUSDT(
-            tabooAmount
+          amount
         )
         .encodeABI(),
     });
@@ -328,10 +324,10 @@ export const BuyTabooByUSDT = async (BNBAmount,tabooAmount) => {
       nonce: nonce,
       gasPrice: gasPrice,
       gasLimit: gasLimit,
-      value:amount,
+      // value:amount,
       //'maxPriorityFeePerGas': 1999999987,
       data: nftcontract.methods.buyWithUSDT(
-            tabooAmount
+           amount
         )
         .encodeABI(),
     };
@@ -361,20 +357,20 @@ export const TabooPrice=async(bnb)=>{
   const Web3 = await web3();
 
   const nftcontract = new Web3.eth.Contract(abi, contractAddress);
-
+  let amount = "0x" + (bnb*1000000000000000000).toString(16);
   try{
         
 
-   let balance=await nftcontract.methods.getTabooPriceWithBNB().call({
+   let balance=await nftcontract.methods.getTabooAmountForXBNB(amount).call({
       from :contractAddress
       });
 
 
-      console.log("taboo rate",balance)
+      console.log("bnb to taboo",balance)
 
-   let taboo=bnb*balance;
+   //let taboo=bnb*balance;
    
-   return taboo;
+   return balance;
   }catch(e){
     console.log("hello",e);
   }
@@ -389,20 +385,20 @@ export const TabooPriceByEth=async(bnb)=>{
   const Web3 = await web3();
 
   const nftcontract = new Web3.eth.Contract(abi, contractAddress);
-
+  let amount = "0x" + (bnb*1000000000000000000).toString(16);
   try{
         
 
-   let balance=await nftcontract.methods.getTabooPriceWithEth().call({
+   let balance=await nftcontract.methods.getTabooAmountForXETH(amount).call({
       from :contractAddress
       });
 
 
-      console.log("taboo rate",balance)
+      console.log("eth to taboo",balance)
 
-   let taboo=bnb*balance;
+   //let taboo=bnb*balance;
    
-   return taboo;
+   return balance;
   }catch(e){
     console.log("hello",e);
   }
@@ -418,20 +414,20 @@ export const TabooPriceByMatic=async(bnb)=>{
   const Web3 = await web3();
 
   const nftcontract = new Web3.eth.Contract(abi, contractAddress);
-
+  let amount = "0x" + (bnb*1000000000000000000).toString(16);
   try{
         
 
-   let balance=await nftcontract.methods.getTabooPriceWithMatic().call({
+   let balance=await nftcontract.methods.getTabooAmountForXMatic(amount).call({
       from :contractAddress
       });
 
 
-      console.log("taboo rate",balance)
+    console.log("matic to taboo",balance)
 
-   let taboo=bnb*balance;
+  // let taboo=bnb*balance;
    
-   return taboo;
+   return balance;
   }catch(e){
     console.log("hello",e);
   }
@@ -448,19 +444,21 @@ export const TabooPriceByUSDT=async(bnb)=>{
 
   const nftcontract = new Web3.eth.Contract(abi, contractAddress);
 
+  let amount = "0x" + (bnb*1000000000000000000).toString(16);
+
   try{
         
 
-   let balance=await nftcontract.methods.getTabooPriceWithUSDT().call({
+   let balance=await nftcontract.methods.getTabooAmountForXUSDT(amount).call({
       from :contractAddress
       });
 
 
-      console.log("taboo rate",balance)
+      console.log("usdt to taboo",balance)
 
-   let taboo=bnb*balance;
+  // let taboo=bnb*balance;
    
-   return taboo;
+   return balance;
   }catch(e){
     console.log("hello",e);
   }
