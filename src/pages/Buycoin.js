@@ -61,11 +61,25 @@ const BuyCoin=()=>{
 
   const getBNBBalance=async(address)=>{
        //let res=await axios.post('https://api.taboo.io/balance',{address:walletAddress});
-      let balance=await BNBBalance(address);
 
-      console.log('balance',balance)
+       if(currencyType=="BNB"){
 
-       setBnbBalance(balance)
+        let balance=await BNBBalance(address);
+
+        console.log('balance',balance)
+  
+         setBnbBalance(balance)
+
+       }else{
+        let balance=await getBalance(walletAddress,currencyType);
+
+        
+        console.log('balance',balance)
+  
+         setBnbBalance(balance)
+
+       }
+     
   }
   
 
