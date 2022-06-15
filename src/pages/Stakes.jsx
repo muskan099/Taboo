@@ -41,7 +41,8 @@ const Stakes = () => {
       //console.log("helloS",data)
       let stake_id=data._id;
 
-     
+     let current_balance=data.current_coin_balance;
+
       
        if(stake_id){
         //console.log("stake id",stake_id)
@@ -64,7 +65,20 @@ const Stakes = () => {
             setWithdrawData(false)
 
             setLoading(false);
-            toast.warn("Something went wrong")
+
+            current_balance=parseFloat(current_balance);
+
+              if(current_balance>=5000000){
+
+                toast.warn("Hi,You can not unstake more than 5M Taboo Token due to security reason. Please write us on mail.")
+
+                
+              }else
+                {
+                  toast.warn("Something went wrong")
+
+                }
+                
           }
       }
 
