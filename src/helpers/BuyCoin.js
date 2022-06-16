@@ -373,6 +373,10 @@ export const TabooPrice=async(bnb)=>{
    return balance;
   }catch(e){
     console.log("hello",e);
+
+      let balance=0;
+
+      return balance;
   }
 
 
@@ -401,6 +405,10 @@ export const TabooPriceByEth=async(bnb)=>{
    return balance;
   }catch(e){
     console.log("hello",e);
+
+    let balance=0;
+
+      return balance;
   }
 
 
@@ -430,6 +438,10 @@ export const TabooPriceByMatic=async(bnb)=>{
    return balance;
   }catch(e){
     console.log("hello",e);
+
+    let balance=0;
+
+      return balance;
   }
 
 
@@ -461,6 +473,10 @@ export const TabooPriceByUSDT=async(bnb)=>{
    return balance;
   }catch(e){
     console.log("hello",e);
+
+    let balance=0;
+
+    return balance;
   }
 
 
@@ -541,5 +557,8 @@ const Web3 = await web3();
 
     }catch(e){
       console.log(e)
+      let balance=0;
+
+      return balance;
     }
 }
