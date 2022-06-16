@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
+import moment from 'moment'
 import { Table, Row, Col, Container, Spinner,Modal } from "react-bootstrap";
 import { useSelector } from "react-redux";
 //import axios from "../http/axios/axios_main";
@@ -132,10 +133,12 @@ const Stakes = () => {
                   >
                     <thead>
                       <tr>
-                        <th width="20%">Wallet Address</th>
-                        <th width="15%">Amount</th>
-                        <th width="15%">Total Interest Earn</th>
-                        <th width="15%">Total Amount</th>
+                        <th width="15%">Wallet Address</th>
+                        <th width="10%">Amount</th>
+                        <th width="15%">Total Interest</th>
+                        <th width="10%">Total Amount</th>
+                        <th  width="8%">Start Date</th>
+                        <th  width="8%">Lockup End</th>
                         <th width="10%">Status</th>
                         <th width="15%">Action</th>
                         <th width="10%">APY(%)</th>
@@ -143,23 +146,28 @@ const Stakes = () => {
                     </thead>
                     <tbody>
                       {stakesData.stakes.map((item) => (
+                        
                         <tr key={item._id}>
-                          <td width="20%">
+                          <td width="15%">
 
                           {`${item.wallet_address?.slice(0, 5)}....${item.wallet_address?.slice(
                     -5
                   )}`}
                             
                            </td>
-                          <td width="15%">{item.stakeinfo.deposit}</td>
-                          <td width="15%">
+                          <td width="10%">{item.stakeinfo.deposit}</td>
+                          <td width="10%">
                             {Number(item.stakeinfo.interest_earned).toFixed(4)}
                           </td>
-                          <td width="15%">
+                          <td width="10%">
                             {Number(
                               item.stakeinfo.current_coin_balance
                             ).toFixed(4)}
                           </td>
+
+                          <td width="8%">{moment(item.stakeinfo.startdate).format("YYYY-MM-DD") }</td>
+                          <td width="8%">{moment(item.stakeinfo.enddate).format("YYYY-MM-DD") }</td>
+
                           <td width="10%">
                             <span className={`active-status`}>
                               {/*`${item.stakeinfo.status[0].toUpperCase()}${item.stakeinfo.status.slice(
