@@ -71,7 +71,7 @@ const Stakes = () => {
 
               if(current_balance>=5000000){
 
-                toast.warn("Hi,You can not unstake more than 5M Taboo Token due to security reason. Please write us on mail.")
+                toast.warn("Hi, since the amount you are trying to withdraw is more than 5 million Taboos, due to security reasons, we need to verify your withdrawal claim. Please send us an email at support@taboo.io with a withdrawal request and we will whitelist this wallet for withdrawal within 24 hours.")
 
                 
               }else
@@ -95,7 +95,8 @@ const Stakes = () => {
   }
 
   useEffect(() => {
-    
+    //toast.warn("Hi, since the amount you are trying to withdraw is more than 5 million Taboos, due to security reasons, we need to verify your withdrawal claim. Please send us an email at support@taboo.io with a withdrawal request and we will whitelist this wallet for withdrawal within 24 hours.")
+
     getData();
   }, [walletAddress]);
 
