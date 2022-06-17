@@ -136,7 +136,7 @@ const CreateStake=()=>{
               <Row>
                 <Col>
                   <div className="profile-banner">
-                         <img className="img-fluid m-0"  src={"images/Team/team6.png"} />
+                         <img className="img-fluid m-0"  src={"images/banner-buy.png"} />
                      </div>
                 </Col>
              </Row>
@@ -164,9 +164,66 @@ const CreateStake=()=>{
                                     className=""
                                 >
                                     <h4 className="mb-3">Stake Taboo</h4>
+                                     
                                         <Form.Group className="mb-3">
                                                 <Form.Label>Stake Amount</Form.Label>
                                                 <Form.Control type="text" onKeyUp={(e)=>handleToken(e)}  placeholder="0.00" />
+                                                </Form.Group>
+
+                                                <Form.Group className="mb-3">
+
+                                                <Form.Label>Select Duration</Form.Label>
+                                                <div className="radio-check-time">
+                                                <div class="radio">
+                                                    <label>
+                                                      <input
+                                                        type="radio"
+                                                        name="mint_type"
+                                                        value="lazy"
+                                                        checked
+                                                      />
+                                                      <span class="cr">
+                                                        <i class="cr-icon fa fa-check"></i>
+                                                      </span>
+                                                      <div class="bsc-block">
+                                                        <span>3 Month</span>
+                                                      </div>
+                                                    </label>
+                                                  </div>
+                                                  <div class="radio">
+                                                    <label>
+                                                      <input
+                                                        type="radio"
+                                                        name="mint_type"
+                                                        value="lazy"
+                                                        
+                                                      />
+                                                      <span class="cr">
+                                                        <i class="cr-icon fa fa-check"></i>
+                                                      </span>
+                                                      <div class="bsc-block">
+                                                        <span>6 month</span>
+                                                      </div>
+                                                    </label>
+                                                  </div>
+                                                  <div class="radio">
+                                                    <label>
+                                                      <input
+                                                        type="radio"
+                                                        name="mint_type"
+                                                        value="lazy"
+                                                        
+                                                      />
+                                                      <span class="cr">
+                                                        <i class="cr-icon fa fa-check"></i>
+                                                      </span>
+                                                      <div class="bsc-block">
+                                                        <span>12 month</span>
+                                                      </div>
+                                                    </label>
+                                                  </div>
+                                                </div>
+
                                                 </Form.Group>
 
 
@@ -176,6 +233,10 @@ const CreateStake=()=>{
                                                 <Form.Control type="text" placeholder="0.00" value={balance} readOnly/>
                                                 
                                             </Form.Group>
+
+                                          
+
+                                            
 
                                             <div>
                                                 <Button className="common-btn"onClick={handleSubmit} disabled={isStart}>{isStart?"Processing":"Stake Now"}</Button>

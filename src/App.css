@@ -4582,6 +4582,26 @@ font-size: 14px;
   font-weight: 600;
   font-size: 18px;
 }
+.radio-check-time {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  margin-bottom: 20px;
+}
+.radio-check-time .radio {
+  display: block;
+  width: 33%;
+}
+.radio-check-time .radio label{
+  width: 100%;
+}
+.radio-check-time .bsc-block{
+  padding: 0;
+  border-radius: 0;
+  border: none;
+  color: #871434;
+  font-weight: 600;
+}
 
 @media (max-width: 768px){
 
