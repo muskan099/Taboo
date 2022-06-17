@@ -185,7 +185,7 @@ const BuyCoin=()=>{
             
 
 
-          if(bnbAmount<tabooAmount){
+          if(bnbBalance<bnbAmount){
 
             setIsloading(true);
 
