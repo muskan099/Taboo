@@ -73,6 +73,8 @@ const Header = () => {
           tier: tier,
         })
       );
+    }else{
+        toast.warn("Please connect to binance smart chain!")
     }
   };
 

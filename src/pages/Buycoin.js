@@ -18,6 +18,12 @@ import {Transaction} from '../helpers/Transaction'
 
 import Slider from "react-slick";
 
+const esymbol="https://taboonft.s3.us-east-2.amazonaws.com/icons/eth.png";
+
+const bsymbol="https://taboonft.s3.us-east-2.amazonaws.com/icons/bnb.png"
+
+const mSymbol="https://taboonft.s3.us-east-2.amazonaws.com/icons/matic.png";
+ const uSymbol="https://taboonft.s3.us-east-2.amazonaws.com/icons/usdt.webp";
 
 const BuyCoin=()=>{
 
@@ -32,7 +38,7 @@ const BuyCoin=()=>{
 
   const [currencyType,setCurrencyType]=useState("BNB");
 
-
+  const [cryptoIcon,setCryptoIcon]=useState(bsymbol);
 
     var settings = {
     dots: false,
@@ -118,8 +124,10 @@ const BuyCoin=()=>{
     let taboo=0;
 
     if(currencyType=="BNB"){
+     // setCryptoIcon(bsymbol)
       taboo=await TabooPrice(value)
     }else if(currencyType=="ETH"){
+       
        taboo=await TabooPriceByEth(value)
     }else if(currencyType=="USDT"){
        taboo=await TabooPriceByUSDT(value)
@@ -282,15 +290,28 @@ const BuyCoin=()=>{
 
 
       setCurrencyType(value);
-
+      
+      handleToken(bnbAmount)
 
       if(value=="BNB"){
+
+        
+          setCryptoIcon(bsymbol)
 
         let balance=await BNBBalance(walletAddress);
 
         setBnbBalance(balance);
       }else
        {
+
+
+          if(value=="ETH"){
+            setCryptoIcon(esymbol)
+           }else if(value=="Matic"){
+              setCryptoIcon(mSymbol);
+           }else if(value=="USDT"){
+              setCryptoIcon(uSymbol)
+           }
 
           let balance=await getBalance(walletAddress,value)
 
@@ -335,14 +356,14 @@ const BuyCoin=()=>{
                                 <div class="buy-coin-shadow-box">
                                     <label>
                                         <div className="flex-box-bnb">
-                                            <img className="profile-main-img"  src={"images/bnb1.png"} /> 
+                                            <img className="profile-main-img"  src={cryptoIcon} /> 
                                             <Form.Select aria-label="Default select example" onChange={(e)=>handleCurrecy(e)}>
                                               
 
 
                                               <option value="BNB">BNB</option>
-                                              <option value="ETH">ETH</option>
-                                              <option value="Matic">Matic</option>
+                                              <option value="ETH">WETH</option>
+                                              <option value="Matic">WMatic</option>
                                               <option value="USDT">USDT</option>
                                               
 

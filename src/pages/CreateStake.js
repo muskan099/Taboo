@@ -17,6 +17,10 @@ const CreateStake=()=>{
 
   const[tabooToken,setTabooToken]=useState('')
 
+  const [stakeTime,setStakeTime]=useState(3)
+
+  const [rate,setRate]=useState(12)
+
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
@@ -63,6 +67,40 @@ const CreateStake=()=>{
       }
    }
 
+
+
+   const handleStakeTime=(e)=>{
+
+         let value=e.target.value;
+
+         if(value=="3"){
+              setRate(12)
+             setStakeTime(3)
+
+          }else if(value=="6"){
+
+              setRate(16)
+
+               setStakeTime(6)
+
+          }else if(value=="12"){
+
+                  setRate(20)
+
+                setStakeTime(12)
+
+          }else
+            {
+              setRate(13);
+
+              setStakeTime(3)
+            }
+
+
+   }
+
+   
+
   const handleSubmit=async()=>{
     let taboo_balance=parseFloat(balance)
      if(tabooToken==""){
@@ -79,8 +117,21 @@ const CreateStake=()=>{
           await handleBalance(walletAddress);
 
           let today=new Date();
+          let rate=12;
 
-          today=today.setDate(today.getDate()+90);
+          if(stakeTime=="3"){
+
+            today=today.setDate(today.getDate()+90);
+
+          }else if(stakeTime=="6"){
+             rate=16;
+            today=today.setDate(today.getDate()+180);
+          }else if(stakeTime=="12"){
+              rate=20;
+            today=today.setDate(today.getDate()+365);
+          }
+
+         // today=today.setDate(today.getDate()+90);
 
           today=new Date(today);
 
@@ -104,7 +155,8 @@ const CreateStake=()=>{
                       address:walletAddress,
                       amount:tabooToken,
                       date:end_date,
-                      hash:hash
+                      hash:hash,
+                      rate:rate
                     })
 
 
@@ -179,8 +231,9 @@ const CreateStake=()=>{
                                                       <input
                                                         type="radio"
                                                         name="mint_type"
-                                                        value="lazy"
-                                                        checked
+                                                        value="3"
+                                                        checked={stakeTime==3?true:false}
+                                                        onChange={(e)=>handleStakeTime(e)}
                                                       />
                                                       <span class="cr">
                                                         <i class="cr-icon fa fa-check"></i>
@@ -195,7 +248,9 @@ const CreateStake=()=>{
                                                       <input
                                                         type="radio"
                                                         name="mint_type"
-                                                        value="lazy"
+                                                        value="6"
+                                                        checked={stakeTime==6?true:false}
+                                                        onChange={(e)=>handleStakeTime(e)}
                                                         
                                                       />
                                                       <span class="cr">
@@ -211,7 +266,9 @@ const CreateStake=()=>{
                                                       <input
                                                         type="radio"
                                                         name="mint_type"
-                                                        value="lazy"
+                                                        value="12"
+                                                        checked={stakeTime==12?true:false}
+                                                        onChange={(e)=>handleStakeTime(e)}
                                                         
                                                       />
                                                       <span class="cr">
@@ -253,7 +310,7 @@ const CreateStake=()=>{
                                     <div className="list-stake-step">
                                         <ul>
                                             <li>Stake in Taboo and Earn more</li>
-                                            <li>APY is 16%</li>
+                                            <li>APY is {rate}%</li>
                                             <li>Minimum Lockup period is 3 months</li>
                                             <li>No Deposit or Withdrawal Fee</li>
                                         </ul>
