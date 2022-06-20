@@ -46,6 +46,9 @@ const Header = () => {
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
 
+  const[isLoginStart,setIsLoginStart]=useState(false);
+
+
   // website access authorisation Modal
   const [hasWebsiteAccess, setHasWebsiteAccess] = useState(
     hasWebsiteAccessRedux ? true : true
@@ -55,6 +58,8 @@ const Header = () => {
   const accessWebsite=()=>setHasWebsiteAccess(false);
 
   const handleLogin = async () => {
+
+     setIsLoginStart(true)
     let address = await Connect();
 
     let punk = await TabooPunk(address[0]);
@@ -73,7 +78,11 @@ const Header = () => {
           tier: tier,
         })
       );
+
+      setIsLoginStart(false)
     }else{
+        handleLogout();
+        setIsLoginStart(false)
         toast.warn("Please connect to binance smart chain!")
     }
   };
@@ -160,7 +169,7 @@ const Header = () => {
               <Link to="/about" className="nav-link">About</Link>
               <Link to="/models" className="nav-link">Models</Link>
 
-              {/* <Link to="/buycoin" className="nav-link">Buy Taboo</Link> */}
+             <Link to="/buycoin" className="nav-link">Buy Taboo</Link> 
 
             </Nav>
           </Navbar.Collapse>
@@ -171,7 +180,7 @@ const Header = () => {
               variant="outline-success"
               onClick={() => handleLogin()}
             >
-              Connect Wallet
+              {isLoginStart?"Please Wait...":" Connect Wallet"}
             </Button>
           ) : (
             <>
