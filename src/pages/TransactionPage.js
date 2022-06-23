@@ -1,14 +1,26 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { axios } from "../http";
-import { Container,Row,Col, Button, Dropdown, Table } from "react-bootstrap";
-
-
+import { Container,Row,Col, Button, Dropdown, Table,Modal,Form} from "react-bootstrap";
+import { CreateReSale } from "../helpers/CreateResale";
+import { toast } from "react-toastify";
 const TransactionPage=()=>{ 
 
   const { isAuthenticated, walletAddress,tier } = useSelector((state) => state.auth);
+  const [show, setShow] = useState(false);
 
- const[data,setData]=useState('');
+  const[isLoading,setIsLoading]=useState(false)
+
+  const[data,setData]=useState('');
+
+  const[saleData,setSaleData]=useState('');
+
+  const [minPrice, setMinPrice] = useState(0);
+
+ const handleClose = () => {
+  setShow(false);
+};
+
 
  const getData=async()=>{
 
@@ -18,10 +30,60 @@ const TransactionPage=()=>{
 
  }
 
+ const handleMinPrice = (e) => {
+  let value = e.target.value;
 
+  if (isNaN(value)) {
+    e.target.value = "";
+  } else {
+    setMinPrice(value);
+  }
+};
  useEffect(async()=>{
     await getData();
  },[])
+
+
+ const handleCreateSale=async(data)=>{
+   console.log("data sale",data)
+
+   setSaleData(data)
+
+
+   setShow(true);
+
+
+ }
+
+
+
+ const submitSale=async()=>{
+
+    console.log("sale Data",saleData)
+  let price=parseFloat(saleData.contentinfo.price);
+
+   if(minPrice>0){
+
+                    
+              let tx=await CreateReSale(walletAddress,saleData.contentinfo.token_id,minPrice);
+
+              if(tx){
+
+                  let res=axios.post('/create-sale',{content_id:saleData.contentinfo._id,price:minPrice,forsale:"yes"});
+
+                handleClose();
+
+                toast.success("Sale created successfully!")
+
+              }else{
+                  toast.warn("Something went wrong")
+              }
+      
+   }else{
+      toast.warn("Please enter price")
+   }
+    
+ }
 
 
     return(<>
@@ -52,7 +114,7 @@ const TransactionPage=()=>{
                                   <th className="">Token</th>
                                   <th className="d-none">Ipfs Link</th>
                                   <th>Status</th>
-                                  
+                                  <th>Action</th>
                                 </tr>
                               </thead>
                               <tbody>
@@ -97,6 +159,10 @@ const TransactionPage=()=>{
                                               <span class="success">{item.status}</span>
                                         </td>
 
+                                        <td>
+                                          <button disabled={item.contentinfo.forsale=="yes"?true:false} onClick={()=>handleCreateSale(item)}>Sale</button>
+                                        </td>
+
                                         </tr>
 
 
@@ -115,6 +181,63 @@ const TransactionPage=()=>{
                </Row>
              
             </Container>
+
+
+            <Modal
+            show={show}
+            className="modal-comming-soon bid-modal"
+            backdrop="static"
+            keyboard={false}
+            onHide={handleClose}
+            centered
+          >
+            <Modal.Header
+              closeButton
+              className="border-none p-0"
+              style={{ zIndex: "10000000" }}
+            ></Modal.Header>
+            <Modal.Body>
+              <div class="bid-modal-box">
+                <h3>Create a Sale</h3>
+                 
+                <Form>
+                  <Form.Group className="mb-3">
+                    <Form.Label>Min Price</Form.Label>
+                    <Form.Control
+                      type="text"
+                      placeholder="min price"
+                      name="minPrice"
+                      onChange={(e)=>handleMinPrice(e)}
+                      value={minPrice}
+                    />
+                  </Form.Group>
+
+                 
+                </Form>
+
+                <div>
+                  <a href="#"
+                    className="blue-btn"
+                    onClick={() => {
+                      if (!isLoading) {
+                        submitSale();
+                      }
+                    }}
+                    disabled={isLoading}
+                    style={{ cursor: isLoading ? "no-drop" : "pointer" }}
+                  >
+                   Submit
+                  </a>
+
+                  <a href="" className="border-btn">
+                    Cancel
+                  </a>
+                </div>
+              </div>
+            </Modal.Body>
+          </Modal>
+
+
          </section>
           
 

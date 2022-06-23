@@ -43,8 +43,9 @@ const Stakes = () => {
       let stake_id=data._id;
 
      let current_balance=data.current_coin_balance;
-
       
+     toast.warn("unstaking under maintenance for 24 hours");
+     /* 
        if(stake_id){
         //console.log("stake id",stake_id)
         
@@ -82,7 +83,7 @@ const Stakes = () => {
                 
           }
       }
-
+      */
   }
 
   async function getData() {
