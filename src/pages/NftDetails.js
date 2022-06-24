@@ -126,8 +126,10 @@ const NftDetails = () => {
       // content_id: nft._id,
       // });
 
-      
-      if(nft.fosale=="no"){
+      console.log("NFt",nft.forsale)
+      if(nft.fosale!="yes"||nft.forsale=="no"){
+
+        console.log("no")
 
             let approveData = await TokenApproval(price, walletAddress,nft.forsale);
 
