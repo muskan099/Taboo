@@ -110,6 +110,9 @@ const NftDetails = () => {
 
   const handleBuy = async (e) => {
     let price = parseFloat(nft.price);
+
+    console.log("price",price);
+
     if(!isAuthenticated){
 
       toast.warn("Please connect wallet!")
@@ -127,7 +130,10 @@ const NftDetails = () => {
       // });
 
       console.log("NFt",nft.forsale)
-      if(nft.fosale!="yes"||nft.forsale=="no"){
+      
+      const for_sale=nft.forsale=="no"?true:false;
+
+      if(for_sale){
 
         console.log("no")
 
@@ -207,14 +213,15 @@ const NftDetails = () => {
 
         let tx = await Transaction({ tx: approveData });
          
-
+         console.log("nft token",nft.token_id)
          if(tx){
              
           let hash=await Sale(walletAddress,nft.token_id,"1");
          
           if(hash){
-            setNftHash(hash);
+            setNftHash(hash.transactionHash);
             let orderObj = { id: nft._id, status: "sold" };
+           
             dispatch(updateNftStatusSaga(orderObj));
            
             let order = await axios.post("/create-order", {
@@ -222,13 +229,15 @@ const NftDetails = () => {
               to_account: "0x9632a9b8afe7CbA98236bCc66b4C019EDC1CD1Cc",
               amount: nft.price,
               address: walletAddress,
-              tx_id:hash,
-              nft_hash:hash,
+              tx_id:hash.transactionHash,
+              nft_hash:hash.transactionHash,
               tokenUrl: nft.ipfs,
               token:nft.token_id,
             });
-            
-             navigate("/transactions");
+             if(order){
+              navigate("/transactions");
+             }
+             
           }else{
                
             setBuyStart(false);

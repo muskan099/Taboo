@@ -64,7 +64,7 @@ const TransactionPage=()=>{
 
    if(minPrice>0){
 
-                    
+                    setIsLoading(true);
               let tx=await CreateReSale(walletAddress,saleData.contentinfo.token_id,minPrice);
 
               if(tx){
@@ -73,9 +73,12 @@ const TransactionPage=()=>{
 
                 handleClose();
 
+                setIsLoading(false);
+
                 toast.success("Sale created successfully!")
 
               }else{
+                 setIsLoading(false)
                   toast.warn("Something went wrong")
               }
       
@@ -156,11 +159,11 @@ const TransactionPage=()=>{
                     -8
                   )}`}</a></td>
                                         <td>
-                                              <span class="success">{item.status}</span>
+                                              <span class="success">success</span>
                                         </td>
 
                                         <td>
-                                          <button disabled={item.contentinfo.forsale=="yes"?true:false} onClick={()=>handleCreateSale(item)}>Sale</button>
+                                          <button disabled={item.contentinfo.forsale=="yes"?false:false} onClick={()=>handleCreateSale(item)}>Sale</button>
                                         </td>
 
                                         </tr>
@@ -226,7 +229,7 @@ const TransactionPage=()=>{
                     disabled={isLoading}
                     style={{ cursor: isLoading ? "no-drop" : "pointer" }}
                   >
-                   Submit
+                   {isLoading?"Processing":"Submit"}
                   </a>
 
                   <a href="" className="border-btn">
