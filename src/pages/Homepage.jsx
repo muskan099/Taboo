@@ -1,7 +1,8 @@
 import CurrencyFormat from 'react-currency-format';
 import React, { useEffect, useState } from "react";
-import { Row, Col, Container, Modal } from "react-bootstrap";
+import { Row, Col, Container, Modal , Button} from "react-bootstrap";
 import { toast } from "react-toastify";
+
 
 
 import { tabooMarketData } from "../helpers/TabooHelper";
@@ -40,6 +41,8 @@ const Homepage = () => {
 
   })
 
+  
+
   return (
     <>
       <section className="banner-section">
@@ -53,6 +56,13 @@ const Homepage = () => {
                   className="taboo-logo"
                 />
                 <h4>TABOO IS THE PLAYBOY OF CRYPTO</h4>
+                <Button
+                  className="common-btn taboo-banner-btn"
+                  variant="outline-success"
+                  
+                >
+              Coming Up
+            </Button>
               </div>
             </Col>
           </Row>
