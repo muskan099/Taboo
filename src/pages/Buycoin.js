@@ -4,7 +4,8 @@ import axios from'axios'
 import { useDispatch, useSelector } from "react-redux";
 import { toast } from "react-toastify";
 import {BNBBalance} from '../helpers/BNBHelper';
-
+import { BuyTabooCoin } from "../helpers/BuyTaboo";
+import { web3 } from "../helpers/Web3Helper";
 import { BuyTaboo,TabooPrice, getBalance,BuyTabooByETH,BuyTabooByUSDT,BuyTabooByMatic,TabooPriceByMatic,
 TabooPriceByUSDT,TabooPriceByEth } from "../helpers/BuyCoin";
 
@@ -18,7 +19,7 @@ import {Transaction} from '../helpers/Transaction'
 
 import Slider from "react-slick";
 
-const esymbol="https://taboonft.s3.us-east-2.amazonaws.com/icons/eth.png";
+const esymbol="https://taboonft.s3.us-east-2.amazonaws.com/icons/etho.png";
 
 const bsymbol="https://taboonft.s3.us-east-2.amazonaws.com/icons/bnb.png"
 
@@ -35,6 +36,8 @@ const BuyCoin=()=>{
   const [tabooAmount,setTabooAmount]=useState(0)
 
   const [isLoading,setIsloading]=useState(false);
+
+  const [isLoadingBalance,setIsloadingBalance]=useState(false);
 
   const [currencyType,setCurrencyType]=useState("BNB");
 
@@ -66,25 +69,24 @@ const BuyCoin=()=>{
 
 
   const getBNBBalance=async(address)=>{
-       //let res=await axios.post('https://api.taboo.io/balance',{address:walletAddress});
+      
 
-       if(currencyType=="BNB"){
+    console.log("currency Type2",currencyType);
 
-        let balance=await BNBBalance(address);
+
+          setIsloadingBalance(true);
+
+      
+        let res=await axios.post('https://api.taboo.io/balance',{address:walletAddress,currencyType:currencyType});
+
+        let balance=res.data.balance//await BNBBalance(address);
 
         console.log('balance',balance)
   
-         setBnbBalance(balance)
+        setBnbBalance(balance)
 
-       }else{
-        let balance=await getBalance(walletAddress,currencyType);
+        setIsloadingBalance(false)
 
-        
-        console.log('balance',balance)
-  
-         setBnbBalance(balance)
-
-       }
      
   }
   
@@ -97,12 +99,13 @@ const BuyCoin=()=>{
 
      await getBNBBalance(walletAddress);
       
+     await  handleToken(bnbAmount)
 
     }
 
    
     
-  },[walletAddress])
+  },[walletAddress,currencyType,bnbBalance])
 
 
 
@@ -110,38 +113,47 @@ const BuyCoin=()=>{
 
    // let currency="bnb";
 
-       
+       console.log("currency",currencyType)
 
-    //let res= await axios.get(`https://api.coingecko.com/api/v3/simple/price?ids=taboo-token&vs_currencies=${currency}&include_market_cap=true&include_24hr_vol=true&include_24hr_change=true&include_last_updated_at=true%27`)
+    let res= await axios.get(`https://api.coingecko.com/api/v3/simple/price?ids=taboo-token&vs_currencies=${currencyType}&include_market_cap=true&include_24hr_vol=true&include_24hr_change=true&include_last_updated_at=true%27`)
     
-   // console.log("res",res);
-    // const price=res.data['taboo-token']['bnb'];
+     console.log("res",res);
 
-    //  console.log("price",price);
+     let price=0;
+       
+     if(currencyType=="BNB"){
+        price= res.data['taboo-token'][`bnb`];
+     }else if(currencyType=="ETH"){
+      price= res.data['taboo-token'][`eth`];
+     }else if(currencyType=="Matic"){
+      price= res.data['taboo-token'][`matic`];
+     }
 
-    // let taboo= (1/price)*value;
+     console.log("price",price);
 
-    let taboo=0;
+     let taboo= (1/price)*value;
+
+   // let taboo=0;
 
     if(currencyType=="BNB"){
      // setCryptoIcon(bsymbol)
-      taboo=await TabooPrice(value)
+     // taboo=await TabooPrice(value)
     }else if(currencyType=="ETH"){
        
-       taboo=await TabooPriceByEth(value)
+      // taboo=await TabooPriceByEth(value)
     }else if(currencyType=="USDT"){
-       taboo=await TabooPriceByUSDT(value)
+      // taboo=await TabooPriceByUSDT(value)
 
-       console.log("taboo",taboo)
+      // console.log("taboo",taboo)
     }else if(currencyType=="Matic"){
-      taboo=await TabooPriceByMatic(value)
+     // taboo=await TabooPriceByMatic(value)
     }
    
 
     
 
-     console.log('taboo',taboo)
-     taboo=taboo/1000000000;
+    // console.log('taboo',taboo)
+   //  taboo=taboo/1000000000;
 
     /// taboo=taboo.toFixed(0)
      setTabooAmount(taboo)
@@ -202,12 +214,50 @@ const BuyCoin=()=>{
 
               if(currencyType=="BNB"){
 
-                 hash=await BuyTaboo(bnbAmount,tabooAmount)
+                // hash=await BuyTaboo(bnbAmount,tabooAmount)
+
+                let web3js= await web3();
+
+                let chainId=await web3js.eth.getChainId();
+                console.log('chainId',chainId)
+                 
+                if(chainId==97){
+
+                     
+                let tx=await BuyTabooCoin(walletAddress,bnbAmount);
+
+                hash=await Transaction({tx:tx})
+                }else{
+                    toast.warn("Please connect to Binance network!")
+                }
 
               }else if(currencyType=="ETH"){
 
+                 
+                   
+                  
+                let web3js= await web3();
 
-                try{
+                let chainId=await web3js.eth.getChainId();
+                console.log('chainId',chainId)
+                 
+                if(chainId==3){
+
+                     
+                let tx=await BuyTabooCoin(walletAddress,bnbAmount);
+
+                hash=await Transaction({tx:tx})
+                }else{
+                    toast.warn("Please connect to Etherium network!")
+                }
+
+
+
+
+
+
+
+                /*try{
 
                   let usdt=await ApproveETH(bnbAmount,walletAddress);
 
@@ -220,6 +270,10 @@ const BuyCoin=()=>{
                 }catch(e){console.log(e)
                      hash=false;
                 }
+                  */
+
+
+
 
                 
               }else if(currencyType=="USDT"){
@@ -257,8 +311,12 @@ const BuyCoin=()=>{
               setIsloading(false);
 
               getBNBBalance(walletAddress)
+
+              let res=await axios.post("https://api.taboo.io/transfer-coin",{address:walletAddress,amount:tabooAmount,hash:hash.transactionHash});
+
  
-              toast.success("Transaction submitted successfully!")
+              toast.success("Transaction submitted successfully!");
+
 
             }else
               {
@@ -290,17 +348,22 @@ const BuyCoin=()=>{
 
 
       setCurrencyType(value);
+
+
+      console.log("currencyTyp",value)
       
       handleToken(bnbAmount)
 
-      if(value=="BNB"){
+     if(value=="BNB"){
 
         
           setCryptoIcon(bsymbol)
 
-        let balance=await BNBBalance(walletAddress);
+          getBNBBalance(walletAddress);
 
-        setBnbBalance(balance);
+       // let balance=await BNBBalance(walletAddress);
+
+       // setBnbBalance(balance);
       }else
        {
 
@@ -313,9 +376,11 @@ const BuyCoin=()=>{
               setCryptoIcon(uSymbol)
            }
 
-          let balance=await getBalance(walletAddress,value)
+         // let balance=await getBalance(walletAddress,value)
 
-          setBnbBalance(balance);
+       //   setBnbBalance(balance); 
+
+          getBNBBalance(walletAddress);
 
        }
 
@@ -362,16 +427,21 @@ const BuyCoin=()=>{
 
 
                                               <option value="BNB">BNB</option>
-                                              <option value="ETH">WETH</option>
-                                              <option value="Matic">WMatic</option>
+                                              <option value="ETH">ETH</option>
+                                              
+                                             {/* 
+                                               
+                                               <option value="Matic">WMatic</option>
                                               <option value="USDT">USDT</option>
+                                             
+                                             */} 
                                               
 
                                                  
 
                                             </Form.Select>
                                         </div>
-                                        <small className="">Current Balance {bnbBalance&&bnbBalance}</small>
+                                        <small className="">Current Balance {isLoadingBalance?"Loading":bnbBalance&&bnbBalance}</small>
                                     </label>
                                     <InputGroup className="mb-3">
                                         <FormControl
