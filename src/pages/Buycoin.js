@@ -307,7 +307,7 @@ const BuyCoin=()=>{
  
             if(hash){
 
-
+               console.log("babalALX",hash)
               setIsloading(false);
 
               getBNBBalance(walletAddress)
