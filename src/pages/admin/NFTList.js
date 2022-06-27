@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
+import DatePicker from "react-datepicker";
 import { toast } from "react-toastify";
 import { axios } from "../../http";
 import { createAuction } from "../../helpers/AuctionHelper";
@@ -30,6 +31,9 @@ const NFTList = () => {
         } = useSelector((state) => state.nft); */
 
   const navigate = useNavigate();
+
+  const [startDate, setStartDate] = useState(new Date());
+
 
   // const { nft, isLoading } = useSelector((state) => state.nft);
 

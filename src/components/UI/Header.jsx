@@ -169,7 +169,7 @@ const Header = () => {
               <Link to="/about" className="nav-link">About</Link>
               <Link to="/models" className="nav-link">Models</Link>
 
-             <Link to="/buycoin" className="nav-link">Buy Taboo</Link> 
+             {/*<Link to="/buycoin" className="nav-link">Buy Taboo</Link> */}
 
             </Nav>
           </Navbar.Collapse>
