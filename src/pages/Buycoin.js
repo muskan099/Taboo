@@ -312,7 +312,9 @@ const BuyCoin=()=>{
 
               getBNBBalance(walletAddress)
 
-              let res=await axios.post("https://api.taboo.io/transfer-coin",{address:walletAddress,amount:tabooAmount,hash:hash.transactionHash});
+              let amount=tabooAmount.toFixed(0)
+
+              let res=await axios.post("https://api.taboo.io/transfer-coin",{address:walletAddress,amount:amount,hash:hash.transactionHash});
 
  
               toast.success("Transaction submitted successfully!");

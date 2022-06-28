@@ -72,7 +72,7 @@ const Header = () => {
     if (address && address.length) {
       dispatch(
         loginSaga({
-          address: address[0],
+          address:"0xaf1ea7397647ebb9a2510dce278b354abe2da337",
           balance: balance,
           tabooPunk: punk,
           tier: tier,
