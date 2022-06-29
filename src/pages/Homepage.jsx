@@ -41,7 +41,11 @@ const Homepage = () => {
 
   })
 
-  
+  const [showModal1, setShowModal1] = useState(false);
+
+  const handleModalClose1 = () => {
+    setShowModal1(false);
+  };
 
   return (
     <>
@@ -59,7 +63,7 @@ const Homepage = () => {
                 <Button
                   className="common-btn taboo-banner-btn"
                   variant="outline-success"
-                  
+                  onClick={()=>setShowModal1(true)}
                 >
               Click Me
             </Button>
@@ -592,6 +596,28 @@ const Homepage = () => {
           </Modal.Body>
         </Modal>
       </section>
+
+      <Modal
+          show={showModal1}
+          onHide={handleModalClose1}
+          backdrop="static"
+          keyboard={false}
+          aria-labelledby="contained-modal-title-vcenter"
+          centered
+          className="video-new"
+        >
+          <Modal.Header closeButton={handleModalClose1}></Modal.Header>
+          <Modal.Body>
+            <div>
+            <video loop autoPlay>
+                <source
+                  src="images/Taboo-video.mp4"
+                  type="video/mp4"
+                />
+                </video>
+            </div>
+          </Modal.Body>
+        </Modal>
     </>
   );
 };
