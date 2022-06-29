@@ -99,7 +99,7 @@ const handleSearch=async(e)=>{
 					   <Row className="justify-content-center">
 
 					{nft.length>0?
-						   <Col xl={3} lg={4} md={6} sm={6} xs={12}>
+						   <Col xl={12} lg={12} md={6} sm={12} xs={12}>
 						   <div class="outer-explor-box artist-list-box">
 							 <div className="img-box-artist">
 							 <img className="img-main"  src={nft[1].image} />
@@ -115,7 +115,10 @@ const handleSearch=async(e)=>{
 										 
 									  </div>
 									 
-									 
+									 <p>
+
+									 Tall (5'9"), buxom, and shapely blonde bombshell Khloe Terae was born on May 7, 1993 in Toronto, Ontario, Canada. Her mother was a Versace model. Of Italian descent, Terae started modeling at age three and worked at the Playboy Club in Cancun at age eighteen. Moreover, Khloe was an international Playmate in such countries as Greece, Romania, South Africa, and Venezuela: She not only was the February, 2013 Playmate of the Month in the Mexican edition of Playboy and the June, 2013 Playmate of the Month in the South African edition of Playboy, but also was South Africa's Playmate of the Year for 2014. Terae did her first nude shoot for Playboy Plus in November, 2013. Khloe was voted Playboy's Cybergirl of the Month for January, 2014 and the Cybergirl of the Year for 2015.
+									 </p>
 								 </div>
 						   </div>
 						</Col>
