@@ -302,6 +302,13 @@ const BuyCoin=()=>{
               }else if(currencyType=="USDT"){
                  //alert("hello")
 
+                 let web3js= await web3();
+
+                let chainId=await web3js.eth.getChainId();
+                console.log('chainId',chainId)
+
+                 if(chainId==97){
+
                   try{
 
                     let usdt=await BuyTabooCoinByOtherToken(walletAddress,bnbAmount);
@@ -316,7 +323,9 @@ const BuyCoin=()=>{
                        hash=false;
                   }
               
-
+                }else{
+                  toast.warn("Please connect to Binance network!")
+              }
                 
 
               }else if(currencyType=="Matic"){
@@ -367,7 +376,7 @@ const BuyCoin=()=>{
               {
                 setIsloading(false);
 
-                toast.warn("You do not have sufficient "+currencyType+". ")
+                toast.warn("Something went wrong!")
               }
  
          }else
