@@ -18,13 +18,14 @@ import {ApproveMatic} from '../helpers/ApproveMatic'
 import {Transaction} from '../helpers/Transaction'
 
 import Slider from "react-slick";
+import { BNBTOTAboo } from "../helpers/BNBTOTAboo";
 
 const esymbol="https://taboonft.s3.us-east-2.amazonaws.com/icons/etho.png";
 
 const bsymbol="https://taboonft.s3.us-east-2.amazonaws.com/icons/bnb.png"
 
 const mSymbol="https://taboonft.s3.us-east-2.amazonaws.com/icons/matic.png";
- const uSymbol="https://taboonft.s3.us-east-2.amazonaws.com/icons/usdt.webp";
+const uSymbol="https://taboonft.s3.us-east-2.amazonaws.com/icons/usdt.webp";
 
 const BuyCoin=()=>{
 
@@ -113,50 +114,57 @@ const BuyCoin=()=>{
 
    // let currency="bnb";
 
-       console.log("currency",currencyType)
+              if(currencyType=="BNB"||currencyType=="ETH"){
 
-    let res= await axios.get(`https://api.coingecko.com/api/v3/simple/price?ids=taboo-token&vs_currencies=${currencyType}&include_market_cap=true&include_24hr_vol=true&include_24hr_change=true&include_last_updated_at=true%27`)
-    
-     console.log("res",res);
+                  console.log("currency",currencyType)
 
-     let price=0;
-       
-     if(currencyType=="BNB"){
-        price= res.data['taboo-token'][`bnb`];
-     }else if(currencyType=="ETH"){
-      price= res.data['taboo-token'][`eth`];
-     }else if(currencyType=="Matic"){
-      price= res.data['taboo-token'][`matic`];
-     }
+                let res= await axios.get(`https://api.coingecko.com/api/v3/simple/price?ids=taboo-token&vs_currencies=${currencyType}&include_market_cap=true&include_24hr_vol=true&include_24hr_change=true&include_last_updated_at=true%27`)
+                
+                console.log("res",res);
 
-     console.log("price",price);
+                let price=0;
+                  
+                if(currencyType=="BNB"){
+                    price= res.data['taboo-token'][`bnb`];
+                }else if(currencyType=="ETH"){
+                  price= res.data['taboo-token'][`eth`];
+                }else if(currencyType=="Matic"){
+                  price= res.data['taboo-token'][`matic`];
+                }
 
-     let taboo= (1/price)*value;
+                console.log("price",price);
 
-   // let taboo=0;
+                let taboo= (1/price)*value;
 
-    if(currencyType=="BNB"){
-     // setCryptoIcon(bsymbol)
-     // taboo=await TabooPrice(value)
-    }else if(currencyType=="ETH"){
-       
-      // taboo=await TabooPriceByEth(value)
-    }else if(currencyType=="USDT"){
-      // taboo=await TabooPriceByUSDT(value)
-
-      // console.log("taboo",taboo)
-    }else if(currencyType=="Matic"){
-     // taboo=await TabooPriceByMatic(value)
-    }
    
+               setTabooAmount(taboo)
 
-    
+              }
+              else
+              {
 
-    // console.log('taboo',taboo)
-   //  taboo=taboo/1000000000;
+                let  geko_ids="matic-network";
 
-    /// taboo=taboo.toFixed(0)
-     setTabooAmount(taboo)
+                if(currencyType=="USDT"){
+                  geko_ids="tether";
+                }else if(currencyType=="Matic"){
+                  geko_ids="matic-network";
+                }
+
+                let res= await axios.get(`https://api.coingecko.com/api/v3/simple/price?ids=${geko_ids}&vs_currencies=bnb`)
+                
+                console.log("res isd",res.data[`${geko_ids}`]['bnb']);
+
+                let matic_bnb=res.data[`${geko_ids}`]['bnb'];
+
+                let bnb_amount=matic_bnb*value;
+
+                 let taboo=await BNBTOTAboo(bnb_amount)
+
+                 setTabooAmount(taboo);
+                 
+
+              }
 
    }
    
@@ -299,7 +307,27 @@ const BuyCoin=()=>{
               }else if(currencyType=="Matic"){
 
 
-                 hash=await BuyTabooByMatic(bnbAmount,tabooAmount)
+                      
+                let web3js= await web3();
+
+                let chainId=await web3js.eth.getChainId();
+                console.log('chainId',chainId)
+                 
+                if(chainId==80001){
+
+                     
+                let tx=await BuyTabooCoin(walletAddress,bnbAmount);
+
+                hash=await Transaction({tx:tx})
+                }else{
+                    toast.warn("Please connect to Polygon network!")
+                }
+
+
+                 
+
+
+                // hash=await BuyTabooByMatic(bnbAmount,tabooAmount)
 
               }
  
@@ -430,10 +458,11 @@ const BuyCoin=()=>{
 
                                               <option value="BNB">BNB</option>
                                               <option value="ETH">ETH</option>
+                                              <option value="Matic">Matic</option>
                                               
                                              {/* 
                                                
-                                               <option value="Matic">WMatic</option>
+                                              
                                               <option value="USDT">USDT</option>
                                              
                                              */} 
