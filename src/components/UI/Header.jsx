@@ -243,15 +243,13 @@ const Header = () => {
             </>
           )}
 
-           <Button
+           <a
               className="common-btn"
               variant="outline-success"
-              onClick={() => {
-                setShowModal1(true);
-              }}
+               href="/buycoin"
             >
-              Coming Up
-            </Button>
+              Buy Taboo
+            </a>
         </Container>
       </Navbar>
 

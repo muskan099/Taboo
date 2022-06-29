@@ -61,7 +61,7 @@ const Homepage = () => {
                   variant="outline-success"
                   
                 >
-              Coming Up
+              Click Me
             </Button>
               </div>
             </Col>
