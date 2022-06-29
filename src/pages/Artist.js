@@ -53,6 +53,8 @@ const handleSearch=async(e)=>{
 }
 
 
+//console.log("nftfff",nft[1].name)
+
 	return(<>
 		 <section className="team-sec-new">
 	        <Container>
@@ -87,6 +89,47 @@ const handleSearch=async(e)=>{
 	             
 		        </Col>	
 		      </Row>
+              
+
+			  <Row className="align-items-top">
+	           
+			   <Col xxl={12} xl={12} lg={12} md={12} sm={12} xs={12}>
+				  <div>
+				 
+					   <Row className="justify-content-center">
+
+					{nft.length>0?
+						   <Col xl={3} lg={4} md={6} sm={6} xs={12}>
+						   <div class="outer-explor-box artist-list-box">
+							 <div className="img-box-artist">
+							 <img className="img-main"  src={nft[1].image} />
+
+							   <div className="insta-link">
+								   <a className="link-main" href={nft[1].instagram} target={'_blank'}><i className="fa fa-instagram" ></i></a>
+							   </div>
+							 </div>
+								
+								 <div className="exploror-list-box">
+									  <div className="price-line">
+										  <h5>{nft[1]&&nft[1].name}<span>{nft[1].quantity}</span> </h5>
+										 
+									  </div>
+									 
+									 
+								 </div>
+						   </div>
+						</Col>
+
+	                    :""}		
+						   
+				  
+					 </Row>
+				  </div>
+			   </Col>
+			 </Row>
+
+
+
 	          <Row className="align-items-top">
 	           
 	            <Col xxl={12} xl={12} lg={12} md={12} sm={12} xs={12}>
@@ -95,9 +138,9 @@ const handleSearch=async(e)=>{
 	               	 <Row className="justify-content-center">
 
 					    {nft.length>0?
-						 nft.map((item)=>
+						 nft.map((item,index)=>
 
-							<Col xl={3} lg={4} md={6} sm={6} xs={12}>
+							<Col className={index=="1"?'d-none':''} xl={3} lg={4} md={6} sm={6} xs={12}>
 							<div class="outer-explor-box artist-list-box">
 							  <div className="img-box-artist">
 							  <img className="img-main"  src={item.image} />
