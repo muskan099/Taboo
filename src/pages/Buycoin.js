@@ -4,7 +4,7 @@ import axios from'axios'
 import { useDispatch, useSelector } from "react-redux";
 import { toast } from "react-toastify";
 import {BNBBalance} from '../helpers/BNBHelper';
-import { BuyTabooCoin } from "../helpers/BuyTaboo";
+import { BuyTabooCoin ,BuyTabooCoinByOtherToken,TokenBalance} from "../helpers/BuyTaboo";
 import { web3 } from "../helpers/Web3Helper";
 import { BuyTaboo,TabooPrice, getBalance,BuyTabooByETH,BuyTabooByUSDT,BuyTabooByMatic,TabooPriceByMatic,
 TabooPriceByUSDT,TabooPriceByEth } from "../helpers/BuyCoin";
@@ -77,16 +77,31 @@ const BuyCoin=()=>{
 
           setIsloadingBalance(true);
 
-      
-        let res=await axios.post('https://api.taboo.io/balance',{address:walletAddress,currencyType:currencyType});
+       if(currencyType=="USDT"){
 
-        let balance=res.data.balance//await BNBBalance(address);
+          let balance= await TokenBalance(walletAddress);
 
-        console.log('balance',balance)
+          console.log("other balance",balance);
+
+          setBnbBalance(balance)
+
+          setIsloadingBalance(false);
+
+       }else
+         {
+
+          let res=await axios.post('https://api.taboo.io/balance',{address:walletAddress,currencyType:currencyType});
+
+          let balance=res.data.balance//await BNBBalance(address);
+
+           console.log('balance',balance)
   
-        setBnbBalance(balance)
+           setBnbBalance(balance)
 
-        setIsloadingBalance(false)
+           setIsloadingBalance(false)
+
+         }
+        
 
      
   }
@@ -289,13 +304,13 @@ const BuyCoin=()=>{
 
                   try{
 
-                    let usdt=await ApproveUSDT(bnbAmount,walletAddress);
+                    let usdt=await BuyTabooCoinByOtherToken(walletAddress,bnbAmount);
 
                     let txObj={tx:usdt};
 
-                    let trx=await Transaction(txObj);
+                    hash=await Transaction(txObj);
 
-                    hash=await BuyTabooByUSDT(bnbAmount,tabooAmount)
+                   //hash=await BuyTabooByUSDT(bnbAmount,tabooAmount)
 
                   }catch(e){console.log(e)
                        hash=false;
@@ -459,11 +474,12 @@ const BuyCoin=()=>{
                                               <option value="BNB">BNB</option>
                                               <option value="ETH">ETH</option>
                                               <option value="Matic">Matic</option>
+                                              <option value="USDT">USDT</option>
                                               
                                              {/* 
                                                
                                               
-                                              <option value="USDT">USDT</option>
+                                              
                                              
                                              */} 
                                               
