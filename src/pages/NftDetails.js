@@ -362,9 +362,14 @@ const NftDetails = () => {
                       </div>
                     </Tab>
                     <Tab eventKey="owners" title="Owners">
-                      <p>{nft.orders?.user_wallet_address?nft.orders.user_wallet_address:nft.wallet_address}</p>
+                     {nft.orders&&nft.orders.length>0?nft.orders.map((order)=>
 
-                      
+                              <p>{`${order.user_wallet_address}`}     </p>  
+
+
+                      ): <p>{nft.wallet_address}</p>
+
+                     }
                     </Tab>
                     <Tab eventKey="history" title="History">
 
