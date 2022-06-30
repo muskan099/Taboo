@@ -31,7 +31,7 @@ export const createAuction = async (
 
   timePeriod = timePeriod.getTime() / 1000; //moment(end_date,"YY-MM-DD").valueOf()
 
-  startTime = 1656352982 //startTime.getTime() / 1000; //moment(start_time,"YY-MM-DD").valueOf();
+  startTime = 1656510964 //startTime.getTime() / 1000; //moment(start_time,"YY-MM-DD").valueOf();
 
   token = 0;
 

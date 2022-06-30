@@ -731,14 +731,9 @@ const Explore = () => {
                               <div className="stoke-line">
                                 <ul>
                                   <li>
-                                    <img src={"images/Team/team4.png"} />
+                                    <img src={"https://taboonft.s3.us-east-2.amazonaws.com/icons/Taboo-logo-3.61280c399d2252.47125802.png"} />
                                   </li>
-                                  <li>
-                                    <img src={"images/Team/team2.png"} />
-                                  </li>
-                                  <li>
-                                    <img src={"images/Team/team3.png"} />
-                                  </li>
+                                  
                                 </ul>
                                 <h6>
                                   {item.status == "sold"

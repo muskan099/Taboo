@@ -30,7 +30,7 @@ export const CreateReSale=async(selectedAccount,token,price)=>{
 
 
    let ownerPercentage=0;
-   let royaltyPercentage=15;
+   let royaltyPercentage=2;
    let platformPercentage=15;
 
 

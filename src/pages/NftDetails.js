@@ -344,8 +344,8 @@ const NftDetails = () => {
                             }
                           />
                           <div>
-                            <p>Owner</p>
-                            <h5>{nft.orders?.user_wallet_address?nft.orders.user_wallet_address:nft.wallet_address}</h5>
+                            <p>Creator</p>
+                            <h5>{nft.wallet_address}</h5>
                           </div>
                         </div>
                         <div class="owner-row-outer d-none">
@@ -368,35 +368,79 @@ const NftDetails = () => {
                     </Tab>
                     <Tab eventKey="history" title="History">
 
-                   { nft.orders?.user_wallet_address? <table width={"400px"}>
+                   { nft.orders&&nft.orders.length>0? <table width={"400px"}>
                          <tr>
                           <th>Owner</th>
 
                           <th>Price</th>
                          </tr>
-
+                         {nft.orders&&nft.orders.map((order)=>
                          <tr>
                            <td>
 
-                          
-                              <p>{`${nft.orders.user_wallet_address.slice(
-                                0,
-                                5
-                              )}......${nft.orders.user_wallet_address.slice(-5)}`}     </p>  
                            
+
+                                                                
+
+                                  <p>{`${order.user_wallet_address.slice(
+                                    0,
+                                    5
+                                  )}......${order.user_wallet_address.slice(-5)}`}     </p>  
+
+                             
+                             
+                           
+                              
                           
 
                            </td>
 
                            <td>
-                           {nft.price}
+                           {order.total}
                            </td>
                          </tr>
+                         )}
                        </table>: "No History Found"}
                      
                     </Tab>
                     <Tab eventKey="bids" title="Bids">
-                      No bids
+                      
+                        
+                    { nft.offers&&nft.offers.length>0? <table width={"400px"}>
+                         <tr>
+                          <th>Wallet Address</th>
+
+                          <th>Price</th>
+                         </tr>
+                         {nft.offers&&nft.offers.map((offer)=>
+                         <tr>
+                           <td>
+
+                           
+
+                                                                
+
+                                  <p>{`${offer.wallet_address.slice(
+                                    0,
+                                    5
+                                  )}......${offer.wallet_address.slice(-5)}`}     </p>  
+
+                             
+                             
+                           
+                              
+                          
+
+                           </td>
+
+                           <td>
+                           {offer.offer_price}
+                           </td>
+                         </tr>
+                         )}
+                       </table>: "Not Found"}
+
+
                     </Tab>
                   </Tabs>
                   <div className="outer-purchase-box">
@@ -582,22 +626,23 @@ const NftDetails = () => {
               <Table>
                 <thead>
                   <tr>
-                    <th>Enter Bid</th>
-                    <th>$TABOO</th>
+                    <th>Your Balance</th>
+                    <th>{balance} Taboo</th>
                   </tr>
                 </thead>
                 <tbody>
                   <tr>
-                    <td>Your Balance</td>
-                    <td> {balance} TABOO</td>
+                    <td>Price</td>
+                    <td> {nft.price} TABOO</td>
                   </tr>
                   <tr>
                     <td>Service Fee</td>
-                    <td>15 TABOO</td>
+                    <td>15 TABOO(%)</td>
                   </tr>
-                  <tr>
+                  <tr> 
                     <td>Total will Pay</td>
-                    <td>{nft && parseFloat(nft.price)+15} TABOO</td>
+                      
+                    <td>{nft && parseFloat(nft.price)+(parseFloat(nft.price)*15)/100} TABOO</td>
                   </tr>
                 </tbody>
               </Table>

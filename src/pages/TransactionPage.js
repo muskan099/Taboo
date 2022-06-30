@@ -15,7 +15,10 @@ const TransactionPage=()=>{
 
   const[saleData,setSaleData]=useState('');
 
-  const [minPrice, setMinPrice] = useState(0);
+  const [minPrice, setMinPrice] = useState('');
+
+  const [total,setTotal]=useState(0);
+
 
  const handleClose = () => {
   setShow(false);
@@ -35,8 +38,18 @@ const TransactionPage=()=>{
 
   if (isNaN(value)) {
     e.target.value = "";
+    setTotal(0);
   } else {
     setMinPrice(value);
+
+    let platform_fees=(parseFloat(value)*15)/100;
+
+    let rest_amount=parseFloat(value)-platform_fees;
+
+    let royalty=(parseFloat(value)*2)/100;
+
+    let total_amount=parseFloat(value)-royalty;
+     setTotal(total_amount);
   }
 };
  useEffect(async()=>{
@@ -112,7 +125,9 @@ const TransactionPage=()=>{
                                 <tr>
                                    <th>S.No</th>
                                    <th>Image</th>
-                                   <th>Wallet Address</th>
+                                   <th>Name</th>
+                                   <th>Buying Price</th>
+                                   <th>Creator Address</th>
                                   <th>Trasaction Hash</th>
                                   <th className="">Token</th>
                                   <th className="d-none">Ipfs Link</th>
@@ -134,9 +149,15 @@ const TransactionPage=()=>{
                                             </div>
                                         </td>
                                         <td>
-                                        <a href={"https://www.bscscan.com/address/"+item.user_wallet_address} target={'_blank'}>
+                                          {item.contentinfo.name}
+                                        </td>
+                                        <td>
+                                          {item.total}
+                                        </td>
+                                        <td>
+                                        <a href={"https://www.bscscan.com/address/"+item.contentinfo.wallet_address} target={'_blank'}>
 
-                                          {`${item.user_wallet_address?.slice(0, 3)}...${item.user_wallet_address?.slice(
+                                          {`${item.contentinfo.wallet_address?.slice(0, 3)}...${item.user_wallet_address?.slice(
                     -8
                   )}`} </a>
                                         </td>
@@ -163,7 +184,7 @@ const TransactionPage=()=>{
                                         </td>
 
                                         <td>
-                                          <button disabled={item.contentinfo.forsale=="yes"?false:false} onClick={()=>handleCreateSale(item)}>Sale</button>
+                                          <button disabled={item.contentinfo.forsale=="yes"?false:false} onClick={()=>handleCreateSale(item)}>Sell</button>
                                         </td>
 
                                         </tr>
@@ -205,7 +226,7 @@ const TransactionPage=()=>{
                  
                 <Form>
                   <Form.Group className="mb-3">
-                    <Form.Label>Min Price</Form.Label>
+                    <Form.Label>Min Price(in taboo)</Form.Label>
                     <Form.Control
                       type="text"
                       placeholder="min price"
@@ -217,6 +238,50 @@ const TransactionPage=()=>{
 
                  
                 </Form>
+
+                <Form>
+                  <Form.Group className="mb-3 d-none">
+                    <Form.Label>Platform Fee(%)</Form.Label>
+                    <Form.Control
+                      type="text"
+                      placeholder="Platform Fee"
+                      name="minPrice"
+                    
+                      value="15" readOnly
+                    />
+                  </Form.Group>
+
+                 
+                </Form>
+
+                <Form>
+                  <Form.Group className="mb-3">
+                    <Form.Label>Royalty(%)</Form.Label>
+                    <Form.Control
+                      type="text"
+                      placeholder="min price"
+                      name="minPrice"
+                      value="2"readOnly
+                    />
+                  </Form.Group>
+
+                 
+                </Form>
+
+                <Form>
+                  <Form.Group className="mb-3">
+                    <Form.Label>You get</Form.Label>
+                    <Form.Control
+                      type="text"
+                      placeholder="min price"
+                      name="minPrice"
+                      value={total}
+                    />
+                  </Form.Group>
+
+                 
+                </Form>
+
 
                 <div>
                   <a href="#"
