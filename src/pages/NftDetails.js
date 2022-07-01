@@ -289,7 +289,7 @@ const NftDetails = () => {
               toast.warn("Transaction Failed!");
             }
           } else {
-            toast.warn("Please try after sometime!.");
+            toast.warn("Auction is ended!.");
           }
         } else {
           toast.warn("Amount approval failed!");
