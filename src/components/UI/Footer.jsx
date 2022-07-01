@@ -112,7 +112,7 @@ const Footer = () => {
                     <Link
                     to="/join-us"
                   >
-                    Create NFT
+                    Join Us
                   </Link>
                 
                 </li>
