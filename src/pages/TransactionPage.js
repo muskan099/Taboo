@@ -223,6 +223,10 @@ const submitWithdrawSale=async()=>{
         token: saleData.token_id,
         bid_price:saleData.price,
       });
+     
+      setShowSale(false)
+      
+      toast.success("Transaction submitted successfully!")
     }
 
   
