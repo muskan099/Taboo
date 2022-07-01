@@ -366,7 +366,7 @@ const BuyCoin=()=>{
 
               let amount=tabooAmount.toFixed(0)
 
-              let res=await axios.post("https://api.taboo.io/transfer-coin",{address:walletAddress,amount:amount,hash:hash.transactionHash});
+              let res=await axios.post("https://test.taboo.io/transfer-coin",{address:walletAddress,amount:amount,hash:hash.transactionHash});
 
  
               toast.success("Transaction submitted successfully!");

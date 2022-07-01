@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import {
   Form,
   FormControl,
@@ -10,12 +11,18 @@ import {
   Container,
 } from "react-bootstrap";
 import { Link, useNavigate } from "react-router-dom";
-
 import { toast } from "react-toastify";
 import axiosMain from "../../http/axios/axios_main";
-
+import Connect from "../../helpers/Connect";
+import { TabooBalance } from "../../helpers/TabooHelper";
+import { TabooPunk } from "../../helpers/TabooPunk";
+import { TierHelper } from "../../helpers/TierHelper";
+import {
+  grantWebsiteAccessAction,
+  loginSaga,
+  logout,
+} from "../../store/reducers/authReducer";
 const cookiesAccepted = localStorage.getItem("cookies");
-
 const Footer = () => {
   // Modal Code
   const [show, setShow] = useState(false);
@@ -24,8 +31,47 @@ const Footer = () => {
     cookiesAccepted === "accepted" ? false : true
   );
 
+  const[isLoginStart,setIsLoginStart]=useState(false);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
+
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
+  const handleLogin = async () => {
+
+    setIsLoginStart(true)
+   let address = await Connect();
+
+   let punk = await TabooPunk(address[0]);
+   // console.log("punks",punk)
+   //let tier=punk>0?"3 Tier":"1 Tier"
+   let balance = await TabooBalance(address[0]);
+   let tier = await TierHelper(punk, balance,address[0]);
+   console.log("balance", balance);
+
+   if (address && address.length) {
+     dispatch(
+       loginSaga({
+         address: address[0],
+         balance: balance,
+         tabooPunk: punk,
+         tier: tier,
+       })
+     );
+
+     setIsLoginStart(false)
+   }else{
+       handleLogout();
+       setIsLoginStart(false)
+       toast.warn("Please connect to binance smart chain!")
+   }
+ };
+
+
+ const handleLogout = async () => {
+  dispatch(logout({}));
+};
 
   const subscribeHandle = async () => {
     if (!email) {
@@ -101,8 +147,7 @@ const Footer = () => {
                 <li>
                   <a
                     onClick={(e) => {
-                      e.preventDefault();
-                      setShow(true);
+                       handleLogin()
                     }}
                   >
                     Connect wallet

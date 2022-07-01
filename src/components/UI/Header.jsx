@@ -246,7 +246,7 @@ const Header = () => {
            <a
               className="common-btn"
               variant="outline-success"
-               href="/buycoin"
+              onClick={handleShow}
             >
               Buy Taboo
             </a>
