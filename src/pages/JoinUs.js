@@ -1,6 +1,12 @@
+import React, { useEffect, useState } from "react";
 import { Row, Col, Container, Tabs,Tab,Table, Modal, Button, Form} from "react-bootstrap";
 
 const JoinUs=()=>{
+
+  useEffect(async()=>{
+    window.scrollTo(0, 0)
+ },[])  
+
 
     return(<>
          <section className="join-box-sec">
