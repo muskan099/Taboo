@@ -152,6 +152,7 @@ const Explore = () => {
 
   // console.log({ range: `${startPrice} ${endPrice}` });
   useEffect(() => {
+    window.scrollTo(0, 0)
     // console.log("category", category);
     getData(
       currentPage,
@@ -537,10 +538,10 @@ const Explore = () => {
             </Col>
             <Col xxl={9} xl={9} lg={9} md={8} sm={6} xs={12}>
               <div>
-				   <Row className="justify-content-end">
+				   <Row className=" pagination-row-explore">
                   <Col
 				  className="set-limit"
-                    lg={3}
+                    lg={6}
                     md={6}
                     sm={6}
                     xs={12}
@@ -564,7 +565,7 @@ const Explore = () => {
                     </Form.Select>
                   </Col>
                   
-                  <Col className="" lg={6} md={3} sm={6} xs={12}>
+                  <Col className="" lg={6} md={6} sm={6} xs={12}>
                     {!isLoading &&
                       nft?.length > 0 &&
                       paginationData.pages?.length > 0 && (

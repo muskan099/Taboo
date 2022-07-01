@@ -59,26 +59,28 @@ const Footer = () => {
 
 
               <a href="https://mobile.twitter.com/taboo_io" target={'_blank'}>
-                  <img src="https://taboonft.s3.us-east-2.amazonaws.com/icons/twitter.png" width={'40'} />
+                  <img src="images/twitter.png" width={'40'} />
                   </a>
 
 
                 
                 <a href="https://t.me/TABOO_OFFICIAL" target={'_blank'} className="telegram-link">
-                  <img src="https://taboonft.s3.us-east-2.amazonaws.com/icons/telegram.png" width={'40'} />
+                  <img src="images/telegram.png" width={'40'} />
                   </a>
 
                        
                   <a href="https://discord.gg/fuYDVuVwnd" target={'_blank'} className="insta-link">
-                  <img src="https://taboonft.s3.us-east-2.amazonaws.com/icons/discord.png" width={'40'} />
+                  <img src="images/discord.png" width={'40'} />
                 </a>
 
 
 
 
                 <a href="https://instagram.com/taboo.token?igshid=YmMyMTA2M2Y=" target={'_blank'} className="insta-link">
-                  <img src="https://taboonft.s3.us-east-2.amazonaws.com/icons/instagram.png" width={'40'} />
+                  <img src="images/instagram.png" width={'40'} />
                 </a>
+
+               
 
 
                 
@@ -107,14 +109,12 @@ const Footer = () => {
                   </a>
                 </li>
                 <li>
-                  <a
-                     onClick={(e) => {
-                      e.preventDefault();
-                      setShow(true);
-                    }}
+                    <Link
+                    to="/join-us"
                   >
                     Create NFT
-                  </a>
+                  </Link>
+                
                 </li>
               </ul>
             </div>
@@ -183,7 +183,7 @@ const Footer = () => {
         </Row>
         <Row className="copyright-line">
           <Col md={6} sm={6}>
-            <p>copyright of TABOO. All rights reserved</p>
+            <p>© 2022 copyright of TABOO. All rights reserved</p>
           </Col>
           <Col md={6} sm={6}>
             {showCookies && (

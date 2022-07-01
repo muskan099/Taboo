@@ -103,6 +103,7 @@ const NftDetails = () => {
   };
 
   useEffect(() => {
+    window.scrollTo(0, 0)
     getData();
 
     return () => dispatch(clearNftDetail());
