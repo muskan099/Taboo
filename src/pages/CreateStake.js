@@ -257,7 +257,7 @@ const CreateStake=()=>{
                                                         <i class="cr-icon fa fa-check"></i>
                                                       </span>
                                                       <div class="bsc-block">
-                                                        <span>6 month</span>
+                                                        <span>6 Month</span>
                                                       </div>
                                                     </label>
                                                   </div>
@@ -275,7 +275,7 @@ const CreateStake=()=>{
                                                         <i class="cr-icon fa fa-check"></i>
                                                       </span>
                                                       <div class="bsc-block">
-                                                        <span>12 month</span>
+                                                        <span>12 Month</span>
                                                       </div>
                                                     </label>
                                                   </div>

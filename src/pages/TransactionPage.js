@@ -222,11 +222,11 @@ const TransactionPage=()=>{
             ></Modal.Header>
             <Modal.Body>
               <div class="bid-modal-box">
-                <h3>Create a Sale</h3>
+                <h3>Create a Sell</h3>
                  
                 <Form>
                   <Form.Group className="mb-3">
-                    <Form.Label>Min Price(in taboo)</Form.Label>
+                    <Form.Label>Min Price (in taboo)</Form.Label>
                     <Form.Control
                       type="text"
                       placeholder="min price"
