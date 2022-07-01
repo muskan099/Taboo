@@ -259,7 +259,7 @@ const submitWithdrawSale=async()=>{
                                    <th>Name</th>
                                    <th>Buying Price</th>
                                    <th>Creator Address</th>
-                                  <th>Trasaction Hash</th>
+                                  <th>Transaction hash</th>
                                   <th className="">Token</th>
                                   <th className="d-none">Ipfs Link</th>
                                   <th>Status</th>
