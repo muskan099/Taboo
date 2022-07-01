@@ -2,8 +2,11 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { axios } from "../http";
 import { Container,Row,Col, Button, Dropdown, Table,Modal,Form} from "react-bootstrap";
-import { CreateReSale } from "../helpers/CreateResale";
-import { toast } from "react-toastify";
+import { CreateReSale,WithdrawSale } from "../helpers/CreateResale";
+import { toast, useToast } from "react-toastify";
+import { createNFTAuction } from "../helpers/AuctionHelper";
+import { Transaction } from "../helpers/Transaction";
+import { ApproveTabooNFT } from "../helpers/ApproveToken";
 const TransactionPage=()=>{ 
 
   const { isAuthenticated, walletAddress,tier } = useSelector((state) => state.auth);
@@ -17,7 +20,38 @@ const TransactionPage=()=>{
 
   const [minPrice, setMinPrice] = useState('');
 
+
+  const[showSale,setShowSale]=useState(false)
+
+  
+  const[showAuction,setShowAuction]=useState(false)
+
   const [total,setTotal]=useState(0);
+  const [ANft, setANft] = useState("");
+  console.log(ANft);
+
+  
+  const [auctionData, setAuctionData] = useState({
+    minPrice: 0,
+    startTime: "",
+    endTime: "",
+    buttonMessage: "",
+  });
+
+  const {  buttonMessage } = auctionData;
+
+
+  const handleAuctionInput = (e) => {
+    let value = e.target.value;
+    if (e.target.name === "minPrice") {
+      if (!isNaN(value)) {
+        setAuctionData((p) => ({ ...p, [e.target.name]: value }));
+      }
+    } else {
+      setAuctionData((p) => ({ ...p, [e.target.name]: value }));
+    }
+  };
+
 
 
  const handleClose = () => {
@@ -100,6 +134,99 @@ const TransactionPage=()=>{
    }
     
  }
+
+
+ const handleStartAuction = (value) => {
+  setShowAuction(true);
+
+  setANft(value);
+};
+
+
+ const handleAuction = async () => {
+  if (auctionData.minPrice == "" || auctionData.minPrice == 0) {
+    toast.warn("Min price is required!");
+  } else if (auctionData.startTime == "") {
+    toast.warn("Start time is required!");
+  } else if (auctionData.endTime == "") {
+    toast.warn("End time is required");
+  } else {
+    setAuctionData((p) => ({
+      ...p,
+      isLoading: true,
+      buttonMessage: "Processing Please Wait...",
+    }));
+    //let address = walletAddress;
+
+    //let approveToken=await ApproveTabooNFT(ANft.token_id,walletAddress);
+
+    console.log("anft", auctionData);
+    let tx = await createNFTAuction(
+      ANft.token_id,
+      auctionData.minPrice,
+      2,
+      0,
+      15,
+      auctionData.endTime,
+      0,
+      auctionData.startTime,
+      ANft.ipfs,
+      walletAddress
+    );
+    console.log("tx", tx);
+    let data = { tx: tx };
+    try {
+      let trx = await Transaction(data);
+      if (trx) {
+        let token =ANft.token_id
+        console.log("token", token);
+        let res = await axios.post("/update-content", {
+          content_id: ANft._id,
+          status: "auction",
+          token: token,
+          bid_price: auctionData.minPrice,
+        });
+      }
+      toast.success("Auction Started Successfully!");
+      setAuctionData((p) => ({ ...p, isLoading: false, buttonMessage: "" }));
+      handleClose();
+    } catch (error) {
+      toast.error(error.message);
+      setAuctionData((p) => ({ ...p, isLoading: false, buttonMessage: "" }));
+    }
+  }
+};
+
+
+
+const handleWithdrawSale=async(data)=>{
+
+
+  setSaleData(data)
+
+  setShowSale(true)
+
+}
+
+
+
+const submitWithdrawSale=async()=>{
+
+   let hash=await WithdrawSale(walletAddress,saleData.token_id);
+   
+
+    if(hash){
+       
+      let res = await axios.post("/update-content", {
+        content_id: saleData._id,
+        status: "sold",
+        token: saleData.token_id,
+        bid_price:saleData.price,
+      });
+    }
+
+  
+}
 
 
     return(<>
@@ -185,6 +312,12 @@ const TransactionPage=()=>{
 
                                         <td>
                                           <button disabled={item.contentinfo.forsale=="yes"?false:false} onClick={()=>handleCreateSale(item)}>Sell</button>
+
+                                          <button disabled={item.contentinfo.status=="active"?false:true} onClick={()=>handleWithdrawSale(item.contentinfo)}>Cancel</button>
+
+
+                                        <button disabled={item.contentinfo.status=="true"?true:false} onClick={()=>handleStartAuction(item.contentinfo)} >Auction</button> 
+
                                         </td>
 
                                         </tr>
@@ -304,6 +437,108 @@ const TransactionPage=()=>{
               </div>
             </Modal.Body>
           </Modal>
+
+
+            
+
+          <Modal
+            show={showAuction}
+            className="modal-comming-soon bid-modal"
+            backdrop="static"
+            keyboard={false}
+            onHide={()=>setShowAuction(false)}
+            centered
+          >
+            <Modal.Header
+              closeButton
+              className="border-none p-0"
+              style={{ zIndex: "10000000" }}
+            ></Modal.Header>
+            <Modal.Body>
+              <div class="bid-modal-box">
+                <h3>Create a Auction</h3>
+                <p>You are about to place a bit for Tempor Incododunt</p>
+
+                <Form>
+                  <Form.Group className="mb-3">
+                    <Form.Label>Min Price</Form.Label>
+                    <Form.Control
+                      type="text"
+                      placeholder="min price"
+                      name="minPrice"
+                      onChange={handleAuctionInput}
+                      value={auctionData.minPrice}
+                    />
+                  </Form.Group>
+
+                  <Form.Group className="mb-3">
+                    <Form.Label>Start Time</Form.Label>
+                    <Form.Control
+                      type="date"
+                      placeholder="start time"
+                      name="startTime"
+                      onChange={handleAuctionInput}
+                      value={auctionData.startTime}
+                    />
+                  </Form.Group>
+
+                  <Form.Group className="mb-3">
+                    <Form.Label>End Time</Form.Label>
+                    <Form.Control
+                      type="date"
+                      placeholder="end date"
+                      name="endTime"
+                      onChange={handleAuctionInput}
+                      value={auctionData.endTime}
+                    />
+                  </Form.Group>
+                </Form>
+
+                <div>
+                  <button
+                    className="blue-btn"
+                    onClick={() => {
+                      if (!isLoading) {
+                        handleAuction();
+                      }
+                    }}
+                    disabled={isLoading}
+                    style={{ cursor: isLoading ? "no-drop" : "pointer" }}
+                  >
+                    {buttonMessage ? buttonMessage : "Start Auction"}
+                  </button>
+
+                  <a href="" className="border-btn">
+                    Cancel
+                  </a>
+                </div>
+              </div>
+            </Modal.Body>
+          </Modal>
+
+
+
+
+          <Modal
+          size="lg"
+          aria-labelledby="contained-modal-title-vcenter"
+          centered
+          className="modal-comming-soon below-18-popup"
+          backdrop="static"
+          keyboard={false}
+          show={showSale}
+          onHide={()=>setShowSale(false)}
+        >
+          <Modal.Header className="border-none p-0"></Modal.Header>
+          <Modal.Body className="outer-age-box">
+           
+                <div className="outer-div">Are You sure you want to withdraw your Sale.</div>
+                <button onClick={() =>submitWithdrawSale()}>Submit</button>
+                <button onClick={()=>setShowSale(false)}>Cancel</button>
+            
+            
+          </Modal.Body>
+        </Modal>
 
 
          </section>

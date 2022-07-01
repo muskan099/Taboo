@@ -1,4 +1,4 @@
-import moment from "moment";
+import moment, { min } from "moment";
 import { web3 } from "./Web3Helper";
 
 const contractAddress = "0x300871c0260D04bA0BC3DfeB959DCAfF3382EfeA";
@@ -8,6 +8,8 @@ const abi = [{"inputs":[{"internalType":"address","name":"_platformLazyNFT","typ
 const NftContractAddress = "0x0000000000000000000000000000000000000000";
 
 const tabooAddress = "0x9abDbA20EdFbA06B782126b4D8d72A5853918FD0";
+
+const NftContract = "0xD23A93c9B4a2EbC0D530522bfC99C1426cC284e5";
 
 export const createAuction = async (
   token,
@@ -23,7 +25,7 @@ export const createAuction = async (
 ) => {
   console.log("start time", startTime);
 
-  startTime = new Date(startTime);
+  startTime = new Date();
   timePeriod = new Date(timePeriod);
   let end_date = moment(timePeriod, "YYYY-MM-DD HH:mm:ss", true).format();
 
@@ -31,7 +33,11 @@ export const createAuction = async (
 
   timePeriod = timePeriod.getTime() / 1000; //moment(end_date,"YY-MM-DD").valueOf()
 
-  startTime = 1656510964 //startTime.getTime() / 1000; //moment(start_time,"YY-MM-DD").valueOf();
+  //startTime=new Date(startTime);
+
+  startTime.setMinutes(startTime.getMinutes() + 10 );
+
+  startTime = Math.floor(startTime.getTime()/1000); //moment(start_time,"YY-MM-DD").valueOf();
 
   token = 0;
 
@@ -103,3 +109,109 @@ export const createAuction = async (
   }
   return tx;
 };
+
+
+
+
+export const createNFTAuction = async (
+  token,
+  minPrice,
+  rPercentage,
+  oPercentage,
+  pPercentage,
+  timePeriod,
+  biPercentage,
+  startTime,
+  uri,
+  from_account
+) => {
+  console.log("start time", startTime);
+
+  startTime = new Date();
+  timePeriod = new Date(timePeriod);
+  let end_date = moment(timePeriod, "YYYY-MM-DD HH:mm:ss", true).format();
+
+  let start_time = moment(startTime, "YYYY-MM-DD HH:mm:ss", true).format();
+
+  timePeriod = timePeriod.getTime() / 1000; //moment(end_date,"YY-MM-DD").valueOf()
+
+  startTime.setMinutes(startTime.getMinutes() + 10 );
+
+  startTime = startTime.getTime() / 1000; //moment(start_time,"YY-MM-DD").valueOf();
+ console.log('address',from_account)
+ 
+  console.log("start time", startTime);
+
+  let web3js = await web3();
+
+  const nftContract = new web3js.eth.Contract(abi, contractAddress);
+
+  const nonce = await web3js.eth.getTransactionCount(from_account, "latest");
+
+  console.log("token",token)
+
+  console.log("price",minPrice)
+
+  let tx = 0;
+  minPrice = "0x" + (minPrice * 1000000000).toString(16);
+
+  console.log("price",minPrice)
+
+  console.log("uri", uri);
+
+  try {
+    let estimates_gas = await web3js.eth.estimateGas({
+      from: from_account,
+      to: contractAddress,
+      data: nftContract.methods
+        .createNewNFTAuction(
+          NftContract,
+          token,
+          tabooAddress,
+          minPrice,
+          rPercentage,
+          oPercentage,
+          pPercentage,
+          timePeriod,
+          biPercentage,
+          startTime,
+          uri
+        )
+        .encodeABI(),
+    });
+
+    let gasLimit = web3js.utils.toHex(estimates_gas * 6);
+    let gasPrice_bal = await web3js.eth.getGasPrice();
+    let gasPrice = web3js.utils.toHex(gasPrice_bal * 2);
+
+    tx = {
+      from: from_account,
+      to: contractAddress,
+      nonce: nonce,
+      gasPrice: gasPrice,
+      gasLimit: gasLimit,
+      //'maxPriorityFeePerGas': 1999999987,
+      data: nftContract.methods
+        .createNewNFTAuction(
+          NftContract,
+          token,
+          tabooAddress,
+          minPrice,
+          rPercentage,
+          oPercentage,
+          pPercentage,
+          timePeriod,
+          biPercentage,
+          startTime,
+          uri
+        )
+        .encodeABI(),
+    };
+
+    return tx;
+  } catch (e) {
+    console.log(e);
+  }
+  return tx;
+};
+

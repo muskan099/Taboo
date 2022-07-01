@@ -89,3 +89,77 @@ export const CreateReSale=async(selectedAccount,token,price)=>{
     return hash;
     
 }
+
+
+export const WithdrawSale=async(selectedAccount,token)=>{
+
+
+    
+        
+  let web3js=await web3();
+
+  console.log('token',token);
+
+
+  console.log("seller",selectedAccount)
+
+  console.log(" NftContract", NftContract)
+
+  const SaleContract = new web3js.eth.Contract(abi, contractAddress);
+
+  const nonce = await web3js.eth.getTransactionCount(selectedAccount, "latest");
+
+  
+  let hash=false;
+ 
+  try{
+
+
+ let estimates_gas = await web3js.eth.estimateGas({
+  from: selectedAccount,
+  to: contractAddress,
+  value: web3js.utils.toHex(web3js.utils.toWei("0", "gwei")),
+  // value:'1'
+  // value: BigInt(0 * 1000000000000000000).toString(),
+  data: SaleContract.methods
+     .withdrawSale(
+      NftContract,
+      token
+      )
+    .encodeABI(),
+});
+
+
+      
+  let gasLimit = web3js.utils.toHex(estimates_gas * 2);
+  let gasPrice_bal = await web3js.eth.getGasPrice();
+  let gasPrice = web3js.utils.toHex(gasPrice_bal * 2);
+
+  const tx = {
+    from: selectedAccount,
+    to: contractAddress,
+    nonce: nonce,
+    gasPrice: gasPrice,
+    gasLimit: gasLimit,
+    value: web3js.utils.toHex(web3js.utils.toWei("0", "gwei")),
+    //'maxPriorityFeePerGas': 1999999987,
+    data: SaleContract.methods
+      .withdrawSale(
+                  NftContract,
+                  token,
+                  )
+      .encodeABI(),
+    };
+
+  
+    hash=await web3js.eth.sendTransaction(tx);
+
+
+     }catch(e){
+      console.log(e);
+  }
+  return hash;
+  
+
+
+}
