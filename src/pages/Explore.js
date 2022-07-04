@@ -587,8 +587,8 @@ const Explore = () => {
                 <Row>
                   <Col>
                     <div className="filer-right-box">
-                      <Dropdown>
-                        <Dropdown.Toggle id="dropdown-basic">
+                      <Dropdown className="d-none">
+                        <Dropdown.Toggle id="dropdown-basic d-none">
                           Filter By
                         </Dropdown.Toggle>
 

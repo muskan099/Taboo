@@ -65,7 +65,7 @@ const Homepage = () => {
                   variant="outline-success"
                   onClick={()=>setShowModal1(true)}
                 >
-              Click Me
+              Hot News
             </Button>
               </div>
             </Col>
