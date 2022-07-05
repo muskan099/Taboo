@@ -70,6 +70,17 @@ const AdminDashboard = () => {
                       />
                     </a>
                   </li>
+                  
+                  <li>
+                    <a href="/config">
+                      <img
+                        className="img-fluid m-0"
+                        src={"images/list22.png"}
+                      />
+                    </a>
+                  </li>
+
+
                 </ul>
               </div>
             </Col>

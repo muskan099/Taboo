@@ -35,6 +35,8 @@ import SignUp from "./pages/SignUp";
 import AdminRoute from "./components/AdminRoute";
 import Buycoin from "./pages/Buycoin";
 
+import CreateConfig from "./pages/admin/CreateConfig";
+
 function App() {
   useEffect(() => {
     AOS.init();
@@ -74,6 +76,16 @@ function App() {
             element={
               <AdminRoute>
                 <NFTList />
+              </AdminRoute>
+            }
+          />
+
+
+         <Route
+            path="/config"
+            element={
+              <AdminRoute>
+               <CreateConfig />
               </AdminRoute>
             }
           />

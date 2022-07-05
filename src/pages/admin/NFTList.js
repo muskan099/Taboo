@@ -197,7 +197,7 @@ const NFTList = () => {
                     </a>
                   </li>
                   <li>
-                    <a href="">
+                    <a href="/config">
                       <img
                         className="img-fluid m-0"
                         src={"images/list22.png"}
