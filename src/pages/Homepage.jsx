@@ -215,6 +215,9 @@ const Homepage = () => {
                     <div>
                       <h4>Q2 2022</h4>
                       <ul>
+                      <li>
+                        Release of highly anticipated new UI/UX for main website
+                      </li>
                         <li>
                         - Launch of TABOOPUNKS NFTS on Openseas and completion of claim rounds for whitelisted TABOOPUNK NFT collection holders 
                         </li>
