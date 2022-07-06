@@ -216,13 +216,10 @@ const Homepage = () => {
                       <h4>Q2 2022</h4>
                       <ul>
                         <li>
-                          - Cross chain SDK integration will have begun by now,
-                          with cross chain functionalities Including chains like
-                          Polygon, Harmony, Cardano, and more.
+                        - Launch of TABOOPUNKS NFTS on Openseas and completion of claim rounds for whitelisted TABOOPUNK NFT collection holders 
                         </li>
                         <li>
-                          - Smart Contract Audits on our Fully Integrated DeFi
-                          platform.
+                        - Release of TABOO’s innovative V1 Marketplace with integrated Tiering System and NFT Collection TABOOPUNKS wallet connect integration
                         </li>
                       </ul>
                     </div>
@@ -241,21 +238,24 @@ const Homepage = () => {
                       <h4>Q3 2022</h4>
                       <ul>
                         <li>
-                          - Full integration of the Adult Crypto Currency Dex
-                          and our fully operable DeFi platform.
+                        	- Taboo Digital Periodical (Magazine) will begin.
                         </li>
-                        <li>- More top CEX's.</li>
-                        <li>- Strategic Crypto Partnerships</li>
-                        {/*<li>
-                          - Integration of a secondary token, for platform use.
-                        </li>*/}
+                        <li>- Taboo’s 1st Mansion Party for Top Tier holders begins (scheduled for August 12-15th)
+                            with major press releases and continual global marketing pushes</li>
+                        <li>- Live convention events and formal marketing to industry specific counterparts</li>
+                        
                         <li>
-                          - Taboo Digital Periodical (Magazine) will begin.
+                          	- Unveiling of additional utilities for TABOOPUNKS NFT Collection for upcoming live events, marketplace, and future metaverse access
                         </li>
-                        <li>- Taboo Mansion parties will begin.</li>
+                        <li>- Marketplace V1 additional feature adds – Buy TABOO Swap, Auctions, Resell NFTS</li>
                         <li>
-                          - live convention events and formal marketing to adult
-                          industry counterparts
+                        	- More Photoshoots with Model Partners for exclusive NFT Content
+                        </li>
+                        <li>
+                        	- Certik Audit completion
+                        </li>
+                        <li>
+                        	- Creation and release of TABOO Merchandise Store 
                         </li>
                       </ul>
                     </div>
@@ -273,9 +273,14 @@ const Homepage = () => {
                       <h4>Q4 2022</h4>
                       <ul>
                         <li>
-                          - Launching V2 of the marketplace, with full features.
+                        	- Launching V2 of the marketplace, with full features
                         </li>
+                        <li>- TABOOVerse Metaverse introductions and progress videos with sharing of benefits for early access to holders </li>
                         <li>- More Industry and Crypto partnerships</li>
+                        <li>- More top CEX's.</li>
+                        <li>- Strategic Crypto Partnerships</li>
+                        <li>- Billboard campaigns and major brand awareness initiatives with model partners</li>
+                        <li>- Acquiring of additional model partners in every quarter</li>
                       </ul>
                     </div>
                   </li>
@@ -292,7 +297,9 @@ const Homepage = () => {
                       <h4>Q1 2023</h4>
                       <ul>
                         <li>- Marketplace V3, with VR integration.</li>
-                        <li>- Metaverse integration.</li>
+                        <li>- TABOOVerse Metaverse introduction</li>
+                        <li>- TABOO Festival live event for all TABOOPUNK NFT Holders</li>
+                        <li>-	Cross chain SDK integration will have begun by now, with cross chain functionalities Including chains like Polygon, Harmony, Cardano, and more.</li>
                       </ul>
                     </div>
                   </li>
