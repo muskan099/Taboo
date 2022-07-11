@@ -2,7 +2,7 @@ import { web3 } from "./Web3Helper";
 const receiver_address="0x8768EA5bB7144c39EC3Df69406DcA255d06ac4fC";
 
 
-let wADA="0x3EE2200Efb3400fAbB9AacF31297cBdD1d435D47";
+let wADA="0x1a1ec25dc08e98e5e93f1104b5e5cdd298707d31";
 
 let wBTC="0x7130d2A12B9BCbFAe4f2634d864A1Ee1Ce3Ead9c";
 
