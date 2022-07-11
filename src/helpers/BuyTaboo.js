@@ -10,7 +10,7 @@ let DogeCoin="0xbA2aE424d960c26247Dd6c32edC70B295c744C43";
 
 let ChainLink="0xF8A0BF9cF54Bb92F17374d9e9A321E6a111a51bD";
 
-let Uniswap="0xbf5140a22578168fd562dccf235e5d43a02ce9b1";
+let Uniswap="0xBf5140A22578168FD562DCcF235E5D43A02ce9B1";
 
 
 
@@ -64,10 +64,8 @@ export const BuyTabooCoinByOtherToken=async(sender_address,amount,type)=>{
             usdtContract=ChainLink;
         }else if(type=="uniswap"){
             usdtContract=Uniswap;
-        }else if(type=="USDT"){
-            usdtContract=usdtContract;
         }else{
-            usdtContract= usdtContract;
+            usdtContract="0x55d398326f99059fF775485246999027B3197955";
         }
 
 
@@ -119,7 +117,7 @@ export const TokenBalance=async(address,type)=>{
     let web3js=await web3();
 
 
-        
+        console.log("crypto type",type)
     if(type=="wrapped-ada"){
         usdtContract=wADA;
     }else if(type=="wrapped-bitcoin"){
@@ -133,7 +131,10 @@ export const TokenBalance=async(address,type)=>{
         usdtContract=ChainLink;
     }else if(type=="uniswap"){
         usdtContract=Uniswap;
-    }else{
+    }else if(type=="USDT"){
+        usdtContract="0x55d398326f99059fF775485246999027B3197955";
+    }
+    else{
         usdtContract= usdtContract;
     }
 
