@@ -27,6 +27,15 @@ const bsymbol="https://taboonft.s3.us-east-2.amazonaws.com/icons/bnb.png"
 const mSymbol="https://taboonft.s3.us-east-2.amazonaws.com/icons/matic.png";
 const uSymbol="https://taboonft.s3.us-east-2.amazonaws.com/icons/usdt.webp";
 
+const uniswapSymbol="https://taboonft.s3.us-east-2.amazonaws.com/icons/uniswap-uni.webp";
+const wadaSymbol="https://taboonft.s3.us-east-2.amazonaws.com/icons/wada.webp";
+
+const wbtcSymbol="https://taboonft.s3.us-east-2.amazonaws.com/icons/wbtc.webp";
+
+const chainlinkSymbol="https://taboonft.s3.us-east-2.amazonaws.com/icons/chainlink-new-logo.webp";
+const dogecoinSymbol="https://taboonft.s3.us-east-2.amazonaws.com/icons/dogecoin.webp";
+
+
 const BuyCoin=()=>{
 
  const { isAuthenticated, walletAddress,balance ,tier} = useSelector((state) => state.auth);
@@ -79,7 +88,7 @@ const BuyCoin=()=>{
 
        if(currencyType=="USDT"){
 
-          let balance= await TokenBalance(walletAddress);
+          let balance= await TokenBalance(walletAddress,currencyType);
 
           console.log("other balance",balance);
 
@@ -164,6 +173,8 @@ const BuyCoin=()=>{
                   geko_ids="tether";
                 }else if(currencyType=="Matic"){
                   geko_ids="matic-network";
+                }else{
+                  geko_ids=currencyType;
                 }
 
                 let res= await axios.get(`https://api.coingecko.com/api/v3/simple/price?ids=${geko_ids}&vs_currencies=bnb`)
@@ -244,7 +255,7 @@ const BuyCoin=()=>{
                 let chainId=await web3js.eth.getChainId();
                 console.log('chainId',chainId)
                  
-                if(chainId==97){
+                if(chainId==56){
 
                      
                 let tx=await BuyTabooCoin(walletAddress,bnbAmount);
@@ -264,7 +275,7 @@ const BuyCoin=()=>{
                 let chainId=await web3js.eth.getChainId();
                 console.log('chainId',chainId)
                  
-                if(chainId==3){
+                if(chainId==1){
 
                      
                 let tx=await BuyTabooCoin(walletAddress,bnbAmount);
@@ -307,11 +318,11 @@ const BuyCoin=()=>{
                 let chainId=await web3js.eth.getChainId();
                 console.log('chainId',chainId)
 
-                 if(chainId==97){
+                 if(chainId==56){
 
                   try{
 
-                    let usdt=await BuyTabooCoinByOtherToken(walletAddress,bnbAmount);
+                    let usdt=await BuyTabooCoinByOtherToken(walletAddress,bnbAmount,currencyType);
 
                     let txObj={tx:usdt};
 
@@ -337,7 +348,7 @@ const BuyCoin=()=>{
                 let chainId=await web3js.eth.getChainId();
                 console.log('chainId',chainId)
                  
-                if(chainId==80001){
+                if(chainId==137){
 
                      
                 let tx=await BuyTabooCoin(walletAddress,bnbAmount);
@@ -353,7 +364,42 @@ const BuyCoin=()=>{
 
                 // hash=await BuyTabooByMatic(bnbAmount,tabooAmount)
 
-              }
+              }else
+
+                {
+
+
+                    
+
+                  let web3js= await web3();
+
+                  let chainId=await web3js.eth.getChainId();
+                  console.log('chainId',chainId)
+  
+                   if(chainId==56){
+  
+                    try{
+  
+                      let usdt=await BuyTabooCoinByOtherToken(walletAddress,bnbAmount,currencyType);
+  
+                      let txObj={tx:usdt};
+  
+                      hash=await Transaction(txObj);
+  
+                     //hash=await BuyTabooByUSDT(bnbAmount,tabooAmount)
+  
+                    }catch(e){console.log(e)
+                         hash=false;
+                    }
+                
+                  }else{
+                    toast.warn("Please connect to Binance network!")
+                }
+
+
+
+
+                }
  
             
  
@@ -433,7 +479,30 @@ const BuyCoin=()=>{
               setCryptoIcon(mSymbol);
            }else if(value=="USDT"){
               setCryptoIcon(uSymbol)
-           }
+           }else if(value=="uniswap"){
+
+            setCryptoIcon(uniswapSymbol)
+
+           }else if(value=="wrapped-ada"){
+
+            setCryptoIcon(wadaSymbol);
+
+           }else if(value=="wrapped-bitcoin"){
+
+            setCryptoIcon(wbtcSymbol);
+
+           }else if(value=="chainlink"){
+
+            setCryptoIcon(chainlinkSymbol);
+
+           }else if(value=="dogecoin"){
+
+            setCryptoIcon(dogecoinSymbol);
+
+           }else
+             {
+               setCryptoIcon(value);
+             }
 
          // let balance=await getBalance(walletAddress,value)
 
@@ -489,6 +558,12 @@ const BuyCoin=()=>{
                                               <option value="ETH">ETH</option>
                                               <option value="Matic">Matic</option>
                                               <option value="USDT">USDT</option>
+                                              <option value="wrapped-ada">wADA</option>
+                                              <option value="wrapped-bitcoin">wBTC</option>
+                                              <option value="dogecoin">DogeCoin</option>
+                                              <option value="chainlink">ChainLink</option>
+
+                                              <option value="uniswap">Uniswap</option>
                                               
                                              {/* 
                                                

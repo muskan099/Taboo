@@ -1,5 +1,15 @@
 import { web3 } from "./Web3Helper";
 
+let wADA="0x3EE2200Efb3400fAbB9AacF31297cBdD1d435D47";
+
+let wBTC="0x7130d2A12B9BCbFAe4f2634d864A1Ee1Ce3Ead9c";
+
+let DogeCoin="0xba2ae424d960c26247dd6c32edc70b295c744c43";
+
+let ChainLink="0x404460c6a5ede2d891e8297795264fde62adbb75";
+
+let Uniswap="0xbf5140a22578168fd562dccf235e5d43a02ce9b1";
+
 
 let contractAddress = "0x196971133070EC2e0A2Ea6c55d75307A4BF0787e";
 
@@ -266,7 +276,7 @@ export const BuyTabooByMatic = async (BNBAmount,tabooAmount) => {
 
 
 
-export const BuyTabooByUSDT = async (BNBAmount,tabooAmount) => {
+export const BuyTabooByUSDT = async (BNBAmount,tabooAmount,type) => {
 
 
   const Web3 = await web3();
@@ -277,6 +287,22 @@ export const BuyTabooByUSDT = async (BNBAmount,tabooAmount) => {
 
   
   let hashObj=false;
+
+
+  if(type=="wADA"){
+    contractAddress=wADA;
+  }else if(type=="wBTC"){
+    contractAddress=wBTC;
+
+  }else if(type=="DogeCoin"){
+    contractAddress=DogeCoin;
+  }else if(type=="ChainLink"){
+    contractAddress=ChainLink;
+  }else if(type=="Uniswap"){
+    contractAddress=Uniswap;
+  }else{
+    contractAddress=contractAddress;
+  }
 
 
 

@@ -7,7 +7,7 @@ const Connect = async () => {
     let chainId=await web3Connect.eth.getChainId();
      console.log('chainId',chainId)
 
-     if(chainId==56){
+     if(chainId!=500006){
 
       const accounts = await web3Connect.eth.getAccounts();
       console.log("accounts", accounts);
