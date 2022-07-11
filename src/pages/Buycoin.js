@@ -86,7 +86,7 @@ const BuyCoin=()=>{
 
           setIsloadingBalance(true);
 
-       if(currencyType=="USDT"){
+       if(currencyType=="USDT"||currencyType=="wrapped-bitcoin"||currencyType=="dogecoin"||currencyType=="wrapped-ada"||currencyType=="chainlink"||currencyType=="uniswap"){
 
           let balance= await TokenBalance(walletAddress,currencyType);
 

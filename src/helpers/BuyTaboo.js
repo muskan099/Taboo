@@ -2,7 +2,7 @@ import { web3 } from "./Web3Helper";
 const receiver_address="0x8768EA5bB7144c39EC3Df69406DcA255d06ac4fC";
 
 
-let wADA="0x1a1ec25dc08e98e5e93f1104b5e5cdd298707d31";
+let wADA="0x3ee2200efb3400fabb9aacf31297cbdd1d435d47";
 
 let wBTC="0x7130d2A12B9BCbFAe4f2634d864A1Ee1Ce3Ead9c";
 
@@ -58,7 +58,7 @@ export const BuyTabooCoinByOtherToken=async(sender_address,amount,type)=>{
         }else if(type=="wrapped-bitcoin"){
             usdtContract=wBTC;
 
-        }else if(type=="dogcCoin"){
+        }else if(type=="dogecoin"){
             usdtContract=DogeCoin;
         }else if(type=="chainlink"){
             usdtContract=ChainLink;
@@ -121,6 +121,8 @@ export const TokenBalance=async(address,type)=>{
     if(type=="wrapped-ada"){
         usdtContract=wADA;
     }else if(type=="wrapped-bitcoin"){
+
+        console.log("baaaa",type)
         usdtContract=wBTC;
 
     }else if(type=="dogecoin"){
@@ -133,6 +135,7 @@ export const TokenBalance=async(address,type)=>{
         usdtContract= usdtContract;
     }
 
+    console.log("usdtc",usdtContract)
 
      const TokenContract = new web3js.eth.Contract(usdtAbi, usdtContract);
 
@@ -142,6 +145,8 @@ export const TokenBalance=async(address,type)=>{
           balance=await TokenContract.methods.balanceOf(address).call({
              from :usdtContract
              });
+
+             console.log("balance",balance)
              balance=balance/1000000000000000000;
            // let usd_balance= await tabooRate(balance)
            return balance;
