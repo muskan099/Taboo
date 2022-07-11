@@ -214,7 +214,7 @@ const Homepage = () => {
                 <ul className="inner-roadmap-list">
                   <div
                     className="aos-init aos-animate"
-                    data-aos="fade-left"
+                    data-aos="slide-left"
                     data-aos-duration="800"
                     data-aos-delay="600"
                   >

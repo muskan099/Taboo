@@ -764,6 +764,26 @@ const Explore = () => {
                       ))
                     : ""}
                 </Row>
+                <Row className=" pagination-row-explore row mt-4 pb-4">
+                <Col className="m-auto" lg={6} md={6} sm={6} xs={12}>
+                    {!isLoading &&
+                      nft?.length > 0 &&
+                      paginationData.pages?.length > 0 && (
+						  
+                        <Pagination style={{ justifyContent: "center" }}>
+                          {paginationData.pages.map((page, index) => (
+                            <Pagination.Item
+                              key={page}
+                              active={currentPage === page}
+                              onClick={() => setCurrentPage(page)}
+                            >
+                              {page}
+                            </Pagination.Item>
+                          ))}
+                        </Pagination>
+                      )}
+                  </Col>
+                </Row>
 
 				<div className="pagination-new-exploror d-none">
 				<Pagination>
