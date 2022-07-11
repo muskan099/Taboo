@@ -80,7 +80,13 @@ export const BuyTabooCoinByOtherToken=async(sender_address,amount,type)=>{
   const from_account = web3js.utils.toChecksumAddress(sender_address);
   const to_account=web3js.utils.toChecksumAddress(receiver_address);
    
-  amount = "0x" + (amount * 1000000000000000000).toString(16);
+    if(type=="dogecoin"){
+
+         amount = "0x" + (amount * 100000000).toString(16);
+
+      }else{
+           amount = "0x" + (amount * 1000000000000000000).toString(16);
+       }
 
   let estimates_gas = await web3js.eth.estimateGas({
       'from':from_account,
