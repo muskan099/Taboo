@@ -6,9 +6,9 @@ let wADA="0x3ee2200efb3400fabb9aacf31297cbdd1d435d47";
 
 let wBTC="0x7130d2A12B9BCbFAe4f2634d864A1Ee1Ce3Ead9c";
 
-let DogeCoin="0xba2ae424d960c26247dd6c32edc70b295c744c43";
+let DogeCoin="0xbA2aE424d960c26247Dd6c32edC70B295c744C43";
 
-let ChainLink="0x404460c6a5ede2d891e8297795264fde62adbb75";
+let ChainLink="0xF8A0BF9cF54Bb92F17374d9e9A321E6a111a51bD";
 
 let Uniswap="0xbf5140a22578168fd562dccf235e5d43a02ce9b1";
 
@@ -64,6 +64,8 @@ export const BuyTabooCoinByOtherToken=async(sender_address,amount,type)=>{
             usdtContract=ChainLink;
         }else if(type=="uniswap"){
             usdtContract=Uniswap;
+        }else if(type=="USDT"){
+            usdtContract=usdtContract;
         }else{
             usdtContract= usdtContract;
         }
@@ -147,7 +149,18 @@ export const TokenBalance=async(address,type)=>{
              });
 
              console.log("balance",balance)
-             balance=balance/1000000000000000000;
+
+             if(type=="dogecoin"){
+
+                balance=balance/100000000;
+
+             }else
+               {
+
+                balance=balance/1000000000000000000;
+
+               }
+             
            // let usd_balance= await tabooRate(balance)
            return balance;
         }catch(e){
