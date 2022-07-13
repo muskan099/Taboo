@@ -60,11 +60,12 @@ const JoinUs=()=>{
       isModel:data.isModel??false
     }
     // console.log(payload)
-    const res = await axios.post("https://api.taboo.io/join-us",payload);
-    toast.success("Submission Successful.");
+    const {status , message} = await axios.post("https://api.taboo.io/join-us",payload);
+    
+    status && toast.success(message);
   } catch (err) {
     console.log(err)
-    toast.error(err.response.error.message)
+    toast.error("Something went wrong. Try again!")
   }
  }
 
