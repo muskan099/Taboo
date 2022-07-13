@@ -17,6 +17,7 @@ import { Transaction } from "../helpers/Transaction";
 import { clearNftDetail, getNftDetailSaga } from "../store/reducers/nftReducer";
 import { createTransactionsSaga } from "../store/reducers/transactionReducer";
 import { toast } from "react-toastify";
+import CountDownTimer from "../components/UI/CountDownTimer"
 
 import { TabooBalance } from "../helpers/TabooHelper";
 import { BuyNFT } from "../helpers/BuyNFT";
@@ -34,6 +35,11 @@ const NftDetails = () => {
   const dispatch = useDispatch();
 
   const navigate = useNavigate();
+
+  //Expiry Date for CountDown Timer
+  const time = new Date();
+  time.setSeconds(time.getSeconds() + 600); // 10 minutes timer
+
 
   const { nftDetail: nft, isLoading } = useSelector((state) => state.nft);
 
@@ -456,11 +462,17 @@ const NftDetails = () => {
                           "https://taboonft.s3.us-east-2.amazonaws.com/icons/Taboo-logo-3.61280c399d2252.47125802.png"
                         }
                       />
+                      
                       <div>
                         {/* <p>Highest bid by <b>Kohaku Tora</b></p>
                                      <h5>10000000$ TABOO $3000</h5> */}
                       </div>
+                      <div style={{display:"flex", width:"100%", justifyContent:"center"}}>
+                        <CountDownTimer expiryTimestamp={time} />
+                      </div>
+                      
                     </div>
+                    
                     <div class="text-center">
                       <Button
                         className="blue-btn"
