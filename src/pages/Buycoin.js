@@ -16,6 +16,7 @@ import {Approve, ApproveUSDT} from "../helpers/ApproveUSDT";
 import {ApproveMatic} from '../helpers/ApproveMatic'
 
 import {Transaction} from '../helpers/Transaction'
+import { TabooBalance } from "../helpers/TabooHelper";
 
 import Slider from "react-slick";
 import { BNBTOTAboo } from "../helpers/BNBTOTAboo";
@@ -53,6 +54,9 @@ const BuyCoin=()=>{
 
   const [cryptoIcon,setCryptoIcon]=useState(bsymbol);
 
+  const[tabooToken,setTabooToken]=useState(0);
+
+
     var settings = {
     dots: false,
     infinite: true,
@@ -78,6 +82,15 @@ const BuyCoin=()=>{
 
 
 
+  const TabooTokenBalance=async(address)=>{
+
+      let balance=await TabooBalance(address);
+
+       setTabooToken(balance);
+
+  }
+
+
   const getBNBBalance=async(address)=>{
       
 
@@ -86,7 +99,7 @@ const BuyCoin=()=>{
 
           setIsloadingBalance(true);
 
-       if(currencyType=="USDT"){
+       if(currencyType=="USDT"||currencyType=="wrapped-bitcoin"||currencyType=="dogecoin"||currencyType=="wrapped-ada"||currencyType=="chainlink"||currencyType=="uniswap"){
 
           let balance= await TokenBalance(walletAddress,currencyType);
 
@@ -516,6 +529,14 @@ const BuyCoin=()=>{
 
 
 
+   useEffect(async()=>{
+       if(isAuthenticated){
+          await TabooTokenBalance(walletAddress)
+       }
+   },walletAddress,bnbBalance)
+
+
+
 
     return(<>
 
@@ -598,7 +619,7 @@ const BuyCoin=()=>{
                                          <div>
                                             <img className="profile-main-img"  src={"images/bnb2.png"} /> Taboo
                                         </div>
-                                        <small className="d-none">{balance&&balance}</small>
+                                        <small className="">Taboo balance {tabooToken}</small>
                                     </label>
 
                                     <InputGroup className="mb-3">
