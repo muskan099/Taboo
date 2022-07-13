@@ -30,9 +30,10 @@ const JoinUs=()=>{
   })
  }
 
- const handleSubmit = async () => {
+ const handleSubmit = async (e) => {
 
   try {
+    e.preventDefault()
     if(!data.name){
       toast.warn("Name is missing!");
       return;
@@ -56,13 +57,14 @@ const JoinUs=()=>{
 
     const payload = {
       name:data.name,
-      phone:data.phone,
+      phone:parseInt(data.phone),
       email:data.email,
       social_media:data.social_media,
       message:data.message,
       isModel:data.isModel??false
     }
     // console.log(payload)
+    // return;
     setLoading(true);
     const {status , message} = await axios.post("https://api.taboo.io/users/join-us",payload);
     
@@ -120,26 +122,26 @@ const JoinUs=()=>{
                                </div>
                             </Col>
                             <Col md={6} sm={6} xs={12}>
-                                <div>
+                                <Form onSubmit={(e)=>handleSubmit(e)}>
                                    <Form.Group className="mb-3">
                                     <Form.Label>Name</Form.Label>
                                     <Form.Control type="text" required name="name" onChange={(e)=>handleData(e)} placeholder="" />
                                   </Form.Group>
                                   <Form.Group className="mb-3">
                                     <Form.Label>Phone</Form.Label>
-                                    <Form.Control type="text" name="phone" onChange={(e)=>handleData(e)} placeholder="" />
+                                    <Form.Control type="tel" pattern="[0-9]{10}" required name="phone" onChange={(e)=>handleData(e)} placeholder="" />
                                   </Form.Group>
                                   <Form.Group className="mb-3">
                                     <Form.Label>Email</Form.Label>
-                                    <Form.Control type="email" name="email" onChange={(e)=>handleData(e)} placeholder="" />
+                                    <Form.Control type="email" required name="email" onChange={(e)=>handleData(e)} placeholder="" />
                                   </Form.Group>
                                   <Form.Group className="mb-3">
                                     <Form.Label>Social Media</Form.Label>
-                                    <Form.Control type="text" name="social_media" onChange={(e)=>handleData(e)} placeholder="" />
+                                    <Form.Control type="text" required name="social_media" onChange={(e)=>handleData(e)} placeholder="" />
                                   </Form.Group>
                                   <Form.Group className="mb-3">
                                     <Form.Label>Message</Form.Label>
-                                    <Form.Control as="textarea" name="message" onChange={(e)=>handleData(e)} rows={2} />
+                                    <Form.Control as="textarea" required name="message" onChange={(e)=>handleData(e)} rows={2} />
                                   </Form.Group>
                                   <Form.Group className="mb-3">
                                     <div className="checkbox">
@@ -150,12 +152,14 @@ const JoinUs=()=>{
                                       </label>
                                     </div>
                                   </Form.Group>
-                                  <div>
-                                      <Button onClick={()=>handleSubmit()} className="blue-btn"disabled={loading}>
+                                  <Form.Group>
+                                  
+                                      <Button type="submit" className="blue-btn" disabled={loading}>
                                          {loading?"Please wait":"Send Message"} 
                                       </Button>
-                                  </div>
-                                </div>
+                                  
+                                  </Form.Group>
+                                </Form>
                             </Col>
                         </Row>
                      </div>
