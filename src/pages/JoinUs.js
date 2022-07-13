@@ -11,6 +11,9 @@ const JoinUs=()=>{
 
  const [data, setData] = useState("");
 
+ const[loading,setLoading]=useState(false);
+
+
  const handleData = (e) => {
   // console.log(e.target.name,e.target.value)
   setData((prevState)=>{
@@ -60,10 +63,15 @@ const JoinUs=()=>{
       isModel:data.isModel??false
     }
     // console.log(payload)
-    const {status , message} = await axios.post("https://api.taboo.io/join-us",payload);
+    setLoading(true);
+    const {status , message} = await axios.post("https://api.taboo.io/users/join-us",payload);
     
-    status && toast.success(message);
+     if(status){
+        setLoading(false);
+        toast.success("Your request is submitted successfully!")
+     }
   } catch (err) {
+    setLoading(false);
     console.log(err)
     toast.error("Something went wrong. Try again!")
   }
@@ -143,8 +151,8 @@ const JoinUs=()=>{
                                     </div>
                                   </Form.Group>
                                   <div>
-                                      <Button onClick={()=>handleSubmit()} className="blue-btn">
-                                          Send Message
+                                      <Button onClick={()=>handleSubmit()} className="blue-btn"disabled={loading}>
+                                         {loading?"Please wait":"Send Message"} 
                                       </Button>
                                   </div>
                                 </div>
