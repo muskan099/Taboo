@@ -1,4 +1,6 @@
+import axios from "axios";
 import React, { useEffect, useState } from "react";
+import { toast } from "react-toastify";
 import { Row, Col, Container, Tabs,Tab,Table, Modal, Button, Form} from "react-bootstrap";
 
 const JoinUs=()=>{
@@ -7,6 +9,64 @@ const JoinUs=()=>{
     window.scrollTo(0, 0)
  },[])  
 
+ const [data, setData] = useState("");
+
+ const handleData = (e) => {
+  // console.log(e.target.name,e.target.value)
+  setData((prevState)=>{
+    if(e.target.name==="isModel"){
+      return{
+        ...prevState,
+        [e.target.name]:e.target.checked
+      }
+    }
+    return{
+      ...prevState,
+      [e.target.name]:e.target.value
+    }
+  })
+ }
+
+ const handleSubmit = async () => {
+
+  try {
+    if(!data.name){
+      toast.warn("Name is missing!");
+      return;
+    }
+    if(!data.phone){
+      toast.warn("Phone Number is missing!");
+      return;
+    }
+    if(!data.email){
+      toast.warn("Email is missing!");
+      return;
+    }
+    if(!data.social_media){
+      toast.warn("Social Media is missing!");
+      return;
+    }
+    if(!data.message){
+      toast.warn("Message is missing!");
+      return;
+    }
+
+    const payload = {
+      name:data.name,
+      phone:data.phone,
+      email:data.email,
+      social_media:data.social_media,
+      message:data.message,
+      isModel:data.isModel??false
+    }
+    // console.log(payload)
+    const res = await axios.post("https://api.taboo.io/join-us",payload);
+    toast.success("Submission Successful.");
+  } catch (err) {
+    console.log(err)
+    toast.error(err.response.error.message)
+  }
+ }
 
     return(<>
          <section className="join-box-sec">
@@ -54,35 +114,35 @@ const JoinUs=()=>{
                                 <div>
                                    <Form.Group className="mb-3">
                                     <Form.Label>Name</Form.Label>
-                                    <Form.Control type="text" placeholder="" />
+                                    <Form.Control type="text" required name="name" onChange={(e)=>handleData(e)} placeholder="" />
                                   </Form.Group>
                                   <Form.Group className="mb-3">
                                     <Form.Label>Phone</Form.Label>
-                                    <Form.Control type="text" placeholder="" />
+                                    <Form.Control type="text" name="phone" onChange={(e)=>handleData(e)} placeholder="" />
                                   </Form.Group>
                                   <Form.Group className="mb-3">
                                     <Form.Label>Email</Form.Label>
-                                    <Form.Control type="text" placeholder="" />
+                                    <Form.Control type="email" name="email" onChange={(e)=>handleData(e)} placeholder="" />
                                   </Form.Group>
                                   <Form.Group className="mb-3">
                                     <Form.Label>Social Media</Form.Label>
-                                    <Form.Control type="text" placeholder="" />
+                                    <Form.Control type="text" name="social_media" onChange={(e)=>handleData(e)} placeholder="" />
                                   </Form.Group>
                                   <Form.Group className="mb-3">
                                     <Form.Label>Message</Form.Label>
-                                    <Form.Control as="textarea" rows={2} />
+                                    <Form.Control as="textarea" name="message" onChange={(e)=>handleData(e)} rows={2} />
                                   </Form.Group>
                                   <Form.Group className="mb-3">
                                     <div className="checkbox">
                                       <label>
-                                        <input type="checkbox" value=""></input>
+                                        <input type="checkbox" name="isModel" onChange={(e)=>handleData(e)} value=""></input>
                                         <span className="cr"><i className="cr-icon fa fa-check"></i></span>
-                                       I AM A MODEl
+                                       I AM A MODEL
                                       </label>
                                     </div>
                                   </Form.Group>
                                   <div>
-                                      <Button className="blue-btn">
+                                      <Button onClick={()=>handleSubmit()} className="blue-btn">
                                           Send Message
                                       </Button>
                                   </div>
