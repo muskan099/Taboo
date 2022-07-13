@@ -275,8 +275,9 @@ const submitWithdrawSale=async()=>{
                                         <td>{index+1}</td>
                                         <td>
                                         <div class="icon-img">
+                                          <a href={'/details/'+item.contentinfo._id}>
                                               <img src={"https://taboonft.s3.us-east-2.amazonaws.com/images/"+item.contentinfo.image} />
-                                              
+                                           </a>   
                                             </div>
                                         </td>
                                         <td>
