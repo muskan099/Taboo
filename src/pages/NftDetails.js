@@ -17,19 +17,17 @@ import { Transaction } from "../helpers/Transaction";
 import { clearNftDetail, getNftDetailSaga } from "../store/reducers/nftReducer";
 import { createTransactionsSaga } from "../store/reducers/transactionReducer";
 import { toast } from "react-toastify";
-import CountDownTimer from "../components/UI/CountDownTimer"
+import CountDownTimer from "../components/UI/CountDownTimer";
 
 import { TabooBalance } from "../helpers/TabooHelper";
 import { BuyNFT } from "../helpers/BuyNFT";
 import { updateNftStatusSaga } from "../store/reducers/nftReducer";
 import { MakeOffer } from "../helpers/MakeOffer";
 import { TokenApproval } from "../helpers/TokenApproval";
-import {NFTBalance} from "../helpers/NFTBalance"
-import {Sale} from "../helpers/Sale";
+import { NFTBalance } from "../helpers/NFTBalance";
+import { Sale } from "../helpers/Sale";
 
-
-
-import {ApproveTaboo} from "../helpers/Approve"
+import { ApproveTaboo } from "../helpers/Approve";
 
 const NftDetails = () => {
   const dispatch = useDispatch();
@@ -37,11 +35,14 @@ const NftDetails = () => {
   const navigate = useNavigate();
 
   //Expiry Date for CountDown Timer
-  const time = new Date();
-  time.setSeconds(time.getSeconds() + 600); // 10 minutes timer
-
 
   const { nftDetail: nft, isLoading } = useSelector((state) => state.nft);
+  let endDate = nft.bid_end ? nft.bid_end : "";
+  console.log(endDate);
+  const time = new Date(endDate).getTime();
+  console.log(time);
+
+  time.setSeconds(time.getSeconds() + 600); // 10 minutes timer
 
   const { isAuthenticated, walletAddress, balance, tier } = useSelector(
     (state) => state.auth
@@ -102,14 +103,14 @@ const NftDetails = () => {
   };
 
   const getData = () => {
-    let userTier=tier?tier:"1 Tier";
-    const data = { id: id, tier:userTier };
+    let userTier = tier ? tier : "1 Tier";
+    const data = { id: id, tier: userTier };
 
     dispatch(getNftDetailSaga(data));
   };
 
   useEffect(() => {
-    window.scrollTo(0, 0)
+    window.scrollTo(0, 0);
     getData();
 
     return () => dispatch(clearNftDetail());
@@ -118,14 +119,11 @@ const NftDetails = () => {
   const handleBuy = async (e) => {
     let price = parseFloat(nft.price);
 
-    console.log("price",price);
+    console.log("price", price);
 
-    if(!isAuthenticated){
-
-      toast.warn("Please connect wallet!")
-
-    }
-    else if (price>balance) {
+    if (!isAuthenticated) {
+      toast.warn("Please connect wallet!");
+    } else if (price > balance) {
       toast.warn("You don't have sufficient taboo token!");
     } else {
       console.log("hello");
@@ -136,125 +134,120 @@ const NftDetails = () => {
       // content_id: nft._id,
       // });
 
-      console.log("NFt",nft.forsale)
-      
-      const for_sale=nft.forsale=="no"?true:false;
+      console.log("NFt", nft.forsale);
 
-      if(for_sale){
+      const for_sale = nft.forsale == "no" ? true : false;
 
-        console.log("no")
+      if (for_sale) {
+        console.log("no");
 
-            let approveData = await TokenApproval(price, walletAddress,nft.forsale);
-
-            let tx = await Transaction({ tx: approveData });
-            if (tx) {
-              console.log("tx", tx);
-              // let {tx}=transactions;
-              let taboo_hash = true;
-              try {
-                // taboo_hash = await Transaction(tx.data);
-              } catch (e) {
-                setBuyStart(false);
-                console.log(e);
-              }
-
-              if (taboo_hash) {
-
-              // let token = await NFTBalance();
-
-
-              // console.log("ss",token)
-
-                let hash = await BuyNFT(
-                  nft.token_id,
-                  nft.ipfs,
-                  10,
-                  nft.signature,
-                  tier
-                  );
-
-                if (hash) {
-                // token=token+1;
-                  //toast.success("Order placed successfully!")
-                  let hashNFT=hash;
-                  let Nft_hash = hash.hash.transactionHash;
-                  hash = hash.hash.transactionHash;
-                  hash = hash.substring(0, 5) + "....." + hash.substring(38, 42);
-                  setNftHash(hash);
-                  let orderObj = { id: nft._id, status: "sold" };
-                  dispatch(updateNftStatusSaga(orderObj));
-
-                  let order = await axios.post("/create-order", {
-                    content_id: nft._id,
-                    to_account: "0x9632a9b8afe7CbA98236bCc66b4C019EDC1CD1Cc",
-                    amount: nft.price,
-                    address: walletAddress,
-                    tx_id: Nft_hash,
-                    nft_hash: Nft_hash,
-                    tokenUrl: nft.ipfs,
-                    token:hashNFT.token,
-                  });
-
-                  console.log("order", order);
-
-                  handleClose2();
-                  handleShow1();
-
-                  setBuyStart(false);
-
-                  getData();
-
-                  setTimeout(handleClose1, 3000);
-
-                  navigate("/transactions");
-                }
-              } else {
-                setBuyStart(false);
-              }
-            }
-
-    }else
-      {
-         
-        let approveData = await TokenApproval(price, walletAddress,nft.forsale);
+        let approveData = await TokenApproval(
+          price,
+          walletAddress,
+          nft.forsale
+        );
 
         let tx = await Transaction({ tx: approveData });
-         
-         console.log("nft token",nft.token_id)
-         if(tx){
-             
-          let hash=await Sale(walletAddress,nft.token_id,"1");
-         
-          if(hash){
+        if (tx) {
+          console.log("tx", tx);
+          // let {tx}=transactions;
+          let taboo_hash = true;
+          try {
+            // taboo_hash = await Transaction(tx.data);
+          } catch (e) {
+            setBuyStart(false);
+            console.log(e);
+          }
+
+          if (taboo_hash) {
+            // let token = await NFTBalance();
+
+            // console.log("ss",token)
+
+            let hash = await BuyNFT(
+              nft.token_id,
+              nft.ipfs,
+              10,
+              nft.signature,
+              tier
+            );
+
+            if (hash) {
+              // token=token+1;
+              //toast.success("Order placed successfully!")
+              let hashNFT = hash;
+              let Nft_hash = hash.hash.transactionHash;
+              hash = hash.hash.transactionHash;
+              hash = hash.substring(0, 5) + "....." + hash.substring(38, 42);
+              setNftHash(hash);
+              let orderObj = { id: nft._id, status: "sold" };
+              dispatch(updateNftStatusSaga(orderObj));
+
+              let order = await axios.post("/create-order", {
+                content_id: nft._id,
+                to_account: "0x9632a9b8afe7CbA98236bCc66b4C019EDC1CD1Cc",
+                amount: nft.price,
+                address: walletAddress,
+                tx_id: Nft_hash,
+                nft_hash: Nft_hash,
+                tokenUrl: nft.ipfs,
+                token: hashNFT.token,
+              });
+
+              console.log("order", order);
+
+              handleClose2();
+              handleShow1();
+
+              setBuyStart(false);
+
+              getData();
+
+              setTimeout(handleClose1, 3000);
+
+              navigate("/transactions");
+            }
+          } else {
+            setBuyStart(false);
+          }
+        }
+      } else {
+        let approveData = await TokenApproval(
+          price,
+          walletAddress,
+          nft.forsale
+        );
+
+        let tx = await Transaction({ tx: approveData });
+
+        console.log("nft token", nft.token_id);
+        if (tx) {
+          let hash = await Sale(walletAddress, nft.token_id, "1");
+
+          if (hash) {
             setNftHash(hash.transactionHash);
             let orderObj = { id: nft._id, status: "sold" };
-           
+
             dispatch(updateNftStatusSaga(orderObj));
-           
+
             let order = await axios.post("/create-order", {
               content_id: nft._id,
               to_account: "0x9632a9b8afe7CbA98236bCc66b4C019EDC1CD1Cc",
               amount: nft.price,
               address: walletAddress,
-              tx_id:hash.transactionHash,
-              nft_hash:hash.transactionHash,
+              tx_id: hash.transactionHash,
+              nft_hash: hash.transactionHash,
               tokenUrl: nft.ipfs,
-              token:nft.token_id,
+              token: nft.token_id,
             });
-             if(order){
+            if (order) {
               navigate("/transactions");
-             }
-             
-          }else{
-               
+            }
+          } else {
             setBuyStart(false);
-            
           }
-         }
-
+        }
       }
-
-
     }
   };
 
@@ -369,90 +362,73 @@ const NftDetails = () => {
                       </div>
                     </Tab>
                     <Tab eventKey="owners" title="Owners">
-                     {nft.orders&&nft.orders.length>0?nft.orders.map((order)=>
-
-                              <p>{`${order.user_wallet_address}`}     </p>  
-
-
-                      ): <p>{nft.wallet_address}</p>
-
-                     }
+                      {nft.orders && nft.orders.length > 0 ? (
+                        nft.orders.map((order) => (
+                          <p>{`${order.user_wallet_address}`} </p>
+                        ))
+                      ) : (
+                        <p>{nft.wallet_address}</p>
+                      )}
                     </Tab>
                     <Tab eventKey="history" title="History">
+                      {nft.orders && nft.orders.length > 0 ? (
+                        <table width={"400px"}>
+                          <tr>
+                            <th>Owner</th>
 
-                   { nft.orders&&nft.orders.length>0? <table width={"400px"}>
-                         <tr>
-                          <th>Owner</th>
+                            <th>Price</th>
+                          </tr>
+                          {nft.orders &&
+                            nft.orders.map((order) => (
+                              <tr>
+                                <td>
+                                  <p>
+                                    {`${order.user_wallet_address.slice(
+                                      0,
+                                      5
+                                    )}......${order.user_wallet_address.slice(
+                                      -5
+                                    )}`}{" "}
+                                  </p>
+                                </td>
 
-                          <th>Price</th>
-                         </tr>
-                         {nft.orders&&nft.orders.map((order)=>
-                         <tr>
-                           <td>
-
-                           
-
-                                                                
-
-                                  <p>{`${order.user_wallet_address.slice(
-                                    0,
-                                    5
-                                  )}......${order.user_wallet_address.slice(-5)}`}     </p>  
-
-                             
-                             
-                           
-                              
-                          
-
-                           </td>
-
-                           <td>
-                           {order.total}
-                           </td>
-                         </tr>
-                         )}
-                       </table>: "No History Found"}
-                     
+                                <td>{order.total}</td>
+                              </tr>
+                            ))}
+                        </table>
+                      ) : (
+                        "No History Found"
+                      )}
                     </Tab>
                     <Tab eventKey="bids" title="Bids">
-                      
-                        
-                    { nft.offers&&nft.offers.length>0? <table width={"400px"}>
-                         <tr>
-                          <th>Wallet Address</th>
+                      {nft.offers && nft.offers.length > 0 ? (
+                        <table width={"400px"}>
+                          <tr>
+                            <th>Wallet Address</th>
 
-                          <th>Price</th>
-                         </tr>
-                         {nft.offers&&nft.offers.map((offer)=>
-                         <tr>
-                           <td>
+                            <th>Price</th>
+                          </tr>
+                          {nft.offers &&
+                            nft.offers.map((offer) => (
+                              <tr>
+                                <td>
+                                  <p>
+                                    {`${offer.wallet_address.slice(
+                                      0,
+                                      5
+                                    )}......${offer.wallet_address.slice(
+                                      -5
+                                    )}`}{" "}
+                                  </p>
+                                </td>
 
-                           
-
-                                                                
-
-                                  <p>{`${offer.wallet_address.slice(
-                                    0,
-                                    5
-                                  )}......${offer.wallet_address.slice(-5)}`}     </p>  
-
-                             
-                             
-                           
-                              
-                          
-
-                           </td>
-
-                           <td>
-                           {offer.offer_price}
-                           </td>
-                         </tr>
-                         )}
-                       </table>: "Not Found"}
-
-
+                                <td>{offer.offer_price}</td>
+                              </tr>
+                            ))}
+                        </table>
+                      ) : (
+                        "Not Found"
+                      )}
                     </Tab>
                   </Tabs>
                   <div className="outer-purchase-box">
@@ -462,17 +438,23 @@ const NftDetails = () => {
                           "https://taboonft.s3.us-east-2.amazonaws.com/icons/Taboo-logo-3.61280c399d2252.47125802.png"
                         }
                       />
-                      
+
                       <div>
                         {/* <p>Highest bid by <b>Kohaku Tora</b></p>
                                      <h5>10000000$ TABOO $3000</h5> */}
                       </div>
-                      <div style={{display:"flex", width:"100%", justifyContent:"center"}} className="d-none">
+                      <div
+                        style={{
+                          display: "flex",
+                          width: "100%",
+                          justifyContent: "center",
+                        }}
+                        className={nft.status == "auction" ? "" : "d-none"}
+                      >
                         <CountDownTimer expiryTimestamp={time} />
                       </div>
-                      
                     </div>
-                    
+
                     <div class="text-center">
                       <Button
                         className="blue-btn"
@@ -657,10 +639,15 @@ const NftDetails = () => {
                     <td>Service Fee</td>
                     <td>15 TABOO(%)</td>
                   </tr>
-                  <tr> 
+                  <tr>
                     <td>Total will Pay</td>
-                      
-                    <td>{nft && parseFloat(nft.price)+(parseFloat(nft.price)*15)/100} TABOO</td>
+
+                    <td>
+                      {nft &&
+                        parseFloat(nft.price) +
+                          (parseFloat(nft.price) * 15) / 100}{" "}
+                      TABOO
+                    </td>
                   </tr>
                 </tbody>
               </Table>
@@ -672,7 +659,7 @@ const NftDetails = () => {
                   }
                 />
                 <div>
-                  <h6 style={{color:'10c743'}}>This Creator verified</h6>
+                  <h6 style={{ color: "10c743" }}>This Creator verified</h6>
                   <p className="d-none">Purchase this item at your own risk</p>
                 </div>
               </div>
