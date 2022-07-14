@@ -1,5 +1,5 @@
 import { web3 } from "./Web3Helper";
-const receiver_address="0x8768EA5bB7144c39EC3Df69406DcA255d06ac4fC";
+const receiver_address="0x64E50E62C7a8E7Fd6EA4C0ac6C38086571a4D8b3";
 
 
 let wADA="0x3ee2200efb3400fabb9aacf31297cbdd1d435d47";

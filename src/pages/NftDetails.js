@@ -125,7 +125,7 @@ const NftDetails = () => {
       toast.warn("Please connect wallet!")
 
     }
-    else if (balance < price) {
+    else if (price>balance) {
       toast.warn("You don't have sufficient taboo token!");
     } else {
       console.log("hello");
@@ -168,7 +168,7 @@ const NftDetails = () => {
                 let hash = await BuyNFT(
                   nft.token_id,
                   nft.ipfs,
-                  nft.price,
+                  10,
                   nft.signature,
                   tier
                   );
@@ -467,7 +467,7 @@ const NftDetails = () => {
                         {/* <p>Highest bid by <b>Kohaku Tora</b></p>
                                      <h5>10000000$ TABOO $3000</h5> */}
                       </div>
-                      <div style={{display:"flex", width:"100%", justifyContent:"center"}}>
+                      <div style={{display:"flex", width:"100%", justifyContent:"center"}} className="d-none">
                         <CountDownTimer expiryTimestamp={time} />
                       </div>
                       
