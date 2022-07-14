@@ -432,6 +432,9 @@ const BuyCoin=()=>{
                           amount:amount,
                           hash:hash.transactionHash,
                           email:"rajkumar.live.mp@gmail.com"});
+
+
+                 await TabooTokenBalance(walletAddress)        
                           
               toast.success("Transaction submitted successfully!");
 
