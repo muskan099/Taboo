@@ -243,7 +243,7 @@ const Header = () => {
             </>
           )}
 
-           <a href="/boycoin"
+           <a href="/buycoin"
               
               className="common-btn"
               variant="outline-success"
