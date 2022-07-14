@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { axios } from "../http";
+import moment, { min } from "moment";
 import { useNavigate, useParams } from "react-router-dom";
 import {
   Row,
@@ -37,17 +38,28 @@ const NftDetails = () => {
   //Expiry Date for CountDown Timer
 
   const { nftDetail: nft, isLoading } = useSelector((state) => state.nft);
-  let endDate = nft.bid_end ? nft.bid_end : "";
-  console.log(endDate);
-  const time = new Date(endDate).getTime();
-  console.log(time);
-
-  time.setSeconds(time.getSeconds() + 600); // 10 minutes timer
 
   const { isAuthenticated, walletAddress, balance, tier } = useSelector(
     (state) => state.auth
   );
+  const [time, setTime] = useState(false);
 
+  useEffect(() => {
+    console.log("inside use effect", nft);
+
+    if (nft && nft.bid_end) {
+      let end_Date = nft.bid_end;
+
+      // let time = new Date(end_Date);
+      console.log(`end date is ${end_Date}`);
+      let current_time = moment(end_Date, "YYYY-MM-DD HH:mm:ss").format();
+      // current_time.setSeconds(current_time.getSeconds() + 600); // 10 minutes timer
+      current_time = new Date(current_time);
+      current_time.setSeconds(current_time.getSeconds() + 600);
+      setTime(current_time);
+      console.log(`time is ${current_time}`);
+    }
+  }, [nft]);
   let { transactions } = useSelector((state) => state.transactions);
 
   //console.log("balance", nft.orders);
@@ -449,9 +461,9 @@ const NftDetails = () => {
                           width: "100%",
                           justifyContent: "center",
                         }}
-                        className={nft.status == "auction" ? "" : "d-none"}
+                        className={nft.status === "auction" ? "" : "d-none"}
                       >
-                        <CountDownTimer expiryTimestamp={time} />
+                        {time ? <CountDownTimer expiryTimestamp={time} /> : ""}
                       </div>
                     </div>
 
