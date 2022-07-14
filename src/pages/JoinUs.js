@@ -9,44 +9,46 @@ const JoinUs=()=>{
     window.scrollTo(0, 0)
  },[])  
 
- const [data, setData] = useState("");
+ const initialValues = {name:"",phone:'',email:"",socialmedia:"",message:""}
+ const [data, setData] = useState(initialValues);
+ const [errors, setErrors] = useState({});
+ const[isSubmit,setIsSubmit] = useState(false);
 
  const[loading,setLoading]=useState(false);
 
 
  const handleData = (e) => {
-  // console.log(e.target.name,e.target.value)
-  setData((prevState)=>{
-    if(e.target.name==="isModel"){
-      return{
-        ...prevState,
-        [e.target.name]:e.target.checked
-      }
-    }
-    return{
-      ...prevState,
-      [e.target.name]:e.target.value
-    }
-  })
- }
+  
+ const {name,value} = e.target;
+  setData({...data,[name]:e.target.value})
+  console.log([name])
+  console.log(value)
+  console.log(data)
+}
 
- const handleSubmit = async (e) => {
-
+const handleSubmit = async (e) => {
+  const regex = /\S+@\S+\.\S+/;
   try {
     e.preventDefault()
     if(!data.name){
       toast.warn("Name is missing!");
       return;
+    }else if(data.name.length<5){
+      toast.warn("fullname must be greater than 5 letters");
     }
     if(!data.phone){
       toast.warn("Phone Number is missing!");
       return;
+    }else if(data.phone.length<9 || data.phone.length>10){
+      toast.warn("phoneNumber must be 10 digit");
     }
     if(!data.email){
       toast.warn("Email is missing!");
       return;
+    }else if(!regex.test(data.email)){
+      toast.warn("This is not the right format for email");
     }
-    if(!data.social_media){
+    if(!data.socialmedia){
       toast.warn("Social Media is missing!");
       return;
     }
@@ -79,6 +81,14 @@ const JoinUs=()=>{
   }
  }
 
+ useEffect(() => {
+   console.log(errors)
+   if(Object.keys(errors).length === 0 && isSubmit){
+     console.log(data);
+   }
+ },[data, errors, isSubmit]);
+ 
+ 
     return(<>
          <section className="join-box-sec">
              <Container fluid className="p-0">
@@ -122,40 +132,47 @@ const JoinUs=()=>{
                                </div>
                             </Col>
                             <Col md={6} sm={6} xs={12}>
-                                <Form onSubmit={(e)=>handleSubmit(e)}>
+                                <Form >
                                    <Form.Group className="mb-3">
                                     <Form.Label>Name</Form.Label>
-                                    <Form.Control type="text" required name="name" onChange={(e)=>handleData(e)} placeholder="" />
+                                    <Form.Control type="text" required name="name" onChange={handleData} placeholder="" value={data.name} />
+                                  
                                   </Form.Group>
                                   <Form.Group className="mb-3">
                                     <Form.Label>Phone</Form.Label>
-                                    <Form.Control type="tel" pattern="[0-9]{10}" required name="phone" onChange={(e)=>handleData(e)} placeholder="" />
+                                    <Form.Control type="number" pattern="[0-9]{10}" required name="phone" onChange={handleData} placeholder="" value={data.phone} />
+                                 
                                   </Form.Group>
                                   <Form.Group className="mb-3">
                                     <Form.Label>Email</Form.Label>
-                                    <Form.Control type="email" required name="email" onChange={(e)=>handleData(e)} placeholder="" />
+                                    <Form.Control type="email" required name="email" onChange={handleData} placeholder="" value={data.email} />
+                                  
                                   </Form.Group>
                                   <Form.Group className="mb-3">
                                     <Form.Label>Social Media</Form.Label>
-                                    <Form.Control type="text" required name="social_media" onChange={(e)=>handleData(e)} placeholder="" />
+                                    <Form.Control type="text" required name="socialmedia" onChange={handleData} placeholder="" value={data.socialmedia} />
+                                   
                                   </Form.Group>
                                   <Form.Group className="mb-3">
                                     <Form.Label>Message</Form.Label>
-                                    <Form.Control as="textarea" required name="message" onChange={(e)=>handleData(e)} rows={2} />
+                                    <Form.Control as="textarea" required name="message" onChange={handleData} rows={2} value={data.message}/>
+                                 
                                   </Form.Group>
                                   <Form.Group className="mb-3">
                                     <div className="checkbox">
                                       <label>
-                                        <input type="checkbox" name="isModel" onChange={(e)=>handleData(e)} value=""></input>
+                                        <input type="checkbox" name="isModel" onChange={handleData} value=""></input>
                                         <span className="cr"><i className="cr-icon fa fa-check"></i></span>
                                        I AM A MODEL
                                       </label>
                                     </div>
                                   </Form.Group>
-                                  <Form.Group>
+                                  <Form.Group  disabled={loading}> 
                                   
-                                      <Button type="submit" className="blue-btn" disabled={loading}>
+                                      <Button onClick = {handleSubmit}type="submit"  className="blue-btn" >
+                                       
                                          {loading?"Please wait":"Send Message"} 
+                                        
                                       </Button>
                                   
                                   </Form.Group>
