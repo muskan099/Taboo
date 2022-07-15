@@ -58,18 +58,18 @@ const Explore = () => {
   const inputRangeRef = useRef(null);
   const dispatch = useDispatch();
 
-  const navigate=useNavigate()
+  const navigate = useNavigate();
 
   const [currentPage, setCurrentPage] = useState(1);
   //console.log(this);
 
-  const [tierCheck,setTierCheck]=useState(false)
+  const [tierCheck, setTierCheck] = useState(false);
 
-  const [tierAmount,setTierAmount]=useState('')
+  const [tierAmount, setTierAmount] = useState("");
 
   const [paginationData, setPaginationData] = useState({
     skip: 0,
-    limit:50,
+    limit: 50,
     pages: [],
   });
 
@@ -85,7 +85,7 @@ const Explore = () => {
       tier2: false,
       tier3: false,
     },
-    endPrice:100000000,
+    endPrice: 100000000,
   });
 
   const { startPrice, endPrice, A_TO_Z, price, letest, nftTier } = filterSearch;
@@ -98,12 +98,12 @@ const Explore = () => {
 
   const { nft, isLoading, totalNfts } = useSelector((state) => state.nft);
 
-  const handleTierCheck=()=>setTierCheck(false);
+  const handleTierCheck = () => setTierCheck(false);
 
   // console.log("nft", nft.length);
   const getData = (
     page,
-    limit =50,
+    limit = 50,
     skip = 0,
     tier,
     search_tag,
@@ -139,20 +139,19 @@ const Explore = () => {
 
   // console.log("nft tier \n", nftTier);
 
-  useEffect(()=>{
-    if(category=="Models"){
-      navigate('/models')
+  useEffect(() => {
+    if (category == "Models") {
+      navigate("/models");
     }
-  },[category])
+  }, [category]);
 
   useEffect(() => {
-    
     enableSlider(jQuery, setFilterSearch);
   }, []);
 
   // console.log({ range: `${startPrice} ${endPrice}` });
   useEffect(() => {
-    window.scrollTo(0, 0)
+    window.scrollTo(0, 0);
     // console.log("category", category);
     getData(
       currentPage,
@@ -244,48 +243,34 @@ const Explore = () => {
     }
   };
 
-  const handleNFTRedirect=(data)=>{
+  const handleNFTRedirect = (data) => {
+    console.log("data", data);
 
-             console.log("data",data)
+    if (data.lock) {
+      if (data.available_to.includes("3 Tier")) {
+        setTierAmount(5000);
+        setTierCheck(true);
+      } else if (data.available_to.includes("2 Tier")) {
+        setTierAmount(1000);
 
-             
+        setTierCheck(true);
+      } else {
+        setTimeout(() => {
+          navigate("/details/" + data._id);
+        }, 500);
+      }
+    } else {
+      //alert("dgr")
 
-             if(data.lock){
-
-                 if(data.available_to.includes("3 Tier"))
-                 {
-                   setTierAmount(5000)
-                   setTierCheck(true)
-                 }else if(data.available_to.includes("2 Tier")){
-                   setTierAmount(1000)
-
-                   setTierCheck(true)
-                 }else
-                 {
-                  setTimeout(()=>{navigate("/details/"+data._id)},500);
-                
-
-                 }
-
-                
-
-             }else
-               { //alert("dgr")
-
-               setTimeout(()=>{navigate("/details/"+data._id)},500);
-                
-                 
-               }
-               
-
-          }
-
- 
+      setTimeout(() => {
+        navigate("/details/" + data._id);
+      }, 500);
+    }
+  };
 
   return (
     <>
       <section className="team-sec-new">
-     
         <Container>
           <Row className="align-items-top">
             <Col className="">
@@ -293,7 +278,7 @@ const Explore = () => {
                 <Row className="justify-content-between">
                   <Col md={6} sm={6} xs={12}>
                     <h3 className="main-heading-inner mb-0">
-                      <a href="">
+                      <a href="/">
                         <img src={"images/right-arrow.png"} />
                       </a>{" "}
                       Explore
@@ -322,7 +307,7 @@ const Explore = () => {
               </div>
             </Col>
           </Row>
-		  
+
           <Row className="align-items-top">
             <Col xxl={3} xl={3} lg={3} md={4} sm={6} xs={12} className="">
               <div className="list-outer-box">
@@ -538,16 +523,16 @@ const Explore = () => {
             </Col>
             <Col xxl={9} xl={9} lg={9} md={8} sm={6} xs={12}>
               <div>
-				   <Row className=" pagination-row-explore">
+                <Row className=" pagination-row-explore">
                   <Col
-				  className="set-limit"
+                    className="set-limit"
                     lg={6}
                     md={6}
                     sm={6}
                     xs={12}
                     style={{ display: "flex", alignItems: "self-start" }}
                   >
-                    <Form.Label  style={{ minWidth: "100px" }}>
+                    <Form.Label style={{ minWidth: "100px" }}>
                       Set Limit
                     </Form.Label>
                     <Form.Select
@@ -559,17 +544,15 @@ const Explore = () => {
                         setCurrentPage(1);
                       }}
                     >
-                      
                       <option value="50">50</option>
                       <option value="100">100</option>
                     </Form.Select>
                   </Col>
-                  
+
                   <Col className="" lg={6} md={6} sm={6} xs={12}>
                     {!isLoading &&
                       nft?.length > 0 &&
                       paginationData.pages?.length > 0 && (
-						  
                         <Pagination style={{ justifyContent: "flex-end" }}>
                           {paginationData.pages.map((page, index) => (
                             <Pagination.Item
@@ -583,7 +566,7 @@ const Explore = () => {
                         </Pagination>
                       )}
                   </Col>
-				  </Row>
+                </Row>
                 <Row>
                   <Col>
                     <div className="filer-right-box">
@@ -649,10 +632,7 @@ const Explore = () => {
                         </Dropdown.Menu>
                       </Dropdown>
                       <ul>
-                        {[
-                          "All items",
-                          "Models",
-                        ].map((item) => (
+                        {["All items", "Models"].map((item) => (
                           <li
                             className={category === item ? "active" : ""}
                             key={item}
@@ -702,8 +682,8 @@ const Explore = () => {
                     </div>
                   </Col>
                 </Row>
-               
-				  <Row>
+
+                <Row>
                   {isLoading && (
                     <div className="text-center">
                       <Spinner animation="border" role="status" />
@@ -716,9 +696,11 @@ const Explore = () => {
                     ? nft.map((item) => (
                         <Col lg={4} md={12} sm={12} xs={12} key={item._id}>
                           <div className="outer-explor-box">
-                            <Link to="#"onClick={()=>handleNFTRedirect(item)}>
-                            <img className="img-main" src={item.image} />
-                             
+                            <Link
+                              to="#"
+                              onClick={() => handleNFTRedirect(item)}
+                            >
+                              <img className="img-main" src={item.image} />
                             </Link>
 
                             <div className="exploror-list-box">
@@ -732,9 +714,12 @@ const Explore = () => {
                               <div className="stoke-line">
                                 <ul>
                                   <li>
-                                    <img src={"https://taboonft.s3.us-east-2.amazonaws.com/icons/Taboo-logo-3.61280c399d2252.47125802.png"} />
+                                    <img
+                                      src={
+                                        "https://taboonft.s3.us-east-2.amazonaws.com/icons/Taboo-logo-3.61280c399d2252.47125802.png"
+                                      }
+                                    />
                                   </li>
-                                  
                                 </ul>
                                 <h6>
                                   {item.status == "sold"
@@ -765,11 +750,10 @@ const Explore = () => {
                     : ""}
                 </Row>
                 <Row className=" pagination-row-explore row mt-4 pb-4">
-                <Col className="m-auto" lg={6} md={6} sm={6} xs={12}>
+                  <Col className="m-auto" lg={6} md={6} sm={6} xs={12}>
                     {!isLoading &&
                       nft?.length > 0 &&
                       paginationData.pages?.length > 0 && (
-						  
                         <Pagination style={{ justifyContent: "center" }}>
                           {paginationData.pages.map((page, index) => (
                             <Pagination.Item
@@ -785,26 +769,22 @@ const Explore = () => {
                   </Col>
                 </Row>
 
-				<div className="pagination-new-exploror d-none">
-				<Pagination>
-					<Pagination.Prev />
-					<Pagination.Item>{1}</Pagination.Item>
-					<Pagination.Item active>{2}</Pagination.Item>
-					<Pagination.Item>{3}</Pagination.Item>
-					<Pagination.Ellipsis />
+                <div className="pagination-new-exploror d-none">
+                  <Pagination>
+                    <Pagination.Prev />
+                    <Pagination.Item>{1}</Pagination.Item>
+                    <Pagination.Item active>{2}</Pagination.Item>
+                    <Pagination.Item>{3}</Pagination.Item>
+                    <Pagination.Ellipsis />
 
-					
-					
-					<Pagination.Item>{25}</Pagination.Item>
-					<Pagination.Next />
-					
-					</Pagination>
-				</div>
+                    <Pagination.Item>{25}</Pagination.Item>
+                    <Pagination.Next />
+                  </Pagination>
+                </div>
               </div>
             </Col>
           </Row>
         </Container>
-
 
         <Modal
           size="lg"
@@ -818,22 +798,22 @@ const Explore = () => {
         >
           <Modal.Header className="border-none p-0"></Modal.Header>
           <Modal.Body className="outer-age-box">
-           
-                <div className="outer-div">
-                
-                To unlock this content you must connect your wallet and hold a minimum ${tierAmount&& tierAmount} of Taboo or a Taboopunk
-                
-                </div>
-               <a href="https://pancakeswap.finance/swap" target={'_blank'} className="common-btn buy-taboo-btn">Buy Taboo</a>
-                <button className="common-btn" onClick={handleTierCheck}>Cancel</button>
-             
-           
+            <div className="outer-div">
+              To unlock this content you must connect your wallet and hold a
+              minimum ${tierAmount && tierAmount} of Taboo or a Taboopunk
+            </div>
+            <a
+              href="https://pancakeswap.finance/swap"
+              target={"_blank"}
+              className="common-btn buy-taboo-btn"
+            >
+              Buy Taboo
+            </a>
+            <button className="common-btn" onClick={handleTierCheck}>
+              Cancel
+            </button>
           </Modal.Body>
         </Modal>
-
-
-
-
       </section>
     </>
   );
