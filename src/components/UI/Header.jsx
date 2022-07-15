@@ -243,8 +243,8 @@ const Header = () => {
             </>
           )}
 
-           <a href="/buycoin"
-              
+           <a href="#"
+              onClick={handleShow}
               className="common-btn"
               variant="outline-success"
               
