@@ -16,7 +16,7 @@ const TransactionList = () => {
   const [searchNft, setSearchNft] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [nftPerPage, setNftPerPage] = useState(20);
-  const [date, setDate] = useState("2022-07-18T11:40:37.144Z");
+  const [date, setDate] = useState("");
   console.log("the date is", date);
   const getData = async (page, limit) => {
     const res = await axios.post("/transactions", {
@@ -24,7 +24,6 @@ const TransactionList = () => {
       limit: 100,
       skip: page * limit - limit,
     });
-
     if (res.data) {
       console.log("the response data", res.data);
       console.log("data from api", res.data.data[0].list);
@@ -156,31 +155,33 @@ const TransactionList = () => {
                     </tr>
                   </thead>
                   <tbody>
-                    {currentNfts.map((item, index) => (
-                      <tr key={item._id}>
-                        <td>{index + 1}</td>
-                        <td>
-                          <div>{item.content_id}</div>
-                        </td>
-                        <td>
-                          <div>{item.contentInfo.name}</div>
-                        </td>
-                        <td>
-                          <div className="addressLineClamp">
-                            {item.to_address}
-                          </div>
-                        </td>
-                        <td>
-                          <div>{item.nft_hash}</div>
-                        </td>
-                        <td>
-                          <div>{item.total}</div>
-                        </td>
-                        <td>
-                          <div>{item.status}</div>
-                        </td>
-                      </tr>
-                    ))}
+                    {currentNfts
+                      .filter((user) => user.created_at.includes(date))
+                      .map((item, index) => (
+                        <tr key={item._id}>
+                          <td>{index + 1}</td>
+                          <td>
+                            <div>{item.content_id}</div>
+                          </td>
+                          <td>
+                            <div>{item.nftName}</div>
+                          </td>
+                          <td>
+                            <div className="addressLineClamp">
+                              {item.to_address}
+                            </div>
+                          </td>
+                          <td>
+                            <div>{item.nft_hash}</div>
+                          </td>
+                          <td>
+                            <div>{item.total}</div>
+                          </td>
+                          <td>
+                            <div>{item.status}</div>
+                          </td>
+                        </tr>
+                      ))}
                   </tbody>
                 </Table>
               </div>
