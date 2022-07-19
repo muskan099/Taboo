@@ -4816,3 +4816,8 @@ max-width: 100%;
   display: grid;
   place-content: center;
 }
+.addressLineClamp{
+  width: 100px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}

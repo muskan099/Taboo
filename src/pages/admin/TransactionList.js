@@ -8,19 +8,33 @@ import {
 } from "react-bootstrap";
 import Dropdown from "react-bootstrap/Dropdown";
 import { axios } from "../../http";
+import Pagination from "./Pagination";
 import React, { useEffect, useState } from "react";
 const TransactionList = () => {
   const [nft, setNft] = useState([]);
-
+  const [search, setSearch] = useState(false);
+  const [searchNft, setSearchNft] = useState([]);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [nftPerPage, setNftPerPage] = useState(20);
+  const [date, setDate] = useState("2022-07-18T11:40:37.144Z");
+  console.log("the date is", date);
   const getData = async (page, limit) => {
     const res = await axios.post("/transactions", {
       page: page,
-      limit: 20,
+      limit: 100,
       skip: page * limit - limit,
     });
 
     if (res.data) {
+      console.log("the response data", res.data);
       console.log("data from api", res.data.data[0].list);
+      for (let i = 0; i < 100; i++) {
+        if (res.data.data[0].list[i].created_at === date) {
+          console.log("date is matched");
+          setSearchNft(res.data.data[0].list[i]);
+          console.log(res.data.data[0].list[i]);
+        }
+      }
       setNft(res.data.data[0].list);
     }
   };
@@ -28,7 +42,13 @@ const TransactionList = () => {
   useEffect(() => {
     getData();
   }, []);
+
   console.log(nft);
+  const indexOfLastNft = currentPage * nftPerPage;
+  const indexOfFirstNft = indexOfLastNft - nftPerPage;
+
+  const currentNfts = nft.slice(indexOfFirstNft, indexOfLastNft);
+  const paginate = (pageNumber) => setCurrentPage(pageNumber);
   return (
     <section className="transaction-section">
       <Row>
@@ -89,6 +109,9 @@ const TransactionList = () => {
                       placeholder="Start Date....."
                       aria-label="Recipient's username"
                       aria-describedby="basic-addon2"
+                      onChange={(e) => {
+                        setDate(e.target.value);
+                      }}
                     />
                   </InputGroup>
                   <InputGroup>
@@ -123,40 +146,51 @@ const TransactionList = () => {
                   <thead>
                     <tr>
                       <th>S.No</th>
-                      <th>Collection</th>
-                      <th>Artist Name</th>
-                      <th>YOP</th>
-                      <th>Sub Category</th>
-                      <th>For Sale</th>
-                      <th>Basic Price</th>
-                      <th>Featured</th>
+                      <th>Nft</th>
+                      <th>Nft Name</th>
+                      <th>Wallet Address</th>
+                      <th>Hash</th>
+                      <th>Amount</th>
                       <th>Status</th>
                       <th>Action</th>
                     </tr>
                   </thead>
                   <tbody>
-                    <div>
-                      {nft.map((item) => (
-                        <h1>{item.content_id}</h1>
-                      ))}
-                    </div>
+                    {currentNfts.map((item, index) => (
+                      <tr key={item._id}>
+                        <td>{index + 1}</td>
+                        <td>
+                          <div>{item.content_id}</div>
+                        </td>
+                        <td>
+                          <div>{item.contentInfo.name}</div>
+                        </td>
+                        <td>
+                          <div className="addressLineClamp">
+                            {item.to_address}
+                          </div>
+                        </td>
+                        <td>
+                          <div>{item.nft_hash}</div>
+                        </td>
+                        <td>
+                          <div>{item.total}</div>
+                        </td>
+                        <td>
+                          <div>{item.status}</div>
+                        </td>
+                      </tr>
+                    ))}
                   </tbody>
                 </Table>
               </div>
             </Row>
           </div>
-          <Row className=" pagination-row-explore">
-            <Col
-              className="set-limit"
-              lg={6}
-              md={6}
-              sm={6}
-              xs={12}
-              style={{ display: "flex", alignItems: "self-start" }}
-            ></Col>
-
-            <Col className="" lg={6} md={6} sm={6} xs={12}></Col>
-          </Row>
+          <Pagination
+            nftPerPage={nftPerPage}
+            totalNft={nft.length}
+            paginate={paginate}
+          />
         </Col>
       </Row>
     </section>
