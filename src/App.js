@@ -80,17 +80,16 @@ function App() {
             }
           />
 
-
-         <Route
+          <Route
             path="/config"
             element={
               <AdminRoute>
-               <CreateConfig />
+                <CreateConfig />
               </AdminRoute>
             }
           />
 
-          <Route path="/transaction-list" element={<TransactionList />} />
+          <Route path="/TransactionList" element={<TransactionList />} />
 
           <Route path="/create-stake" element={<CreateStake />} />
 

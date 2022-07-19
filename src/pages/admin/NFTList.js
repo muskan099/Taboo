@@ -34,7 +34,6 @@ const NFTList = () => {
 
   const [startDate, setStartDate] = useState(new Date());
 
-
   // const { nft, isLoading } = useSelector((state) => state.nft);
 
   const [nft, setNft] = useState("");
@@ -145,7 +144,7 @@ const NFTList = () => {
             status: "auction",
             token: token,
             bid_price: auctionData.minPrice,
-            bid_end:auctionData.endTime
+            bid_end: auctionData.endTime,
           });
         }
         toast.success("Auction Started Successfully!");
