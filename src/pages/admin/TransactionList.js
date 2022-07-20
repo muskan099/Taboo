@@ -12,11 +12,12 @@ import Pagination from "./Pagination";
 import React, { useEffect, useState } from "react";
 const TransactionList = () => {
   const [nft, setNft] = useState([]);
-  const [search, setSearch] = useState(false);
-  const [searchNft, setSearchNft] = useState([]);
+
   const [currentPage, setCurrentPage] = useState(1);
   const [nftPerPage, setNftPerPage] = useState(20);
   const [date, setDate] = useState("");
+  const [totalNft, setTotalNft] = useState([]);
+  const [result, setResult] = useState([]);
   console.log("the date is", date);
   const getData = async (page, limit) => {
     const res = await axios.post("/transactions", {
@@ -25,24 +26,18 @@ const TransactionList = () => {
       skip: page * limit - limit,
     });
     if (res.data) {
-      console.log("the response data", res.data);
-      console.log("data from api", res.data.data[0].list);
-      for (let i = 0; i < 100; i++) {
-        if (res.data.data[0].list[i].created_at === date) {
-          console.log("date is matched");
-          setSearchNft(res.data.data[0].list[i]);
-          console.log(res.data.data[0].list[i]);
-        }
-      }
       setNft(res.data.data[0].list);
+      setResult(res.data.data[0]);
+      setTotalNft(res.data.data[0].totalRecords[0]);
+      console.log("TOTAL RECORDS", res.data);
+      console.log("total nft", totalNft);
     }
   };
-
+  console.log(nft);
   useEffect(() => {
-    getData();
+    getData(currentPage, 100);
   }, []);
 
-  console.log(nft);
   const indexOfLastNft = currentPage * nftPerPage;
   const indexOfFirstNft = indexOfLastNft - nftPerPage;
 
@@ -118,6 +113,9 @@ const TransactionList = () => {
                       placeholder="End Date....."
                       aria-label="Recipient's username"
                       aria-describedby="basic-addon2"
+                      onChange={(e) => {
+                        setDate(e.target.value);
+                      }}
                     />
                   </InputGroup>
                   <InputGroup className="m-0">
@@ -159,7 +157,7 @@ const TransactionList = () => {
                       .filter((user) => user.created_at.includes(date))
                       .map((item, index) => (
                         <tr key={item._id}>
-                          <td>{index + 1}</td>
+                          <td>{result.offSet + index}</td>
                           <td>
                             <div>{item.content_id}</div>
                           </td>
@@ -189,7 +187,7 @@ const TransactionList = () => {
           </div>
           <Pagination
             nftPerPage={nftPerPage}
-            totalNft={nft.length}
+            totalNft={totalNft}
             paginate={paginate}
           />
         </Col>
