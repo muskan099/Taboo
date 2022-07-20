@@ -41,6 +41,9 @@ const JoinUs = () => {
 
   const handleSubmit = async (e) => {
     const regex = /\S+@\S+\.\S+/;
+    const pattern = /^[A-Za-z]+$/;
+    const urlRegex =
+      /(^|\s)((https?:\/\/)?[\w-]+(\.[\w-]+)+\.?(:\d+)?(\/\S*)?)/gi;
     try {
       e.preventDefault();
       if (!data.name) {
@@ -48,25 +51,35 @@ const JoinUs = () => {
         return;
       } else if (data.name.length < 5) {
         toast.warn("fullname must be greater than 5 letters");
+      } else if (!pattern.test(data.name)) {
+        toast.warn("Name can only be alphabets");
       }
       if (!data.phone) {
         toast.warn("Phone Number is missing!");
         return;
       } else if (data.phone.length < 9 || data.phone.length > 10) {
         toast.warn("phoneNumber must be 10 digit");
+        return;
       }
       if (!data.email) {
         toast.warn("Email is missing!");
         return;
       } else if (!regex.test(data.email)) {
         toast.warn("This is not the right format for email");
+        return;
       }
       if (!data.socialmedia) {
+        toast.warn("Social Media is missing!");
+        return;
+      } else if (!urlRegex.test(data.socialmedia)) {
         toast.warn("Social Media is missing!");
         return;
       }
       if (!data.message) {
         toast.warn("Message is missing!");
+        return;
+      } else if (!pattern.test(data.message)) {
+        toast.warn("Message can only be alphabets");
         return;
       }
 
