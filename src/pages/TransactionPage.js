@@ -316,12 +316,12 @@ const submitWithdrawSale=async()=>{
                                         </td>
 
                                         <td>
-                                         {/*
+                                        
                                           <button disabled={item.contentinfo.forsale=="yes"?false:false} onClick={()=>handleCreateSale(item)}>Sell</button>
-
+ 
                                           <button disabled={item.contentinfo.status=="active"?false:true} onClick={()=>handleWithdrawSale(item.contentinfo)}>Cancel</button>
 
-                                        */}
+                                       
 
                                         
                                         {/*
