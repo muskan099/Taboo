@@ -22,27 +22,47 @@ const TransactionList = () => {
   const getData = async (page, limit) => {
     const res = await axios.post("/transactions", {
       page: page,
-      limit: 100,
+      limit: limit,
       skip: page * limit - limit,
     });
     if (res.data) {
+      console.log(res.data.data);
       setNft(res.data.data[0].list);
+
       setResult(res.data.data[0]);
-      setTotalNft(res.data.data[0].totalRecords[0]);
-      console.log("TOTAL RECORDS", res.data);
+      setTotalNft(res.data.data[0].totalRecords[0].count);
+      console.log(
+        "TOTAL RECORDS : count",
+        res.data.data[0].totalRecords[0].count
+      );
       console.log("total nft", totalNft);
     }
   };
-  console.log(nft);
+  console.log({ nft });
   useEffect(() => {
-    getData(currentPage, 100);
+    getData(currentPage, 20);
   }, []);
 
-  const indexOfLastNft = currentPage * nftPerPage;
-  const indexOfFirstNft = indexOfLastNft - nftPerPage;
+  const paginate = (pageNumber) => {
+    console.log({ pageNumber });
 
-  const currentNfts = nft.slice(indexOfFirstNft, indexOfLastNft);
-  const paginate = (pageNumber) => setCurrentPage(pageNumber);
+    setCurrentPage(pageNumber);
+  };
+  let indexOfLastNft = currentPage * nftPerPage;
+  let indexOfFirstNft = indexOfLastNft - nftPerPage;
+
+  console.log(nft);
+
+  let currentNfts = nft.slice(indexOfFirstNft, indexOfLastNft);
+
+  console.log(nft);
+  console.log({ currentNfts });
+  useEffect(() => {
+    getData(currentPage, 20);
+
+    console.log({ currentNfts });
+  }, [currentPage]);
+
   return (
     <section className="transaction-section">
       <Row>
@@ -153,11 +173,11 @@ const TransactionList = () => {
                     </tr>
                   </thead>
                   <tbody>
-                    {currentNfts
+                    {nft
                       .filter((user) => user.created_at.includes(date))
                       .map((item, index) => (
                         <tr key={item._id}>
-                          <td>{result.offSet + index}</td>
+                          <td>{result.offSet + index + 1}</td>
                           <td>
                             <div>{item.content_id}</div>
                           </td>
