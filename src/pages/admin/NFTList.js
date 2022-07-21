@@ -158,17 +158,16 @@ const NFTList = () => {
     }
   };
 
-  console.log("nft", nft.data);
-
-  const getData = async (page, limit, query) => {
+  const getData = async (currentPage, limit, query) => {
     const res = await axios.post("/content-list", {
-      page: page,
+      page: currentPage,
       limit: limit,
       query: query,
     });
 
     if (res.data) {
       setNft(res.data);
+      setResult(res.data);
     }
   };
 
@@ -180,13 +179,14 @@ const NFTList = () => {
   function paginate(pageNumber) {
     setCurrentPage(pageNumber);
     getData(currentPage, 20);
+    console.log({ currentPage });
   }
   const [status, setStatus] = useState("");
   function handleSelectedSearch() {
     setStatus("active");
-    console.log({ status });
-    console.log("nft status", nft.data[0].status);
   }
+  const [result, setResult] = useState([]);
+  const [search, setSearch] = useState("");
 
   return (
     <>
@@ -308,6 +308,9 @@ const NFTList = () => {
                         placeholder="Search....."
                         aria-label="Recipient's username"
                         aria-describedby="basic-addon2"
+                        onChange={(e) => {
+                          setSearch(e.target.value);
+                        }}
                       />
                       <Button>
                         <img
@@ -337,18 +340,19 @@ const NFTList = () => {
                       </tr>
                     </thead>
                     <tbody>
-                      {console.log({ status })}
+                      {console.log({ search })}
 
                       {nft &&
                         nft.data
-                          .filter((user) => user.status.includes(status))
+                          .filter((user) => {
+                            return (
+                              user.status.includes(status) &&
+                              user.name.includes(search)
+                            );
+                          })
                           .map((item, index) => (
                             <tr key={item._id}>
-                              {console.log(
-                                "the result is",
-                                status === item.status
-                              )}
-                              <td>{index + 1}</td>
+                              <td>{result.offSet + index + 1}</td>
                               <td>
                                 <div class="owner-row-outer">
                                   <img src={item.image} />
