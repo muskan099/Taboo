@@ -8,6 +8,7 @@ import { createAuction } from "../../helpers/AuctionHelper";
 import { Transaction } from "../../helpers/Transaction";
 import { NFTBalance } from "../../helpers/NFTBalance";
 import Connect from "../../helpers/Connect";
+import Pagination from "./Pagination";
 import {
   Row,
   Col,
@@ -159,7 +160,7 @@ const NFTList = () => {
 
   console.log("nft", nft.data);
 
-  const getData = async (page, limit = 60, query) => {
+  const getData = async (page, limit, query) => {
     const res = await axios.post("/content-list", {
       page: page,
       limit: limit,
@@ -172,8 +173,20 @@ const NFTList = () => {
   };
 
   useEffect(() => {
-    getData();
+    getData(currentPage, 20);
   }, []);
+
+  const [currentPage, setCurrentPage] = useState(1);
+  function paginate(pageNumber) {
+    setCurrentPage(pageNumber);
+    getData(currentPage, 20);
+  }
+  const [status, setStatus] = useState("");
+  function handleSelectedSearch() {
+    setStatus("active");
+    console.log({ status });
+    console.log("nft status", nft.data[0].status);
+  }
 
   return (
     <>
@@ -272,7 +285,13 @@ const NFTList = () => {
                       </Dropdown.Toggle>
 
                       <Dropdown.Menu>
-                        <Dropdown.Item href="#/action-1">Action</Dropdown.Item>
+                        <Dropdown.Item
+                          onClick={() => {
+                            handleSelectedSearch();
+                          }}
+                        >
+                          Approved
+                        </Dropdown.Item>
                         <Dropdown.Item href="#/action-2">
                           Another action
                         </Dropdown.Item>
@@ -318,59 +337,67 @@ const NFTList = () => {
                       </tr>
                     </thead>
                     <tbody>
-                      {nft &&
-                        nft.data.map((item, index) => (
-                          <tr key={item._id}>
-                            <td>{index + 1}</td>
-                            <td>
-                              <div class="owner-row-outer">
-                                <img src={item.image} />
-                                <div>
-                                  <h5>{item.name}</h5>
-                                </div>
-                              </div>
-                            </td>
+                      {console.log({ status })}
 
-                            <td>{item.userinfo.name}</td>
-                            <td>-</td>
-                            <td>{item.category}</td>
-                            <td>Yes</td>
-                            <td>{item.price} Taboo</td>
-                            <td>
-                              <div className="text-center">
-                                {["checkbox"].map((type) => (
-                                  <div
-                                    key={`default-${type}`}
-                                    className="text-center"
-                                  >
-                                    <Form.Check
-                                      type={type}
-                                      id={`default-${type}`}
-                                      label={` `}
-                                    />
-                                  </div>
-                                ))}
-                              </div>
-                            </td>
-                            <td>
-                              <span className="status-box">Approved</span>
-                            </td>
-                            <td>
-                              <a href="" className="view-icon">
-                                <i className="fa fa-eye"></i>
-                              </a>
-                              {item.status === "active" && (
-                                <a
-                                  href="#"
-                                  className="view-icon"
-                                  onClick={() => handleStartAuction(item)}
-                                >
-                                  <i className="fa fa-plus"></i>
-                                </a>
+                      {nft &&
+                        nft.data
+                          .filter((user) => user.status.includes(status))
+                          .map((item, index) => (
+                            <tr key={item._id}>
+                              {console.log(
+                                "the result is",
+                                status === item.status
                               )}
-                            </td>
-                          </tr>
-                        ))}
+                              <td>{index + 1}</td>
+                              <td>
+                                <div class="owner-row-outer">
+                                  <img src={item.image} />
+                                  <div>
+                                    <h5>{item.name}</h5>
+                                  </div>
+                                </div>
+                              </td>
+                              {console.log(item.status)}
+                              <td>{item.userinfo.name}</td>
+                              <td>-</td>
+                              <td>{item.category}</td>
+                              <td>Yes</td>
+                              <td>{item.price} Taboo</td>
+                              <td>
+                                <div className="text-center">
+                                  {["checkbox"].map((type) => (
+                                    <div
+                                      key={`default-${type}`}
+                                      className="text-center"
+                                    >
+                                      <Form.Check
+                                        type={type}
+                                        id={`default-${type}`}
+                                        label={` `}
+                                      />
+                                    </div>
+                                  ))}
+                                </div>
+                              </td>
+                              <td>
+                                <span className="status-box">Approved</span>
+                              </td>
+                              <td>
+                                <a href="" className="view-icon">
+                                  <i className="fa fa-eye"></i>
+                                </a>
+                                {item.status === "active" && (
+                                  <a
+                                    href="#"
+                                    className="view-icon"
+                                    onClick={() => handleStartAuction(item)}
+                                  >
+                                    <i className="fa fa-plus"></i>
+                                  </a>
+                                )}
+                              </td>
+                            </tr>
+                          ))}
 
                       {/*  <tr>
                                   <td>01</td>
@@ -527,6 +554,13 @@ const NFTList = () => {
                     </tbody>
                   </Table>
                 </div>
+
+                <Pagination
+                  nftPerPage={20}
+                  totalNft={nft.total}
+                  paginate={paginate}
+                />
+
                 <div className="latest-user-row justify-content-end">
                   <a href="" className="view-all-link">
                     See All
