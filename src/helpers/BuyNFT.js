@@ -1,6 +1,6 @@
 import { web3 } from "./Web3Helper";
 import {NFTBalance} from "./NFTBalance"
-export const BuyNFT = async (token_id, uri, minPrice, signature,tier) => {
+export const BuyNFT = async (token_id, uri, minPrice, signature,tier,punk) => {
 
 
   const Web3 = await web3();
@@ -46,17 +46,21 @@ export const BuyNFT = async (token_id, uri, minPrice, signature,tier) => {
 
     let admin_address = "0xbc2BF1401a615b6768D46A14c738e7937Fe32aA0";
     let adminPercent = 100;
-    let royaltyPercent = 1000;
-    let platformPercent = 1500;
+    let royaltyPercent = 2000;
+    let platformPercent = 750;
+       if(punk>0){
 
-       if(tier=="3 Tier"){
+        platformPercent=0;
 
-        royaltyPercent=500;
+       }
+       else if(tier=="3 Tier"){
+
+        platformPercent=250;
 
       }else if(tier=="2 Tier")
        {
 
-          royaltyPercent=700;
+        platformPercent=500;
 
        }
 

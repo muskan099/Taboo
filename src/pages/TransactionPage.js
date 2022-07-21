@@ -310,16 +310,18 @@ const TransactionPage = () => {
                               <span class="success">success</span>
                             </td>
 
-                            <td>
-                              {/*
-                                          <button disabled={item.contentinfo.forsale=="yes"?false:false} onClick={()=>handleCreateSale(item)}>Sell</button>
 
+                            <td>
+                           
+
+                                          <button disabled={item.contentinfo.forsale=="yes"?false:false} onClick={()=>handleCreateSale(item)}>Sell</button>
+ 
                                           <button disabled={item.contentinfo.status=="active"?false:true} onClick={()=>handleWithdrawSale(item.contentinfo)}>Cancel</button>
 
-                                        */}
+                                       
 
-                              {/*
-                                        <button disabled={item.contentinfo.status=="true"?true:false} onClick={()=>handleStartAuction(item.contentinfo)} >Auction</button> 
+                           {/*
+                                                                   <button disabled={item.contentinfo.status=="true"?true:false} onClick={()=>handleStartAuction(item.contentinfo)} >Auction</button> 
                                         */}
                             </td>
                           </tr>

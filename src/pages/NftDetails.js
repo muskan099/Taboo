@@ -28,6 +28,8 @@ import { TokenApproval } from "../helpers/TokenApproval";
 import { NFTBalance } from "../helpers/NFTBalance";
 import { Sale } from "../helpers/Sale";
 
+import { TabooPunk } from "../helpers/TabooPunk";
+
 import { ApproveTaboo } from "../helpers/Approve";
 
 const NftDetails = () => {
@@ -103,6 +105,10 @@ const NftDetails = () => {
   const handleOfferStart = () => setOfferStart(false);
 
   const [tabooBalance, setTabooBalance] = useState("");
+  const [punk,setPunk]=useState(0);
+
+  const[fees,setFees]=useState(7.5);
+
 
   const handleOfferPrice = (e) => {
     let value = e.target.value;
@@ -179,9 +185,10 @@ const NftDetails = () => {
             let hash = await BuyNFT(
               nft.token_id,
               nft.ipfs,
-              10,
+              price,
               nft.signature,
-              tier
+              tier,
+              punk
             );
 
             if (hash) {
@@ -314,6 +321,25 @@ const NftDetails = () => {
       handleOfferStart();
     }
   };
+
+
+  useEffect(async()=>{
+      if(isAuthenticated){
+
+         let taboo_punk=await TabooPunk(walletAddress);
+         setPunk(taboo_punk);
+
+          if(taboo_punk>0){
+             setFees(0)
+          }
+          else if(tier=="2 Tier"){
+            setFees(5);
+          }else if(tier=="3 Tier"){
+            setFees(2.5);
+          }
+      }
+  },[walletAddress])
+
 
   return (
     <>
@@ -649,7 +675,7 @@ const NftDetails = () => {
                   </tr>
                   <tr>
                     <td>Service Fee</td>
-                    <td>15 TABOO(%)</td>
+                    <td> {fees}%</td>
                   </tr>
                   <tr>
                     <td>Total will Pay</td>
@@ -657,7 +683,7 @@ const NftDetails = () => {
                     <td>
                       {nft &&
                         parseFloat(nft.price) +
-                          (parseFloat(nft.price) * 15) / 100}{" "}
+                          (parseFloat(nft.price) *fees) / 100}{" "}
                       TABOO
                     </td>
                   </tr>
