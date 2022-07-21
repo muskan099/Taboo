@@ -159,9 +159,9 @@ const TransactionPage = () => {
       let tx = await createNFTAuction(
         ANft.token_id,
         auctionData.minPrice,
-        2,
+        200,
         0,
-        15,
+        1500,
         auctionData.endTime,
         0,
         auctionData.startTime,
@@ -180,6 +180,7 @@ const TransactionPage = () => {
             status: "auction",
             token: token,
             bid_price: auctionData.minPrice,
+            bid_end:auctionData.endTime
           });
         }
         toast.success("Auction Started Successfully!");
@@ -314,15 +315,15 @@ const TransactionPage = () => {
                             <td>
                            
 
-                                          <button disabled={item.contentinfo.forsale=="yes"?false:false} onClick={()=>handleCreateSale(item)}>Sell</button>
+                                          <button disabled={item.contentinfo.status=="sold"?false:true} onClick={()=>handleCreateSale(item)}>Sell</button>
  
                                           <button disabled={item.contentinfo.status=="active"?false:true} onClick={()=>handleWithdrawSale(item.contentinfo)}>Cancel</button>
 
                                        
 
-                           {/*
-                                                                   <button disabled={item.contentinfo.status=="true"?true:false} onClick={()=>handleStartAuction(item.contentinfo)} >Auction</button> 
-                                        */}
+                           
+                                         <button disabled={item.contentinfo.status=="true"?true:true} onClick={()=>handleStartAuction(item.contentinfo)} >Auction</button> 
+                                        
                             </td>
                           </tr>
                         ))}

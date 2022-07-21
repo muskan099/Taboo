@@ -138,6 +138,11 @@ export const createNFTAuction = async (
   startTime.setMinutes(startTime.getMinutes() + 10 );
 
   startTime = startTime.getTime() / 1000; //moment(start_time,"YY-MM-DD").valueOf();
+
+  startTime=Math.ceil(startTime);
+
+  timePeriod=Math.ceil(timePeriod);
+
  console.log('address',from_account)
  
   console.log("start time", startTime);
@@ -158,6 +163,10 @@ export const createNFTAuction = async (
   console.log("price",minPrice)
 
   console.log("uri", uri);
+
+  //token="0x" + (token).toString(16)
+  console.log("from_account",from_account);
+
 
   try {
     let estimates_gas = await web3js.eth.estimateGas({
