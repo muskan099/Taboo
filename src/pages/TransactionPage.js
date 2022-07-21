@@ -315,7 +315,7 @@ const TransactionPage = () => {
                             <td>
                            
 
-                                          <button disabled={item.contentinfo.status=="sold"?true:false} onClick={()=>handleCreateSale(item)}>Sell</button>
+                                          <button disabled={item.contentinfo.status=="sold"?false:true} onClick={()=>handleCreateSale(item)}>Sell</button>
  
                                           <button disabled={item.contentinfo.status=="active"?false:true} onClick={()=>handleWithdrawSale(item.contentinfo)}>Cancel</button>
 
