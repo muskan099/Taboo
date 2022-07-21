@@ -45,7 +45,7 @@ const Stakes = () => {
      let current_balance=data.current_coin_balance;
       
      toast.warn("unstaking under maintenance for 24 hours");
-     /* 
+      
        if(stake_id){
         //console.log("stake id",stake_id)
         
@@ -70,9 +70,9 @@ const Stakes = () => {
 
             current_balance=parseFloat(current_balance);
 
-              if(current_balance>=5000000){
+              if(current_balance>=2000000){
 
-                toast.warn("Hi, since the amount you are trying to withdraw is more than 5 million Taboos, due to security reasons, we need to verify your withdrawal claim. Please send us an email at support@taboo.io with a withdrawal request and we will whitelist this wallet for withdrawal within 24 hours.")
+                toast.warn("Hi, since the amount you are trying to withdraw is more than 2 million Taboos, due to security reasons, we need to verify your withdrawal claim. Please send us an email at support@taboo.io with a withdrawal request and we will whitelist this wallet for withdrawal within 24 hours.")
 
                 
               }else
@@ -83,7 +83,7 @@ const Stakes = () => {
                 
           }
       }
-      */
+      
   }
 
   async function getData() {
