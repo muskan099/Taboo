@@ -174,7 +174,7 @@ const NFTList = () => {
   useEffect(() => {
     getData(currentPage, 20);
   }, []);
-
+  console.log({ nft });
   const [currentPage, setCurrentPage] = useState(1);
   function paginate(pageNumber) {
     setCurrentPage(pageNumber);

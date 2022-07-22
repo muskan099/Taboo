@@ -26,7 +26,9 @@ const CreateNft = () => {
 
   const { nft, isLoading } = useSelector((state) => state.nft);
 
-  const { isAuthenticated, walletAddress,balance ,tier} = useSelector((state) => state.auth);
+  const { isAuthenticated, walletAddress, balance, tier } = useSelector(
+    (state) => state.auth
+  );
 
   const [name, setName] = useState("");
 
@@ -154,32 +156,25 @@ const CreateNft = () => {
 
   const handleSubmit = async (e) => {
     const available_to = [];
-
+    const pattern = /^[A-Za-z]+$/;
     for (let i in availableTo) {
       if (i === "t1" && availableTo[i] === true) available_to.push("1 Tier");
       if (i === "t2" && availableTo[i] === true) available_to.push("2 Tier");
       if (i === "t3" && availableTo[i] === true) available_to.push("3 Tier");
     }
 
-    if (
-      (name == "" &&
-        price == "" &&
-        category == "" &&
-        quantity == "" &&
-        metaTag == "" &&
-        description == "" &&
-        chain == "") ||
-      available_to.length === 0
-    ) {
-      toast.error("Please fill all required field!");
-    } else if (file == null || file == "") {
+    if (file == null || file === "") {
       toast.error("Please select NFT Image!");
-    } else if (name == "") {
-      toast.error("Name is required!");
-    } else if (metaTag == "") {
+    } else if (metaTag === "") {
       toast.error("Meta tag is required!");
+    } else if (name === "") {
+      toast.error("Name is required!");
+    } else if (!pattern.test(name)) {
+      toast.error("Name can only be alphabets");
     } else if (description == "") {
       toast.error("Description is required!");
+    } else if (!pattern.test(description)) {
+      toast.error("Description can only be alphabets!");
     } else if (price == "") {
       toast.error("Price is required!");
     } else if (isNaN(price)) {
@@ -204,7 +199,7 @@ const CreateNft = () => {
       let ipfs_hash = await ipfsMint(contentImage, data);
       let voucher = await Mint(ipfs_hash, price);
 
-      console.log("voucher",voucher.address)
+      console.log("voucher", voucher.address);
       const formData = new FormData();
       console.log("file", file);
       formData.append("file", file);
@@ -221,7 +216,7 @@ const CreateNft = () => {
 
       formData.append("user_id", "62733f0715eb380c440489ee");
 
-      formData.append("wallet_address",voucher.address);
+      formData.append("wallet_address", voucher.address);
 
       formData.append("available_to", available_to);
 
@@ -231,7 +226,7 @@ const CreateNft = () => {
 
       setCreateStart(false);
 
-      setTimeout(navigate("/explore"),120000);
+      setTimeout(navigate("/explore"), 120000);
     }
   };
 
