@@ -157,6 +157,7 @@ const CreateNft = () => {
   const handleSubmit = async (e) => {
     const available_to = [];
     const pattern = /^[A-Za-z]+$/;
+    const alphaNumeric = /[^a-zA-Z0-9\-\/]/;
     for (let i in availableTo) {
       if (i === "t1" && availableTo[i] === true) available_to.push("1 Tier");
       if (i === "t2" && availableTo[i] === true) available_to.push("2 Tier");
@@ -167,6 +168,8 @@ const CreateNft = () => {
       toast.error("Please select NFT Image!");
     } else if (metaTag === "") {
       toast.error("Meta tag is required!");
+    } else if (alphaNumeric.test(metaTag)) {
+      toast.error("Meta tag is can only be alphabet and numbers");
     } else if (name === "") {
       toast.error("Name is required!");
     } else if (!pattern.test(name)) {
