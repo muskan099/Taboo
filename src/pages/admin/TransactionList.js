@@ -10,15 +10,19 @@ import Dropdown from "react-bootstrap/Dropdown";
 import { axios } from "../../http";
 import Pagination from "./Pagination";
 import React, { useEffect, useState } from "react";
+import Calendar from "react-calendar";
 const TransactionList = () => {
   const [nft, setNft] = useState([]);
 
   const [currentPage, setCurrentPage] = useState(1);
   const [nftPerPage, setNftPerPage] = useState(20);
-  const [date, setDate] = useState("");
+  const [date, setDate] = useState(new Date());
+  console.log("the date selected from calendar is", date);
   const [totalNft, setTotalNft] = useState([]);
   const [result, setResult] = useState([]);
-  console.log("the date is", date);
+  const [isVisible, setIsVisible] = useState(false);
+  const [status, setStatus] = useState("");
+  console.log({ status });
   const getData = async (page, limit) => {
     const res = await axios.post("/transactions", {
       page: page,
@@ -103,16 +107,33 @@ const TransactionList = () => {
                 <Row className="dropDown-category">
                   <Dropdown>
                     <Dropdown.Toggle variant="success" id="dropdown-basic">
-                      All Paintings Name
+                      Status
                     </Dropdown.Toggle>
 
                     <Dropdown.Menu>
-                      <Dropdown.Item href="#/action-1">Action</Dropdown.Item>
-                      <Dropdown.Item href="#/action-2">
-                        Another action
+                      <Dropdown.Item
+                        href="#/action-1"
+                        onClick={(e) => {
+                          setStatus(e.target.value);
+                        }}
+                      >
+                        Action
                       </Dropdown.Item>
-                      <Dropdown.Item href="#/action-3">
-                        Something else
+                      <Dropdown.Item
+                        href="#/action-2"
+                        onClick={(e) => {
+                          setStatus(e.target.value);
+                        }}
+                      >
+                        Sold
+                      </Dropdown.Item>
+                      <Dropdown.Item
+                        href="#/action-3"
+                        onClick={(e) => {
+                          setStatus(e.target.value);
+                        }}
+                      >
+                        Pending
                       </Dropdown.Item>
                     </Dropdown.Menu>
                   </Dropdown>
@@ -123,8 +144,8 @@ const TransactionList = () => {
                       placeholder="Start Date....."
                       aria-label="Recipient's username"
                       aria-describedby="basic-addon2"
-                      onChange={(e) => {
-                        setDate(e.target.value);
+                      onClick={() => {
+                        setIsVisible(true);
                       }}
                     />
                   </InputGroup>
@@ -133,9 +154,6 @@ const TransactionList = () => {
                       placeholder="End Date....."
                       aria-label="Recipient's username"
                       aria-describedby="basic-addon2"
-                      onChange={(e) => {
-                        setDate(e.target.value);
-                      }}
                     />
                   </InputGroup>
                   <InputGroup className="m-0">
@@ -156,6 +174,18 @@ const TransactionList = () => {
               </div>
               <Col></Col>
             </Row>
+            <Col lg={4} md={4} sm={4} xs={4} className="calendar">
+              {isVisible ? (
+                <Calendar
+                  value={date}
+                  onChange={(date) => {
+                    setDate(date);
+                  }}
+                />
+              ) : (
+                ""
+              )}
+            </Col>
             <Row>
               {" "}
               <div className="shadow-box ">
@@ -174,7 +204,12 @@ const TransactionList = () => {
                   </thead>
                   <tbody>
                     {nft
-                      .filter((user) => user.created_at.includes(date))
+                      .filter((user) => {
+                        return (
+                          user.status.includes(status) &&
+                          user.created_at.includes(date)
+                        );
+                      })
                       .map((item, index) => (
                         <tr key={item._id}>
                           <td>{result.offSet + index + 1}</td>
