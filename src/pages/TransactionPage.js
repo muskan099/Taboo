@@ -315,9 +315,9 @@ const TransactionPage = () => {
                             <td>
                            
 
-                                         <button disabled={item.contentinfo.status=="sold"?false:true} onClick={()=>handleCreateSale(item)}>{item.isOwner=="no"?"sold":"Sell"}</button>
+                                         <button disabled={item.contentinfo.status=="sold"||item.isOwner=="yes"?false:true} onClick={()=>handleCreateSale(item)}>{item.isOwner=="no"?"sold":"Sell"}</button>
  
-                                          <button disabled={item.contentinfo.status=="active"?false:true} onClick={()=>handleWithdrawSale(item.contentinfo)}>Cancel</button>
+                                         <button disabled={item.contentinfo.status=="active"&&item.isOwner=="yes"?false:true} onClick={()=>handleWithdrawSale(item.contentinfo)}>Cancel</button>
 
                                        {/*
 
