@@ -35,7 +35,7 @@ const TransactionList = () => {
         "TOTAL RECORDS : count",
         res.data.data[0].totalRecords[0].count
       );
-      console.log("total nft", totalNft);
+      console.log(res.data);
     }
   };
   console.log({ nft });
