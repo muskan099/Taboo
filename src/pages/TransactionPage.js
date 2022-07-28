@@ -322,7 +322,7 @@ const TransactionPage = () => {
                                        
 
                            
-                                         <button disabled={item.contentinfo.status=="true"?true:true} onClick={()=>handleStartAuction(item.contentinfo)} >Auction</button> 
+                                         <button disabled={item.contentinfo.status=="sold"?true:true} onClick={()=>handleStartAuction(item.contentinfo)} >Auction</button> 
                                         
                             </td>
                           </tr>
