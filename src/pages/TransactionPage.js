@@ -319,11 +319,11 @@ const TransactionPage = () => {
  
                                          <button disabled={item.contentinfo.status=="active"&&item.isOwner=="yes"?false:true} onClick={()=>handleWithdrawSale(item.contentinfo)}>Cancel</button>
 
-                                       {/*
+                                       
 
                            
                                          <button disabled={item.contentinfo.status=="true"?true:true} onClick={()=>handleStartAuction(item.contentinfo)} >Auction</button> 
-                                        */}
+                                        
                             </td>
                           </tr>
                         ))}
