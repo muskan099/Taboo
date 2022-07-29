@@ -70,7 +70,7 @@ const Explore = () => {
 
   const [paginationData, setPaginationData] = useState({
     skip: 0,
-    limit: 25,
+    limit: 50,
     pages: [],
   });
 
@@ -105,7 +105,7 @@ const Explore = () => {
   // console.log("nft", nft.length);
   const getData = (
     page,
-    limit = 25,
+    limit = 50,
     skip = 0,
     tier,
     search_tag,
@@ -551,7 +551,7 @@ const handlePageClick = (data) =>{
                         setCurrentPage(1);
                       }}
                     >
-                      <option value="25">25</option>
+                      
                       <option value="50">50</option>
                       <option value="100">100</option>
                     </Form.Select>

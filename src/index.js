@@ -17,7 +17,7 @@ ReactDOM.render(
     {/* <HttpsRedirect>  */}
        
       <App />
-     {/*</HttpsRedirect> */}
+    {/* </HttpsRedirect> */}
       
       <ScrollToTopButton />
     </Provider>
