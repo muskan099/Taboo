@@ -10,6 +10,7 @@ import Dropdown from "react-bootstrap/Dropdown";
 import { axios } from "../../http";
 import Pagination from "./Pagination";
 import React, { useEffect, useState } from "react";
+import moment from "moment";
 import Calendar from "react-calendar";
 const TransactionList = () => {
   const [nft, setNft] = useState([]);
@@ -17,7 +18,11 @@ const TransactionList = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const [nftPerPage, setNftPerPage] = useState(20);
   const [date, setDate] = useState(new Date());
-  console.log("the date selected from calendar is", date);
+  let dateTime = date.toDateString();
+  let current_time = moment(dateTime, "YYYY-MM-DD").format();
+
+  console.log("the current date", { current_time });
+
   const [totalNft, setTotalNft] = useState([]);
   const [result, setResult] = useState([]);
   const [isVisible, setIsVisible] = useState(false);
@@ -34,10 +39,10 @@ const TransactionList = () => {
       setNft(res.data.data[0].list);
 
       setResult(res.data.data[0]);
-      setTotalNft(res.data.data[0].totalRecords[0].count);
+      const totalNft = res.data.data[0].totalRecords[0].count;
       console.log(
         "TOTAL RECORDS : count",
-        res.data.data[0].totalRecords[0].count
+        res.data.data[1].totalRecords[0].count
       );
       console.log(res.data);
     }
@@ -66,7 +71,16 @@ const TransactionList = () => {
 
     console.log({ currentNfts });
   }, [currentPage]);
-
+  function handleSelection() {
+    setStatus("active");
+  }
+  function handleSelection1() {
+    setStatus("sold");
+  }
+  function handleSelection2() {
+    setStatus("pending");
+  }
+  
   return (
     <section className="transaction-section">
       <Row>
@@ -105,7 +119,7 @@ const TransactionList = () => {
             <Row className="transactionList-dropDown">
               <div className="dropDown-options">
                 <Row className="dropDown-category">
-                  <Dropdown>
+                <Dropdown>
                     <Dropdown.Toggle variant="success" id="dropdown-basic">
                       Status
                     </Dropdown.Toggle>
@@ -114,15 +128,15 @@ const TransactionList = () => {
                       <Dropdown.Item
                         href="#/action-1"
                         onClick={(e) => {
-                          setStatus(e.target.value);
+                          handleSelection();
                         }}
                       >
-                        Action
+                        Active
                       </Dropdown.Item>
                       <Dropdown.Item
                         href="#/action-2"
                         onClick={(e) => {
-                          setStatus(e.target.value);
+                          handleSelection1();
                         }}
                       >
                         Sold
@@ -130,7 +144,7 @@ const TransactionList = () => {
                       <Dropdown.Item
                         href="#/action-3"
                         onClick={(e) => {
-                          setStatus(e.target.value);
+                          handleSelection2();
                         }}
                       >
                         Pending
@@ -205,13 +219,12 @@ const TransactionList = () => {
                   <tbody>
                     {nft
                       .filter((user) => {
-                        return (
-                          user.status.includes(status) &&
-                          user.created_at.includes(date)
-                        );
-                      })
+                        return user.status.includes(status) ;
+                      }) //"2022-07-18T11:40:37.144Z"
+                      //Fri Jun 03 2022 00:00:00 GMT+0530 (India Standard Time)
                       .map((item, index) => (
                         <tr key={item._id}>
+                          {console.log("created at", item.created_at)}
                           <td>{result.offSet + index + 1}</td>
                           <td>
                             <div>{item.content_id}</div>
@@ -241,10 +254,15 @@ const TransactionList = () => {
             </Row>
           </div>
           <Pagination
-            nftPerPage={nftPerPage}
-            totalNft={totalNft}
-            paginate={paginate}
-          />
+                  nftPerPage={20}
+                  totalNft={totalNft}
+              
+                 nft={nft}
+                 setNft={setNft}
+                 getData={getData}
+                 
+                />
+                  
         </Col>
       </Row>
     </section>

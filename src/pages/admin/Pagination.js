@@ -1,26 +1,35 @@
 import React from "react";
+import ReactPaginate from 'react-paginate';
 
-function Pagination({ nftPerPage, totalNft, paginate }) {
-  const pageNumbers = [];
-  for (let i = 1; i <= Math.ceil(totalNft / nftPerPage); i++) {
-    pageNumbers.push(i);
-  }
-  console.log(nftPerPage);
-  console.log(totalNft);
-  console.log("page numbers", pageNumbers);
+function Pagination({totalNft,nftPerPage,nft, getData, limit}) {
+
+ const handlePageClick = (data) =>{
+  const pageClicked = data.selected+1;
+  getData(pageClicked, limit);
+  console.log({ pageClicked });
+   console.log(data.selected)
+   console.log("data",nft)
+  
+ }
   return (
     <div>
-      <nav>
-        <ul className="pagination">
-          {pageNumbers.map((number) => (
-            <li className="page-item" key={number}>
-              <div className="page-link" onClick={() => paginate(number)}>
-                {number}
-              </div>
-            </li>
-          ))}
-        </ul>
-      </nav>
+     <ReactPaginate 
+     previousLabel={'previous'}
+     nextLabel={'next'}
+     breakLabel={'...'}
+     pageCount={totalNft/nftPerPage}
+     marginPagesDisplayed={2}
+    onPageChange={handlePageClick}
+    containerClassName={'pagination'}
+    pageClassName={'page-item'}
+    pageLinkClassName={'page-link'}
+    previousClassName={'page-item'}
+    previousLinkClassName={'page-link'}
+    nextClassName={'page-item'}
+    nextLinkClassName={'page-link'}
+    breakClassName={'page-item'}
+    breakLinkClassName={'page-link'}
+     />
     </div>
   );
 }

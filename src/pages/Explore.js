@@ -1,8 +1,9 @@
 import React, { useEffect, useState, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
-
+import Pagination from "../pages/admin/Pagination"
 import { Modal } from "react-bootstrap";
+import ReactPaginate from 'react-paginate';
 
 import {
   Row,
@@ -15,7 +16,7 @@ import {
   Button,
   InputGroup,
   Spinner,
-  Pagination,
+ 
 } from "react-bootstrap";
 import { getNftSaga } from "../store/reducers/nftReducer";
 
@@ -97,6 +98,7 @@ const Explore = () => {
   );
 
   const { nft, isLoading, totalNfts } = useSelector((state) => state.nft);
+  console.log(totalNfts)
 
   const handleTierCheck = () => setTierCheck(false);
 
@@ -268,7 +270,11 @@ const Explore = () => {
       }, 500);
     }
   };
-
+const handlePageClick = (data) =>{
+  const pageClicked = data.selected+1;
+  
+  setCurrentPage(pageClicked);
+}
   return (
     <>
       <section className="team-sec-new">
@@ -552,21 +558,8 @@ const Explore = () => {
                   </Col>
 
                   <Col className="" lg={6} md={6} sm={6} xs={12}>
-                    {!isLoading &&
-                      nft?.length > 0 &&
-                      paginationData.pages?.length > 0 && (
-                        <Pagination style={{ justifyContent: "flex-end" }}>
-                          {paginationData.pages.map((page, index) => (
-                            <Pagination.Item
-                              key={page}
-                              active={currentPage === page}
-                              onClick={() => setCurrentPage(page)}
-                            >
-                              {page}
-                            </Pagination.Item>
-                          ))}
-                        </Pagination>
-                      )}
+                  
+                   
                   </Col>
                 </Row>
                 <Row>
@@ -751,37 +744,31 @@ const Explore = () => {
                       ))
                     : ""}
                 </Row>
-                <Row className=" pagination-row-explore row mt-4 pb-4">
-                  <Col className="m-auto" lg={6} md={6} sm={6} xs={12}>
-                    {!isLoading &&
-                      nft?.length > 0 &&
-                      paginationData.pages?.length > 0 && (
-                        <Pagination style={{ justifyContent: "center" }}>
-                          {paginationData.pages.map((page, index) => (
-                            <Pagination.Item
-                              key={page}
-                              active={currentPage === page}
-                              onClick={() => setCurrentPage(page)}
-                            >
-                              {page}
-                            </Pagination.Item>
-                          ))}
-                        </Pagination>
-                      )}
-                  </Col>
-                </Row>
+              
 
-                <div className="pagination-new-exploror d-none">
-                  <Pagination>
-                    <Pagination.Prev />
-                    <Pagination.Item>{1}</Pagination.Item>
-                    <Pagination.Item active>{2}</Pagination.Item>
-                    <Pagination.Item>{3}</Pagination.Item>
-                    <Pagination.Ellipsis />
+                <div className="pagination-new-exploror ">
+                <ReactPaginate 
+     previousLabel={'previous'}
+     nextLabel={'next'}
+     breakLabel={'...'}
+     pageCount={totalNfts/25}
+     marginPagesDisplayed={2}
+    onPageChange={handlePageClick}
+    containerClassName={'pagination'}
+    pageClassName={'page-item'}
+    pageLinkClassName={'page-link'}
+    previousClassName={'page-item'}
+    previousLinkClassName={'page-link'}
+    nextClassName={'page-item'}
+    nextLinkClassName={'page-link'}
+    breakClassName={'page-item'}
+    breakLinkClassName={'page-link'}
+     />
+                
+               
+              
+                {console.log("the nft data is ",nft)}
 
-                    <Pagination.Item>{25}</Pagination.Item>
-                    <Pagination.Next />
-                  </Pagination>
                 </div>
               </div>
             </Col>

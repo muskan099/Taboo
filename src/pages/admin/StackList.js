@@ -8,7 +8,7 @@ import {
 } from "react-bootstrap";
 import Dropdown from "react-bootstrap/Dropdown";
 import { axios } from "../../http";
-import Pagination from "./Pagination";
+// import Pagination from "./Pagination";
 import React, { useEffect, useState } from "react";
 import moment from "moment";
 import Calendar from "react-calendar";
@@ -31,13 +31,13 @@ const StackList = () => {
   const [show, setShow] = useState(false);
   console.log({ status });
   const getData = async (page, limit) => {
-    const res = await axios.post("/transactions", {
+    const res = await axios.get("/AllstakeList", {
       page: page,
       limit: limit,
       skip: page * limit - limit,
     });
+    console.log("response",res.data);
     if (res.data) {
-      console.log(res.data.data);
       setNft(res.data.data[0].list);
 
       setResult(res.data.data[0]);
@@ -292,11 +292,11 @@ const StackList = () => {
               </div>
             </Row>
           </div>
-          <Pagination
+          {/* <Pagination
             nftPerPage={nftPerPage}
             totalNft={totalNft}
             paginate={paginate}
-          />
+          /> */}
         </Col>
       </Row>
     </section>

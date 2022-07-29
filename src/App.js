@@ -27,6 +27,7 @@ import CreateNft from "./pages/CreateNft";
 import NFTList from "./pages/admin/NFTList";
 import Artist from "./pages/Artist";
 import TransactionList from "./pages/admin/TransactionList";
+import StackList from "./pages/admin/StackList";
 import Aboutus from "./pages/Aboutus";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -90,6 +91,7 @@ function App() {
           />
 
           <Route path="/TransactionList" element={<TransactionList />} />
+          <Route path="/StackList" element={<StackList />} />
 
           <Route path="/create-stake" element={<CreateStake />} />
 

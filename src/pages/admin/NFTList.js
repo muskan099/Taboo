@@ -176,11 +176,10 @@ const NFTList = () => {
   }, []);
   console.log({ nft });
   const [currentPage, setCurrentPage] = useState(1);
-  function paginate(pageNumber) {
-    setCurrentPage(pageNumber);
-    getData(currentPage, 20);
-    console.log({ currentPage });
-  }
+
+
+  
+  
   const [status, setStatus] = useState("");
   function handleSelectedSearch() {
     setStatus("active");
@@ -234,21 +233,7 @@ const NFTList = () => {
 
                 <div className="filer-right-box allcategory-filter filter-nft-list">
                   <div className="outer-multiple-drop">
-                    <Dropdown>
-                      <Dropdown.Toggle id="dropdown-basic">
-                        All Paintings Name
-                      </Dropdown.Toggle>
-
-                      <Dropdown.Menu>
-                        <Dropdown.Item href="#/action-1">Action</Dropdown.Item>
-                        <Dropdown.Item href="#/action-2">
-                          Another action
-                        </Dropdown.Item>
-                        <Dropdown.Item href="#/action-3">
-                          Something else
-                        </Dropdown.Item>
-                      </Dropdown.Menu>
-                    </Dropdown>
+                  
                     <Dropdown>
                       <Dropdown.Toggle id="dropdown-basic">
                         All Category
@@ -270,12 +255,12 @@ const NFTList = () => {
                       </Dropdown.Toggle>
 
                       <Dropdown.Menu>
-                        <Dropdown.Item href="#/action-1">Action</Dropdown.Item>
+                        <Dropdown.Item href="#/action-1">Tier 1</Dropdown.Item>
                         <Dropdown.Item href="#/action-2">
-                          Another action
+                        Tier 2
                         </Dropdown.Item>
                         <Dropdown.Item href="#/action-3">
-                          Something else
+                     Tier 3
                         </Dropdown.Item>
                       </Dropdown.Menu>
                     </Dropdown>
@@ -562,8 +547,12 @@ const NFTList = () => {
                 <Pagination
                   nftPerPage={20}
                   totalNft={nft.total}
-                  paginate={paginate}
+                 nft={nft}
+                 
+                 getData={getData}
+                 limit={20}
                 />
+                 {console.log(nft.data)}
 
                 <div className="latest-user-row justify-content-end">
                   <a href="" className="view-all-link">
