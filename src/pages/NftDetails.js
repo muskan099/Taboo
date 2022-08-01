@@ -77,7 +77,7 @@ const NftDetails = () => {
 
   const { offerPrice, auctionProcessing, buttonMessage } = auctionData;
 
-  const [offerStart, setOfferStart] = useState("");
+  const [offerStart, setOfferStart] = useState(false);
 
   const [show, setShow] = useState(false);
 
@@ -102,7 +102,7 @@ const NftDetails = () => {
 
   const handleClose3 = () => setShow3(false);
   const handleShow3 = () => setShow3(true);
-  const handleOfferStart = () => setOfferStart(false);
+  const handleOfferStart = () => setOfferStart(true);
 
   const [tabooBalance, setTabooBalance] = useState("");
   const [punk,setPunk]=useState(0);
@@ -513,7 +513,7 @@ const NftDetails = () => {
                           isLoading ||
                           nft.status == "sold" ||
                           nft.status == "active"
-                            ? true
+                            ? false
                             : false
                         }
                         onClick={() => setOfferStart(true)}

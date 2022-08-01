@@ -19,15 +19,19 @@ const TransactionList = () => {
   const [nftPerPage, setNftPerPage] = useState(20);
   const [date, setDate] = useState(new Date());
   let dateTime = date.toDateString();
-  let current_time = moment(dateTime, "YYYY-MM-DD").format();
+  let current_date = moment(date, "YYYY-MM-DD").format().slice(0,10);
 
-  console.log("the current date", { current_time });
+  console.log("the  date", { date });
+  console.log("the current date time", { dateTime });
+  console.log("the current date is", { current_date });
 
   const [totalNft, setTotalNft] = useState([]);
   const [result, setResult] = useState([]);
   const [isVisible, setIsVisible] = useState(false);
   const [status, setStatus] = useState("");
+  const [searchByDate,setSearchByDate] = useState(false)
   console.log({ status });
+  //startDate=2022-07-20&endDate=2022-07-23
   const getData = async (page, limit) => {
     const res = await axios.post("/transactions", {
       page: page,
@@ -39,15 +43,13 @@ const TransactionList = () => {
       setNft(res.data.data[0].list);
 
       setResult(res.data.data[0]);
-      const totalNft = res.data.data[0].totalRecords[0].count;
-      console.log(
-        "TOTAL RECORDS : count",
-        res.data.data[1].totalRecords[0].count
-      );
+      setTotalNft(JSON.stringify(res.data.data[0].totalRecords[0].count));
+    
       console.log(res.data);
     }
   };
   console.log({ nft });
+  
   useEffect(() => {
     getData(currentPage, 20);
   }, []);
@@ -193,7 +195,8 @@ const TransactionList = () => {
                 <Calendar
                   value={date}
                   onChange={(date) => {
-                    setDate(date);
+                    setDate(date)
+                    setSearchByDate(true);
                   }}
                 />
               ) : (
@@ -217,8 +220,37 @@ const TransactionList = () => {
                     </tr>
                   </thead>
                   <tbody>
-                    {nft
+                    { searchByDate ? nft
                       .filter((user) => {
+                       return user.created_at.includes(current_date) ;
+                      }) //"2022-07-18T11:40:37.144Z"
+                      //Fri Jun 03 2022 00:00:00 GMT+0530 (India Standard Time)
+                      .map((item, index) => (
+                        <tr key={item._id}>
+                          {console.log("created at", item.created_at)}
+                          <td>{result.offSet + index + 1}</td>
+                          <td>
+                            <div>{item.content_id}</div>
+                          </td>
+                          <td>
+                            <div>{item.nftName}</div>
+                          </td>
+                          <td>
+                            <div className="addressLineClamp">
+                              {item.to_address}
+                            </div>
+                          </td>
+                          <td>
+                            <div>{item.nft_hash}</div>
+                          </td>
+                          <td>
+                            <div>{item.total}</div>
+                          </td>
+                          <td>
+                            <div>{item.status}</div>
+                          </td>
+                        </tr>
+                      )): nft.filter((user) => {
                         return user.status.includes(status) ;
                       }) //"2022-07-18T11:40:37.144Z"
                       //Fri Jun 03 2022 00:00:00 GMT+0530 (India Standard Time)
@@ -260,7 +292,7 @@ const TransactionList = () => {
                  nft={nft}
                  setNft={setNft}
                  getData={getData}
-                 
+                 limit={20}
                 />
                   
         </Col>

@@ -176,16 +176,16 @@ const NFTList = () => {
   }, []);
   console.log({ nft });
   const [currentPage, setCurrentPage] = useState(1);
+  const[tier,setTier] = useState()
 
 
   
   
   const [status, setStatus] = useState("");
-  function handleSelectedSearch() {
-    setStatus("active");
-  }
+  
   const [result, setResult] = useState([]);
   const [search, setSearch] = useState("");
+  const[category,setCategory] = useState("")
 
   return (
     <>
@@ -240,9 +240,14 @@ const NFTList = () => {
                       </Dropdown.Toggle>
 
                       <Dropdown.Menu>
-                        <Dropdown.Item href="#/action-1">Action</Dropdown.Item>
-                        <Dropdown.Item href="#/action-2">
-                          Another action
+                        <Dropdown.Item href="#/action-1" onClick={() => {
+                          setCategory('category')
+                        }}>category</Dropdown.Item>
+                        <Dropdown.Item href="#/action-2" onClick={() => {
+                          setCategory('SFW')
+                        }}>
+                          SFW
+                          {console.log(category)}
                         </Dropdown.Item>
                         <Dropdown.Item href="#/action-3">
                           Something else
@@ -255,11 +260,17 @@ const NFTList = () => {
                       </Dropdown.Toggle>
 
                       <Dropdown.Menu>
-                        <Dropdown.Item href="#/action-1">Tier 1</Dropdown.Item>
-                        <Dropdown.Item href="#/action-2">
+                        <Dropdown.Item href="#/action-1" onClick={() => {
+                          setTier('1 Tier')
+                        }}>Tier 1</Dropdown.Item>
+                        <Dropdown.Item href="#/action-2"  onClick={() => {
+                          setTier('2 Tier')
+                        }}>
                         Tier 2
                         </Dropdown.Item>
-                        <Dropdown.Item href="#/action-3">
+                        <Dropdown.Item href="#/action-3"  onClick={() => {
+                          setTier('3 Tier')
+                        }}>
                      Tier 3
                         </Dropdown.Item>
                       </Dropdown.Menu>
@@ -272,19 +283,24 @@ const NFTList = () => {
                       <Dropdown.Menu>
                         <Dropdown.Item
                           onClick={() => {
-                            handleSelectedSearch();
+                          setStatus("active")
                           }}
                         >
-                          Approved
+                          Active
                         </Dropdown.Item>
-                        <Dropdown.Item href="#/action-2">
-                          Another action
+                        <Dropdown.Item href="#/action-2"   onClick={() => {
+                          setStatus("sold")
+                          }}>
+                       Sold
                         </Dropdown.Item>
-                        <Dropdown.Item href="#/action-3">
-                          Something else
+                        <Dropdown.Item href="#/action-3"   onClick={() => {
+                          setStatus("auction")
+                          }}>
+                          Auction
                         </Dropdown.Item>
                       </Dropdown.Menu>
                     </Dropdown>
+                  
                   </div>
 
                   <div className="newsletter-box m-0">
@@ -325,16 +341,20 @@ const NFTList = () => {
                       </tr>
                     </thead>
                     <tbody>
-                      {console.log({ search })}
+                      {console.log("my status is ",status )}
 
-                      {nft &&
+                      { tier && category ? nft &&
                         nft.data
                           .filter((user) => {
                             return (
-                              user.status.includes(status) &&
-                              user.name.includes(search)
+                            
+                              user.available_to.includes(tier) &&
+                              user.category.includes(category) 
+                             
+                             
                             );
                           })
+                        
                           .map((item, index) => (
                             <tr key={item._id}>
                               <td>{result.offSet + index + 1}</td>
@@ -386,160 +406,70 @@ const NFTList = () => {
                                 )}
                               </td>
                             </tr>
-                          ))}
-
-                      {/*  <tr>
-                                  <td>01</td>
-                                  <td>
-                                      <div class="owner-row-outer">
-                                          <img src="images/Team/team7.png" />
-                                          <div><h5>Clementines Nightmare</h5></div>
-                                      </div>
-                                  </td>
-                                 
-                                  <td>
-                                        Sam G
-                                  </td>
-                                  <td>
-                                        -
-                                  </td>
-                                  <td>
-                                       Art
-                                  </td>
-                                  <td>
-                                       Yes
-                                  </td>
-                                  <td>
-                                      100 ETH
-                                  </td>
-                                  <td>
-
-                        <td>Sam G</td>
-                        <td>-</td>
-                        <td>Art</td>
-                        <td>Yes</td>
-                        <td>100 ETH</td>
-                        <td>
-                          <div className="text-center">
-                            {["checkbox"].map((type) => (
-                              <div
-                                key={`default-${type}`}
-                                className="text-center"
-                              >
-                                <Form.Check
-                                  type={type}
-                                  id={`default-${type}`}
-                                  label={` `}
-                                />
-                              </div>
-                            ))}
-                          </div>
-                        </td>
-                        <td>
-                          <span className="status-box">Approved</span>
-                        </td>
-                        <td>
-                          <a href="" className="view-icon">
-                            <i className="fa fa-eye"></i>
-                          </a>
-                        </td>
-                      </tr>
-
-                      <tr>
-                        <td>01</td>
-                        <td>
-                          <div class="owner-row-outer">
-                            <img src="images/Team/team7.png" />
-                            <div>
-                              <h5>Clementines Nightmare</h5>
-                            </div>
-                          </div>
-                        </td>
-
-                        <td>Sam G</td>
-                        <td>-</td>
-                        <td>Art</td>
-                        <td>Yes</td>
-                        <td>100 ETH</td>
-                        <td>
-                          <div className="text-center">
-                            {["checkbox"].map((type) => (
-                              <div
-                                key={`default-${type}`}
-                                className="text-center"
-                              >
-                                <Form.Check
-                                  type={type}
-                                  id={`default-${type}`}
-                                  label={` `}
-                                />
-                              </div>
-                            ))}
-                          </div>
-                        </td>
-                        <td>
-                          <span className="status-box">Approved</span>
-                        </td>
-                        <td>
-                          <a href="" className="view-icon">
-                            <i className="fa fa-eye"></i>
-                          </a>
-                        </td>
-                      </tr>
-
-
-
-                               
-                                <tr>
-                                  <td>01</td>
-                                  <td>
-                                      <div class="owner-row-outer">
-                                          <img src="images/Team/team7.png" />
-                                          <div><h5>Clementines Nightmare</h5></div>
-                                      </div>
-                                  </td>
-                                 
-                                  <td>
-                                        Sam G
-                                  </td>
-                                  <td>
-                                        -
-                                  </td>
-                                  <td>
-                                       Art
-                                  </td>
-                                  <td>
-                                       Yes
-                                  </td>
-                                  <td>
-                                      100 ETH
-                                  </td>
-                                  <td>
-
-                                      
-                                  <div className="text-center">
-                                      
-                                        {['checkbox'].map((type) => (
-                                            <div key={`default-${type}`} className="text-center">
-                                            <Form.Check 
-                                                type={type}
-                                                id={`default-${type}`}
-                                                label={` `}
-                                            />
-                                            </div>
-                                        ))}
+                          )):nft &&
+                          nft.data  .filter((user) => {
+                            return (
+                            
+                              user.name.includes(search) 
+                              
+                             
+                            );
+                          })
+                            
+                            .map((item, index) => (
+                              <tr key={item._id}>
+                                <td>{result.offSet + index + 1}</td>
+                                <td>
+                                  <div class="owner-row-outer">
+                                    <img src={item.image} />
+                                    <div>
+                                      <h5>{item.name}</h5>
+                                    </div>
                                   </div>
-                                      
-                                  </td>
-                                  <td>
-                                      <span className="status-box">Approved</span>
-                                  </td>
-                                  <td>
-                                      <a href="" className="view-icon"><i className="fa fa-eye"></i></a>
-                                  </td>
-                                  
-                                </tr>
-                                */}
+                                </td>
+                                {console.log(item.status)}
+                                <td>{item.userinfo.name}</td>
+                                <td>-</td>
+                                <td>{item.category}</td>
+                                <td>Yes</td>
+                                <td>{item.price} Taboo</td>
+                                <td>
+                                  <div className="text-center">
+                                    {["checkbox"].map((type) => (
+                                      <div
+                                        key={`default-${type}`}
+                                        className="text-center"
+                                      >
+                                        <Form.Check
+                                          type={type}
+                                          id={`default-${type}`}
+                                          label={` `}
+                                        />
+                                      </div>
+                                    ))}
+                                  </div>
+                                </td>
+                                <td>
+                                  <span className="status-box">Approved</span>
+                                </td>
+                                <td>
+                                  <a href="" className="view-icon">
+                                    <i className="fa fa-eye"></i>
+                                  </a>
+                                  {item.status === "active" && (
+                                    <a
+                                      href="#"
+                                      className="view-icon"
+                                      onClick={() => handleStartAuction(item)}
+                                    >
+                                      <i className="fa fa-plus"></i>
+                                    </a>
+                                  )}
+                                </td>
+                              </tr>
+                            ))}
+
+                     
                     </tbody>
                   </Table>
                 </div>
