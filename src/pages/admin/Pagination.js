@@ -5,8 +5,11 @@ function Pagination({totalNft,nftPerPage,nft, getData, limit}) {
 
  const handlePageClick = (data) =>{
   const pageClicked = data.selected+1;
+ 
   getData(pageClicked, limit);
   console.log({ pageClicked });
+  console.log({ totalNft });
+  console.log({ nftPerPage });
   
   
   

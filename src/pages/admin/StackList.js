@@ -8,7 +8,7 @@ import {
 } from "react-bootstrap";
 import Dropdown from "react-bootstrap/Dropdown";
 import { axios } from "../../http";
-// import Pagination from "./Pagination";
+import Pagination from "./Pagination";
 import React, { useEffect, useState } from "react";
 import moment from "moment";
 import Calendar from "react-calendar";
@@ -17,62 +17,61 @@ const StackList = () => {
 
   const [currentPage, setCurrentPage] = useState(1);
   const [nftPerPage, setNftPerPage] = useState(20);
-  const [date, setDate] = useState();
-  const selectedDate = new Date();
-
-  let current_date = moment(date).format("YYYY-MM-DD");
-
+  const [dateSelected,setDateSelected] = useState(false)
+  
+  const [startDate, setStartDate] = useState(new Date());
+ 
+  let current_date = moment(startDate, "YYYY-MM-DD").format().slice(0,10);
+  console.log({current_date})
+  const [endDate, setEndDate] = useState(new Date());
+  const [searchByDate,setSearchByDate] = useState(false)
+  let current_date1 = moment(endDate, "YYYY-MM-DD").format().slice(0,10);
+  console.log("the current date1",{current_date1})
   console.log("the current date", { current_date });
 
-  const [totalNft, setTotalNft] = useState([]);
-  const [result, setResult] = useState([]);
+  const [totalNft, setTotalNft] = useState();
+ 
   const [isVisible, setIsVisible] = useState(false);
+  const [isVisible1, setIsVisible1] = useState(false);
+  const [submit, setSubmit] = useState(false);
   const [status, setStatus] = useState("");
   const [show, setShow] = useState(false);
-  console.log({ status });
-  const getData = async (page, limit) => {
-    const res = await axios.get("/AllstakeList", {
-      page: page,
-      limit: limit,
-      skip: page * limit - limit,
-    });
-    console.log("response",res.data);
-    if (res.data) {
-      setNft(res.data.data[0].list);
+  const[ stakeinfo, setStakeinfo] = useState()
 
-      setResult(res.data.data[0]);
-      setTotalNft(res.data.data[0].totalRecords[0].count);
-      console.log(
-        "TOTAL RECORDS : count",
-        res.data.data[0].totalRecords[0].count
-      );
-      console.log(res.data);
+ 
+  const getData = async (page, limit,skip=(page * limit) - limit) => {
+    {console.log("get data called")}
+    {console.log(page)}
+    {console.log(limit)}
+
+    const res = await axios.get(`/AllstakeList?limit=${limit}&skip=${skip}`);
+    console.log(res.data)
+   console.log("the stakes info is ",res.data.stakes[0].stakeinfo)
+   
+    if (res.data) {
+      setNft(res.data.stakes[0].list);
+
+    
+      setTotalNft(res.data.stakes[0].totalRecords[0].count)
+     
+      setStakeinfo(JSON.stringify(res.data.stakes.stakeinfo))
+      
     }
   };
+  console.log("total no. of nfts",{totalNft});
   console.log({ nft });
+  console.log({ currentPage });
   useEffect(() => {
+    
     getData(currentPage, 20);
+
   }, []);
-
-  const paginate = (pageNumber) => {
-    console.log({ pageNumber });
-
-    setCurrentPage(pageNumber);
-  };
-  let indexOfLastNft = currentPage * nftPerPage;
-  let indexOfFirstNft = indexOfLastNft - nftPerPage;
-
-  console.log(nft);
-
-  let currentNfts = nft.slice(indexOfFirstNft, indexOfLastNft);
-
-  console.log(nft);
-  console.log({ currentNfts });
-  useEffect(() => {
-    getData(currentPage, 20);
-
-    console.log({ currentNfts });
-  }, [currentPage]);
+  
+  
+ 
+  
+  
+ 
   function handleSelection() {
     setStatus("success");
   }
@@ -129,9 +128,10 @@ const StackList = () => {
                       <Dropdown.Item
                         href="#/action-1"
                         onClick={(e) => {
-                          handleSelection();
+                         setStatus("active")
                         }}
-                      >
+                        >
+                        {console.log({status})}
                         Action
                       </Dropdown.Item>
                       <Dropdown.Item
@@ -162,29 +162,24 @@ const StackList = () => {
                       onClick={() => {
                         setIsVisible(true);
                       }}
-                    />
-                  </InputGroup>
-                  <InputGroup>
-                    <FormControl
+                      />
+                     <FormControl
                       placeholder="End Date....."
                       aria-label="Recipient's username"
                       aria-describedby="basic-addon2"
-                    />
+                      onClick={() => {
+                        setIsVisible1(true);
+                      }} />
+                      <div  class="transaction-page-btn" onClick={(e) => {
+                        e.preventDefault();
+                        setSubmit(true)
+                      }}>
+                      Search
+                       </div>
                   </InputGroup>
-                  <InputGroup className="m-0">
-                    <FormControl
-                      placeholder="Search....."
-                      aria-label="Recipient's username"
-                      aria-describedby="basic-addon2"
-                    />
-                    <Button>
-                      <img
-                        className="search-icon"
-                        src={"images/icons-Search-Line.png"}
-                        alt="logo"
-                      />
-                    </Button>
-                  </InputGroup>
+                
+                  
+               
                 </div>
               </div>
               <Col></Col>
@@ -192,9 +187,24 @@ const StackList = () => {
             <Col lg={4} md={4} sm={4} xs={4} className="calendar">
               {isVisible ? (
                 <Calendar
-                  value={selectedDate}
-                  onChange={(selectedDate) => {
-                    setDate(selectedDate);
+                  value={startDate}
+                  onChange={(startDate) => {
+                    setStartDate(startDate)
+                  
+                    setSearchByDate(true);
+                  }}
+                />
+              ) : (
+                ""
+              )}
+               {isVisible1 ? (
+                <Calendar
+                  value={endDate}
+                  onChange={(endDate) => {
+                    setIsVisible(false)
+                    setEndDate(endDate)
+                  {console.log({isVisible})}
+                    setSearchByDate(true);
                   }}
                 />
               ) : (
@@ -217,70 +227,48 @@ const StackList = () => {
                     </tr>
                   </thead>
                   <tbody>
-                    {console.log({ current_date })}
-                    {date
+                  
+                    {searchByDate
                       ? nft
                           .filter((user) => {
                             return (
-                              user.status.includes(status) &&
-                              user.created_at
-                                .slice(0, 10)
-                                .includes(current_date)
+                             
+                              user.created_at >= current_date && user.created_at <= current_date1 && submit == true 
                             );
                           }) //"2022-07-18T11:40:37.144Z"
                           //Fri Jun 03 2022 00:00:00 GMT+0530 (India Standard Time)
                           .map((item, index) => (
                             <tr key={item._id}>
-                              {console.log(
-                                "created at",
-                                item.created_at.slice(0, 10)
-                              )}
-                              <td>{result.offSet + index + 1}</td>
-                              <td>
-                                <div>{item.content_id}</div>
-                              </td>
-                              <td>
-                                <div>{item.nftName}</div>
-                              </td>
-                              <td>
-                                <div className="addressLineClamp">
-                                  {item.to_address}
-                                </div>
-                              </td>
-                              <td>
-                                <div>{item.nft_hash}</div>
-                              </td>
-                              <td>
-                                <div>{item.total}</div>
-                              </td>
-                              <td>
-                                <div>{item.status}</div>
-                              </td>
+                           
+                              <td>{item.map((value,index) => (
+                                <td>{value.stakeinfo.startingbalance}</td>
+                             ))}</td>
+                              {console.log("stake info",item.stakeinfo)}
+                             
+                             
                             </tr>
                           ))
-                      : nft.map((item, index) => (
+                      : nft.filter((user) => { return (
+                        user.status.includes(status)
+                      )}).map((item, index) => (
                           <tr key={item._id}>
-                            {console.log(
-                              "created at",
-                              item.created_at.slice(0, 10)
-                            )}
-                            <td>{result.offSet + index + 1}</td>
+                           
+                            <td>{item.created_at}</td>
+                            <td>{item.stakeinfo.startingbalance}</td>
+                           
                             <td>
-                              <div>{item.content_id}</div>
-                            </td>
-                            <td>
-                              <div>{item.nftName}</div>
+                              <div>{item.stakeinfo.interest_earned}</div>
                             </td>
                             <td>
                               <div className="addressLineClamp">
-                                {item.to_address}
+                                {item.wallet_address}
                               </div>
                             </td>
                             <td>
-                              <div>{item.nft_hash}</div>
+                              <div>{item.stakeinfo.closingbalance}</div>
                             </td>
                             <td>
-                              <div>{item.total}</div>
+                              <div>{item.status}</div>
                             </td>
                             <td>
                               <div>{item.status}</div>
@@ -289,14 +277,19 @@ const StackList = () => {
                         ))}
                   </tbody>
                 </Table>
+              
+                <Pagination
+                  nftPerPage={20}
+                  totalNft={totalNft}
+                 nft={nft}
+                 getData={getData}
+                 limit={20}
+              
+                />
               </div>
             </Row>
           </div>
-          {/* <Pagination
-            nftPerPage={nftPerPage}
-            totalNft={totalNft}
-            paginate={paginate}
-          /> */}
+       
         </Col>
       </Row>
     </section>

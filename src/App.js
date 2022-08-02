@@ -25,6 +25,7 @@ import TransactionPage from "./pages/TransactionPage";
 import Farm from "./pages/Farm";
 import CreateNft from "./pages/CreateNft";
 import NFTList from "./pages/admin/NFTList";
+import ContactList from "./pages/admin/ContactList";
 import Artist from "./pages/Artist";
 import TransactionList from "./pages/admin/TransactionList";
 import StackList from "./pages/admin/StackList";
@@ -92,6 +93,7 @@ function App() {
 
           <Route path="/TransactionList" element={<TransactionList />} />
           <Route path="/StackList" element={<StackList />} />
+          <Route path="/ContactList" element={<ContactList />} />
 
           <Route path="/create-stake" element={<CreateStake />} />
 

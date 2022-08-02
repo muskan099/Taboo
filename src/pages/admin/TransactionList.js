@@ -15,20 +15,23 @@ import Calendar from "react-calendar";
 const TransactionList = () => {
   const [nft, setNft] = useState([]);
 
-  const [currentPage, setCurrentPage] = useState(1);
+  const [currentPage, setCurrentPage] = useState();
   const [nftPerPage, setNftPerPage] = useState(20);
-  const [date, setDate] = useState(new Date());
-  let dateTime = date.toDateString();
-  let current_date = moment(date, "YYYY-MM-DD").format().slice(0,10);
-
-  console.log("the  date", { date });
-  console.log("the current date time", { dateTime });
+  const [startDate, setStartDate] = useState(new Date());
+  let dateTime = startDate.toDateString();
+  let current_date = moment(startDate, "YYYY-MM-DD").format().slice(0,10);
+  const [endDate, setEndDate] = useState(new Date());
+  let dateTime1 = endDate.toDateString();
+  let current_date1 = moment(endDate, "YYYY-MM-DD").format().slice(0,10);
   console.log("the current date is", { current_date });
+  console.log("the current date is", { current_date1 });
 
   const [totalNft, setTotalNft] = useState([]);
   const [result, setResult] = useState([]);
   const [isVisible, setIsVisible] = useState(false);
+  const [isVisible1, setIsVisible1] = useState(false);
   const [status, setStatus] = useState("");
+  const [submit, setSubmit] = useState(false);
   const [searchByDate,setSearchByDate] = useState(false)
   console.log({ status });
   //startDate=2022-07-20&endDate=2022-07-23
@@ -54,15 +57,11 @@ const TransactionList = () => {
     getData(currentPage, 20);
   }, []);
 
-  const paginate = (pageNumber) => {
-    console.log({ pageNumber });
-
-    setCurrentPage(pageNumber);
-  };
+  
   let indexOfLastNft = currentPage * nftPerPage;
   let indexOfFirstNft = indexOfLastNft - nftPerPage;
 
-  console.log(nft);
+  console.log({currentPage});
 
   let currentNfts = nft.slice(indexOfFirstNft, indexOfLastNft);
 
@@ -163,29 +162,23 @@ const TransactionList = () => {
                       onClick={() => {
                         setIsVisible(true);
                       }}
-                    />
-                  </InputGroup>
-                  <InputGroup>
-                    <FormControl
+                      />
+                     <FormControl
                       placeholder="End Date....."
                       aria-label="Recipient's username"
                       aria-describedby="basic-addon2"
-                    />
+                      onClick={() => {
+                        setIsVisible1(true);
+                      }} />
+                      <div  class="transaction-page-btn" onClick={(e) => {
+                        e.preventDefault();
+                        setSubmit(true)
+                      }}>
+                      Search
+                       </div>
                   </InputGroup>
-                  <InputGroup className="m-0">
-                    <FormControl
-                      placeholder="Search....."
-                      aria-label="Recipient's username"
-                      aria-describedby="basic-addon2"
-                    />
-                    <Button>
-                      <img
-                        className="search-icon"
-                        src={"images/icons-Search-Line.png"}
-                        alt="logo"
-                      />
-                    </Button>
-                  </InputGroup>
+                
+                  
                 </div>
               </div>
               <Col></Col>
@@ -193,9 +186,23 @@ const TransactionList = () => {
             <Col lg={4} md={4} sm={4} xs={4} className="calendar">
               {isVisible ? (
                 <Calendar
-                  value={date}
-                  onChange={(date) => {
-                    setDate(date)
+                  value={startDate}
+                  onChange={(startDate) => {
+                    setStartDate(startDate)
+                  
+                    setSearchByDate(true);
+                  }}
+                />
+              ) : (
+                ""
+              )}
+               {isVisible1 ? (
+                <Calendar
+                  value={endDate}
+                  onChange={(endDate) => {
+                    setIsVisible(false)
+                    setEndDate(endDate)
+                  {console.log({isVisible})}
                     setSearchByDate(true);
                   }}
                 />
@@ -222,7 +229,7 @@ const TransactionList = () => {
                   <tbody>
                     { searchByDate ? nft
                       .filter((user) => {
-                       return user.created_at.includes(current_date) ;
+                       return user.created_at >= current_date && user.created_at <= current_date1 && submit == true ;
                       }) //"2022-07-18T11:40:37.144Z"
                       //Fri Jun 03 2022 00:00:00 GMT+0530 (India Standard Time)
                       .map((item, index) => (
@@ -288,8 +295,7 @@ const TransactionList = () => {
           <Pagination
                   nftPerPage={20}
                   totalNft={totalNft}
-              
-                 nft={nft}
+                  nft={nft}
                  setNft={setNft}
                  getData={getData}
                  limit={20}

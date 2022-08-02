@@ -24,7 +24,7 @@ import {
   Dropdown,
 } from "react-bootstrap";
 
-const NFTList = () => {
+const ContactList = () => {
   //const dispatch = useDispatch();
 
   /* const {
@@ -222,7 +222,7 @@ const NFTList = () => {
             <Col lg={11} md={12} sm={12} xs={12}>
               <div className="top-collect-creater nft-collector">
                 <div className="nft-list-btn-row">
-                  <h3 className="main-heading-inner mb-0"> NFT List</h3>
+                  <h3 className="main-heading-inner mb-0"> Contact List</h3>
                   <a className="common-btn" href="">
                     Export to Exel
                   </a>
@@ -232,143 +232,7 @@ const NFTList = () => {
                 </div>
 
                 <div className="filer-right-box allcategory-filter filter-nft-list">
-                  <div className="outer-multiple-drop">
-                  
-                    <Dropdown>
-                      <Dropdown.Toggle id="dropdown-basic">
-                        All Category
-                      </Dropdown.Toggle>
-
-                      <Dropdown.Menu>
-                        <Dropdown.Item href="#/action-1" onClick={() => {
-                          setCategory('Sexy')
-                        }}>Sexy</Dropdown.Item>
-                        <Dropdown.Item href="#/action-2" onClick={() => {
-                          setCategory('SFW')
-                        }}>
-                          SFW
-                          {console.log(category)}
-                        </Dropdown.Item>
-                        <Dropdown.Item href="#/action-3" onClick={() => {
-                          setCategory('auction')
-                        }}>
-                          Auction
-                        </Dropdown.Item>
-                        <Dropdown.Item href="#/action-3" onClick={() => {
-                          setCategory('Implied')
-                        }}>
-                          Implied
-                        </Dropdown.Item>
-                        <Dropdown.Item href="#/action-3" onClick={() => {
-                          setCategory('Age')
-                        }}>
-                          Age
-                        </Dropdown.Item>
-                        <Dropdown.Item href="#/action-3" onClick={() => {
-                          setCategory('Nude')
-                        }}>
-                          Nude
-                        </Dropdown.Item>
-                        <Dropdown.Item href="#/action-3" onClick={() => {
-                          setCategory('Topless')
-                        }}>
-                          Topless
-                        </Dropdown.Item>
-                        <Dropdown.Item href="#/action-3" onClick={() => {
-                          setCategory('Supercar')
-                        }}>
-                          Supercar
-                        </Dropdown.Item>
-                        <Dropdown.Item href="#/action-3" onClick={() => {
-                          setCategory('Cabo')
-                        }}>
-                          Cabo
-                        </Dropdown.Item>
-                        <Dropdown.Item href="#/action-3" onClick={() => {
-                          setCategory('Sporty')
-                        }}>
-                          Sporty
-                        </Dropdown.Item>
-                        <Dropdown.Item href="#/action-3" onClick={() => {
-                          setCategory('Khloe Terae')
-                        }}>
-                          Khloe Terae 
-                        </Dropdown.Item>
-                        <Dropdown.Item href="#/action-3" onClick={() => {
-                          setCategory('Jeni Summers')
-                        }}>
-                        Jeni Summers
-                        </Dropdown.Item>
-                        <Dropdown.Item href="#/action-3" onClick={() => {
-                          setCategory('Jeni Summers')
-                        }}>
-                        Jeni Summers
-                        </Dropdown.Item>
-                        <Dropdown.Item href="#/action-3" onClick={() => {
-                          setCategory('Metaverse')
-                        }}>
-                        Metaverse
-                        </Dropdown.Item>
-                        <Dropdown.Item href="#/action-3" onClick={() => {
-                          setCategory('lifestyle')
-                        }}>
-                        lifestyle
-                        </Dropdown.Item>
-                        <Dropdown.Item href="#/action-3" onClick={() => {
-                          setCategory('Premium')
-                        }}>
-                        Premium
-                        </Dropdown.Item>
-                      </Dropdown.Menu>
-                    </Dropdown>
-                    <Dropdown>
-                      <Dropdown.Toggle id="dropdown-basic">
-                        Type
-                      </Dropdown.Toggle>
-
-                      <Dropdown.Menu>
-                        <Dropdown.Item href="#/action-1" onClick={() => {
-                          setTier('1 Tier')
-                        }}>Tier 1</Dropdown.Item>
-                        <Dropdown.Item href="#/action-2"  onClick={() => {
-                          setTier('2 Tier')
-                        }}>
-                        Tier 2
-                        </Dropdown.Item>
-                        <Dropdown.Item href="#/action-3"  onClick={() => {
-                          setTier('3 Tier')
-                        }}>
-                     Tier 3
-                        </Dropdown.Item>
-                      </Dropdown.Menu>
-                    </Dropdown>
-                    <Dropdown>
-                      <Dropdown.Toggle id="dropdown-basic">
-                        Status
-                      </Dropdown.Toggle>
-
-                      <Dropdown.Menu>
-                        <Dropdown.Item
-                          onClick={() => {
-                          setStatus("active")
-                          }}
-                        >
-                          Active
-                        </Dropdown.Item>
-                        <Dropdown.Item href="#/action-2"   onClick={() => {
-                          setStatus("sold")
-                          }}>
-                       Sold
-                        </Dropdown.Item>
-                        <Dropdown.Item href="#/action-3"   onClick={() => {
-                          setStatus("auction")
-                          }}>
-                          Auction
-                        </Dropdown.Item>
-                      </Dropdown.Menu>
-                    </Dropdown>
-                  
-                  </div>
+               
 
                   <div className="newsletter-box m-0">
                     <InputGroup className="m-0">
@@ -485,7 +349,7 @@ const NFTList = () => {
                             
                             .map((item, index) => (
                               <tr key={item._id}>
-                                <td>{result.offSet + index + 1}</td>
+                                <td>{index + 1}</td>
                                 <td>
                                   <div class="owner-row-outer">
                                     <img src={item.image} />
@@ -640,4 +504,4 @@ const NFTList = () => {
   );
 };
 
-export default NFTList;
+export default ContactList;
