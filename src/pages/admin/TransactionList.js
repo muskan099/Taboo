@@ -10,6 +10,8 @@ import Dropdown from "react-bootstrap/Dropdown";
 import { axios } from "../../http";
 import Pagination from "./Pagination";
 import React, { useEffect, useState } from "react";
+import ExportToExcel from "../../components/UI/ExportToExcel";
+import ExportToCSV from "../../components/UI/ExportToCSV";
 import moment from "moment";
 import Calendar from "react-calendar";
 const TransactionList = () => {
@@ -110,12 +112,8 @@ const TransactionList = () => {
           <div className="transactionList">
             <Row className="title-container">
               <h3 className="title">Transaction List</h3>
-              <a href="/" className="transaction-page-btn">
-                Export to Excel
-              </a>
-              <a href="/" className="transaction-page-btn">
-                Export to CSV
-              </a>
+              <ExportToExcel csvData={nft} fileName={"StackList.js"}/>
+            <ExportToCSV nft={nft}/>
             </Row>
             <Row className="transactionList-dropDown">
               <div className="dropDown-options">

@@ -5,10 +5,7 @@ import {
   Row,
   Col,
   Container,
-  Button,
-  Dropdown,
-  Table,
-  Form,
+ Form,
 } from "react-bootstrap";
 import { toast } from "react-toastify";
 import { createNftSaga } from "../store/reducers/nftReducer";

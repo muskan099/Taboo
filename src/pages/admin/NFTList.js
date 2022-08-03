@@ -8,6 +8,8 @@ import { createAuction } from "../../helpers/AuctionHelper";
 import { Transaction } from "../../helpers/Transaction";
 import { NFTBalance } from "../../helpers/NFTBalance";
 import Connect from "../../helpers/Connect";
+import ExportToExcel from "../../components/UI/ExportToExcel";
+import ExportToCSV from "../../components/UI/ExportToCSV";
 import Pagination from "./Pagination";
 import {
   Row,
