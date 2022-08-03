@@ -178,7 +178,7 @@ const CreateNft = () => {
       toast.error("Name can only be alphabets");
     } else if (description == "") {
       toast.error("Description is required!");
-    } else if (!pattern.test(description)) {
+    } else if (!pattern.test(description)&& pattern.test(space)) {
       toast.error("Description can only be alphabets!");
     } else if (price == "") {
       toast.error("Price is required!");
