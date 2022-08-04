@@ -168,10 +168,13 @@ const StackList = () => {
                       aria-describedby="basic-addon2"
                       onClick={() => {
                         setIsVisible1(true);
+                        setIsVisible(false);
                       }} />
                       <div  class="transaction-page-btn" onClick={(e) => {
                         e.preventDefault();
                         setSubmit(true)
+                        setIsVisible(false)
+                        setIsVisible1(false)
                       }}>
                       Search
                        </div>
@@ -238,13 +241,31 @@ const StackList = () => {
                           //Fri Jun 03 2022 00:00:00 GMT+0530 (India Standard Time)
                           .map((item, index) => (
                             <tr key={item._id}>
-                           
-                              <td>{item.map((value,index) => (
-                                <td>{value.stakeinfo.startingbalance}</td>
-                             ))}</td>
+                             <td>{item.created_at}</td>
+                              <td>{console.log(item.stakeinfo.startingbalance)}
+                               
+                                <td>{item.stakeinfo.startingbalance}</td>
+                                <td>
+                              <div>{item.stakeinfo.interest_earned}</div>
+                            </td>
+                             </td>
+
                               {console.log("stake info",item.stakeinfo)}
                              
-                             
+                             <td>
+                              <div className="addressLineClamp">
+                                {item.wallet_address}
+                              </div>
+                            </td>
+                            <td>
+                              <div>{item.stakeinfo.closingbalance}</div>
+                            </td>
+                            <td>
+                              <div>{item.status}</div>
+                            </td>
+                            <td>
+                              <div>{item.status}</div>
+                            </td>
                             </tr>
                           ))
                       : nft.filter((user) => { return (

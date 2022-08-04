@@ -167,10 +167,13 @@ const TransactionList = () => {
                       aria-describedby="basic-addon2"
                       onClick={() => {
                         setIsVisible1(true);
+                        setIsVisible(false)
                       }} />
                       <div  class="transaction-page-btn" onClick={(e) => {
                         e.preventDefault();
                         setSubmit(true)
+                        setIsVisible(false)
+                        setIsVisible1(false)
                       }}>
                       Search
                        </div>
