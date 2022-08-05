@@ -125,7 +125,7 @@ const TransactionPage = () => {
         toast.success("Sale created successfully!");
       } else {
         setIsLoading(false);
-        toast.warn("Something went wrong");
+        toast.warn("Sale failed. Please contact support with NFT deatils.");
       }
     } else {
       toast.warn("Please enter price");
@@ -182,10 +182,19 @@ const TransactionPage = () => {
             bid_price: auctionData.minPrice,
             bid_end:auctionData.endTime
           });
-        }
-        toast.success("Auction Started Successfully!");
-        setAuctionData((p) => ({ ...p, isLoading: false, buttonMessage: "" }));
-        handleClose();
+
+
+          toast.success("Auction Started Successfully!");
+          setAuctionData((p) => ({ ...p, isLoading: false, buttonMessage: "" }));
+          handleClose();
+        }else
+          {
+            toast.warn("Auction failed.Please contact support with NFT details");
+
+            setAuctionData((p) => ({ ...p, isLoading: false, buttonMessage: "" }));
+            handleClose();
+          }
+       
       } catch (error) {
         toast.error(error.message);
         setAuctionData((p) => ({ ...p, isLoading: false, buttonMessage: "" }));
@@ -441,12 +450,14 @@ const TransactionPage = () => {
           ></Modal.Header>
           <Modal.Body>
             <div class="bid-modal-box">
-              <h3>Create a Auction</h3>
-              <p>You are about to place a bit for Tempor Incododunt</p>
+              <h3>Create an Auction</h3>
+              <p> you will not be able to edit the price, start and end date once auction is created.</p>
+
+              <p>You should have bnb for gas fee in the wallet</p>
 
               <Form>
                 <Form.Group className="mb-3">
-                  <Form.Label>Min Price</Form.Label>
+                  <Form.Label>Min Price(in Taboo)</Form.Label>
                   <Form.Control
                     type="text"
                     placeholder="min price"
