@@ -159,12 +159,28 @@ const NFTList = () => {
       }
     }
   };
-
-  const getData = async (currentPage, limit, query) => {
+  const [filterSearch, setFilterSearch] = useState({
+    category:"Jeni Summers",
+    nftTier: {
+      tier1: true,
+      tier2: false,
+      tier3: false,
+    },
+    
+  });
+  console.log({filterSearch})
+  const getData = async (currentPage, limit, filterSearch) => {
+    console.log({category})
+    console.log({filterSearch})
+   
     const res = await axios.post("/content-list", {
       page: currentPage,
       limit: limit,
-      query: query,
+      category:filterSearch.category,
+      nftTier: filterSearch.nftTier
+      
+    
+     
     });
 
     if (res.data) {
@@ -174,7 +190,7 @@ const NFTList = () => {
   };
 
   useEffect(() => {
-    getData(currentPage, 20);
+    getData(currentPage,20,filterSearch);
   }, []);
   console.log({ nft });
   const [currentPage, setCurrentPage] = useState(1);
@@ -243,81 +259,97 @@ const NFTList = () => {
 
                       <Dropdown.Menu>
                         <Dropdown.Item href="#/action-1" onClick={() => {
-                          setCategory('Sexy')
+                         filterSearch.category = 'Sexy'
+                         getData(currentPage,20,filterSearch);
                         }}>Sexy</Dropdown.Item>
                         <Dropdown.Item href="#/action-2" onClick={() => {
-                          setCategory('SFW')
+                         filterSearch.category = 'SFw'
+                         getData(currentPage,20,filterSearch);
                         }}>
                           SFW
                           {console.log(category)}
                         </Dropdown.Item>
                         <Dropdown.Item href="#/action-3" onClick={() => {
-                          setCategory('auction')
+                         filterSearch.category = 'auction'
+                         getData(currentPage,20,filterSearch);
                         }}>
                           Auction
                         </Dropdown.Item>
                         <Dropdown.Item href="#/action-3" onClick={() => {
-                          setCategory('Implied')
+                           filterSearch.category = 'Implied'
+                           getData(currentPage,20,filterSearch);
                         }}>
                           Implied
                         </Dropdown.Item>
                         <Dropdown.Item href="#/action-3" onClick={() => {
-                          setCategory('Age')
+                          filterSearch.category = 'Age'
+                          getData(currentPage,20,filterSearch);
                         }}>
                           Age
                         </Dropdown.Item>
                         <Dropdown.Item href="#/action-3" onClick={() => {
-                          setCategory('Nude')
+                           filterSearch.category = 'Nude'
+                           getData(currentPage,20,filterSearch);
                         }}>
                           Nude
                         </Dropdown.Item>
                         <Dropdown.Item href="#/action-3" onClick={() => {
-                          setCategory('Topless')
+                         filterSearch.category = 'Topless'
+                         getData(currentPage,20,filterSearch);
                         }}>
                           Topless
                         </Dropdown.Item>
                         <Dropdown.Item href="#/action-3" onClick={() => {
-                          setCategory('Supercar')
+                          filterSearch.category = 'Supercar'
+                          getData(currentPage,20,filterSearch);
                         }}>
                           Supercar
                         </Dropdown.Item>
                         <Dropdown.Item href="#/action-3" onClick={() => {
-                          setCategory('Cabo')
+                          filterSearch.category = 'Cabo'
+                          getData(currentPage,20,filterSearch);
                         }}>
                           Cabo
                         </Dropdown.Item>
                         <Dropdown.Item href="#/action-3" onClick={() => {
-                          setCategory('Sporty')
+                           filterSearch.category = 'Sporty'
+                           getData(currentPage,20,filterSearch);
                         }}>
                           Sporty
                         </Dropdown.Item>
                         <Dropdown.Item href="#/action-3" onClick={() => {
-                          setCategory('Khloe Terae')
+                          filterSearch.category = 'Khloe Terae'
+                          getData(currentPage,20,filterSearch);
                         }}>
                           Khloe Terae 
                         </Dropdown.Item>
                         <Dropdown.Item href="#/action-3" onClick={() => {
-                          setCategory('Jeni Summers')
+                         filterSearch.category = 'Jeni Summers'
+                         getData(currentPage,20,filterSearch);
                         }}>
                         Jeni Summers
                         </Dropdown.Item>
                         <Dropdown.Item href="#/action-3" onClick={() => {
-                          setCategory('Jeni Summers')
+                           filterSearch.category = 'Jeni Summers'
+                           getData(currentPage,20,filterSearch);
                         }}>
                         Jeni Summers
                         </Dropdown.Item>
                         <Dropdown.Item href="#/action-3" onClick={() => {
-                          setCategory('Metaverse')
+                          filterSearch.category = 'Metaverse'
+                          getData(currentPage,20,filterSearch);
                         }}>
                         Metaverse
                         </Dropdown.Item>
                         <Dropdown.Item href="#/action-3" onClick={() => {
-                          setCategory('lifestyle')
+                          filterSearch.category = 'lifestyle'
+                          getData(currentPage,20,filterSearch);
                         }}>
                         lifestyle
                         </Dropdown.Item>
                         <Dropdown.Item href="#/action-3" onClick={() => {
-                          setCategory('Premium')
+                            filterSearch.category = 'Premium'
+                            getData(currentPage,20,filterSearch);
                         }}>
                         Premium
                         </Dropdown.Item>
@@ -330,15 +362,26 @@ const NFTList = () => {
 
                       <Dropdown.Menu>
                         <Dropdown.Item href="#/action-1" onClick={() => {
-                          setTier('1 Tier')
+                   filterSearch.nftTier.tier1 = true;
+                   filterSearch.nftTier.tier2 = false;
+                     filterSearch.nftTier.tier3 = false;
+                     getData(currentPage,20,filterSearch);
                         }}>Tier 1</Dropdown.Item>
-                        <Dropdown.Item href="#/action-2"  onClick={() => {
-                          setTier('2 Tier')
+                        <Dropdown.Item href="#/action-2"    onClick={() => {
+                     filterSearch.nftTier.tier2 = true;
+                     filterSearch.nftTier.tier1 = false;
+                     filterSearch.nftTier.tier3 = false;
+                     getData(currentPage,20,filterSearch);
                         }}>
+                          {console.log(filterSearch.nftTier.tier2)}
+                          {console.log(filterSearch.nftTier.tier1)}
                         Tier 2
                         </Dropdown.Item>
-                        <Dropdown.Item href="#/action-3"  onClick={() => {
-                          setTier('3 Tier')
+                        <Dropdown.Item href="#/action-3" onClick={() => {
+                           filterSearch.nftTier.tier1 = false;
+                           filterSearch.nftTier.tier2 = false;
+                     filterSearch.nftTier.tier3 = true;
+                  getData(currentPage,20,filterSearch);
                         }}>
                      Tier 3
                         </Dropdown.Item>
