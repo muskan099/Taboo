@@ -1,7 +1,8 @@
 import CurrencyFormat from 'react-currency-format';
 import React, { useEffect, useState } from "react";
-import { Row, Col, Container, Modal , Button} from "react-bootstrap";
+import { Row, Col, Container, Modal , Button,} from "react-bootstrap";
 import { toast } from "react-toastify";
+import Slider from 'react-slick';
 
 
 
@@ -47,9 +48,88 @@ const Homepage = () => {
     setShowModal1(false);
   };
 
+  const settings = {
+    fade: true,
+    dots: false,
+    arrows:false,
+    infinite: true,
+    slidesToShow: 1,
+    slidesToScroll: 1,
+    speed: 3000,
+    autoplaySpeed: 2000,
+    autoplay: true,
+    cssEase: 'cubic-bezier(0.7, 0, 0.3, 1)',
+    
+  };
+
   return (
     <>
-      <section className="banner-section">
+    <section className="slider-main-sec-new">
+    <Slider {...settings} className="slider-outer-banner">
+          <div>
+            <img className="main-bg-zoom" src="images/slider/Slide1BG.png" alt="" />
+            <div className="slider-inner-content">
+                <div className="first-div">
+                    <img className="common-text text-img" src="images/slider/Slide1txt.png" alt="" />
+                    <img className="common-card slider-card" src="images/slider/Slide1txt2.png" alt="" />
+                    <img className="registration-img" src="images/slider/registration.png" alt="" />
+                    <img className="bottam-logo" src="images/slider/Taboo logo.png" alt="" />
+                </div>
+            </div>
+          </div>
+          <div>
+          <img className="main-bg-zoom" src="images/slider/Slide2BG.png" alt="" />
+          <div className="slider-inner-content">
+                <div className="first-div">
+                    <img className="text-img" src="images/slider/Slide2txt.png" alt="" />
+                    <img className="common-card slider-card1" src="images/slider/Slide2Card1.png" alt="" />
+                    <img className="common-card slider-card2" src="images/slider/Slide2Card2.png" alt="" />
+                    <img className="bottam-logo" src="images/slider/Taboo logo.png" alt="" />
+                </div>
+            </div>
+          </div>
+          <div>
+          <img className="main-bg-zoom" src="images/slider/Slide3BG.png" alt="" />
+          <div className="slider-inner-content">
+                <div className="first-div">
+                    <img className="text-img" src="images/slider/Slide3txt.png" alt="" />
+                    <img className="common-card slider-card" src="images/slider/Slide3card1.png" alt="" />
+                    <img className="common-card slider-card3" src="images/slider/Slide3card2.png" alt="" />
+                    <img className="common-card slider-card4" src="images/slider/Slide3card3.png" alt="" />
+                    <img className="common-card slider-card5" src="images/slider/Slide3card4.png" alt="" />
+                    <img className="bottam-logo" src="images/slider/Taboo logo.png" alt="" />
+                </div>
+            </div>
+          </div>
+          <div>
+          <img className="main-bg-zoom" src="images/slider/Slide4BG.png" alt="" />
+          <div className="slider-inner-content">
+                <div className="first-div">
+                    <img className="text-img" src="images/slider/Slide4txt.png" alt="" />
+                    <img className="common-card slider-card" src="images/slider/Slide4card.png" alt="" />
+                    <img className="bottam-logo" src="images/slider/Taboo logo.png" alt="" />
+                </div>
+            </div>
+          </div>
+          <div>
+          <img className="main-bg-zoom" src="images/slider/Slide5BG.png" alt="" />
+          <div className="slider-inner-content">
+                <div className="first-div">
+                    <img className="text-img" src="images/slider/Slide5txt.png" alt="" />
+                    <img className="common-card slider-card6" src="images/slider/Slide5Card1.png" alt="" />
+                    <img className="common-card slider-card7" src="images/slider/Slide5Card2.png" alt="" />
+                    <img className="common-card slider-card8" src="images/slider/Slide5Card3.png" alt="" />
+                    <img className="common-card slider-card9" src="images/slider/Slide5Card4.png" alt="" />
+                    <img className="common-card slider-card10" src="images/slider/Slide5Card5.png" alt="" />
+                    <img className="common-card slider-card11" src="images/slider/Slide5Card6.png" alt="" />
+                    <img className="advantage-img" src="images/slider/take-advantage.png" alt="" />
+                    <img className="bottam-logo" src="images/slider/Taboo logo.png" alt="" />
+                </div>
+            </div>
+          </div>
+    </Slider>
+    </section>
+      <section className="banner-section d-none">
         <Container>
           <Row>
             <Col>
