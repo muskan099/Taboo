@@ -52,6 +52,7 @@ a.insta-link {
   top: 0;
   z-index: 1000;
   border-bottom: 1px solid #871333;
+  opacity: 1 !important;
 }
 .navbar-brand {
   border-right: 2px solid #ddd;
@@ -5263,6 +5264,6 @@ width: 100%;
 }
 }
 
-body{
+body , html{
   overflow-x: hidden !important;
 }
