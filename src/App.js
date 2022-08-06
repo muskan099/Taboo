@@ -25,6 +25,7 @@ import TransactionPage from "./pages/TransactionPage";
 import Farm from "./pages/Farm";
 import CreateNft from "./pages/CreateNft";
 import NFTList from "./pages/admin/NFTList";
+import TotalNftProgress from "./pages/admin/TotalNftProgress";
 import ContactList from "./pages/admin/ContactList";
 import Artist from "./pages/Artist";
 import TransactionList from "./pages/admin/TransactionList";
@@ -105,7 +106,7 @@ function App() {
               </AdminRoute>
             }
           />
-
+<Route path="/nft-sold"element={<TotalNftProgress />}/>
           <Route path="/dashboard" element={<Dashboard />} />
 
           <Route path="/profile" element={<Profile />} />
