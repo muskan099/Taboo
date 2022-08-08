@@ -13,6 +13,7 @@ import {
 import { CircularProgressbar } from "react-circular-progressbar";
 import "react-circular-progressbar/dist/styles.css";
 import { Link, NavLink } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 const AdminDashboard = () => {
   const value = 0.1;
@@ -40,7 +41,8 @@ const AdminDashboard = () => {
     colors: ["#871434"],
     vAxis: { minValue: 0 },
   };
-
+  const { user } = useSelector((state) => state.auth);
+  console.log({ user });
   return (
     <>
       <section className="creater-dash-sec">
@@ -70,7 +72,7 @@ const AdminDashboard = () => {
                       />
                     </a>
                   </li>
-                  
+
                   <li>
                     <a href="/config">
                       <img
@@ -79,8 +81,6 @@ const AdminDashboard = () => {
                       />
                     </a>
                   </li>
-
-
                 </ul>
               </div>
             </Col>
@@ -159,7 +159,7 @@ const AdminDashboard = () => {
                         </thead>
                         <tbody>
                           <tr>
-                            <td>01</td>
+                            <td>1</td>
                             <td>
                               <div class="owner-row-outer">
                                 <img src="images/Team/team7.png" />
@@ -169,75 +169,9 @@ const AdminDashboard = () => {
                               </div>
                             </td>
 
-                            <td>abcd@gmail.com</td>
-                            <td>
-                              54b54b45bm4nb455bm,bm45,mb5,4b3nb3nmbnbn,mmb
-                            </td>
-                            <td>01 May, 2022</td>
-                          </tr>
-                          <tr>
-                            <td>02</td>
-                            <td>
-                              <div class="owner-row-outer">
-                                <img src="images/Team/team7.png" />
-                                <div>
-                                  <h5>Clementines Nightmare</h5>
-                                </div>
-                              </div>
-                            </td>
-                            <td>abcd@gmail.com</td>
-                            <td>
-                              54b54b45bm4nb455bm,bm45,mb5,4b3nb3nmbnbn,mmb
-                            </td>
-                            <td>01 May, 2022</td>
-                          </tr>
-                          <tr>
-                            <td>03</td>
-                            <td>
-                              <div class="owner-row-outer">
-                                <img src="images/Team/team7.png" />
-                                <div>
-                                  <h5>Clementines Nightmare</h5>
-                                </div>
-                              </div>
-                            </td>
-                            <td>abcd@gmail.com</td>
-                            <td>
-                              54b54b45bm4nb455bm,bm45,mb5,4b3nb3nmbnbn,mmb
-                            </td>
-                            <td>01 May, 2022</td>
-                          </tr>
-                          <tr>
-                            <td>04</td>
-                            <td>
-                              <div class="owner-row-outer">
-                                <img src="images/Team/team7.png" />
-                                <div>
-                                  <h5>Clementines Nightmare</h5>
-                                </div>
-                              </div>
-                            </td>
-                            <td>abcd@gmail.com</td>
-                            <td>
-                              54b54b45bm4nb455bm,bm45,mb5,4b3nb3nmbnbn,mmb
-                            </td>
-                            <td>01 May, 2022</td>
-                          </tr>
-                          <tr>
-                            <td>05</td>
-                            <td>
-                              <div class="owner-row-outer">
-                                <img src="images/Team/team7.png" />
-                                <div>
-                                  <h5>Clementines Nightmare</h5>
-                                </div>
-                              </div>
-                            </td>
-                            <td>abcd@gmail.com</td>
-                            <td>
-                              54b54b45bm4nb455bm,bm45,mb5,4b3nb3nmbnbn,mmb
-                            </td>
-                            <td>01 May, 2022</td>
+                            <td>{user.email}</td>
+                            <td>{user.wallet_address}</td>
+                            <td> {user.created_at.slice(0, 9)}</td>
                           </tr>
                         </tbody>
                       </Table>
