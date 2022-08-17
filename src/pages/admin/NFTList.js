@@ -214,20 +214,38 @@ const NFTList = () => {
               <div className="sidemenu-creater">
                 <ul>
                   <li className="active">
-                    <a href="">
+                  <a href="/nft-list">
+                      <img className="img-fluid m-0" src={"images/list.png"} />
+                    </a>
+                  </li>
+                
+                  <li>
+                    <a href="/TransactionList">
                       <img
                         className="img-fluid m-0"
-                        src={"images/dashboard.png"}
+                        src={"images/list22.png"}
+                      />
+                    </a>
+                  </li>
+
+                  <li>
+                    <a href="/StackList">
+                      <img
+                        className="img-fluid m-0"
+                        src={"images/list22.png"}
                       />
                     </a>
                   </li>
                   <li>
-                    <a href="">
-                      <img className="img-fluid m-0" src={"images/list.png"} />
+                    <a href="/ContactList">
+                      <img
+                        className="img-fluid m-0"
+                        src={"images/list22.png"}
+                      />
                     </a>
                   </li>
                   <li>
-                    <a href="/config">
+                    <a href="/create-stake">
                       <img
                         className="img-fluid m-0"
                         src={"images/list22.png"}

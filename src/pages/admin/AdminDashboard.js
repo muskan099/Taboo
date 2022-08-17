@@ -60,12 +60,12 @@ const AdminDashboard = () => {
                     </NavLink>
                   </li>
                   <li>
-                    <Link to="/nft-list">
+                    <a href="/nft-list">
                       <img className="img-fluid m-0" src={"images/list.png"} />
-                    </Link>
+                    </a>
                   </li>
                   <li>
-                    <a href="">
+                    <a href="/TransactionList">
                       <img
                         className="img-fluid m-0"
                         src={"images/list22.png"}
@@ -74,7 +74,23 @@ const AdminDashboard = () => {
                   </li>
 
                   <li>
-                    <a href="/config">
+                    <a href="/StackList">
+                      <img
+                        className="img-fluid m-0"
+                        src={"images/list22.png"}
+                      />
+                    </a>
+                  </li>
+                  <li>
+                    <a href="/ContactList">
+                      <img
+                        className="img-fluid m-0"
+                        src={"images/list22.png"}
+                      />
+                    </a>
+                  </li>
+                  <li>
+                    <a href="/create-stake">
                       <img
                         className="img-fluid m-0"
                         src={"images/list22.png"}

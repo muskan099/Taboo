@@ -90,21 +90,44 @@ const TransactionList = () => {
         <Col lg={1} md={12} sm={12} xs={12}>
           <div className="sidemenu-creater">
             <ul>
-              <li className="active-link">
-                <a href="/">
-                  <img src={"images/dashboard.png"} alt="image" />
-                </a>
-              </li>
-              <li className="active-link">
-                <a href="/">
-                  <img src={"images/list.png"} alt="image" />
-                </a>
-              </li>
-              <li className="active-link">
-                <a href="/">
-                  <img src={"images/list22.png"} alt="image" />
-                </a>
-              </li>
+           
+            <li className="active">
+                    <a href="/TransactionList">
+                      <img
+                        className="img-fluid m-0"
+                        src={"images/list22.png"}
+                      />
+                    </a>
+                  </li>
+                  <li>
+                    <a href="/nft-list">
+                      <img className="img-fluid m-0" src={"images/list.png"} />
+                    </a>
+                  </li>
+                  <li>
+                    <a href="/StackList">
+                      <img
+                        className="img-fluid m-0"
+                        src={"images/list22.png"}
+                      />
+                    </a>
+                  </li>
+                  <li>
+                    <a href="/ContactList">
+                      <img
+                        className="img-fluid m-0"
+                        src={"images/list22.png"}
+                      />
+                    </a>
+                  </li>
+                  <li>
+                    <a href="/create-stake">
+                      <img
+                        className="img-fluid m-0"
+                        src={"images/list22.png"}
+                      />
+                    </a>
+                  </li>
             </ul>
           </div>
         </Col>
