@@ -90,7 +90,7 @@ const AdminDashboard = () => {
                     </a>
                   </li>
                   <li>
-                    <a href="/create-stake">
+                    <a href="/create-nft">
                       <img
                         className="img-fluid m-0"
                         src={"images/list22.png"}
@@ -207,8 +207,8 @@ const AdminDashboard = () => {
                   className="profile-main-img"
                   src={"images/Team/team7.png"}
                 />
-                <h4>Cj Sparxx</h4>
-                <p>8b7b7078...978977b8b</p>
+                <h4>{user.name}</h4>
+                <p>{user._id.slice(0,6)}...{user._id.slice(-5)}</p>
                 <hr />
               </div>
             </Col>

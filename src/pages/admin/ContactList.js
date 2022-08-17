@@ -222,7 +222,7 @@ const[totalNft1,setTotalNft] = useState()
                     </a>
                   </li>
                 
-                  <li> <a href="/create-stake">
+                  <li> <a href="/create-nft">
                       <img
                         className="img-fluid m-0"
                         src={"images/list22.png"}

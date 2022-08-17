@@ -124,7 +124,7 @@ const StackList = () => {
                     </a>
                   </li>
                   <li>
-                    <a href="/create-stake">
+                    <a href="/create-nft">
                       <img
                         className="img-fluid m-0"
                         src={"images/list22.png"}
