@@ -141,7 +141,7 @@ const NftDetails = () => {
 
     if (!isAuthenticated) {
       toast.warn("Please connect wallet!");
-    } else if (price < 0) {
+    } else if (price<0) {
       toast.warn("You don't have sufficient taboo token!");
     } else {
       console.log("hello");

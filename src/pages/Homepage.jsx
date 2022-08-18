@@ -555,7 +555,7 @@ const Homepage = () => {
                       />
                       <div className="content-team">
                         <h4>Majid</h4>
-                        <p>COO/Business Strategist</p>
+                        <p>COO/Co-Founder</p>
                       </div>
                     </div>
                   </li>
