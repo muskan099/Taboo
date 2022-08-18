@@ -45,7 +45,7 @@ const AdminDashboard = () => {
   };
   const { user } = useSelector((state) => state.auth);
   console.log({ user });
-  const [nftDetails,setNftDetails] = useState()
+  const [nftDetails,setNftDetails] = useState([])
   const getData = async() => {
     const res = await axios.get('/dashboard')
     console.log(res.data)
@@ -58,7 +58,7 @@ const AdminDashboard = () => {
   let percentage4 = nftDetails.commission;
   useEffect(() => {
     getData();
-  },[])
+  },)
   return (
     <>
       <section className="creater-dash-sec">

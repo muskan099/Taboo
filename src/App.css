@@ -4829,17 +4829,10 @@ max-width: 100%;
 }
 
 
-<<<<<<< HEAD
- /*new added css*/
-
-
- .slider-main-sec-new{
-=======
 /*new added css*/
 
 
 .slider-main-sec-new{
->>>>>>> main
   overflow: hidden !important;
 }
 .slider-outer-banner{
@@ -4856,10 +4849,7 @@ overflow: hidden !important;
   transition: all ease-in-out 7s;
   transform: scale(1.2);
   min-height: 760px;
-<<<<<<< HEAD
   overflow: hidden;
-=======
->>>>>>> main
 }
 .slider-outer-banner .slick-slide.slick-active img.main-bg-zoom {
   transform: scale(1);
@@ -5272,11 +5262,8 @@ width: 100%;
 .slider-inner-content  .slider-card {
   height: 230px !important;
 }
-<<<<<<< HEAD
 }
 
 body , html{
   overflow-x: hidden !important;
-=======
->>>>>>> main
 }
