@@ -14,9 +14,11 @@ import { CircularProgressbar } from "react-circular-progressbar";
 import "react-circular-progressbar/dist/styles.css";
 import { Link, NavLink } from "react-router-dom";
 import { useSelector } from "react-redux";
+import { axios } from "../../http";
+import { useEffect, useState } from "react";
 
 const AdminDashboard = () => {
-  const value = 0.1;
+  
   const data = [
     ["Month", "Sales"],
     ["Jan", 1000],
@@ -43,6 +45,20 @@ const AdminDashboard = () => {
   };
   const { user } = useSelector((state) => state.auth);
   console.log({ user });
+  const [nftDetails,setNftDetails] = useState()
+  const getData = async() => {
+    const res = await axios.get('/dashboard')
+    console.log(res.data)
+    setNftDetails(res.data.data)
+  }
+  console.log("nftDetails",nftDetails)
+  let percentage1 = nftDetails.totalNFT_Persentage;
+  let percentage2 = nftDetails.forSellNFT_Persentage;
+  let percentage3 = nftDetails.auctionNFT_Persentage;
+  let percentage4 = nftDetails.commission;
+  useEffect(() => {
+    getData();
+  },[])
   return (
     <>
       <section className="creater-dash-sec">
@@ -110,48 +126,40 @@ const AdminDashboard = () => {
                       <ul>
                         <li>
                           <CircularProgressbar
-                            value={value}
-                            maxValue={1}
-                            text={`${value * 100}%`}
+                            value={percentage1}
+                           
+                            text={`${percentage1}%`}
                           />
                           <h3 className="main-heading-inner">Total NFT</h3>
                         </li>
                         <li>
                           <CircularProgressbar
-                            value={value}
-                            maxValue={1}
-                            text={`${value * 100}%`}
+                            value={percentage2}
+                           
+                            text={`${percentage2}%`}
                           />
                           <h3 className="main-heading-inner">For Sale</h3>
                         </li>
+                        
                         <li>
                           <CircularProgressbar
-                            value={value}
-                            maxValue={1}
-                            text={`${value * 100}%`}
+                             value={percentage3}
+                           
+                             text={`${percentage3}%`}
                           />
                           <h3 className="main-heading-inner">On Auction</h3>
                         </li>
                         <li>
                           <CircularProgressbar
-                            value={value}
-                            maxValue={1}
-                            text={`${value * 100}%`}
+                             value={percentage4}
+                           
+                             text={`${percentage4}%`}
                           />
                           <h3 className="main-heading-inner">
                             Total Register Users
                           </h3>
                         </li>
-                        <li>
-                          <CircularProgressbar
-                            value={value}
-                            maxValue={1}
-                            text={`${value * 100}%`}
-                          />
-                          <h3 className="main-heading-inner">
-                            Commision Earned
-                          </h3>
-                        </li>
+                      
                       </ul>
                     </div>
 
