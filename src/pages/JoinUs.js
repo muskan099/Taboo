@@ -95,7 +95,7 @@ const JoinUs = () => {
       // return;
       setLoading(true);
       const { status, message } = await axios.post(
-        "https://api.taboo.io/users/join-us",
+        "https://test.taboo.io/users/join-us",
         payload
       );
 

@@ -37,7 +37,7 @@ const ContactList = () => {
 
   // const { nft, isLoading } = useSelector((state) => state.nft);
 
-  const [nft, setNft] = useState("");
+  const [contactList, setContactList] = useState([]);
 
   const [show, setShow] = useState(false);
 
@@ -65,6 +65,7 @@ const ContactList = () => {
   };
 
   const [minPrice, setMinPrice] = useState(0);
+  const[searchValue,setSearchValue] = useState(false)
 
   const [startTime, setStartTime] = useState("");
 
@@ -157,35 +158,30 @@ const ContactList = () => {
       }
     }
   };
+const[totalNft1,setTotalNft] = useState()
 
-  const getData = async (currentPage, limit, query) => {
-    const res = await axios.post("/content-list", {
-      page: currentPage,
-      limit: limit,
-      query: query,
-    });
+  const getData = async (currentPage, limit, query,skip = (currentPage*limit) - limit) => {
+   
+    const res = await axios.get(`contactList?limit=${limit}&skip=${skip}`);
+
 
     if (res.data) {
-      setNft(res.data);
-      setResult(res.data);
+     let response = res.data;
+     console.log(response)
+      setContactList(res.data.data[0].list);
+      setTotalNft(res.data.data[0].totalRecords[0].count)
+      console.log(res.data.data[0].list);
     }
   };
 
   useEffect(() => {
     getData(currentPage, 20);
   }, []);
-  console.log({ nft });
+ 
   const [currentPage, setCurrentPage] = useState(1);
-  const[tier,setTier] = useState()
-
-
   
-  
-  const [status, setStatus] = useState("");
-  
-  const [result, setResult] = useState([]);
   const [search, setSearch] = useState("");
-  const[category,setCategory] = useState("")
+
 
   return (
     <>
@@ -195,27 +191,45 @@ const ContactList = () => {
             <Col lg={1} md={12} sm={12} xs={12}>
               <div className="sidemenu-creater">
                 <ul>
-                  <li className="active">
-                    <a href="">
-                      <img
-                        className="img-fluid m-0"
-                        src={"images/dashboard.png"}
-                      />
-                    </a>
-                  </li>
-                  <li>
-                    <a href="">
-                      <img className="img-fluid m-0" src={"images/list.png"} />
-                    </a>
-                  </li>
-                  <li>
-                    <a href="/config">
+                <li className="active">
+                    <a href="/ContactList">
                       <img
                         className="img-fluid m-0"
                         src={"images/list22.png"}
                       />
                     </a>
                   </li>
+                <li>
+                    <a href="/nft-list">
+                      <img className="img-fluid m-0" src={"images/list.png"} />
+                    </a>
+                  </li>
+                  <li>
+                    <a href="/TransactionList">
+                      <img
+                        className="img-fluid m-0"
+                        src={"images/list22.png"}
+                      />
+                    </a>
+                  </li>
+
+                  <li>
+                    <a href="/StackList">
+                      <img
+                        className="img-fluid m-0"
+                        src={"images/list22.png"}
+                      />
+                    </a>
+                  </li>
+                
+                  <li> <a href="/create-nft">
+                      <img
+                        className="img-fluid m-0"
+                        src={"images/list22.png"}
+                      />
+                    </a>
+                  </li>
+               
                 </ul>
               </div>
             </Col>
@@ -242,8 +256,10 @@ const ContactList = () => {
                         aria-describedby="basic-addon2"
                         onChange={(e) => {
                           setSearch(e.target.value);
+                          setSearchValue(true)
                         }}
                       />
+                      {console.log(search)}
                       <Button>
                         <img
                           className="search-icon"
@@ -259,161 +275,59 @@ const ContactList = () => {
                   <Table className="table-tank" responsive>
                     <thead>
                       <tr>
-                        <th>S.No</th>
-                        <th>Collection</th>
-                        <th>Artist Name</th>
-                        <th>YOP</th>
-                        <th>Sub Category</th>
-                        <th>For Sale</th>
-                        <th>Basic Price</th>
-                        <th>Featured</th>
-                        <th>Status</th>
-                        <th>Action</th>
+                     
+                        <th>Name</th>
+                        <th>Message</th>
+                        <th>Email</th>
+                      
                       </tr>
                     </thead>
                     <tbody>
-                      {console.log("my status is ",status )}
-
-                      {  category ? nft &&
-                        nft.data
-                          .filter((user) => {
-                            return (
+                  
+                 {console.log({contactList})}
+                 {console.log({search})}
+          {searchValue ? contactList.filter((user) => {
+            {console.log(user.name)}
+            {console.log(search)}
+            return user.name.includes(search)
+          }).map((item, index) => (
+                            <tr key={index}>
+                                {console.log("the name",item)}
+                               <td>{item.name}</td>
+                               <td>{item.message} </td>
+                              <td>{item.email} </td>
+                               
                             
                              
-                              user.category.includes(category) 
                              
-                             
-                            );
-                          })
-                        
-                          .map((item, index) => (
-                            <tr key={item._id}>
-                              <td>{result.offSet + index + 1}</td>
-                              <td>
-                                <div class="owner-row-outer">
-                                  <img src={item.image} />
-                                  <div>
-                                    <h5>{item.name}</h5>
-                                  </div>
-                                </div>
-                              </td>
-                              {console.log(item.status)}
-                              <td>{item.userinfo.name}</td>
-                              <td>-</td>
-                              <td>{item.category}</td>
-                              <td>Yes</td>
-                              <td>{item.price} Taboo</td>
-                              <td>
-                                <div className="text-center">
-                                  {["checkbox"].map((type) => (
-                                    <div
-                                      key={`default-${type}`}
-                                      className="text-center"
-                                    >
-                                      <Form.Check
-                                        type={type}
-                                        id={`default-${type}`}
-                                        label={` `}
-                                      />
-                                    </div>
-                                  ))}
-                                </div>
-                              </td>
-                              <td>
-                                <span className="status-box">Approved</span>
-                              </td>
-                              <td>
-                                <a href="" className="view-icon">
-                                  <i className="fa fa-eye"></i>
-                                </a>
-                                {item.status === "active" && (
-                                  <a
-                                    href="#"
-                                    className="view-icon"
-                                    onClick={() => handleStartAuction(item)}
-                                  >
-                                    <i className="fa fa-plus"></i>
-                                  </a>
-                                )}
-                              </td>
                             </tr>
-                          )):nft &&
-                          nft.data  .filter((user) => {
-                            return (
+                          )): contactList.map((item, index) => (
+                            <tr key={index}>
+                               <td>{item.name}</td>
+                               <td>{item.message} </td>
+                              <td>{item.email} </td>
+                               
                             
-                              user.name.includes(search) 
-                              
                              
-                            );
-                          })
+                             
+                            </tr>
+                          ))
                             
-                            .map((item, index) => (
-                              <tr key={item._id}>
-                                <td>{index + 1}</td>
-                                <td>
-                                  <div class="owner-row-outer">
-                                    <img src={item.image} />
-                                    <div>
-                                      <h5>{item.name}</h5>
-                                    </div>
-                                  </div>
-                                </td>
-                                {console.log(item.status)}
-                                <td>{item.userinfo.name}</td>
-                                <td>-</td>
-                                <td>{item.category}</td>
-                                <td>Yes</td>
-                                <td>{item.price} Taboo</td>
-                                <td>
-                                  <div className="text-center">
-                                    {["checkbox"].map((type) => (
-                                      <div
-                                        key={`default-${type}`}
-                                        className="text-center"
-                                      >
-                                        <Form.Check
-                                          type={type}
-                                          id={`default-${type}`}
-                                          label={` `}
-                                        />
-                                      </div>
-                                    ))}
-                                  </div>
-                                </td>
-                                <td>
-                                  <span className="status-box">Approved</span>
-                                </td>
-                                <td>
-                                  <a href="" className="view-icon">
-                                    <i className="fa fa-eye"></i>
-                                  </a>
-                                  {item.status === "active" && (
-                                    <a
-                                      href="#"
-                                      className="view-icon"
-                                      onClick={() => handleStartAuction(item)}
-                                    >
-                                      <i className="fa fa-plus"></i>
-                                    </a>
-                                  )}
-                                </td>
-                              </tr>
-                            ))}
+                           }      
 
                      
                     </tbody>
                   </Table>
                 </div>
 
-                <Pagination
+               <Pagination
                   nftPerPage={20}
-                  totalNft={nft.total}
-                 nft={nft}
+                  totalNft={totalNft1}
+                 nft={contactList}
                  
                  getData={getData}
                  limit={20}
-                />
-                 {console.log(nft.data)}
+                /> 
 
                 <div className="latest-user-row justify-content-end">
                   <a href="" className="view-all-link">

@@ -13,6 +13,7 @@ import {
 import { CircularProgressbar } from "react-circular-progressbar";
 import "react-circular-progressbar/dist/styles.css";
 import { Link, NavLink } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 const AdminDashboard = () => {
   const value = 0.1;
@@ -40,7 +41,8 @@ const AdminDashboard = () => {
     colors: ["#871434"],
     vAxis: { minValue: 0 },
   };
-
+  const { user } = useSelector((state) => state.auth);
+  console.log({ user });
   return (
     <>
       <section className="creater-dash-sec">
@@ -58,21 +60,12 @@ const AdminDashboard = () => {
                     </NavLink>
                   </li>
                   <li>
-                    <Link to="/nft-list">
+                    <a href="/nft-list">
                       <img className="img-fluid m-0" src={"images/list.png"} />
-                    </Link>
-                  </li>
-                  <li>
-                    <a href="">
-                      <img
-                        className="img-fluid m-0"
-                        src={"images/list22.png"}
-                      />
                     </a>
                   </li>
-                  
                   <li>
-                    <a href="/config">
+                    <a href="/TransactionList">
                       <img
                         className="img-fluid m-0"
                         src={"images/list22.png"}
@@ -80,7 +73,30 @@ const AdminDashboard = () => {
                     </a>
                   </li>
 
-
+                  <li>
+                    <a href="/StackList">
+                      <img
+                        className="img-fluid m-0"
+                        src={"images/list22.png"}
+                      />
+                    </a>
+                  </li>
+                  <li>
+                    <a href="/ContactList">
+                      <img
+                        className="img-fluid m-0"
+                        src={"images/list22.png"}
+                      />
+                    </a>
+                  </li>
+                  <li>
+                    <a href="/create-nft">
+                      <img
+                        className="img-fluid m-0"
+                        src={"images/list22.png"}
+                      />
+                    </a>
+                  </li>
                 </ul>
               </div>
             </Col>
@@ -159,7 +175,7 @@ const AdminDashboard = () => {
                         </thead>
                         <tbody>
                           <tr>
-                            <td>01</td>
+                            <td>1</td>
                             <td>
                               <div class="owner-row-outer">
                                 <img src="images/Team/team7.png" />
@@ -169,75 +185,9 @@ const AdminDashboard = () => {
                               </div>
                             </td>
 
-                            <td>abcd@gmail.com</td>
-                            <td>
-                              54b54b45bm4nb455bm,bm45,mb5,4b3nb3nmbnbn,mmb
-                            </td>
-                            <td>01 May, 2022</td>
-                          </tr>
-                          <tr>
-                            <td>02</td>
-                            <td>
-                              <div class="owner-row-outer">
-                                <img src="images/Team/team7.png" />
-                                <div>
-                                  <h5>Clementines Nightmare</h5>
-                                </div>
-                              </div>
-                            </td>
-                            <td>abcd@gmail.com</td>
-                            <td>
-                              54b54b45bm4nb455bm,bm45,mb5,4b3nb3nmbnbn,mmb
-                            </td>
-                            <td>01 May, 2022</td>
-                          </tr>
-                          <tr>
-                            <td>03</td>
-                            <td>
-                              <div class="owner-row-outer">
-                                <img src="images/Team/team7.png" />
-                                <div>
-                                  <h5>Clementines Nightmare</h5>
-                                </div>
-                              </div>
-                            </td>
-                            <td>abcd@gmail.com</td>
-                            <td>
-                              54b54b45bm4nb455bm,bm45,mb5,4b3nb3nmbnbn,mmb
-                            </td>
-                            <td>01 May, 2022</td>
-                          </tr>
-                          <tr>
-                            <td>04</td>
-                            <td>
-                              <div class="owner-row-outer">
-                                <img src="images/Team/team7.png" />
-                                <div>
-                                  <h5>Clementines Nightmare</h5>
-                                </div>
-                              </div>
-                            </td>
-                            <td>abcd@gmail.com</td>
-                            <td>
-                              54b54b45bm4nb455bm,bm45,mb5,4b3nb3nmbnbn,mmb
-                            </td>
-                            <td>01 May, 2022</td>
-                          </tr>
-                          <tr>
-                            <td>05</td>
-                            <td>
-                              <div class="owner-row-outer">
-                                <img src="images/Team/team7.png" />
-                                <div>
-                                  <h5>Clementines Nightmare</h5>
-                                </div>
-                              </div>
-                            </td>
-                            <td>abcd@gmail.com</td>
-                            <td>
-                              54b54b45bm4nb455bm,bm45,mb5,4b3nb3nmbnbn,mmb
-                            </td>
-                            <td>01 May, 2022</td>
+                            <td>{user.email}</td>
+                            <td>{user.wallet_address}</td>
+                            <td> {user.created_at.slice(0, 9)}</td>
                           </tr>
                         </tbody>
                       </Table>
@@ -257,8 +207,8 @@ const AdminDashboard = () => {
                   className="profile-main-img"
                   src={"images/Team/team7.png"}
                 />
-                <h4>Cj Sparxx</h4>
-                <p>8b7b7078...978977b8b</p>
+                <h4>{user.name}</h4>
+                <p>{user._id.slice(0,6)}...{user._id.slice(-5)}</p>
                 <hr />
               </div>
             </Col>

@@ -89,21 +89,48 @@ const StackList = () => {
         <Col lg={1} md={12} sm={12} xs={12}>
           <div className="sidemenu-creater">
             <ul>
-              <li className="active-link">
-                <a href="/">
-                  <img src={"images/dashboard.png"} alt="image" />
-                </a>
-              </li>
-              <li className="active-link">
-                <a href="/">
-                  <img src={"images/list.png"} alt="image" />
-                </a>
-              </li>
-              <li className="active-link">
-                <a href="/">
-                  <img src={"images/list22.png"} alt="image" />
-                </a>
-              </li>
+            <li className="active">
+          
+                    <a href="/StackList">
+                      <img
+                        className="img-fluid m-0"
+                        src={"images/list22.png"}
+                      />
+                    </a>
+               
+                    
+                  </li>
+                  <li>
+                    <a href="/nft-list">
+                      <img className="img-fluid m-0" src={"images/list.png"} />
+                    </a>
+                  </li>
+                  <li>
+                    <a href="/TransactionList">
+                      <img
+                        className="img-fluid m-0"
+                        src={"images/list22.png"}
+                      />
+                    </a>
+                  </li>
+
+                
+                  <li>
+                    <a href="/ContactList">
+                      <img
+                        className="img-fluid m-0"
+                        src={"images/list22.png"}
+                      />
+                    </a>
+                  </li>
+                  <li>
+                    <a href="/create-nft">
+                      <img
+                        className="img-fluid m-0"
+                        src={"images/list22.png"}
+                      />
+                    </a>
+                  </li>
             </ul>
           </div>
         </Col>
@@ -168,10 +195,13 @@ const StackList = () => {
                       aria-describedby="basic-addon2"
                       onClick={() => {
                         setIsVisible1(true);
+                        setIsVisible(false);
                       }} />
                       <div  class="transaction-page-btn" onClick={(e) => {
                         e.preventDefault();
                         setSubmit(true)
+                        setIsVisible(false)
+                        setIsVisible1(false)
                       }}>
                       Search
                        </div>
@@ -238,13 +268,31 @@ const StackList = () => {
                           //Fri Jun 03 2022 00:00:00 GMT+0530 (India Standard Time)
                           .map((item, index) => (
                             <tr key={item._id}>
-                           
-                              <td>{item.map((value,index) => (
-                                <td>{value.stakeinfo.startingbalance}</td>
-                             ))}</td>
+                             <td>{item.created_at}</td>
+                              <td>{console.log(item.stakeinfo.startingbalance)}
+                               
+                                <td>{item.stakeinfo.startingbalance}</td>
+                                <td>
+                              <div>{item.stakeinfo.interest_earned}</div>
+                            </td>
+                             </td>
+
                               {console.log("stake info",item.stakeinfo)}
                              
-                             
+                             <td>
+                              <div className="addressLineClamp">
+                                {item.wallet_address}
+                              </div>
+                            </td>
+                            <td>
+                              <div>{item.stakeinfo.closingbalance}</div>
+                            </td>
+                            <td>
+                              <div>{item.status}</div>
+                            </td>
+                            <td>
+                              <div>{item.status}</div>
+                            </td>
                             </tr>
                           ))
                       : nft.filter((user) => { return (
