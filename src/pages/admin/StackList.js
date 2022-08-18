@@ -269,9 +269,9 @@ const StackList = () => {
                           .map((item, index) => (
                             <tr key={item._id}>
                              <td>{item.created_at}</td>
-                              <td>{console.log(item.stakeinfo.startingbalance)}
-                               
                                 <td>{item.stakeinfo.startingbalance}</td>
+                              <td>
+                               
                                 <td>
                               <div>{item.stakeinfo.interest_earned}</div>
                             </td>
