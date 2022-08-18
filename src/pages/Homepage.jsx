@@ -1,8 +1,12 @@
 import CurrencyFormat from 'react-currency-format';
 import React, { useEffect, useState } from "react";
-import { Row, Col, Container, Modal , Button} from "react-bootstrap";
+import { Row, Col, Container, Modal , Button,} from "react-bootstrap";
 import { toast } from "react-toastify";
+<<<<<<< HEAD
+import Slider from 'react-slick';
+=======
 import Slider from "react-slick";
+>>>>>>> main
 
 
 
@@ -47,6 +51,10 @@ const Homepage = () => {
   const handleModalClose1 = () => {
     setShowModal1(false);
   };
+<<<<<<< HEAD
+
+=======
+>>>>>>> main
   const settings = {
     fade: true,
     dots: false,
@@ -60,6 +68,17 @@ const Homepage = () => {
     cssEase: 'cubic-bezier(0.7, 0, 0.3, 1)',
     
   };
+<<<<<<< HEAD
+
+  return (
+    <>
+    <section className="slider-main-sec-new">
+    <Slider {...settings} className="slider-outer-banner">
+          <div>
+            <img className="main-bg-zoom" src="images/slider/Slide1BG.png" alt="" />
+            <div className="slider-inner-content">
+                <div className="first-div">
+=======
   return (
     <>
     {/* <section className="slider-main-sec-new">
@@ -68,51 +87,88 @@ const Homepage = () => {
              <img className="main-bg-zoom" src="images/slider/Slide1BG.png" alt="" />
              <div className="slider-inner-content">
                  <div className="first-div">
+>>>>>>> main
                     <img className="common-text text-img" src="images/slider/Slide1txt.png" alt="" />
                     <img className="common-card slider-card" src="images/slider/Slide1txt2.png" alt="" />
                     <img className="registration-img" src="images/slider/registration.png" alt="" />
                     <img className="bottam-logo" src="images/slider/Taboo logo.png" alt="" />
+<<<<<<< HEAD
+                </div>
+            </div>
+=======
                  </div>
              </div>
+>>>>>>> main
           </div>
           <div>
           <img className="main-bg-zoom" src="images/slider/Slide2BG.png" alt="" />
           <div className="slider-inner-content">
+<<<<<<< HEAD
+                <div className="first-div">
+=======
                  <div className="first-div">
+>>>>>>> main
                     <img className="text-img" src="images/slider/Slide2txt.png" alt="" />
                     <img className="common-card slider-card1" src="images/slider/Slide2Card1.png" alt="" />
                     <img className="common-card slider-card2" src="images/slider/Slide2Card2.png" alt="" />
                     <img className="bottam-logo" src="images/slider/Taboo logo.png" alt="" />
+<<<<<<< HEAD
+                </div>
+            </div>
+=======
                  </div>
              </div>
+>>>>>>> main
           </div>
           <div>
           <img className="main-bg-zoom" src="images/slider/Slide3BG.png" alt="" />
           <div className="slider-inner-content">
+<<<<<<< HEAD
+                <div className="first-div">
+=======
                  <div className="first-div">
+>>>>>>> main
                     <img className="text-img" src="images/slider/Slide3txt.png" alt="" />
                     <img className="common-card slider-card" src="images/slider/Slide3card1.png" alt="" />
                     <img className="common-card slider-card3" src="images/slider/Slide3card2.png" alt="" />
                     <img className="common-card slider-card4" src="images/slider/Slide3card3.png" alt="" />
                     <img className="common-card slider-card5" src="images/slider/Slide3card4.png" alt="" />
                     <img className="bottam-logo" src="images/slider/Taboo logo.png" alt="" />
+<<<<<<< HEAD
+                </div>
+            </div>
+=======
                  </div>
              </div>
+>>>>>>> main
           </div>
           <div>
           <img className="main-bg-zoom" src="images/slider/Slide4BG.png" alt="" />
           <div className="slider-inner-content">
+<<<<<<< HEAD
+                <div className="first-div">
+                    <img className="text-img" src="images/slider/Slide4txt.png" alt="" />
+                    <img className="common-card slider-card" src="images/slider/Slide4card.png" alt="" />
+                    <img className="bottam-logo" src="images/slider/Taboo logo.png" alt="" />
+                </div>
+            </div>
+=======
                  <div className="first-div">
                     <img className="text-img" src="images/slider/Slide4txt.png" alt="" />
                     <img className="common-card slider-card" src="images/slider/Slide4card.png" alt="" />
                     <img className="bottam-logo" src="images/slider/Taboo logo.png" alt="" />
                  </div>
              </div>
+>>>>>>> main
           </div>
           <div>
           <img className="main-bg-zoom" src="images/slider/Slide5BG.png" alt="" />
           <div className="slider-inner-content">
+<<<<<<< HEAD
+                <div className="first-div">
+=======
                  <div className="first-div">
+>>>>>>> main
                     <img className="text-img" src="images/slider/Slide5txt.png" alt="" />
                     <img className="common-card slider-card6" src="images/slider/Slide5Card1.png" alt="" />
                     <img className="common-card slider-card7" src="images/slider/Slide5Card2.png" alt="" />
@@ -122,6 +178,14 @@ const Homepage = () => {
                     <img className="common-card slider-card11" src="images/slider/Slide5Card6.png" alt="" />
                     <img className="advantage-img" src="images/slider/take-advantage.png" alt="" />
                     <img className="bottam-logo" src="images/slider/Taboo logo.png" alt="" />
+<<<<<<< HEAD
+                </div>
+            </div>
+          </div>
+    </Slider>
+    </section>
+      <section className="banner-section d-none">
+=======
                  </div>
              </div>
           </div>
@@ -131,6 +195,7 @@ const Homepage = () => {
 
 
       <section className="banner-section">
+>>>>>>> main
         <Container>
           <Row>
             <Col>
@@ -556,7 +621,7 @@ const Homepage = () => {
                       />
                       <div className="content-team">
                         <h4>Majid</h4>
-                        <p>COO/Business Strategist</p>
+                        <p>COO/Co-Founder</p>
                       </div>
                     </div>
                   </li>

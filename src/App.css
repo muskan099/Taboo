@@ -52,6 +52,7 @@ a.insta-link {
   top: 0;
   z-index: 1000;
   border-bottom: 1px solid #871333;
+  opacity: 1 !important;
 }
 .navbar-brand {
   border-right: 2px solid #ddd;
@@ -4828,10 +4829,17 @@ max-width: 100%;
 }
 
 
+<<<<<<< HEAD
+ /*new added css*/
+
+
+ .slider-main-sec-new{
+=======
 /*new added css*/
 
 
 .slider-main-sec-new{
+>>>>>>> main
   overflow: hidden !important;
 }
 .slider-outer-banner{
@@ -4848,6 +4856,10 @@ overflow: hidden !important;
   transition: all ease-in-out 7s;
   transform: scale(1.2);
   min-height: 760px;
+<<<<<<< HEAD
+  overflow: hidden;
+=======
+>>>>>>> main
 }
 .slider-outer-banner .slick-slide.slick-active img.main-bg-zoom {
   transform: scale(1);
@@ -5260,4 +5272,11 @@ width: 100%;
 .slider-inner-content  .slider-card {
   height: 230px !important;
 }
+<<<<<<< HEAD
+}
+
+body , html{
+  overflow-x: hidden !important;
+=======
+>>>>>>> main
 }
