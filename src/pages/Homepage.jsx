@@ -62,7 +62,7 @@ const Homepage = () => {
   };
   return (
     <>
-    <section className="slider-main-sec-new">
+    {/* <section className="slider-main-sec-new">
     <Slider {...settings} className="slider-outer-banner">
           <div>
              <img className="main-bg-zoom" src="images/slider/Slide1BG.png" alt="" />
@@ -126,11 +126,11 @@ const Homepage = () => {
              </div>
           </div>
     </Slider>
-    </section>
+    </section> */}
 
 
 
-      {/* <section className="banner-section">
+      <section className="banner-section">
         <Container>
           <Row>
             <Col>
@@ -181,7 +181,7 @@ const Homepage = () => {
             </li>
           </ul>
         </div>
-      </section> */}
+      </section>
 
       <section className="partner-section">
         <Container>
