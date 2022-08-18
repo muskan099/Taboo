@@ -141,7 +141,7 @@ const NftDetails = () => {
 
     if (!isAuthenticated) {
       toast.warn("Please connect wallet!");
-    } else if (price<0) {
+    } else if (balance<price) {
       toast.warn("You don't have sufficient taboo token!");
     } else {
       console.log("hello");
@@ -185,7 +185,7 @@ const NftDetails = () => {
             let hash = await BuyNFT(
               nft.token_id,
               nft.ipfs,
-              10,
+              price,
               nft.signature,
               tier,
               punk
@@ -513,7 +513,7 @@ const NftDetails = () => {
                           isLoading ||
                           nft.status == "sold" ||
                           nft.status == "active"
-                            ? false
+                            ? true
                             : false
                         }
                         onClick={() => setOfferStart(true)}
