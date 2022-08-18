@@ -438,12 +438,29 @@ const BuyCoin=()=>{
                           
               toast.success("Transaction submitted successfully!");
 
+              if(amount>=5000000){
+                 let msg="Due to"+ amount + " M amount you will get token within 24 hours!";
+
+                toast.success(msg);
+                }
+
 
             }else
               {
+                let amount=tabooAmount.toFixed(0)
+
                 setIsloading(false);
 
-                toast.warn("Something went wrong!")
+                if(amount>=5000000){
+                  let msg="Due to"+ amount + " M amount you will get token within 24 hours!";
+ 
+                 toast.success(msg);
+                 
+                 }else{
+                    toast.warn("Something went wrong!");
+                
+                  }
+              
               }
  
          }else

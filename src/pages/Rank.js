@@ -63,6 +63,7 @@ const Rank=()=>{
                                       </div>
                                   </td>
                                   <td>
+                                   
                                          <span class="success">+94.05%</span>
                                   </td>
                                   <td>

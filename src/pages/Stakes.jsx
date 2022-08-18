@@ -193,7 +193,7 @@ const Stakes = () => {
                           <td width="15%">
                             <button  onClick={()=>handleWithdrawRequest(item)}
                               className="common-btn white-btn withdrow-btn"
-                              disabled={item.stakeinfo.status=="closed"||item.stakeinfo.status=="active"||processing?true:false}
+                              disabled={item.stakeinfo.status=="closed"||item.stakeinfo.status=="active"||processing?false:false}
                             >
                               { 
                                    item.stakeinfo.status=="closed"?'Closed':' Withdraw'
