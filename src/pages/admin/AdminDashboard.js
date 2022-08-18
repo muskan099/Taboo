@@ -56,6 +56,7 @@ const AdminDashboard = () => {
   let percentage2 = nftDetails.forSellNFT_Persentage;
   let percentage3 = nftDetails.auctionNFT_Persentage;
   let percentage4 = nftDetails.commission;
+  let percentage5 = nftDetails.totalUserPersentage;
   useEffect(() => {
     getData();
   },)
@@ -151,6 +152,16 @@ const AdminDashboard = () => {
                         </li>
                         <li>
                           <CircularProgressbar
+                             value={percentage5}
+                           
+                             text={`${percentage5}%`}
+                          />
+                          <h3 className="main-heading-inner">
+                            Total Register Users
+                          </h3>
+                        </li>
+                        {/* <li>
+                          <CircularProgressbar
                              value={percentage4}
                            
                              text={`${percentage4}%`}
@@ -158,7 +169,7 @@ const AdminDashboard = () => {
                           <h3 className="main-heading-inner">
                             Total Register Users
                           </h3>
-                        </li>
+                        </li> */}
                       
                       </ul>
                     </div>
