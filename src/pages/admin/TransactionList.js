@@ -177,17 +177,14 @@ const TransactionList = () => {
                   </Dropdown>
                 </Row>
                 <div className="newsletter-box m-0 input-column">
-                  <InputGroup>
+                <InputGroup>
                     <FormControl
                       placeholder="Start Date....."
                       aria-label="Recipient's username"
                       aria-describedby="basic-addon2"
                       onClick={() => {
                         setIsVisible(true);
-                        setDateStartSelected(startDate)
                       }}
-                   
-                     value={dateStartSelected}
                       />
                      <FormControl
                       placeholder="End Date....."
@@ -195,12 +192,8 @@ const TransactionList = () => {
                       aria-describedby="basic-addon2"
                       onClick={() => {
                         setIsVisible1(true);
-                        setIsVisible(false)
-                        setDateEndSelected(startDate)
-                       
-                      }} 
-                      value={dateEndSelected}
-                      />
+                        setIsVisible(false);
+                      }} />
                       <div  class="transaction-page-btn" onClick={(e) => {
                         e.preventDefault();
                         setSubmit(true)
@@ -262,18 +255,24 @@ const TransactionList = () => {
                   <tbody>
                     { searchByDate ? nft
                       .filter((user) => {
-                       return user.created_at >= current_date && user.created_at <= current_date1 && submit == true ;
+                       return user.created_at >= current_date && user.created_at <= current_date1 && submit == true && user.nftImage != null ;
                       }) //"2022-07-18T11:40:37.144Z"
                       //Fri Jun 03 2022 00:00:00 GMT+0530 (India Standard Time)
                       .map((item, index) => (
+                        
                         <tr key={item._id}>
                           {console.log("created at", item.created_at)}
                           <td>{result.offSet + index + 1}</td>
                           <td>
-                            <div>{item.content_id}</div>
+                            <div>   <div class="owner-row-outer">
+                            <img src={item.nftImage} />
+                              </div></div>
                           </td>
+                         
                           <td>
-                            <div>{item.nftName}</div>
+                           
+                                 {item.nftName}
+                                  
                           </td>
                           <td>
                            
@@ -281,7 +280,9 @@ const TransactionList = () => {
                           
                           </td>
                           <td>
-                            <div>{item.trans_id}</div>
+                            <a class="transaction-link-color" target={"_blank"} href={
+                                  "https://www.bscscan.com/tx/" + item.trans_id
+                                }>{item.trans_id.slice(0,5)}.....{item.trans_id.slice(-5)}</a>
                           </td>
                           <td>
                             <div>{item.total}</div>
@@ -290,21 +291,28 @@ const TransactionList = () => {
                             <div>{item.status}</div>
                           </td>
                         </tr>
-                      )) : status === 'all' ? nft.map((item, index) => (
+                      )) : status === 'all'  ? nft.filter((user) => {return user.nftImage != null}).map((item, index) => (
                         <tr key={item._id}>
                           {console.log("created at", item.created_at)}
                           <td>{result.offSet + index + 1}</td>
                           <td>
-                            <div>{item.content_id}</div>
+                            <div>   <div class="owner-row-outer">
+                            <img src={item.nftImage} />
+                              </div></div>
                           </td>
+                         
                           <td>
-                            <div>{item.nftName}</div>
+                           
+                                 {item.nftName}
+                                  
                           </td>
                           <td>
                           {item.to_address.slice(0,5)}.....{item.to_address.slice(-5)}
                           </td>
                           <td>
-                            <div>{item.trans_id}</div>
+                          <a class="transaction-link-color" target={"_blank"} href={
+                                  "https://www.bscscan.com/tx/" + item.trans_id
+                                }>{item.trans_id.slice(0,5)}.....{item.trans_id.slice(-5)}</a>
                           </td>
                           <td>
                             <div>{item.total}</div>
@@ -314,7 +322,7 @@ const TransactionList = () => {
                           </td>
                         </tr>
                       )):nft.filter((user) => {
-                        return user.status.includes(status) ;
+                        return user.status.includes(status) && user.nftImage != null;
                       }) //"2022-07-18T11:40:37.144Z"
                       //Fri Jun 03 2022 00:00:00 GMT+0530 (India Standard Time)
                       .map((item, index) => (
@@ -322,16 +330,23 @@ const TransactionList = () => {
                           {console.log("created at", item.created_at)}
                           <td>{result.offSet + index + 1}</td>
                           <td>
-                            <div>{item.content_id}</div>
+                            <div>   <div class="owner-row-outer">
+                            <img src={item.nftImage} />
+                              </div></div>
                           </td>
+                         
                           <td>
-                            <div>{item.nftName}</div>
+                           
+                                 {item.nftName}
+                                  
                           </td>
                           <td>
                           {item.to_address.slice(0,5)}.....{item.to_address.slice(-5)}
                           </td>
                           <td>
-                            <div>{item.trans_id}</div>
+                          <a class="transaction-link-color-black"target={"_blank"} href={
+                                  "https://www.bscscan.com/tx/" + item.trans_id
+                                }>{item.trans_id.slice(0,5)}.....{item.trans_id.slice(-5)}</a>
                           </td>
                           <td>
                             <div>{item.total}</div>

@@ -472,12 +472,8 @@ const NFTList = () => {
                         nft.data
                           .filter((user) => {
                             return (
-                            
-                             
-                              user.category.includes(category) 
-                             
-                             
-                            );
+                            user.category.includes(category) 
+                             );
                           })
                         
                           .map((item, index) => (

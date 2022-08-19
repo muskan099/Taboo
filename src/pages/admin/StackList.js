@@ -74,14 +74,12 @@ const StackList = () => {
   
   
  
-  function handleSelection() {
-    setStatus("success");
-  }
+  
   function handleSelection1() {
-    setStatus("sold");
+    setStatus("active");
   }
   function handleSelection2() {
-    setStatus("pending");
+    setStatus("closed");
   }
   return (
     <section className="transaction-section">
@@ -154,11 +152,11 @@ const StackList = () => {
                       <Dropdown.Item
                         href="#/action-1"
                         onClick={(e) => {
-                         setStatus("active")
+                         setStatus("all")
                         }}
                         >
                         {console.log({status})}
-                        Action
+                        All
                       </Dropdown.Item>
                       <Dropdown.Item
                         href="#/action-2"
@@ -166,7 +164,7 @@ const StackList = () => {
                           handleSelection1();
                         }}
                       >
-                        Sold
+                        Active
                       </Dropdown.Item>
                       <Dropdown.Item
                         href="#/action-3"
@@ -174,7 +172,7 @@ const StackList = () => {
                           handleSelection2();
                         }}
                       >
-                        Pending
+                        Closed
                       </Dropdown.Item>
                     </Dropdown.Menu>
                   </Dropdown>
@@ -252,7 +250,7 @@ const StackList = () => {
                       <th>Wallet Address</th>
                       <th>Current Balance</th>
                       <th>Status</th>
-                      <th>Action</th>
+                     
                     </tr>
                   </thead>
                   <tbody>
@@ -290,14 +288,10 @@ const StackList = () => {
                             <td>
                               <div>{item.status}</div>
                             </td>
-                            <td>
-                              <div>{item.status}</div>
-                            </td>
+                          
                             </tr>
                           ))
-                      : nft.filter((user) => { return (
-                        user.status.includes(status)
-                      )}).map((item, index) => (
+                      : status == "all" ? nft.map((item, index) => (
                           <tr key={item._id}>
                            
                             <td>{item.created_at}</td>
@@ -317,11 +311,32 @@ const StackList = () => {
                             <td>
                               <div>{item.status}</div>
                             </td>
+                           
+                          </tr>
+                        )): nft.filter((user) => { return (
+                          user.status.includes(status)
+                        )}).map((item, index) => (
+                          <tr key={item._id}>
+                           
+                            <td>{item.created_at}</td>
+                            <td>{item.stakeinfo.startingbalance}</td>
+                           
+                            <td>
+                              <div>{item.stakeinfo.interest_earned}</div>
+                            </td>
+                            <td>
+                              <div className="addressLineClamp">
+                                {item.wallet_address}
+                              </div>
+                            </td>
+                            <td>
+                              <div>{item.stakeinfo.closingbalance}</div>
+                            </td>
                             <td>
                               <div>{item.status}</div>
                             </td>
-                          </tr>
-                        ))}
+                          
+                          </tr>))}
                   </tbody>
                 </Table>
               
