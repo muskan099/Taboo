@@ -75,15 +75,17 @@ const TransactionList = () => {
     console.log({ currentNfts });
   }, [currentPage]);
   function handleSelection() {
-    setStatus("active");
+    setStatus("all");
   }
   function handleSelection1() {
-    setStatus("sold");
+    setStatus("success");
   }
   function handleSelection2() {
     setStatus("pending");
   }
-  
+  const [dateStartSelected,setDateStartSelected] = useState()
+  const [dateEndSelected,setDateEndSelected] = useState()
+
   return (
     <section className="transaction-section">
       <Row>
@@ -153,7 +155,7 @@ const TransactionList = () => {
                           handleSelection();
                         }}
                       >
-                        Active
+                        All
                       </Dropdown.Item>
                       <Dropdown.Item
                         href="#/action-2"
@@ -161,7 +163,7 @@ const TransactionList = () => {
                           handleSelection1();
                         }}
                       >
-                        Sold
+                        Sucess
                       </Dropdown.Item>
                       <Dropdown.Item
                         href="#/action-3"
@@ -182,7 +184,10 @@ const TransactionList = () => {
                       aria-describedby="basic-addon2"
                       onClick={() => {
                         setIsVisible(true);
+                        setDateStartSelected(startDate)
                       }}
+                   
+                     value={dateStartSelected}
                       />
                      <FormControl
                       placeholder="End Date....."
@@ -191,7 +196,11 @@ const TransactionList = () => {
                       onClick={() => {
                         setIsVisible1(true);
                         setIsVisible(false)
-                      }} />
+                        setDateEndSelected(startDate)
+                       
+                      }} 
+                      value={dateEndSelected}
+                      />
                       <div  class="transaction-page-btn" onClick={(e) => {
                         e.preventDefault();
                         setSubmit(true)
@@ -267,12 +276,12 @@ const TransactionList = () => {
                             <div>{item.nftName}</div>
                           </td>
                           <td>
-                            <div className="addressLineClamp">
-                              {item.to_address}
-                            </div>
+                           
+                              {item.to_address.slice(0,5)}.....{item.to_address.slice(-5)}
+                          
                           </td>
                           <td>
-                            <div>{item.nft_hash}</div>
+                            <div>{item.trans_id}</div>
                           </td>
                           <td>
                             <div>{item.total}</div>
@@ -281,7 +290,30 @@ const TransactionList = () => {
                             <div>{item.status}</div>
                           </td>
                         </tr>
-                      )): nft.filter((user) => {
+                      )) : status === 'all' ? nft.map((item, index) => (
+                        <tr key={item._id}>
+                          {console.log("created at", item.created_at)}
+                          <td>{result.offSet + index + 1}</td>
+                          <td>
+                            <div>{item.content_id}</div>
+                          </td>
+                          <td>
+                            <div>{item.nftName}</div>
+                          </td>
+                          <td>
+                          {item.to_address.slice(0,5)}.....{item.to_address.slice(-5)}
+                          </td>
+                          <td>
+                            <div>{item.trans_id}</div>
+                          </td>
+                          <td>
+                            <div>{item.total}</div>
+                          </td>
+                          <td>
+                            <div>{item.status}</div>
+                          </td>
+                        </tr>
+                      )):nft.filter((user) => {
                         return user.status.includes(status) ;
                       }) //"2022-07-18T11:40:37.144Z"
                       //Fri Jun 03 2022 00:00:00 GMT+0530 (India Standard Time)
@@ -296,12 +328,10 @@ const TransactionList = () => {
                             <div>{item.nftName}</div>
                           </td>
                           <td>
-                            <div className="addressLineClamp">
-                              {item.to_address}
-                            </div>
+                          {item.to_address.slice(0,5)}.....{item.to_address.slice(-5)}
                           </td>
                           <td>
-                            <div>{item.nft_hash}</div>
+                            <div>{item.trans_id}</div>
                           </td>
                           <td>
                             <div>{item.total}</div>

@@ -279,6 +279,9 @@ const[totalNft1,setTotalNft] = useState()
                         <th>Name</th>
                         <th>Message</th>
                         <th>Email</th>
+                        <th>Contact Number</th>
+                        <th>Social Media</th>
+                        <th>Model</th>
                       
                       </tr>
                     </thead>
@@ -296,16 +299,23 @@ const[totalNft1,setTotalNft] = useState()
                                <td>{item.name}</td>
                                <td>{item.message} </td>
                               <td>{item.email} </td>
+                              <td>{item.number} </td>
+                              <td>{item.social_media} </td>
+                              <td>{item.isModel} </td>
                                
                             
                              
                              
                             </tr>
-                          )): contactList.map((item, index) => (
+                          )): contactList?.map((item, index) => (
                             <tr key={index}>
                                <td>{item.name}</td>
                                <td>{item.message} </td>
                               <td>{item.email} </td>
+                              <td>{item.number} </td>
+                              <td>{item.social_media} </td>
+                              {console.log(item.isModel)}
+                              <td>{item?.isModel} </td>
                                
                             
                              
@@ -314,9 +324,9 @@ const[totalNft1,setTotalNft] = useState()
                           ))
                             
                            }      
-
                      
                     </tbody>
+
                   </Table>
                 </div>
 

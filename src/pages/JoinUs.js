@@ -30,6 +30,7 @@ const JoinUs = () => {
   const [isSubmit, setIsSubmit] = useState(false);
 
   const [loading, setLoading] = useState(false);
+  const[isModel,setIsModel] = useState("false")
 
   const handleData = (e) => {
     const { name, value } = e.target;
@@ -85,21 +86,22 @@ const JoinUs = () => {
 
       const payload = {
         name: data.name,
-        phone: parseInt(data.phone),
+        phone: data.phone,
         email: data.email,
-        social_media: data.social_media,
+        social_media: data.socialmedia,
         message: data.message,
-        isModel: data.isModel ?? false,
+        isModel: isModel
       };
-      // console.log(payload)
-      // return;
+      
+     
       setLoading(true);
-      const { status, message } = await axios.post(
+      const res = await axios.post(
         "https://test.taboo.io/users/join-us",
         payload
       );
+console.log(res)
 
-      if (status) {
+      if (res.data.status) {
         setLoading(false);
         toast.success("Your request is submitted successfully!");
       }
@@ -242,6 +244,9 @@ const JoinUs = () => {
                               type="checkbox"
                               name="isModel"
                               onChange={handleData}
+                              onClick={() => {
+                                setIsModel("true")
+                              }}
                               value=""
                             ></input>
                             <span className="cr">

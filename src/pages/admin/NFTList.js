@@ -287,12 +287,7 @@ const NFTList = () => {
                           SFW
                           {console.log(category)}
                         </Dropdown.Item>
-                        <Dropdown.Item href="#/action-3" onClick={() => {
-                         filterSearch.category = 'auction'
-                         getData(currentPage,20,filterSearch);
-                        }}>
-                          Auction
-                        </Dropdown.Item>
+                       
                         <Dropdown.Item href="#/action-3" onClick={() => {
                            filterSearch.category = 'Implied'
                            getData(currentPage,20,filterSearch);
