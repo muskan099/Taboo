@@ -75,22 +75,29 @@ const CreateNft = () => {
     reader.onloadend = () => {
       setContentImage(reader.result);
     };
-
+console.log({files})
     if (files[0]) {
-      if (files[0].type.includes("image")) {
+      if (files[0].type.includes("video")) {
         const filename = files[0].name;
         const fileExtension = filename.substr(filename.lastIndexOf(".") + 1);
+        
+        setState({
+            file: event.currentTarget.files[0],
+            photoUrl: URL.createObjectURL(files[0]),
+          })
         if (
           fileExtension.toLowerCase() === "png" ||
           fileExtension.toLowerCase() === "jpg" ||
           fileExtension.toLowerCase() === "gif" ||
           fileExtension.toLowerCase() === "jpeg" ||
-          fileExtension.toLowerCase() === "webp"
+          fileExtension.toLowerCase() === "webp" ||
+          fileExtension.toLowerCase() === "mp4" ||
+          fileExtension.toLowerCase() === "mov"
         ) {
-          setState({
-            file: event.currentTarget.files[0],
-            photoUrl: URL.createObjectURL(files[0]),
-          });
+        //   setState({
+        //     file: event.currentTarget.files[0],
+        //     photoUrl: URL.createObjectURL(files[0]),
+        //   });
         }
       }
     }
@@ -281,12 +288,28 @@ const CreateNft = () => {
                           </div>
                         </div>
                       </div>
-
-                      <Form.Group className="mb-4">
+{console.log({photoUrl})}
+<Form.Group className="mb-3">
+                        <Form.Label>Name</Form.Label>
                         <Form.Control
                           type="text"
-                          onKeyUp={(e) => handleMetaTag(e)}
-                          placeholder="Meta Tag"
+                          required
+                          name="name"
+                          onChange={handleData}
+                          placeholder=""
+                          value={data.name}
+                        />
+                      </Form.Group>
+                      <Form.Group className="mb-3">
+                        <Form.Label>Phone</Form.Label>
+                        <Form.Control
+                          type="number"
+                          pattern="[0-9]{10}"
+                          required
+                          name="phone"
+                          onChange={handleData}
+                          placeholder=""
+                          value={data.phone}
                         />
                       </Form.Group>
                       <Form.Group className="mb-3">
@@ -300,13 +323,100 @@ const CreateNft = () => {
                           value={data.email}
                         />
                       </Form.Group>
-                      <Form.Group className="mb-4">
+                      <Form.Group className="mb-3">
+                        <Form.Label>Phone</Form.Label>
                         <Form.Control
-                          type="text"
-                          onKeyUp={(e) => handleName(e)}
-                          placeholder="Your NFT Name"
+                          type="number"
+                          pattern="[0-9]{10}"
+                          required
+                          name="phone"
+                          onChange={handleData}
+                          placeholder=""
+                          value={data.phone}
                         />
                       </Form.Group>
+                      <Form.Group className="mb-3">
+                        <Form.Label>Age</Form.Label>
+                        <Form.Control
+                          type="number"
+                          pattern="[0-9]{10}"
+                          required
+                          name="phone"
+                          onChange={handleData}
+                          placeholder=""
+                          value={data.phone}
+                        />
+                      </Form.Group>
+                      <Form.Group className="mb-3">
+                        <Form.Label>Height</Form.Label>
+                        <Form.Control
+                          type="number"
+                          pattern="[0-9]{10}"
+                          required
+                          name="phone"
+                          onChange={handleData}
+                          placeholder=""
+                          value={data.phone}
+                        />
+                      </Form.Group>
+                      <Form.Group className="mb-3">
+                        <Form.Label>Weight</Form.Label>
+                        <Form.Control
+                          type="number"
+                          pattern="[0-9]{10}"
+                          required
+                          name="phone"
+                          onChange={handleData}
+                          placeholder=""
+                          value={data.phone}
+                        />
+                      </Form.Group>
+                      <Form.Group className="mb-3">
+                        <Form.Label>Chest Size</Form.Label>
+                        <Form.Control
+                          type="number"
+                          pattern="[0-9]{10}"
+                          required
+                          name="phone"
+                          onChange={handleData}
+                          placeholder=""
+                          value={data.phone}
+                        />
+                      </Form.Group>
+                      <Form.Group className="mb-3">
+                        <Form.Label>Insta Link</Form.Label>
+                        <Form.Control
+                          type="text"
+                          required
+                          name="socialmedia"
+                          onChange={handleData}
+                          placeholder=""
+                          value={data.socialmedia}
+                        />
+                      </Form.Group>
+                      <Form.Group className="mb-3">
+                        <Form.Label>Facebook Link</Form.Label>
+                        <Form.Control
+                          type="text"
+                          required
+                          name="socialmedia"
+                          onChange={handleData}
+                          placeholder=""
+                          value={data.socialmedia}
+                        />
+                      </Form.Group>
+                      <Form.Group className="mb-3">
+                        <Form.Label>Youtube Link</Form.Label>
+                        <Form.Control
+                          type="text"
+                          required
+                          name="socialmedia"
+                          onChange={handleData}
+                          placeholder=""
+                          value={data.socialmedia}
+                        />
+                      </Form.Group>
+                    
 
                       <Form.Group className="mb-3">
                         <Form.Label>Description</Form.Label>
@@ -317,95 +427,14 @@ const CreateNft = () => {
                         />
                       </Form.Group>
 
-                      <Form.Group className="mb-3">
-                        <Form.Label>Available To</Form.Label>
-                        <Row>
-                          <Col md={4} sm={4} xs={12}>
-                            <Form.Check
-                              label="1 Tier"
-                              name="tier"
-                              type={"checkbox"}
-                              checked={availableTo.t1}
-                              onChange={() =>
-                                setAvailableTo((p) => ({ ...p, t1: !p.t1 }))
-                              }
-                            />
-                          </Col>
-
-                          <Col md={4} sm={4} xs={12}>
-                            <Form.Check
-                              label="2 Tier"
-                              name="tier"
-                              type={"checkbox"}
-                              checked={availableTo.t2}
-                              onChange={() =>
-                                setAvailableTo((p) => ({ ...p, t2: !p.t2 }))
-                              }
-                            />
-                          </Col>
-
-                          <Col md={4} sm={4} xs={12}>
-                            <Form.Check
-                              label="3 Tier"
-                              name="tier"
-                              type={"checkbox"}
-                              checked={availableTo.t3}
-                              onChange={() =>
-                                setAvailableTo((p) => ({ ...p, t3: !p.t3 }))
-                              }
-                            />
-                          </Col>
-                        </Row>
-                      </Form.Group>
+                    
 
                       <Row>
                         <Col md={4} sm={4} xs={12}>
-                          <Form.Group className="mb-3">
-                            <Form.Label>Price</Form.Label>
-                            <Form.Control
-                              type="text"
-                              placeholder=""
-                              onKeyUp={(e) => handlePrice(e)}
-                            />
-                          </Form.Group>
+                        
                         </Col>
-                        <Col md={4} sm={4} xs={12}>
-                          <Form.Group className="mb-3">
-                            <Form.Label>Quantity</Form.Label>
-                            <Form.Control
-                              type="text"
-                              value={quantity}
-                              placeholder=""
-                              onKeyUp={(e) => handleQuantity(e)}
-                              readOnly
-                            />
-                          </Form.Group>
-                        </Col>
-                        <Col md={4} sm={4} xs={12}>
-                          <Form.Group className="mb-3">
-                            <Form.Label>Category</Form.Label>
-                            <Form.Select
-                              aria-label="Default select example"
-                              onChange={(e) => handleCategory(e)}
-                            >
-                              <option>Selct Category</option>
-                              <option value="Age">Age</option>
-                              <option value="Nude">Nude</option>
-                              <option value="Implied">Implied</option>
-                              <option value="topless">topless</option>
-                              <option value="Supercar">Supercar</option>
-                              <option value="Cabo">Cabo</option>
-                              <option value="Sporty">Sporty</option>
-                              <option value="SFW">SFW</option>
-                              <option value="Khloe Terae">Khloe Terae</option>
-                              <option value="Jeni Summers">Jeni Summers</option>
-                              <option value="Sexy">Sexy</option>
-                              <option value="Metaverse">Metaverse</option>
-                              <option value="Lifestyle">lifestyle</option>
-                              <option value="Premium">Premium</option>
-                            </Form.Select>
-                          </Form.Group>
-                        </Col>
+                       
+                       
                       </Row>
 
                       <div>
@@ -423,11 +452,13 @@ const CreateNft = () => {
                     <div className="mt-4">
                       <div class="outer-explor-box mt-0">
                         {photoUrl && (
-                          <img
+                          <video
                             className="img-main"
-                            src={photo.photoUrl}
+                           
                             width={200}
-                          />
+                      >
+                           <source src={photo.photoUrl} />
+                      </video>
                         )}
 
                         {/* <img className="img-main"  src={"images/Team/team7.png"} />  */}
