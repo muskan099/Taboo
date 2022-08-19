@@ -12,6 +12,7 @@ import Stakes from "./pages/Stakes";
 import Explore from "./pages/Explore";
 import NftDetails from "./pages/NftDetails";
 import JoinUs from "./pages/JoinUs";
+import ModelRegistration from "./pages/ModelRegistration";
 import Magzine from "./pages/Magzine";
 import Rank from "./pages/Rank";
 import Profile from "./pages/Profile";
@@ -93,6 +94,7 @@ function App() {
           />
 
           <Route path="/TransactionList" element={<TransactionList />} />
+          <Route path="/ModelRegistration" element={<ModelRegistration />} />
           <Route path="/StackList" element={<StackList />} />
           <Route path="/ContactList" element={<ContactList />} />
 
