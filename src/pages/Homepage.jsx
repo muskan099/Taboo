@@ -144,7 +144,7 @@ const Homepage = () => {
                 <Button
                   className="common-btn taboo-banner-btn"
                   variant="outline-success"
-                  onClick={()=>setShowModal1(true)}
+                  // onClick={()=>setShowModal1(true)}
                 >
               Hot News
             </Button>
