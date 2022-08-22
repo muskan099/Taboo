@@ -11,6 +11,7 @@ import { toast } from "react-toastify";
 import { createNftSaga } from "../store/reducers/nftReducer";
 import { ipfsMint } from "../helpers/ipfs";
 import { Mint } from "../helpers/Mint";
+import axios from "axios";
 
 const CreateNft = () => {
   const dispatch = useDispatch();
@@ -29,33 +30,27 @@ const CreateNft = () => {
 
   const [name, setName] = useState("");
 
-  const [metaTag, setMetaTag] = useState("");
-
-  const [price, setPrice] = useState("");
-
-  const [quantity, setQuantity] = useState(1);
-
-  const [category, setCategory] = useState("");
-
+ 
   const [description, SetDescription] = useState("");
+  const [phone,setPhone] = useState("");
+  const [age,setAge] = useState("");
+  const [email,setEmail] = useState("");
+  const [height,setHeight] = useState("");
+  const [weight,setWeight] = useState("");
+  const [chest,setChest] = useState("");
+  const [instaLink,setInstaLink] = useState("");
+  const [facebookLink,setFacebookLink] = useState("");
+  const [youtubeLink,setYoutubeLink] = useState("");
+
 
   const [createStart, setCreateStart] = useState(false);
 
-  const [chain, setChain] = useState("");
-  const initialValues = {
-    name: "",
-    phone: "",
-    email: "",
-    socialmedia: "",
-    message: "",
-  };
-  const [data, setData] = useState(initialValues);
+
   
-  const [availableTo, setAvailableTo] = useState({
-    t1: false,
-    t2: false,
-    t3: false,
-  });
+  
+
+  
+  
   const [photo, setPhoto] = useState({
     loading: false,
     file: null,
@@ -103,21 +98,7 @@ console.log({files})
     }
   };
 
-  const handleName = (e) => {
-    let value = e.target.value;
-
-    if (value) {
-      setName(value);
-    }
-  };
-
-  const handleMetaTag = (e) => {
-    let value = e.target.value;
-
-    if (value) {
-      setMetaTag(value);
-    }
-  };
+  
 
   const handleDescription = (e) => {
     let value = e.target.value;
@@ -127,129 +108,187 @@ console.log({files})
     }
   };
 
-  const handlePrice = (e) => {
-    let value = e.target.value;
-
-    if (isNaN(value)) {
-      e.target.value = "";
-    } else {
-      setPrice(value);
-    }
-  };
-
-  const handleQuantity = (e) => {
-    let value = e.target.value;
-
-    if (isNaN(value)) {
-      //alert("hell")
-      setQuantity("");
-    } else {
-      if (value) {
-        setQuantity(value);
-      }
-    }
-  };
-
-  const handleCategory = (e) => {
+ 
+  const handleName = (e) => {
     let value = e.target.value;
 
     if (value) {
-      setCategory(value);
+      setName(value);
     }
   };
-
-  const handleChain = (e) => {
+  const handleEmail = (e) => {
     let value = e.target.value;
 
     if (value) {
-      setChain(value);
+      setEmail(value);
     }
   };
-  const handleData = (e) => {
-    const { name, value } = e.target;
-    setData({ ...data, [name]: e.target.value });
-    console.log([name]);
-    console.log(value);
-    console.log(data);
+  const handleAge = (e) => {
+    let value = e.target.value;
+
+    if (value) {
+      setAge(value);
+    }
+  };
+  const handlePhone = (e) => {
+    let value = e.target.value;
+
+    if (value) {
+      setPhone(value);
+    }
+  };
+  const handleWeight = (e) => {
+    let value = e.target.value;
+
+    if (value) {
+      setWeight(value);
+    }
+  };
+  const handleHeight = (e) => {
+    let value = e.target.value;
+
+    if (value) {
+      setHeight(value);
+    }
+  };
+  const handleChest = (e) => {
+    let value = e.target.value;
+
+    if (value) {
+      setChest(value);
+    }
+  };
+  const handleYoutubeLink = (e) => {
+    let value = e.target.value;
+
+    if (value) {
+      setYoutubeLink(value);
+    }
+  };
+  const handleInstaLink = (e) => {
+    let value = e.target.value;
+
+    if (value) {
+      setInstaLink(value);
+    }
+  };
+  const handleFacebookLink = (e) => {
+    let value = e.target.value;
+
+    if (value) {
+      setFacebookLink(value);
+    }
   };
   const handleSubmit = async (e) => {
-    const available_to = [];
-    const pattern = /^[A-Za-z]+$/;
+   
     const space = /^[a-zA-Z\s]*$/;
     const alphaNumeric = /[^a-zA-Z0-9\-\/]^[a-zA-Z\s]*$/;
+    const regex = /\S+@\S+\.\S+/;
+    const pattern = /^[A-Za-z]+$/;
+    const urlRegex =
+      /(^|\s)((https?:\/\/)?[\w-]+(\.[\w-]+)+\.?(:\d+)?(\/\S*)?)/gi;
   
-    for (let i in availableTo) {
-      if (i === "t1" && availableTo[i] === true) available_to.push("1 Tier");
-      if (i === "t2" && availableTo[i] === true) available_to.push("2 Tier");
-      if (i === "t3" && availableTo[i] === true) available_to.push("3 Tier");
-    }
-
+    
     if (file == null || file === "") {
-      toast.error("Please select NFT Image!");
-    } else if (metaTag === "") {
-      toast.error("Meta tag is required!");
-    } else if (alphaNumeric.test(metaTag)) {
-      toast.error("Meta tag is can only be alphabet and numbers");
+      toast.error("Please select a video");
     } else if (name === "") {
       toast.error("Name is required!");
-    } else if (!pattern.test(name) && pattern.test(space)) {
-      toast.error("Name can only be alphabets");
-    } else if (description == "") {
+    } else if (name.length < 5) {
+      toast.warn("fullname must be greater than 5 letters");
+    } else if (!pattern.test(name)) {
+      toast.warn("Name can only be alphabets");
+    }else if (!phone) {
+      toast.warn("Phone Number is missing!");
+      return;
+    } else if (phone.length < 9 || phone.length > 10) {
+      toast.warn("phoneNumber must be 10 digit");
+      return;
+    } else if (!email) {
+      toast.warn("Email is missing!");
+      return;
+    }  else if (!age) {
+      toast.warn("AGE is missing!");
+      return;
+    } else if (age.length > 2) {
+      toast.warn("age must be 2 digit");
+      return;
+    } else if (!height) {
+      toast.warn("height is missing!");
+      return;
+    } else if (height.length > 2) {
+      toast.warn("height must be 2 digit");
+      return;
+    } else if (!weight) {
+      toast.warn("weight is missing!");
+      return;
+    } else if (weight.length > 2) {
+      toast.warn("weight must be 2 digit");
+      return;
+    }else if (!chest) {
+      toast.warn("chest is missing!");
+      return;
+    } else if (chest.length > 2) {
+      toast.warn("chest must be 2 digit");
+      return;
+    } else if (!youtubeLink) {
+      toast.warn("Social Media is missing!");
+      return;
+    } else if (!urlRegex.test(youtubeLink)) {
+      toast.warn("Youtube link is not in correct format");
+      return;
+    }else if (!instaLink) {
+      toast.warn("Social Media is missing!");
+      return;
+    }  else if (!urlRegex.test(instaLink)) {
+      toast.warn("Youtube link is not in correct format");
+      return;
+    }else if (!facebookLink) {
+      toast.warn("Social Media is missing!");
+      return;
+    } else if (!urlRegex.test(facebookLink)) {
+      toast.warn("Youtube link is not in correct format");
+      return;
+    }else if (description == "") {
       toast.error("Description is required!");
-    } else if (!pattern.test(description)&& pattern.test(space)) {
-      toast.error("Description can only be alphabets!");
-    } else if (price == "") {
-      toast.error("Price is required!");
-    } else if (isNaN(price)) {
-      toast.error("Please enter correct price!");
-    } else if (quantity == "") {
-      toast.error("Quantity is required!");
-    } else if (isNaN(quantity)) {
-      toast.error("Please enter correct quantity!");
-    } else if (category == "") {
-      toast.error("category is required!");
-    } else if (chain == "") {
-      toast.error("Please select chain!");
-    } else if (available_to.length == 0) {
-      toast.error("Please select atlease one tier");
     } else {
       setCreateStart(true);
 
       setPhoto({ ...photo, loading: true });
 
-      const data = { name: name, price: price, description: description };
-
-      let ipfs_hash = await ipfsMint(contentImage, data);
-      let voucher = await Mint(ipfs_hash, price);
-
-      console.log("voucher", voucher.address);
+      
       const formData = new FormData();
-      console.log("file", file);
-      formData.append("file", file);
+     
+      formData.append("file", photo);
       formData.append("name", name);
-      formData.append("meta_tag", metaTag);
+      formData.append("phone", phone);
+      formData.append("email", email);
+      formData.append("age", age);
+      formData.append("chest", chest);
+      formData.append("weight", weight);
+      formData.append("height", height);
+      formData.append("instaLink", instaLink);
+      formData.append("facebookLink", facebookLink);
+      formData.append("youtubeLink", youtubeLink);
+      
       formData.append("description", description);
-      formData.append("price", price);
-      formData.append("quantity", quantity);
-      formData.append("category", category);
-      formData.append("ipfs", ipfs_hash);
-      formData.append("signature", voucher.voucher.signature);
+      console.log({file,name,email,age,chest,weight})
+      console.log({formData})
 
-      formData.append("token_id", voucher.voucher.tokenId);
+     
+const res = await axios.post('https://test.taboo.io/users/modelRegister', formData)
+console.log(res)
+if(res.data.status){
+  setCreateStart(false);
+  toast.success("Model has been registered");
+}
 
-      formData.append("user_id", "62733f0715eb380c440489ee");
+      // dispatch(createNftSaga(formData));
 
-      formData.append("wallet_address", voucher.address);
+      // toast.success("Nft created successfully!");
 
-      formData.append("available_to", available_to);
+      // setCreateStart(false);
 
-      dispatch(createNftSaga(formData));
-
-      toast.success("Nft created successfully!");
-
-      setCreateStart(false);
-
-      setTimeout(navigate("/explore"), 120000);
+      // setTimeout(navigate("/explore"), 120000);
     }
   };
 
@@ -289,17 +328,14 @@ console.log({files})
                         </div>
                       </div>
 {console.log({photoUrl})}
-<Form.Group className="mb-3">
-                        <Form.Label>Name</Form.Label>
+<Form.Group className="mb-4">
                         <Form.Control
                           type="text"
-                          required
-                          name="name"
-                          onChange={handleData}
-                          placeholder=""
-                          value={data.name}
+                          onKeyUp={(e) => handleName(e)}
+                          placeholder="Your NFT Name"
                         />
                       </Form.Group>
+
                       <Form.Group className="mb-3">
                         <Form.Label>Phone</Form.Label>
                         <Form.Control
@@ -307,9 +343,9 @@ console.log({files})
                           pattern="[0-9]{10}"
                           required
                           name="phone"
-                          onChange={handleData}
+                       
                           placeholder=""
-                          value={data.phone}
+                          onKeyUp={(e) => handlePhone(e)}
                         />
                       </Form.Group>
                       <Form.Group className="mb-3">
@@ -318,33 +354,22 @@ console.log({files})
                           type="email"
                           required
                           name="email"
-                          onChange={handleData}
+                        
                           placeholder=""
-                          value={data.email}
+                          onKeyUp={(e) => handleEmail(e)}
                         />
                       </Form.Group>
-                      <Form.Group className="mb-3">
-                        <Form.Label>Phone</Form.Label>
-                        <Form.Control
-                          type="number"
-                          pattern="[0-9]{10}"
-                          required
-                          name="phone"
-                          onChange={handleData}
-                          placeholder=""
-                          value={data.phone}
-                        />
-                      </Form.Group>
+                   
                       <Form.Group className="mb-3">
                         <Form.Label>Age</Form.Label>
                         <Form.Control
                           type="number"
                           pattern="[0-9]{10}"
                           required
-                          name="phone"
-                          onChange={handleData}
+                          name="age"
+                        
                           placeholder=""
-                          value={data.phone}
+                          onKeyUp={(e) => handleAge(e)}
                         />
                       </Form.Group>
                       <Form.Group className="mb-3">
@@ -353,10 +378,10 @@ console.log({files})
                           type="number"
                           pattern="[0-9]{10}"
                           required
-                          name="phone"
-                          onChange={handleData}
+                          name="height"
+                        
                           placeholder=""
-                          value={data.phone}
+                          onKeyUp={(e) => handleHeight(e)}
                         />
                       </Form.Group>
                       <Form.Group className="mb-3">
@@ -365,10 +390,10 @@ console.log({files})
                           type="number"
                           pattern="[0-9]{10}"
                           required
-                          name="phone"
-                          onChange={handleData}
+                          name="weight"
+                        
                           placeholder=""
-                          value={data.phone}
+                          onKeyUp={(e) => handleWeight(e)}
                         />
                       </Form.Group>
                       <Form.Group className="mb-3">
@@ -377,10 +402,10 @@ console.log({files})
                           type="number"
                           pattern="[0-9]{10}"
                           required
-                          name="phone"
-                          onChange={handleData}
+                          name="chestsize"
+                        
                           placeholder=""
-                          value={data.phone}
+                          onKeyUp={(e) => handleChest(e)}
                         />
                       </Form.Group>
                       <Form.Group className="mb-3">
@@ -388,10 +413,10 @@ console.log({files})
                         <Form.Control
                           type="text"
                           required
-                          name="socialmedia"
-                          onChange={handleData}
+                          name="instalink"
+                         
                           placeholder=""
-                          value={data.socialmedia}
+                          onKeyUp={(e) => handleInstaLink(e)}
                         />
                       </Form.Group>
                       <Form.Group className="mb-3">
@@ -399,10 +424,10 @@ console.log({files})
                         <Form.Control
                           type="text"
                           required
-                          name="socialmedia"
-                          onChange={handleData}
+                          name="facebooklink"
+                         
                           placeholder=""
-                          value={data.socialmedia}
+                          onKeyUp={(e) => handleFacebookLink(e)}
                         />
                       </Form.Group>
                       <Form.Group className="mb-3">
@@ -410,10 +435,10 @@ console.log({files})
                         <Form.Control
                           type="text"
                           required
-                          name="socialmedia"
-                          onChange={handleData}
+                          name="youtubelink"
+                      
                           placeholder=""
-                          value={data.socialmedia}
+                          onKeyUp={(e) => handleYoutubeLink(e)}
                         />
                       </Form.Group>
                     
@@ -443,7 +468,7 @@ console.log({files})
                           disabled={createStart}
                           onClick={(e) => handleSubmit(e)}
                         >
-                          {createStart ? "Processing" : "Create Item"}
+                          {createStart ? "Processing" : "Submit"}
                         </button>
                       </div>
                     </div>
@@ -467,9 +492,9 @@ console.log({files})
                           <div className="price-line">
                             <h5>
                               {name}
-                              <span>{quantity}</span>{" "}
+                            
                             </h5>
-                            <h6>{price} Taboo</h6>
+                          
                           </div>
                           <div className="stoke-line d-none">
                             <ul>
