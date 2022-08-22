@@ -239,16 +239,10 @@ console.log({files})
     }else if (!instaLink) {
       toast.warn("Social Media is missing!");
       return;
-    }  else if (!urlRegex.test(instaLink)) {
-      toast.warn("Youtube link is not in correct format");
-      return;
-    }else if (!facebookLink) {
+    }  else if (!facebookLink) {
       toast.warn("Social Media is missing!");
       return;
-    } else if (!urlRegex.test(facebookLink)) {
-      toast.warn("Youtube link is not in correct format");
-      return;
-    }else if (description == "") {
+    } else if (description == "") {
       toast.error("Description is required!");
     } else {
       setCreateStart(true);
@@ -279,7 +273,7 @@ const res = await axios.post('https://test.taboo.io/users/modelRegister', formDa
 console.log(res)
 if(res.data.status){
   setCreateStart(false);
-  toast.success("Model has been registered");
+  toast.success("Your Profile is under review. We will update you once its approved.");
 }
 
       // dispatch(createNftSaga(formData));
@@ -316,7 +310,7 @@ if(res.data.status){
 
                       <div class="upload-img-box">
                         <div>
-                          <div>PNG,JPG,GIF,WEBP or MP4, Max 20mb</div>
+                          <div> MP4,MOV, Max 30mb</div>
                           <div class="upload-btn-wrapper">
                             <button class="blue-btn">Upload</button>
                             <input
@@ -329,10 +323,11 @@ if(res.data.status){
                       </div>
 {console.log({photoUrl})}
 <Form.Group className="mb-4">
+<Form.Label>Name</Form.Label>
                         <Form.Control
                           type="text"
                           onKeyUp={(e) => handleName(e)}
-                          placeholder="Your NFT Name"
+                          placeholder="Enter Your Name"
                         />
                       </Form.Group>
 
