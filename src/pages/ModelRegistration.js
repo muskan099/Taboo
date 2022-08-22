@@ -187,6 +187,7 @@ console.log({files})
     const pattern = /^[A-Za-z]+$/;
     const urlRegex =
       /(^|\s)((https?:\/\/)?[\w-]+(\.[\w-]+)+\.?(:\d+)?(\/\S*)?)/gi;
+      const heightRegex = /^([1-2]?[0-9]{1,3})\'([0-9]|[0-1]{2})\"$/;
   
     
     if (file == null || file === "") {
@@ -215,9 +216,6 @@ console.log({files})
     } else if (!height) {
       toast.warn("height is missing!");
       return;
-    } else if (height.length > 2) {
-      toast.warn("height must be 2 digit");
-      return;
     } else if (!weight) {
       toast.warn("weight is missing!");
       return;
@@ -230,17 +228,17 @@ console.log({files})
     } else if (chest.length > 2) {
       toast.warn("chest must be 2 digit");
       return;
+    } else if (!instaLink) {
+      toast.warn("Insta Link is missing!");
+      return;
+    }  else if (!urlRegex.test(instaLink)) {
+      toast.warn("Instagram link is not in correct format");
+      return;
+    }else if (!facebookLink) {
+      toast.warn("Facebook Link is missing!");
+      return;
     } else if (!youtubeLink) {
-      toast.warn("Social Media is missing!");
-      return;
-    } else if (!urlRegex.test(youtubeLink)) {
-      toast.warn("Youtube link is not in correct format");
-      return;
-    }else if (!instaLink) {
-      toast.warn("Social Media is missing!");
-      return;
-    }  else if (!facebookLink) {
-      toast.warn("Social Media is missing!");
+      toast.warn(" Youtube link is missing!");
       return;
     } else if (description == "") {
       toast.error("Description is required!");
@@ -370,17 +368,15 @@ if(res.data.status){
                       <Form.Group className="mb-3">
                         <Form.Label>Height</Form.Label>
                         <Form.Control
-                          type="number"
-                          pattern="[0-9]{10}"
-                          required
+                          type="text"
+                        required
                           name="height"
-                        
-                          placeholder=""
+                        placeholder="Height (in ft'inches)"
                           onKeyUp={(e) => handleHeight(e)}
                         />
                       </Form.Group>
                       <Form.Group className="mb-3">
-                        <Form.Label>Weight</Form.Label>
+                        <Form.Label>Weight (in inch)</Form.Label>
                         <Form.Control
                           type="number"
                           pattern="[0-9]{10}"
@@ -392,7 +388,7 @@ if(res.data.status){
                         />
                       </Form.Group>
                       <Form.Group className="mb-3">
-                        <Form.Label>Chest Size</Form.Label>
+                        <Form.Label>Chest Size (in inch)</Form.Label>
                         <Form.Control
                           type="number"
                           pattern="[0-9]{10}"
