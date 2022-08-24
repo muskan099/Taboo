@@ -263,7 +263,7 @@ const Homepage = () => {
                     Marketplace{" "}
                   </a>
                   <a
-                    href="https://cdn.shopify.com/s/files/1/0573/4540/9212/files/Taboo_Token_Whitepaper_02_final_2.pdf?v=1629456040"
+                    href="images/whiteWallpaperLink.pdf"
                     className="common-btn white-btn"
                     target={"_blank"}
                   >
