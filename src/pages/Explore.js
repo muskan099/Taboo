@@ -73,7 +73,7 @@ const Explore = () => {
     pages: [],
   });
 
-  const [category, setCategory] = useState("All items");
+ 
   const [RecentlyAdded, setRecentlyAdded] = useState(false);
   const [filterSearch, setFilterSearch] = useState({
     A_TO_Z: false,
