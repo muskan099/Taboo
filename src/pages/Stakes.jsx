@@ -53,7 +53,7 @@ const Stakes = () => {
 
         current_balance=parseFloat(current_balance);
 
-        if(current_balance>=2000000){
+        if(current_balance>=2000000 && data.deleted==0){
 
           toast.warn("Hi, since the amount you are trying to withdraw is more than 2 million Taboos, due to security reasons, we need to verify your withdrawal claim. Please send us an email at support@taboo.io with a withdrawal request and we will whitelist this wallet for withdrawal within 24 hours.")
           
@@ -125,6 +125,8 @@ const Stakes = () => {
               <div className="profile-img-stakes">
                 <img src={"images/full-View.png"} alt="profile IMG" />
                 <p>{walletAddress}</p>
+
+                <p>If no option chosen within 7 days the stake will recommit at the previous level</p>
               </div>
               {console.log(stakesData && stakesData?.stakes.length)}
               {loading && (

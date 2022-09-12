@@ -155,7 +155,7 @@ const Footer = () => {
                 </li>
                 <li>
                     <Link
-                    to="/join-us"
+                    to="/ModelRegistration"
                   >
                     Join Us
                   </Link>
