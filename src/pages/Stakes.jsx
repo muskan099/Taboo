@@ -290,7 +290,7 @@ console.log({reStakeData})
 
   async function getData() {
     setLoading(true);
-    const res = await axios.post("https://test.taboo.io/stakes", { address: walletAddress });
+    const res = await axios.post("https://test.taboo.io/stakes", { address: walletAddress});
     if (res.status === 200) {
       setStakesData(res.data);
     }
@@ -400,7 +400,8 @@ console.log(reStakeData)
                              }
                               
                             </button>
-                            { calculateDays(item.stakeinfo.enddate,new Date()) > 0 && item.stakeinfo.status!=="closed"? <button  onClick={() => handleReStake(item.stakeinfo)}
+                            
+                            { calculateDays(moment(item.stakeinfo.enddate).format("YYYY-MM-DD"),new Date()) > 0 && item.stakeinfo.status!=="closed"? <button  onClick={() => handleReStake(item.stakeinfo)}
                               className="common-btn white-btn withdrow-btn"
                               
                             >

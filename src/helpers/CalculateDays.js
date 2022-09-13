@@ -4,6 +4,7 @@ function calculateDays(startDate, endDate) {
   var end_date = moment(endDate, "YYYY-MM-DD");
   var duration = moment.duration(end_date.diff(start_date));
   var days = duration.asDays();
+
   return parseInt(days);
 }
 export default calculateDays;
