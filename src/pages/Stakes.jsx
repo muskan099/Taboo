@@ -290,7 +290,7 @@ console.log({reStakeData})
 
   async function getData() {
     setLoading(true);
-    const res = await axios.post("https://test.taboo.io/stakes", { address: "0x7e85A2A8fEf0dB1FA1e5776f40947586b356F212"});
+    const res = await axios.post("https://test.taboo.io/stakes", { address: walletAddress});
     if (res.status === 200) {
       setStakesData(res.data);
     }
