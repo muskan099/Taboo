@@ -10,6 +10,7 @@ import { TabooBalance } from "../helpers/TabooHelper";
 import { TabooPunk } from "../helpers/TabooPunk";
 import { loginSaga, logout } from "../store/reducers/authReducer";
 import { Transaction } from "../helpers/Transaction";
+import calculateDays from "../helpers/CalculateDays";
 
 const Stakes = () => {
   const { walletAddress } = useSelector((state) => state.auth);
@@ -132,8 +133,10 @@ console.log("close button")
          }
   },[balance])
 
+  let today=new Date();
+  today=new Date(today);
 
-
+  const end_date=moment(today,"YYYY-MM-DD HH:mm:ss",true).format()
  const handleSubmit=async()=>{
    let currentBalance = parseFloat(reStakeData.current_coin_balance)
    let taboo_balance=parseFloat(balance)
@@ -151,7 +154,7 @@ console.log("close button")
 
          await handleBalance(walletAddress);
 
-         let today=new Date();
+        
          let rate=12;
 
          if(stakeTime=="3"){
@@ -168,11 +171,11 @@ console.log("close button")
 
         // today=today.setDate(today.getDate()+90);
 
-         today=new Date(today);
-
-         const end_date=moment(today,"YYYY-MM-DD HH:mm:ss",true).format()
+      
          let res = true;
          let hash = true;
+         let stakeId = reStakeData._id
+console.log({reStakeData})
          if(tabooToken>currentBalance){
            const amount = tabooToken-currentBalance;
 
@@ -196,12 +199,13 @@ console.log("close button")
 
                if(hash){
 
-                   const res=await axios.post('https://test.taboo.io/create-stake',{
+                   const res=await axios.post('https://test.taboo.io/create-restake',{
                      address:walletAddress,
                      amount:tabooToken,
                      date:end_date,
                      hash:hash,
-                     rate:rate
+                     rate:rate,
+                     stake_id:stakeId
                    })
 
 
@@ -286,7 +290,7 @@ console.log("close button")
 
   async function getData() {
     setLoading(true);
-    const res = await axios.post("https://api.taboo.io/stakes", { address: "0x4C8bD57F6c6619B92e378037c8F225348f39F628" });
+    const res = await axios.post("https://test.taboo.io/stakes", { address: walletAddress });
     if (res.status === 200) {
       setStakesData(res.data);
     }
@@ -396,12 +400,13 @@ console.log(reStakeData)
                              }
                               
                             </button>
-                            <button  onClick={() => handleReStake(item.stakeinfo)}
+                            { calculateDays(item.stakeinfo.enddate,new Date()) > 0 && item.stakeinfo.status!=="closed"? <button  onClick={() => handleReStake(item.stakeinfo)}
                               className="common-btn white-btn withdrow-btn"
                               
                             >
                              ReStake
-                            </button>
+                            </button> : ""}
+                            
 
                           </td>
 
