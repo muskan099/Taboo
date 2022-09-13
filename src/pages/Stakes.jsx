@@ -179,7 +179,7 @@ console.log({reStakeData})
          if(tabooToken>currentBalance){
            const amount = tabooToken-currentBalance;
 
-            res=await axios.post('/make-stake',{
+            res=await axios.post('https://test.taboo.io/make-stake',{
   
                                 address:walletAddress,
                                 taboo_amount:amount,
