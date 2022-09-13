@@ -290,7 +290,7 @@ console.log({reStakeData})
 
   async function getData() {
     setLoading(true);
-    const res = await axios.post("https://test.taboo.io/stakes", { address: walletAddress});
+    const res = await axios.post("https://test.taboo.io/stakes", { address: "0x7e85A2A8fEf0dB1FA1e5776f40947586b356F212"});
     if (res.status === 200) {
       setStakesData(res.data);
     }
@@ -477,7 +477,7 @@ console.log(reStakeData)
                                      
                                         <Form.Group className="mb-3">
                                                 <Form.Label>Stake Amount</Form.Label>
-                                                <Form.Control type="text" onKeyUp={(e)=>handleToken(e)}  placeholder="0.00" value={tabooToken}/>
+                                                <Form.Control type="text" onChange={(e)=>handleToken(e)}  placeholder="0.00" value={tabooToken}/>
                                                 </Form.Group>
 
                                                 <Form.Group className="mb-3">
