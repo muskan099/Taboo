@@ -1786,7 +1786,7 @@ body {
   font-weight: 700;
 }
 .below-18-popup.modal-comming-soon .modal-dialog {
-  max-width: 400px;
+  max-width: 600px;
 }
 
 /*07-04-2022*/
@@ -3908,6 +3908,7 @@ text-align: left;
     display: block;
     font-weight: 700;
     color: #aaa;
+    width: 87px;
 }
 .select-transaction-list li .radio label input[type="radio"]:checked ~ .bsc-block {
     border: 2px solid #871434;
@@ -4587,6 +4588,10 @@ font-size: 14px;
   font-weight: 600;
   font-size: 18px;
 }
+.radio .cr {
+ 
+  margin-right: 0 !important;
+}
 .radio-check-time {
   display: flex;
   align-items: center;
@@ -4595,7 +4600,7 @@ font-size: 14px;
 }
 .radio-check-time .radio {
   display: block;
-  width: 33%;
+  width: 238px;
 }
 .radio-check-time .radio label{
   width: 100%;

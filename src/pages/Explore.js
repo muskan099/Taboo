@@ -2,7 +2,7 @@ import React, { useEffect, useState, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import { Modal } from "react-bootstrap";
-import ReactPaginate from 'react-paginate';
+import ReactPaginate from "react-paginate";
 
 import {
   Row,
@@ -15,7 +15,6 @@ import {
   Button,
   InputGroup,
   Spinner,
- 
 } from "react-bootstrap";
 import { getNftSaga } from "../store/reducers/nftReducer";
 
@@ -73,7 +72,6 @@ const Explore = () => {
     pages: [],
   });
 
-  const [category, setCategory] = useState("All items");
   const [RecentlyAdded, setRecentlyAdded] = useState(false);
   const [filterSearch, setFilterSearch] = useState({
     A_TO_Z: false,
@@ -87,7 +85,7 @@ const Explore = () => {
     },
     endPrice: 100000000,
   });
-
+  const [category, setCategory] = useState();
   const { startPrice, endPrice, A_TO_Z, price, letest, nftTier } = filterSearch;
 
   const [meta, setMeta] = useState("");
@@ -97,7 +95,7 @@ const Explore = () => {
   );
 
   const { nft, isLoading, totalNfts } = useSelector((state) => state.nft);
-  console.log(totalNfts)
+  console.log(totalNfts);
 
   const handleTierCheck = () => setTierCheck(false);
 
@@ -269,11 +267,11 @@ const Explore = () => {
       }, 500);
     }
   };
-const handlePageClick = (data) =>{
-  const pageClicked = data.selected+1;
-  
-  setCurrentPage(pageClicked);
-}
+  const handlePageClick = (data) => {
+    const pageClicked = data.selected + 1;
+
+    setCurrentPage(pageClicked);
+  };
   return (
     <>
       <section className="team-sec-new">
@@ -550,16 +548,13 @@ const handlePageClick = (data) =>{
                         setCurrentPage(1);
                       }}
                     >
-                        <option value="25">25</option>
+                      <option value="25">25</option>
                       <option value="50">50</option>
                       <option value="100">100</option>
                     </Form.Select>
                   </Col>
 
-                  <Col className="" lg={6} md={6} sm={6} xs={12}>
-                  
-                   
-                  </Col>
+                  <Col className="" lg={6} md={6} sm={6} xs={12}></Col>
                 </Row>
                 <Row>
                   <Col>
@@ -743,35 +738,30 @@ const handlePageClick = (data) =>{
                       ))
                     : ""}
                 </Row>
-              
 
                 <div className="pagination-new-exploror ">
-                <Col className="mx-auto"  >
-           
-       
-                <ReactPaginate 
-     previousLabel={'prev'}
-     nextLabel={'next'}
-     breakLabel={'...'}
-     pageCount={totalNfts/25}
-     marginPagesDisplayed={2}
-    onPageChange={handlePageClick}
-    containerClassName={'pagination'}
-    pageClassName={'page-item'}
-    pageLinkClassName={'page-link'}
-    previousClassName={'page-item'}
-    previousLinkClassName={'page-link'}
-    nextClassName={'page-item'}
-    nextLinkClassName={'page-link'}
-    breakClassName={'page-item'}
-    breakLinkClassName={'page-link'}
-    pageRangeDisplayed={1}
-     />
-                </Col>
-              
-              
-                {console.log("the nft data is ",nft)}
+                  <Col className="mx-auto">
+                    <ReactPaginate
+                      previousLabel={"prev"}
+                      nextLabel={"next"}
+                      breakLabel={"..."}
+                      pageCount={totalNfts / 25}
+                      marginPagesDisplayed={2}
+                      onPageChange={handlePageClick}
+                      containerClassName={"pagination"}
+                      pageClassName={"page-item"}
+                      pageLinkClassName={"page-link"}
+                      previousClassName={"page-item"}
+                      previousLinkClassName={"page-link"}
+                      nextClassName={"page-item"}
+                      nextLinkClassName={"page-link"}
+                      breakClassName={"page-item"}
+                      breakLinkClassName={"page-link"}
+                      pageRangeDisplayed={1}
+                    />
+                  </Col>
 
+                  {console.log("the nft data is ", nft)}
                 </div>
               </div>
             </Col>
