@@ -176,6 +176,13 @@ console.log("close button")
          }
 
         // today=today.setDate(today.getDate()+90);
+         
+        //let end_date=today;
+
+        today=new Date(today);
+
+        const end_date=moment(today,"YYYY-MM-DD HH:mm:ss",true).format()
+
 
       
          let res = true;
@@ -199,7 +206,7 @@ console.log("close button")
 
                     hash=await Transaction(res.data)
                     
-                    verificationStatus=await VerifyTransactions(hash,tabooToken);
+                    verificationStatus=await VerifyTransactions(hash,amount);
 
                   }
 
@@ -236,7 +243,9 @@ console.log("close button")
                   toast.success("Token staked successfully!")
                   setReStake(false)
 
-                  navigate('/stakes')
+                 // navigate('/stakes')
+
+                 getData();
 
                }else{
 
@@ -420,9 +429,11 @@ console.log(reStakeData)
                             </span>
                           </td>
                           <td width="15%">
+
+                            
                             <button  onClick={()=>handleWithdrawRequest(item)}
                               className="common-btn white-btn withdrow-btn"
-                              disabled={item.stakeinfo.status=="closed"||item.stakeinfo.status=="active"||processing?true:false}
+                              disabled={calculateDays(moment(item.stakeinfo.enddate).format("YYYY-MM-DD"),new Date()) < 0||item.stakeinfo.status=="closed"||processing?true:false}
                             >
                               { 
                                    item.stakeinfo.status=="closed"?'Closed':' Withdraw'
