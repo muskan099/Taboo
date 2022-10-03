@@ -245,6 +245,39 @@ const BuyCoin=()=>{
 
 
 
+
+   const handleBNBVerification=async(value)=>{
+    //let value=e.target.value;
+    
+
+    if(isAuthenticated){
+         
+  
+
+             setBNBAmount(value);
+
+             handleToken(value)
+
+
+
+             return value;
+
+           
+         
+     }else
+      {
+       toast.warn("Please connect wallet!")
+      }
+  }
+
+
+
+
+
+
+
+
+
    const handleBuyCoin=async()=>{
 
       
@@ -449,7 +482,10 @@ const BuyCoin=()=>{
 
                 if(txAmount==tempAmount && toAddress =="0x64e50e62c7a8e7fd6ea4c0ac6c38086571a4d8b3"){
 
-                        
+                   
+                   await  handleBNBVerification(txAmount);
+
+                   
                           
                    setIsloading(false);
 

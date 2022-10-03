@@ -142,7 +142,7 @@ const Homepage = () => {
                 />
                 <h4>TABOO IS THE PLAYBOY OF CRYPTO</h4>
                 <Button
-                  className="common-btn taboo-banner-btn"
+                  className="common-btn taboo-banner-btn d-none"
                   variant="outline-success"
                   // onClick={()=>setShowModal1(true)}
                 >
