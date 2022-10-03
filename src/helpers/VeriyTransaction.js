@@ -50,13 +50,19 @@ export const VerifyTransactions = async (hash, amount) => {
     adminWalletAddress = adminWalletAddress.toLowerCase();
 
     if (amount === txAmount && receiverWallet === adminWalletAddress) {
+
       hash1 = true;
+
     }
 
-    return hash1;
+    let tx={status:hash1,taboo_amount:txAmount}
+
+    return tx;
     
   } catch (e) {
-    return hash1;
+    let tx={status:hash1,taboo_amount:0}
+
+    return tx;
   }
 };
 

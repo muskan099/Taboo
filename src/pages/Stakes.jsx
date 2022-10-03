@@ -224,6 +224,8 @@ console.log("close button")
 
             if(res){
               
+              const tx_amount = tabooToken-currentBalance;
+
 
                if(verificationStatus){
 
@@ -233,7 +235,9 @@ console.log("close button")
                      date:end_date,
                      hash:hash,
                      rate:rate,
-                     stake_id:stakeId
+                     stake_id:stakeId,
+                     stakeTime:stakeTime,
+                     tx_amount:tx_amount
                    })
 
 

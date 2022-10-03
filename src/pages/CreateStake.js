@@ -151,16 +151,17 @@ const CreateStake=()=>{
              if(res.data.status){
                const hash=await Transaction(res.data)
 
-                let hash1=await VerifyTransactions(hash,tabooToken);
+                let txData=await VerifyTransactions(hash,tabooToken);
 
-                if(hash1){
+                if(txData.status){
 
                     const res=await axios.post('/create-stake',{
                       address:walletAddress,
-                      amount:tabooToken,
+                      amount:txData.taboo_amount,
                       date:end_date,
                       hash:hash,
-                      rate:rate
+                      rate:rate,
+                      stakeTime
                     })
 
 
