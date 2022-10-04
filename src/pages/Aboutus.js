@@ -157,11 +157,20 @@ const Aboutus = () => {
 
               <div className="m-4">
                 <img className="img-fluid m-0" src={"images/about-us.jpeg"} />
+                <div className="m-4 text-justify">
+                  <p>TABOO Mansion Villa Day - August 2022</p>
+                </div>
               </div>
             </Col>
             <Col lg={6} md={6} sm={12} xs={12}>
               <div className="m-4">
                 <img className="img-fluid m-0" src={"images/about-us-2.jpeg"} />
+                <div className="m-4 text-justify">
+                  <p>
+                    TABOO Staff for Mansion Event with Models+T4 Holders -
+                    August 2022
+                  </p>
+                </div>
               </div>
               <div className="text-justify m-4">
                 <h2>NFT Marketplace & Media Platform</h2>
@@ -213,10 +222,7 @@ const Aboutus = () => {
               <div className="m-4">
                 <img className="img-fluid" src={"images/about-us-3.jpeg"} />
                 <div className="m-4 text-justify">
-                  <p>
-                    TABOO Staff for Mansion Event with Models+T4 Holders -
-                    August 2022
-                  </p>
+                  <p>TABOO Mansion Event Superyacht Day</p>
                 </div>
               </div>
             </Col>
