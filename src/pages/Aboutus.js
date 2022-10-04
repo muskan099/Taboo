@@ -13,10 +13,11 @@ import {
   Tab,
   Tabs,
 } from "react-bootstrap";
-
+import Header from "../components/UI/Header";
 const Aboutus = () => {
   return (
     <>
+      <Header />
       <section className="profile-upper-banner">
         <Container fluid className="p-5">
           <Row>
@@ -73,14 +74,16 @@ const Aboutus = () => {
                 </div>
               </div>
             </Col>
-            
+
             <Col lg={6} md={6} sm={12} xs={12}>
               <div>
                 <div className="set-pading">
-                  <h2 className="color-font">Adult NFT & Streaming Media Project</h2>
+                  <h2 className="color-font">
+                    Adult NFT & Streaming Media Project
+                  </h2>
                   <h4>
-                      Taboo is an adult NFT & streaming media project.
-                      Specializing in highly exclusive content.
+                    Taboo is an adult NFT & streaming media project.
+                    Specializing in highly exclusive content.
                   </h4>
                   <p>
                     With models, whose content is not like other adult tokens.
@@ -274,8 +277,8 @@ const Aboutus = () => {
             </Col>
           </Row>
         </Container> */}
-
       </section>
+      <AboutUsFooter />
     </>
   );
 };

@@ -38,8 +38,10 @@ import SignUp from "./pages/SignUp";
 import AdminRoute from "./components/AdminRoute";
 import Buycoin from "./pages/Buycoin";
 import CreateConfig from "./pages/admin/CreateConfig";
+import AboutUsFooter from "./pages/AboutUsFooter";
 
 function App() {
+  const [path, setPath] = useState();
   useEffect(() => {
     AOS.init();
   }, []);
@@ -70,7 +72,13 @@ function App() {
 
           <Route path="/farm" element={<Farm />} />
 
-          <Route path="/about" element={<Aboutus />} />
+          <Route
+            path="/about"
+            render={() => {
+              setPath("about");
+            }}
+            element={<Aboutus />}
+          />
           <Route path="/buycoin" element={<Buycoin />} />
 
           <Route
@@ -117,7 +125,8 @@ function App() {
 
           <Route path="/models" element={<Artist />} />
         </Routes>
-        <Footer />
+        {path === "about" ? <AboutUsFooter /> : <Footer />}
+        {console.log({ path })}
       </BrowserRouter>
     </div>
   );
