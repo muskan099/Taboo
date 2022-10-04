@@ -141,15 +141,15 @@ const Aboutus = () => {
               <div className="text-justify m-4">
                 <h2>Selectively Curated Super Models</h2>
                 <p>
-                  With Super Models, TABOO is selectively curating the most
-                  exclusive content creator list in existence, providing the
-                  highest quality and most exclusive SFW, NSFW to XXX exclusive
-                  media from content creators. There is an application process,
-                  in which any adult performer who wishes to be on our platform
-                  will have to qualify and obtain approval by us first. This
-                  selectivity and exclusivity will create a media platform of
-                  the utmost quality and soon everyone will understand why Taboo
-                  is the best in the industry
+                  TABOO is selectively curating the most exclusive content
+                  creator list in existence, providing the highest quality and
+                  most exclusive SFW, NSFW as well as XXX exclusive media from a
+                  list of highly recognised creators. There is an application
+                  process, in which any adult performer who wishes to be on the
+                  platform will have to qualify and obtain approval first. This
+                  selectivity and exclusivity creates a media platform of the
+                  utmost quality and soon everyone will understand why Taboo is
+                  the best in the industry.
                 </p>
               </div>
 
@@ -164,16 +164,11 @@ const Aboutus = () => {
               <div className="text-justify m-4">
                 <h2>NFT Marketplace & Media Platform</h2>
                 <p>
-                  Our NFT Marketplace and media platform is cross chain,
-                  utilizing layer 2 solution protocols with the lowest fees and
-                  fastest transactions. An asset bridge to the ERC20 Network,
-                  along with Version 1 of the marketplace, to bring ERC721 and
-                  ERC1155 compatible NFTs to the Taboo Ecosystem, on the Binance
-                  Smart Chain. Our Marketplace is built on the Plasma Network,
-                  targeting networks like Polygon and Harmony and Sol. We will
-                  also have a merchandise store where you can buy your favorite
-                  goodies. A unique forum will be made, too, with special
-                  incentives and rewards for generating traffic.
+                  The platform recently launched its native marketplace with
+                  cutting-edge functionalities with a redesign of their UI/UX.
+                  Users can now purchase the $TABOO token, sell and trade the
+                  platform's native NFTs, or stake their current holdings to
+                  earn a guaranteed APY (Annual Percentage Yield) of up to 20%.
                 </p>
               </div>
             </Col>
@@ -184,25 +179,36 @@ const Aboutus = () => {
               <div className="m-4 text-justify">
                 <h2>Tiered Content for Discerning Consumers</h2>
                 <p>
-                  However, what is the biggest hurdle in the adult industry?
-                  Anyone with a camera can create erotic media. Our NFT
-                  marketplace tier system aims to create scarcity, in an
-                  oversaturated market. The more Taboo Tokens a person holds,
+                  The Taboo marketplace works on a 4-tier system, where each
+                  tier gives access to a higher level of content in the form of
+                  an exclusive NFT collection. The more tokens a person holds,
                   the more content they can access, similar to buying Diamond
-                  Tier on Patreon. Each tier will grant access to more and more
+                  tier on Patreon. Each Tier will grant access to more and more
                   content, with the highest quality and most exclusive content
                   contained at the highest tier for the most discerning of
-                  consumers
+                  consumers. Higher tiers also unlock benefits such as VIP party
+                  invites to Taboo Mansions, industry social events, model meet
+                  and greets, and more! In essence, it gives complete access to
+                  the world of TABOO, both for its online and in-person
+                  entertainment events (1st event was held in Phuket, Thailand
+                  August 2022) alongside some other crypto utilities.
                 </p>
                 <p>
-                  Our highest Tier includes private VIP party invites to the
-                  Taboo Mansion, industry events, and model meet and greets.
+                  Taboo has also released the highly anticipated TABOOPUNKS, the
+                  platform's own NFT collection. Owning one of these, either a
+                  bronze/silver/gold TABOOPUNK, provides a direct ticket to
+                  exclusive VIP parties with supermodels. In addition, investors
+                  who own the TABOOPUNK NFT will have access to all areas of the
+                  marketplace and some under-development or yet-to-be-released
+                  utilities, such as the Taboo Metaverse and TABOOSPACE. A
+                  TABOOPUNK is an NFT with utility, providing unlimited access
+                  to the platform and many of its exclusive events.
                 </p>
               </div>
             </Col>
             <Col lg={6} md={6} sm={12} xs={12}>
               <div className="m-4">
-              <img className="img-fluid" src={"images/about-us-3.jpeg"} />
+                <img className="img-fluid" src={"images/about-us-3.jpeg"} />
               </div>
             </Col>
           </Row>
