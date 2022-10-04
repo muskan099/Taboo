@@ -5346,9 +5346,16 @@ body , html{
 .profile-upper-banner .set-pading{
   padding:50px;
 }
+.profile-upper-banner .back-gradient{
+  height:200px;
+  width: 100%;
+  position: relative;
+  background: linear-gradient(to right, rgba(249,248,249,0), rgba(249,248,249,1) );
+
+}
 .profile-upper-banner .width-set{
   padding: 20px;
-  position: relative;
+  position: absolute;
   background: linear-gradient(to right, rgba(249,248,249,0), rgba(249,248,249,1) );
 }
 .profile-upper-banner .width-set .inner-width{

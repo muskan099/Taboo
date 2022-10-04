@@ -139,7 +139,7 @@ const Aboutus = () => {
           <br></br>
           <Row className="mt-4">
             <Col lg={6} md={6} sm={12} xs={12}>
-              <div className="text-justify me-4">
+              <div className="text-justify m-4">
                 <h2>Selectively Curated Super Models</h2>
                 <p>
                   With Super Models, TABOO is selectively curating the most
@@ -154,15 +154,15 @@ const Aboutus = () => {
                 </p>
               </div>
 
-              <div className="me-4">
+              <div className="m-4">
                 <img className="img-fluid m-0" src={"images/about-us.jpeg"} />
               </div>
             </Col>
             <Col lg={6} md={6} sm={12} xs={12}>
-              <div className="ms-4">
+              <div className="m-4">
                 <img className="img-fluid m-0" src={"images/about-us-2.jpeg"} />
               </div>
-              <div className="text-justify ms-4 mt-2">
+              <div className="text-justify m-4">
                 <h2>NFT Marketplace & Media Platform</h2>
                 <p>
                   Our NFT Marketplace and media platform is cross chain,
@@ -180,9 +180,9 @@ const Aboutus = () => {
             </Col>
           </Row>
           <br></br>
-          <Row className="align-items-center mt-4">
+          <Row className="align-items-center mt-2">
             <Col lg={6} md={6} sm={12} xs={12}>
-              <div className="me-4 text-justify">
+              <div className="m-4 text-justify">
                 <h2>Tiered Content for Discerning Consumers</h2>
                 <p>
                   However, what is the biggest hurdle in the adult industry?
@@ -202,7 +202,7 @@ const Aboutus = () => {
               </div>
             </Col>
             <Col lg={6} md={6} sm={12} xs={12}>
-              <img className="img-fluid ms-4" src={"images/about-us-3.jpeg"} />
+              <img className="img-fluid m-4" src={"images/about-us-3.jpeg"} />
             </Col>
           </Row>
         </Container>
