@@ -135,7 +135,7 @@ const Footer = () => {
           </Col>
           <Col md={4} sm={2}>
             <div>
-              <h6>Crypto</h6>
+              <h6><Link to="/buycoin"className="crypto-m">Crypto</Link></h6>
               <ul>
                 <li>
                   <Link

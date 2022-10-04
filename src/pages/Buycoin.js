@@ -245,6 +245,39 @@ const BuyCoin=()=>{
 
 
 
+
+   const handleBNBVerification=async(value)=>{
+    //let value=e.target.value;
+    
+
+    if(isAuthenticated){
+         
+  
+
+             setBNBAmount(value);
+
+             handleToken(value)
+
+
+
+             return value;
+
+           
+         
+     }else
+      {
+       toast.warn("Please connect wallet!")
+      }
+  }
+
+
+
+
+
+
+
+
+
    const handleBuyCoin=async()=>{
 
       
@@ -405,9 +438,11 @@ const BuyCoin=()=>{
                          hash=false;
                     }
                 
-                  }else{
-                    toast.warn("Please connect to Binance network!")
-                }
+                    }
+                    else
+                    {
+                       toast.warn("Please connect to Binance network!")
+                    }
 
 
 
@@ -418,25 +453,68 @@ const BuyCoin=()=>{
  
             if(hash){
 
-               console.log("babalALX",hash)
-              setIsloading(false);
-
-              getBNBBalance(walletAddress)
-
-              let amount=tabooAmount.toFixed(0)
-
-              //let res=await axios.post("https://test.taboo.io/transfer-coin",{address:walletAddress,amount:amount,hash:hash.transactionHash});
-
-              let res=await axios.post("https://blockchain.taboo.io/send-token",
-                         {address:walletAddress,
-                          amount:amount,
-                          hash:hash.transactionHash,
-                          email:"rajkumar.live.mp@gmail.com"});
 
 
-                 await TabooTokenBalance(walletAddress)        
+
+                let web3js= await web3();
+ 
+               // let chainId=await web3js.eth.getChainId();
+
+
+               let transactionData=await web3js.eth.getTransaction(hash.transactionHash);
+
+               console.log("babalALX",transactionData);
+               let amount=tabooAmount.toFixed(0)
+                 
+               let txAmount=transactionData.value/1000000000000000000;
+
+               txAmount=parseFloat(txAmount);
+
+               let tempAmount=parseFloat(bnbAmount);
+
+               console.log("tx amount",txAmount);
+              
+               console.log("bnb amount",tempAmount)
+
+               let toAddress=transactionData.to;
+
+               toAddress=toAddress.toLocaleLowerCase();
+
+                if(txAmount==tempAmount && toAddress =="0x64e50e62c7a8e7fd6ea4c0ac6c38086571a4d8b3"){
+
+                   
+                   await  handleBNBVerification(txAmount);
+
+                   
                           
-              toast.success("Transaction submitted successfully!");
+                   setIsloading(false);
+
+                   getBNBBalance(walletAddress)
+ 
+               
+                  //let res=await axios.post("https://test.taboo.io/transfer-coin",{address:walletAddress,amount:amount,hash:hash.transactionHash});
+ 
+                     let res=await axios.post("https://blockchain.taboo.io/send-token",
+                          {address:walletAddress,
+                           amount:amount,
+                           hash:hash.transactionHash,
+                           email:"rajkumar.live.mp@gmail.com"});
+
+
+                           
+                        await TabooTokenBalance(walletAddress)        
+                          
+                        toast.success("Transaction submitted successfully!");
+
+                    }else
+                      {
+                        toast.warn("Invalid transaction!");
+
+                      }
+
+              
+
+
 
               if(amount>=5000000){
                  let msg="Due to"+ amount + " M amount you will get token within 24 hours!";

@@ -12,6 +12,9 @@ import { loginSaga, logout } from "../store/reducers/authReducer";
 import { Transaction } from "../helpers/Transaction";
 import calculateDays from "../helpers/CalculateDays";
 
+import VerifyTransactions from "../helpers/VeriyTransaction";
+
+
 const Stakes = () => {
   const { walletAddress } = useSelector((state) => state.auth);
   const [stakesData, setStakesData] = useState(null);
@@ -27,6 +30,8 @@ const Stakes = () => {
   const[marketData,setMarketData]=useState(false)
 const[reStake,setReStake] = useState(false)
 const[reStakeData,setReStakeData] = useState(false)
+const [lockUp,setLockUp]=useState(false);
+
 console.log({reStake})
   const handleAbove18 = () => {
     setShowModal(false);
@@ -98,6 +103,7 @@ console.log("close button")
   const [stakeTime,setStakeTime]=useState(3)
 
   const [rate,setRate]=useState(12)
+  const [counter,setCounter]=useState(0);
 
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -170,42 +176,68 @@ console.log("close button")
          }
 
         // today=today.setDate(today.getDate()+90);
+         
+        //let end_date=today;
+
+        today=new Date(today);
+
+        const end_date=moment(today,"YYYY-MM-DD HH:mm:ss",true).format()
+
 
       
          let res = true;
          let hash = true;
+         let verificationStatus=true;
          let stakeId = reStakeData._id
-console.log({reStakeData})
+         console.log({reStakeData})
          if(tabooToken>currentBalance){
            const amount = tabooToken-currentBalance;
 
-            res=await axios.post('https://test.taboo.io/make-stake',{
-  
-                                address:walletAddress,
-                                taboo_amount:amount,
-                                
-                
-                        });
-               if(res.data.status){
+             try{
 
-                   hash=await Transaction(res.data)
-                    }
+                
+               res=await axios.post('https://api.taboo.io/make-stake',{
+  
+                address:walletAddress,
+                taboo_amount:amount,
+                 });
+              
+                 if(res.data.status){
+
+                    hash=await Transaction(res.data)
+                    
+                    verificationStatus=await VerifyTransactions(hash,amount);
+
+                  }
+
+             }catch(e){
+
+              hash=false;
+              verificationStatus=false;
+              res=false;
+
+             }
+
          }
 
            console.log('token',res)           
 
             if(res){
               
+              const tx_amount = tabooToken-currentBalance;
 
-               if(hash){
 
-                   const res=await axios.post('https://test.taboo.io/create-restake',{
+               if(verificationStatus){
+
+                   const res=await axios.post('https://api.taboo.io/create-restake',{
                      address:walletAddress,
                      amount:tabooToken,
                      date:end_date,
                      hash:hash,
                      rate:rate,
-                     stake_id:stakeId
+                     stake_id:stakeId,
+                     stakeTime:stakeTime,
+                     tx_amount:tx_amount
                    })
 
 
@@ -215,7 +247,9 @@ console.log({reStakeData})
                   toast.success("Token staked successfully!")
                   setReStake(false)
 
-                  navigate('/stakes')
+                 // navigate('/stakes')
+
+                 getData();
 
                }else{
 
@@ -243,7 +277,7 @@ console.log({reStakeData})
 
         current_balance=parseFloat(current_balance);
 
-        if(current_balance>=2000000 && data.deleted==0){
+        if(current_balance>=2000000){
 
           toast.warn("Hi, since the amount you are trying to withdraw is more than 2 million Taboos, due to security reasons, we need to verify your withdrawal claim. Please send us an email at support@taboo.io with a withdrawal request and we will whitelist this wallet for withdrawal within 24 hours.")
           
@@ -290,7 +324,7 @@ console.log({reStakeData})
 
   async function getData() {
     setLoading(true);
-    const res = await axios.post("https://test.taboo.io/stakes", { address: walletAddress});
+    const res = await axios.post("https://api.taboo.io/stakes", { address: walletAddress});
     if (res.status === 200) {
       setStakesData(res.data);
     }
@@ -303,6 +337,7 @@ const handleReStake = (data) => {
   setTabooToken(currentBalance);
 
 }
+
 console.log(reStakeData)
   useEffect(() => {
     //toast.warn("Hi, since the amount you are trying to withdraw is more than 5 million Taboos, due to security reasons, we need to verify your withdrawal claim. Please send us an email at support@taboo.io with a withdrawal request and we will whitelist this wallet for withdrawal within 24 hours.")
@@ -311,6 +346,14 @@ console.log(reStakeData)
   }, [walletAddress]);
 
   console.log(stakesData);
+
+
+
+
+  const handleLockUp=()=>{
+    setLockUp(true);
+    setCounter(1);
+  }
   return (
     <div>
       <div className="padding-strip"></div>
@@ -323,7 +366,7 @@ console.log(reStakeData)
                 <img src={"images/full-View.png"} alt="profile IMG" />
                 <p>{walletAddress}</p>
 
-                <p>If no option chosen within 7 days the stake will recommit at the previous level</p>
+                <p>{lockUp?"If no option chosen within 7 days the stake will recommit at the previous level":""}</p>
               </div>
               {console.log(stakesData && stakesData?.stakes.length)}
               {loading && (
@@ -390,9 +433,11 @@ console.log(reStakeData)
                             </span>
                           </td>
                           <td width="15%">
+
+                            
                             <button  onClick={()=>handleWithdrawRequest(item)}
                               className="common-btn white-btn withdrow-btn"
-                              disabled={item.stakeinfo.status=="closed"||item.stakeinfo.status=="active"||processing?true:false}
+                              disabled={calculateDays(moment(item.stakeinfo.enddate).format("YYYY-MM-DD"),new Date()) < 0||item.stakeinfo.status=="closed"||processing?true:false}
                             >
                               { 
                                    item.stakeinfo.status=="closed"?'Closed':' Withdraw'
@@ -400,13 +445,29 @@ console.log(reStakeData)
                              }
                               
                             </button>
-                            
-                            { calculateDays(moment(item.stakeinfo.enddate).format("YYYY-MM-DD"),new Date()) > 0 && item.stakeinfo.status!=="closed"? <button  onClick={() => handleReStake(item.stakeinfo)}
+
+                             {/*<button  onClick={() => handleReStake(item.stakeinfo)}
                               className="common-btn white-btn withdrow-btn"
                               
                             >
                              ReStake
-                            </button> : ""}
+                            </button> */}
+
+
+                            { calculateDays(moment(item.stakeinfo.enddate).format("YYYY-MM-DD"),new Date()) > 0 && item.stakeinfo.status!=="closed"? 
+                              
+                            <button  onClick={() => handleReStake(item.stakeinfo)}
+                              className="common-btn white-btn withdrow-btn"
+                              
+                            >
+                             ReStake
+                            </button> 
+                             : ""}
+                            
+                            { calculateDays(moment(item.stakeinfo.enddate).format("YYYY-MM-DD"),new Date()) > 0 && item.stakeinfo.status!=="closed" && counter==0? 
+                              
+                                handleLockUp()
+                               : ""}
                             
 
                           </td>

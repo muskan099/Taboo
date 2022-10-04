@@ -9,6 +9,8 @@ import { Transaction } from "../helpers/Transaction";
 import { TabooBalance } from "../helpers/TabooHelper";
 import { TabooPunk } from "../helpers/TabooPunk";
 import { loginSaga, logout } from "../store/reducers/authReducer";
+import { web3 } from "../helpers/Web3Helper";
+import VerifyTransactions from "../helpers/VeriyTransaction";
 
 
 const CreateStake=()=>{
@@ -149,14 +151,17 @@ const CreateStake=()=>{
              if(res.data.status){
                const hash=await Transaction(res.data)
 
-                if(hash){
+                let txData=await VerifyTransactions(hash,tabooToken);
+
+                if(txData.status){
 
                     const res=await axios.post('/create-stake',{
                       address:walletAddress,
-                      amount:tabooToken,
+                      amount:txData.taboo_amount,
                       date:end_date,
                       hash:hash,
-                      rate:rate
+                      rate:rate,
+                      stakeTime
                     })
 
 
@@ -165,7 +170,7 @@ const CreateStake=()=>{
 
                    toast.success("Token staked successfully!")
 
-                   navigate('/stakes')
+                  navigate('/stakes')
 
                 }else{
 
