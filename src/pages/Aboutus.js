@@ -17,7 +17,6 @@ import Header from "../components/UI/Header";
 const Aboutus = () => {
   return (
     <>
-      <Header />
       <section className="profile-upper-banner">
         <Container fluid className="p-5">
           <Row>
