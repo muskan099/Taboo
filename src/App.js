@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./App.css";
 import AOS from "aos";
@@ -38,7 +37,6 @@ import Login from "./pages/Login";
 import SignUp from "./pages/SignUp";
 import AdminRoute from "./components/AdminRoute";
 import Buycoin from "./pages/Buycoin";
-
 import CreateConfig from "./pages/admin/CreateConfig";
 
 function App() {
@@ -108,7 +106,7 @@ function App() {
               </AdminRoute>
             }
           />
-<Route path="/nft-sold"element={<TotalNftProgress />}/>
+          <Route path="/nft-sold" element={<TotalNftProgress />} />
           <Route path="/dashboard" element={<Dashboard />} />
 
           <Route path="/profile" element={<Profile />} />

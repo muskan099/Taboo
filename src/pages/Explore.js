@@ -17,6 +17,7 @@ import {
   Spinner,
 } from "react-bootstrap";
 import { getNftSaga } from "../store/reducers/nftReducer";
+import Aboutus from "./Aboutus";
 
 const jQuery = window.jQuery;
 function debounce(func, timeout = 300) {
