@@ -204,6 +204,7 @@ const Aboutus = () => {
                   TABOOPUNK is an NFT with utility, providing unlimited access
                   to the platform and many of its exclusive events.
                 </p>
+                <p>Buy, sell, interact, create, earn. The $TABOO way.</p>
               </div>
             </Col>
             <Col lg={6} md={6} sm={12} xs={12}>
