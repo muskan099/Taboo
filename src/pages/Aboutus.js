@@ -85,9 +85,11 @@ const Aboutus = () => {
                     Specializing in highly exclusive content.
                   </h4>
                   <p>
-                    With models, whose content is not like other adult tokens.
-                    Our marketplace is cutting-edge, with its creation by the
-                    Enjin Coin Marketplace Developers
+                    Our models have content not like other adult tokens. The
+                    marketplace is built to be user friendly and serves as a
+                    platform to explore the user’s fantasies, purchase the
+                    finest adult NFTs and invest tokens for high return yields,
+                    all in one place.
                   </p>
                 </div>
               </div>
