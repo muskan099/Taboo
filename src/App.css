@@ -5280,3 +5280,37 @@ width: 100%;
 body , html{
   overflow-x: hidden !important;
 }
+.footer-box-about{
+  padding: 60px 0 30px;
+  background-color: #871333;
+  margin-top: 10px;
+  text-align: left;
+}
+.footer-box-about h4{
+  color: #fff;
+  font-weight: 700 !important;
+  margin-bottom: 20px !important;
+}
+.footer-box-about h1{
+  color: #fff;
+  font-weight: 700 ;
+  text-align: center;
+}
+.footer-box-about h2{
+  color: #fff;
+  font-weight: 700 ;
+  text-align: center;
+}
+.about-footer-container-h2{
+  padding-top: 10px;
+  font-weight: 300 !important;
+}
+
+.profile-upper-banner .text-justify{
+  text-align: justify;
+}
+.profile-upper-banner .color-font{
+  color: #871333;
+    font-size: 40px;
+    line-height: 40px;
+}
