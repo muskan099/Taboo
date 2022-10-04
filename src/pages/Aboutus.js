@@ -202,7 +202,9 @@ const Aboutus = () => {
               </div>
             </Col>
             <Col lg={6} md={6} sm={12} xs={12}>
-              <img className="img-fluid m-4" src={"images/about-us-3.jpeg"} />
+              <div className="m-4">
+              <img className="img-fluid" src={"images/about-us-3.jpeg"} />
+              </div>
             </Col>
           </Row>
         </Container>
