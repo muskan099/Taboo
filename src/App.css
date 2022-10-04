@@ -5343,3 +5343,14 @@ body , html{
     font-size: 40px;
     line-height: 40px;
 }
+.profile-upper-banner .set-pading{
+  padding:50px;
+}
+.profile-upper-banner .width-set{
+  padding: 20px;
+  position: relative;
+  background: linear-gradient(to right, rgba(249,248,249,0), rgba(249,248,249,1) );
+}
+.profile-upper-banner .width-set .inner-width{
+  width:50%;
+}

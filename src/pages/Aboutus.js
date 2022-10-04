@@ -1,5 +1,5 @@
 import { Link, useNavigate } from "react-router-dom";
-
+import AboutUsFooter from "./AboutUsFooter";
 import {
   Row,
   Col,
@@ -73,9 +73,10 @@ const Aboutus = () => {
                 </div>
               </div>
             </Col>
+            
             <Col lg={6} md={6} sm={12} xs={12}>
               <div>
-                <div>
+                <div className="set-pading">
                   <h2 className="color-font">Adult NFT & Streaming Media Project</h2>
                   <h4>
                       Taboo is an adult NFT & streaming media project.
@@ -135,7 +136,7 @@ const Aboutus = () => {
           <br></br>
           <Row className="mt-4">
             <Col lg={6} md={6} sm={12} xs={12}>
-              <div className="text-justify me-2">
+              <div className="text-justify me-4">
                 <h2>Selectively Curated Super Models</h2>
                 <p>
                   With Super Models, TABOO is selectively curating the most
@@ -178,7 +179,7 @@ const Aboutus = () => {
           <br></br>
           <Row className="align-items-center mt-4">
             <Col lg={6} md={6} sm={12} xs={12}>
-              <div className="mr-2 text-justify">
+              <div className="me-4 text-justify">
                 <h2>Tiered Content for Discerning Consumers</h2>
                 <p>
                   However, what is the biggest hurdle in the adult industry?
@@ -198,7 +199,7 @@ const Aboutus = () => {
               </div>
             </Col>
             <Col lg={6} md={6} sm={12} xs={12}>
-              <img className="img-fluid mr-2" src={"images/about-us-3.jpeg"} />
+              <img className="img-fluid ms-4" src={"images/about-us-3.jpeg"} />
             </Col>
           </Row>
         </Container>
@@ -273,6 +274,7 @@ const Aboutus = () => {
             </Col>
           </Row>
         </Container> */}
+
       </section>
     </>
   );
