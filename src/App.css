@@ -486,9 +486,38 @@ body {
   margin-top: 10px;
   text-align: left;
 }
+.footer-box-about{
+  padding: 60px 0 30px;
+  background-color: #871333;
+  margin-top: 10px;
+  text-align: left;
+}
+.footer-box-about h4{
+  color: #fff;
+  font-weight: 700 !important;
+  margin-bottom: 20px !important;
+}
+.footer-box-about h1{
+  color: #fff;
+  font-weight: 700 ;
+  text-align: center;
+}
+.footer-box-about h2{
+  color: #fff;
+  font-weight: 700 ;
+  text-align: center;
+}
+.about-footer-container-h2{
+  padding-top: 10px;
+  font-weight: 300 !important;
+}
 .footer-upper-row {
   border-bottom: 1px solid #ddd;
   margin-bottom: 30px;
+}
+.about-footer-container{
+  border: 2px solid #fff;
+  padding: 5px;
 }
 .footer-upper-row .foot-logo {
   height: 40px;

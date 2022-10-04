@@ -17,6 +17,8 @@ import {
   Spinner,
 } from "react-bootstrap";
 import { getNftSaga } from "../store/reducers/nftReducer";
+import Aboutus from "./Aboutus";
+import AboutUsFooter from "./AboutUsFooter";
 
 const jQuery = window.jQuery;
 function debounce(func, timeout = 300) {
@@ -796,6 +798,7 @@ const Explore = () => {
             </button>
           </Modal.Body>
         </Modal>
+        <AboutUsFooter />
       </section>
     </>
   );
