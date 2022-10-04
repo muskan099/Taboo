@@ -212,6 +212,12 @@ const Aboutus = () => {
             <Col lg={6} md={6} sm={12} xs={12}>
               <div className="m-4">
                 <img className="img-fluid" src={"images/about-us-3.jpeg"} />
+                <div className="m-4 text-justify">
+                  <p>
+                    TABOO Staff for Mansion Event with Models+T4 Holders -
+                    August 2022
+                  </p>
+                </div>
               </div>
             </Col>
           </Row>

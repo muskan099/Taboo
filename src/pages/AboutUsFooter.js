@@ -30,7 +30,7 @@ function AboutUsFooter() {
             <Col md={4} sm={2}>
               <div>
                 <h4>
-                  The ability to transafer NFTs seamlessly from various networks
+                  The ability to transfer NFTs seamlessly from various networks
                   onto our marketplace?
                 </h4>
                 <h4>
