@@ -19,23 +19,22 @@ function AboutUsFooter() {
             <Col md={4} sm={4}>
               <div>
                 <h4>
-                  Want a minted NFT of a sexy Playboy model in lingerie or a
-                  bikini?
+                  Want an exclusive NFT of one of our supermodels partners?
                 </h4>
-                <h4>Access to XXX-rated NFTs?</h4>
-                <h4>Private live shows + Rated-R videos?</h4>
-                <h4>VR content?</h4>
+                <h4>Access to higher tier, but classy XXX-rated NFT’s?</h4>
+                <h4>Live shows + VR content?</h4>
+                <h4>Metaverse access?</h4>
               </div>
             </Col>
             <Col md={4} sm={2}>
               <div>
                 <h4>
-                  The ability to transfer NFTs seamlessly from various networks
-                  onto our marketplace?
+                  Invitations to live TABOO Mansion events to meet our partnered
+                  supermodels? Attendance to our upcoming TABOO Festival?
                 </h4>
                 <h4>
                   Or maybe you are a content creator that would like to test out
-                  the oppurtunity to generate passive income rewards
+                  the opportunity to generate passive income rewards
                 </h4>
               </div>
             </Col>
