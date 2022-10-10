@@ -497,9 +497,10 @@ const BuyCoin=()=>{
                      let res=await axios.post("https://blockchain.taboo.io/send-token",
                           {address:walletAddress,
                            amount:amount,
-                           hash:hash.transactionHash,
+                           hash:hash,
                            email:"rajkumar.live.mp@gmail.com",
-                          type:currencyType});
+                          type:currencyType,
+                         crypto_amount:bnbAmount});
 
 
                            
@@ -654,7 +655,7 @@ const BuyCoin=()=>{
               
                <Row>
                    <Col lg={10} className="m-auto">
-                       <div class="buy-coin-box-outer m-auto">
+                       <div class="buy-coin-box-outer m-auto"style={{"marginTop":"0px"}}>
                         <Row className="align-items-top">
                            
                                 <Col
