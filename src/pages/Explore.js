@@ -119,7 +119,7 @@ const Explore = () => {
     // console.log("nft tier inside getNftSaga \n", nftTier);
 
     let data = {
-      tier: "3 Tier",
+      tier:tier,
       page: page,
       skip,
       limit: limit,
@@ -521,9 +521,9 @@ const Explore = () => {
                     <label className="heading-label">Models</label>
                     <Accordion.Header>All</Accordion.Header>
                     <Accordion.Body>
-                      <div className="checkbox">
+                      <div className="radio">
                         <label>
-                          <input type="checkbox" value="Khloe Terae"  onChange={(e) =>
+                          <input type="radio"  name="o1" value="Khloe Terae"  onChange={(e) =>
                              handleSearch(e)
                             }></input>
                           <span className="cr">
@@ -532,9 +532,9 @@ const Explore = () => {
                           Khloe Terae
                         </label>
                       </div>
-                      <div className="checkbox">
+                      <div className="radio">
                         <label>
-                          <input type="checkbox" value="CJ Franco"  onChange={(e) =>
+                          <input type="radio"  name="o1" value="CJ Franco"  onChange={(e) =>
                              handleSearch(e)
                             }></input>
                           <span className="cr">
@@ -544,9 +544,9 @@ const Explore = () => {
                         </label>
 
                       </div>
-                      <div className="checkbox">
+                      <div className="radio">
                         <label>
-                          <input type="checkbox" value="CJ Sparxx"  onChange={(e) =>
+                          <input type="radio" name="o1"  value="CJ Sparxx"  onChange={(e) =>
                              handleSearch(e)
                             }></input>
                           <span className="cr">
@@ -556,9 +556,9 @@ const Explore = () => {
                         </label>
 
                       </div>
-                      <div className="checkbox">
+                      <div className="radio">
                         <label>
-                          <input type="checkbox" value="Holly Barker"  onChange={(e) =>
+                          <input type="radio"  name="o1" value="Holly Barker"  onChange={(e) =>
                              handleSearch(e)
                             }></input>
                           <span className="cr">
@@ -571,9 +571,9 @@ const Explore = () => {
                         </label>
 
                       </div>
-                      <div className="checkbox">
+                      <div className="radio">
                         <label>
-                          <input type="checkbox" value="Jeni Summers"  onChange={(e) =>
+                          <input type="radio"  name="o1" value="Jeni Summers"  onChange={(e) =>
                              handleSearch(e)
                             }></input>
                           <span className="cr">
@@ -583,9 +583,9 @@ const Explore = () => {
                         </label>
 
                       </div>
-                      <div className="checkbox">
+                      <div className="radio">
                         <label>
-                          <input type="checkbox" value="Allie Mason"  onChange={(e) =>
+                          <input type="radio"  name="o1" value="Allie Mason"  onChange={(e) =>
                              handleSearch(e)
                             }></input>
                           <span className="cr">
@@ -595,9 +595,9 @@ const Explore = () => {
                         </label>
 
                       </div>
-                      <div className="checkbox">
+                      <div className="radio">
                         <label>
-                          <input type="checkbox" value="Noel Leon"  onChange={(e) =>
+                          <input type="radio"  name="o1" value="Noel Leon"  onChange={(e) =>
                              handleSearch(e)
                             }></input>
                           <span className="cr">
@@ -607,9 +607,9 @@ const Explore = () => {
                         </label>
 
                       </div>
-                      <div className="checkbox">
+                      <div className="radio">
                         <label>
-                          <input type="checkbox" value="Claudia Fijal"  onChange={(e) =>
+                          <input type="radio"  name="o1" value="Claudia Fijal"  onChange={(e) =>
                              handleSearch(e)
                             }></input>
                           <span className="cr">
@@ -619,9 +619,9 @@ const Explore = () => {
                         </label>
 
                       </div>
-                      <div className="checkbox">
+                      <div className="radio">
                         <label>
-                          <input type="checkbox" value="Anya Benton"  onChange={(e) =>
+                          <input type="radio"  name="o1" value="Anya Benton"  onChange={(e) =>
                              handleSearch(e)
                             }></input>
                           <span className="cr">

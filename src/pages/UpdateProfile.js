@@ -28,9 +28,11 @@ const[otp,setOtp] = useState()
 
   const [name, setName] = useState("");
 
+  const [loading,setLoading]=useState(false);
+
   
   const [createStart, setCreateStart] = useState(false);
-const[email,setEmail] = useState("")
+  const[email,setEmail] = useState("")
 
 
   
@@ -94,32 +96,46 @@ const[email,setEmail] = useState("")
     }
   };
   const handleSendOtp = async(e) => {
+    setLoading(true)
+
     const res = await axios.post('/sendOTP',{
       email:email,
       address:walletAddress
      })
      setSendOtp(true)
+
+     setLoading(false)
+
      toast.success("OTP has been sent successfully to your email address")
   }
 const handleVerify = async(e) => {
-
+  setLoading(true);
   const res = await axios.post('/VerifyOtpByAddress',{
     email:email,
     otp:otp,
     address:walletAddress
    })
-   toast.success("OTP Verifed")
-   const res1 = await axios.post('/profileUpdate',{
-    name:name,
-    email:email,
-    address:walletAddress,
-    last_name:"kapoor"
-  })
-        toast.success("Nft created successfully!");
+  // toast.success("OTP Verifed")
   
-        setCreateStart(false);
-  
-        setTimeout(navigate("/explore"), 120000);
+    if(res.status){
+
+      const res1 = await axios.post('/profileUpdate',{
+        name:name,
+        email:email,
+        address:walletAddress,
+        last_name:"kapoor"
+      })
+            toast.success("Profile updated successfully!");
+      
+            setCreateStart(false);
+            setLoading(false)
+            setTimeout(navigate("/explore"), 120000);
+         
+    }else
+      {     setLoading(false)
+
+        toast.error("Otp verification failed!");
+      }
 
 }
   return (
@@ -188,17 +204,18 @@ const handleVerify = async(e) => {
                       <div className="align-center-button">
                         {sendOtp?  <button
                           className="blue-btn width-btn"
-                         
+                          disabled={loading?true:false}
                           onClick={(e) => handleVerify(e)}
                         >
-                             Verify
+                            {loading?"Processing":" Verify"}
                      
                         </button> :  <button
                           className="blue-btn width-btn"
-                         
+                          disabled={loading?true:false}
+
                           onClick={(e) => handleSubmit(e)}
                         >
-                             Update Profile
+                           {loading?"Processing":"update"} 
                         
                         
                         </button>}
