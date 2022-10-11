@@ -39,7 +39,7 @@ import AdminRoute from "./components/AdminRoute";
 import Buycoin from "./pages/Buycoin";
 import CreateConfig from "./pages/admin/CreateConfig";
 import AboutUsFooter from "./pages/AboutUsFooter";
-
+import UpdateProfile from "./pages/UpdateProfile";
 function App() {
   const [path, setPath] = useState();
   useEffect(() => {
@@ -124,6 +124,7 @@ function App() {
           <Route path="/stakes" element={<Stakes />} />
 
           <Route path="/models" element={<Artist />} />
+          <Route path="/update-profile" element={<UpdateProfile />} />
         </Routes>
         {path === "about" ? <AboutUsFooter /> : <Footer />}
         {console.log({ path })}

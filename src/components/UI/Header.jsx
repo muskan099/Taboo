@@ -226,13 +226,13 @@ const Header = () => {
                     </Link>
                   </Dropdown.Item>
 
-
-                 {/* <Dropdown.Item>
-                    <Link to="/buycoin" className="dropdown-item">
-                       buycoin
+          
+                 <Dropdown.Item>
+                    <Link to="/update-profile" className="dropdown-item">
+                      Update Profile
                     </Link>
                   </Dropdown.Item>
-                   */}
+                  
                   <Dropdown.Item>
                     <button className="dropdown-item" onClick={handleLogout}>
                       Logout

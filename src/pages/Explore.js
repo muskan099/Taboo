@@ -517,6 +517,151 @@ const Explore = () => {
                       </div> */}
                     </Accordion.Body>
                   </Accordion.Item>
+                  <Accordion.Item eventKey="2">
+                    <label className="heading-label">Models</label>
+                    <Accordion.Header>All</Accordion.Header>
+                    <Accordion.Body>
+                      <div className="checkbox">
+                        <label>
+                          <input type="checkbox" value="Khloe Terae"  onChange={(e) =>
+                             handleSearch(e)
+                            }></input>
+                          <span className="cr">
+                            <i className="cr-icon fa fa-check"></i>
+                          </span>
+                          Khloe Terae
+                        </label>
+                      </div>
+                      <div className="checkbox">
+                        <label>
+                          <input type="checkbox" value="CJ Franco"  onChange={(e) =>
+                             handleSearch(e)
+                            }></input>
+                          <span className="cr">
+                            <i className="cr-icon fa fa-check"></i>
+                          </span>
+                          CJ Franco
+                        </label>
+
+                      </div>
+                      <div className="checkbox">
+                        <label>
+                          <input type="checkbox" value="CJ Sparxx"  onChange={(e) =>
+                             handleSearch(e)
+                            }></input>
+                          <span className="cr">
+                            <i className="cr-icon fa fa-check"></i>
+                          </span>
+                          CJ Sparxx
+                        </label>
+
+                      </div>
+                      <div className="checkbox">
+                        <label>
+                          <input type="checkbox" value="Holly Barker"  onChange={(e) =>
+                             handleSearch(e)
+                            }></input>
+                          <span className="cr">
+                            <i className="cr-icon fa fa-check"></i>
+                          </span>
+                          Holly Barker
+
+
+
+                        </label>
+
+                      </div>
+                      <div className="checkbox">
+                        <label>
+                          <input type="checkbox" value="Jeni Summers"  onChange={(e) =>
+                             handleSearch(e)
+                            }></input>
+                          <span className="cr">
+                            <i className="cr-icon fa fa-check"></i>
+                          </span>
+                          Jeni Summers
+                        </label>
+
+                      </div>
+                      <div className="checkbox">
+                        <label>
+                          <input type="checkbox" value="Allie Mason"  onChange={(e) =>
+                             handleSearch(e)
+                            }></input>
+                          <span className="cr">
+                            <i className="cr-icon fa fa-check"></i>
+                          </span>
+                          Allie Mason
+                        </label>
+
+                      </div>
+                      <div className="checkbox">
+                        <label>
+                          <input type="checkbox" value="Noel Leon"  onChange={(e) =>
+                             handleSearch(e)
+                            }></input>
+                          <span className="cr">
+                            <i className="cr-icon fa fa-check"></i>
+                          </span>
+                          Noel Leon
+                        </label>
+
+                      </div>
+                      <div className="checkbox">
+                        <label>
+                          <input type="checkbox" value="Claudia Fijal"  onChange={(e) =>
+                             handleSearch(e)
+                            }></input>
+                          <span className="cr">
+                            <i className="cr-icon fa fa-check"></i>
+                          </span>
+                          Claudia Fijal
+                        </label>
+
+                      </div>
+                      <div className="checkbox">
+                        <label>
+                          <input type="checkbox" value="Anya Benton"  onChange={(e) =>
+                             handleSearch(e)
+                            }></input>
+                          <span className="cr">
+                            <i className="cr-icon fa fa-check"></i>
+                          </span>
+                          Anya Benton
+                        </label>
+
+                      </div>
+                      
+
+                      {/* <div className="checkbox">
+                        <label>
+                          <input type="checkbox" value=""></input>
+                          <span className="cr">
+                            <i className="cr-icon fa fa-check"></i>
+                          </span>
+                          Option one is this
+                        </label>
+                      </div>
+                      <div className="checkbox">
+                        <label>
+                          <input type="checkbox" value=""></input>
+                          <span className="cr">
+                            <i className="cr-icon fa fa-check"></i>
+                          </span>
+                          Option one is this
+                        </label>
+                      </div>
+                      <div className="checkbox">
+                        <label>
+                          <input type="checkbox" value=""></input>
+                          <span className="cr">
+                            <i className="cr-icon fa fa-check"></i>
+                          </span>
+                          Option one is this
+                        </label>
+                      </div> */}
+                    </Accordion.Body>
+                  </Accordion.Item>
                 </Accordion>
                 <div className="reset-link-outer">
                   <a href="" className="reset-link">

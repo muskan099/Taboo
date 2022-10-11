@@ -527,6 +527,17 @@ body {
 .text-justify-center{
   text-align: center;
 }
+.padding-container{
+  padding-left: 377px;
+}
+.align-center-button{
+  display: grid;
+    place-content: center;
+
+}
+.width-btn{
+  width: 140px;
+}
 .footer-upper-row .foot-logo {
   height: 40px;
 }
