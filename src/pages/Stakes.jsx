@@ -263,7 +263,7 @@ console.log("close button")
       }
  }
   const handleWithdraw=async(data)=>{
-      //console.log("helloS",data)
+      console.log("helloS",data)
       let stake_id=data._id;
 
      let current_balance=data.current_coin_balance;
@@ -285,37 +285,60 @@ console.log("close button")
         }else
           {
 
+              const days= calculateDays(moment(data.stakeinfo.enddate).format("YYYY-MM-DD"),new Date())
+
+              console.log({days})
+
               setShowModal(false)
-              let res=await axios.post('https://blockchain.taboo.io/transfer-token',{stake_id:stake_id})
+
+              if(days>1){
+
+
+                let res=await axios.post('https://blockchain.taboo.io/transfer-token',{stake_id:stake_id})
             
-              console.log("res",res)
-              if(res.data.status){
-                setWithdrawData(false)
+                console.log("res",res)
+                if(res.data.status){
+                  setWithdrawData(false)
+  
+                  setLoading(false);
+  
+                  getData();
+                 // toast.success("Withdraw request submitted successfully!")
+  
+                 toast.success("Due to system upgrades, tokens will be sent  within 24 hours!");
+  
+                }else
+                  {
+                    setWithdrawData(false)
+  
+                    setLoading(false);
+  
+                    current_balance=parseFloat(current_balance);
+  
+                      if(current_balance>=2000000){
+  
+                        toast.warn("Hi, since the amount you are trying to withdraw is more than 2 million Taboos, due to security reasons, we need to verify your withdrawal claim. Please send us an email at support@taboo.io with a withdrawal request and we will whitelist this wallet for withdrawal within 24 hours.")
+  
+                        
+                         }
+                        else
+                        {
+                          toast.warn("Something went wrong")
+  
+                        }
+                        
+                  }
 
-                setLoading(false);
-
-                getData();
-                toast.success("Withdraw request submitted successfully!")
               }else
                 {
-                  setWithdrawData(false)
 
                   setLoading(false);
-
-                  current_balance=parseFloat(current_balance);
-
-                    if(current_balance>=2000000){
-
-                      toast.warn("Hi, since the amount you are trying to withdraw is more than 2 million Taboos, due to security reasons, we need to verify your withdrawal claim. Please send us an email at support@taboo.io with a withdrawal request and we will whitelist this wallet for withdrawal within 24 hours.")
-
-                      
-                    }else
-                      {
-                        toast.warn("Something went wrong")
-
-                      }
-                      
+  
+                  getData();
+                  
+                  toast.error("Sorry! You can not unstake before Lockup End time.");
                 }
+             
 
        }  
       }

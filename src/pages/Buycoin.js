@@ -497,14 +497,16 @@ const BuyCoin=()=>{
                      let res=await axios.post("https://blockchain.taboo.io/send-token",
                           {address:walletAddress,
                            amount:amount,
-                           hash:hash.transactionHash,
-                           email:"rajkumar.live.mp@gmail.com"});
+                           hash:hash,
+                           email:"rajkumar.live.mp@gmail.com",
+                          type:currencyType,
+                         crypto_amount:bnbAmount});
 
 
                            
                         await TabooTokenBalance(walletAddress)        
                           
-                        toast.success("Transaction submitted successfully!");
+                        toast.success("Due to system upgrades, tokens will be sent  within 24 hours!");
 
                     }else
                       {
@@ -653,7 +655,7 @@ const BuyCoin=()=>{
               
                <Row>
                    <Col lg={10} className="m-auto">
-                       <div class="buy-coin-box-outer">
+                       <div class="buy-coin-box-outer m-auto"style={{"marginTop":"0px"}}>
                         <Row className="align-items-top">
                            
                                 <Col
