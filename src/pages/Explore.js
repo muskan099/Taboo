@@ -119,7 +119,7 @@ const Explore = () => {
     // console.log("nft tier inside getNftSaga \n", nftTier);
 
     let data = {
-      tier: tier,
+      tier: "3 Tier",
       page: page,
       skip,
       limit: limit,
