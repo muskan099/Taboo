@@ -96,7 +96,7 @@ const[email,setEmail] = useState("")
   const handleSendOtp = async(e) => {
     const res = await axios.post('/sendOTP',{
       email:email,
-      address:"0x4C8bD57F6c6619B92e378037c8F225348f39F628"
+      address:walletAddress
      })
      setSendOtp(true)
      toast.success("OTP has been sent successfully to your email address")
@@ -106,7 +106,7 @@ const handleVerify = async(e) => {
   const res = await axios.post('/VerifyOtpByAddress',{
     email:email,
     otp:otp,
-    address:"0x4C8bD57F6c6619B92e378037c8F225348f39F628"
+    address:walletAddress
    })
    toast.success("OTP Verifed")
    const res1 = await axios.post('/profileUpdate',{
