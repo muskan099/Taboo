@@ -231,7 +231,7 @@ const Header = () => {
                     <Link to="/update-profile" className="dropdown-item">
                       Update Profile
                     </Link>
-                  </Dropdown.Item>
+                  </Dropdown.Item> 
                   
                   <Dropdown.Item>
                     <button className="dropdown-item" onClick={handleLogout}>

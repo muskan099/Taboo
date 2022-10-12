@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import {
@@ -9,6 +9,7 @@ import {
 } from "react-bootstrap";
 import { toast } from "react-toastify";
 import { axios } from "../http";
+import axiosMain from "../http/axios/axios_main";
 
 const CreateNft = () => {
   const dispatch = useDispatch();
@@ -20,11 +21,14 @@ const CreateNft = () => {
   const navigate = useNavigate();
 
   const { nft, isLoading } = useSelector((state) => state.nft);
-const[sendOtp,setSendOtp] = useState(false)
-const[otp,setOtp] = useState()
+  const[sendOtp,setSendOtp] = useState(false)
+  const[otp,setOtp] = useState()
   const { isAuthenticated, walletAddress, balance, tier } = useSelector(
     (state) => state.auth
   );
+
+
+  const [data,setData]=useState(false);
 
   const [name, setName] = useState("");
 
@@ -33,6 +37,22 @@ const[otp,setOtp] = useState()
   
   const [createStart, setCreateStart] = useState(false);
   const[email,setEmail] = useState("")
+
+  const getData=async()=>{
+      
+    let res=await axiosMain.post('/find-wallet',{address:walletAddress});
+     
+    if(res.data){
+       setData(res.data);
+     }
+
+  }
+
+  useEffect(()=>{
+     if(isAuthenticated){
+        getData();
+     }
+  },[walletAddress]);
 
 
   
@@ -173,6 +193,7 @@ const handleVerify = async(e) => {
                 <><Form.Group className="mb-4">
                         <Form.Control
                           type="text"
+                          value={data&&data.name}
                           onKeyUp={(e) => handleName(e)}
                           placeholder="Your Name"
                         />
@@ -181,6 +202,7 @@ const handleVerify = async(e) => {
                       <Form.Group className="mb-4">
                         <Form.Control
                           type="text"
+                          value={data&&data.email}
                           onKeyUp={(e) => handleEmail(e)}
                           placeholder="Your Email Address"
                         />
