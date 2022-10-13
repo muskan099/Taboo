@@ -273,17 +273,25 @@ console.log("close button")
       }
  }
  const handleSendOtp = async(e) => {
+   
   setLoading(true)
 
   const res = await axios.post('https://api.taboo.io/resendOTP',{
    
-    address:"0x4C8bD57F6c6619B92e378037c8F225348f39F628"
+    address:walletAddress
    })
-   setSendOtp(true)
-
-   setLoading(false)
-toast.success("OTP has been sent to your registered email address")
+   
   if(res.data.status){
+
+    toast.success("OTP has been sent to your registered email address")
+
+
+    setSendOtp(true)
+
+    setLoading(false)
+
+
+
     return true
   }else{
     return false
@@ -297,7 +305,7 @@ if(otp){
   const res = await axios.post('https://api.taboo.io/verify-otp',{
   
     otp:otp,
-    address:"0x4C8bD57F6c6619B92e378037c8F225348f39F628"
+    address:walletAddress
    })
    if(res.data.status){
     showOtpVerify(false)
@@ -312,96 +320,97 @@ if(otp){
 
 }
   const handleWithdraw=async(data)=>{
-      console.log("helloS",data)
-      setShowOtpVerify(true);
+     
       let otpStatus = await handleSendOtp();
     if(otpStatus){
-  
+        
+     // console.log("helloS",data)
+      setShowOtpVerify(true);
 
-        // let verificationStatus = await handleVerify();
-        // if(verificationStatus){
-        //   let stake_id=data._id;
+        let verificationStatus = await handleVerify();
+        if(verificationStatus){
+          let stake_id=data._id;
   
-        //   let current_balance=data.current_coin_balance;
+          let current_balance=data.current_coin_balance;
            
-        //  // toast.warn("unstaking under maintenance for 24 hours");
-           
-        //     if(stake_id){
-        //      //console.log("stake id",stake_id)
+         // toast.warn("unstaking under maintenance for 24 hours");
+             setShowOtpVerify(true);
+            if(stake_id){
+             //console.log("stake id",stake_id)
              
-        //      setLoading(true);
+             setLoading(true);
      
-        //      current_balance=parseFloat(current_balance);
+             current_balance=parseFloat(current_balance);
      
-        //      if(current_balance>=2000000){
+             if(current_balance>=2000000){
      
-        //        toast.warn("Hi, since the amount you are trying to withdraw is more than 2 million Taboos, due to security reasons, we need to verify your withdrawal claim. Please send us an email at support@taboo.io with a withdrawal request and we will whitelist this wallet for withdrawal within 24 hours.")
+               toast.warn("Hi, since the amount you are trying to withdraw is more than 2 million Taboos, due to security reasons, we need to verify your withdrawal claim. Please send us an email at support@taboo.io with a withdrawal request and we will whitelist this wallet for withdrawal within 24 hours.")
                
                
-        //      }else
-        //        {
+             }else
+               {
      
-        //            const days= calculateDays(moment(data.stakeinfo.enddate).format("YYYY-MM-DD"),new Date())
+                   const days= calculateDays(moment(data.stakeinfo.enddate).format("YYYY-MM-DD"),new Date())
      
-        //            console.log({days})
+                   console.log({days})
      
-        //            setShowModal(false)
+                   setShowModal(false)
      
-        //            if(days>1){
+                   if(days>1){
      
      
-        //              let res=await axios.post('https://blockchain.taboo.io/transfer-token',{stake_id:stake_id})
+                     let res=await axios.post('https://blockchain.taboo.io/transfer-token',{stake_id:stake_id})
                  
-        //              console.log("res",res)
-        //              if(res.data.status){
-        //                setWithdrawData(false)
+                     console.log("res",res)
+                     if(res.data.status){
+                       setWithdrawData(false)
        
-        //                setLoading(false);
+                       setLoading(false);
        
-        //                getData();
-        //               // toast.success("Withdraw request submitted successfully!")
+                       getData();
+                      // toast.success("Withdraw request submitted successfully!")
        
-        //               toast.success("Due to system upgrades, tokens will be sent  within 24 hours!");
+                      toast.success("Due to system upgrades, tokens will be sent  within 24 hours!");
        
-        //              }else
-        //                {
-        //                  setWithdrawData(false)
+                     }else
+                       {
+                         setWithdrawData(false)
        
-        //                  setLoading(false);
+                         setLoading(false);
        
-        //                  current_balance=parseFloat(current_balance);
+                         current_balance=parseFloat(current_balance);
        
-        //                    if(current_balance>=2000000){
+                           if(current_balance>=2000000){
        
-        //                      toast.warn("Hi, since the amount you are trying to withdraw is more than 2 million Taboos, due to security reasons, we need to verify your withdrawal claim. Please send us an email at support@taboo.io with a withdrawal request and we will whitelist this wallet for withdrawal within 24 hours.")
+                             toast.warn("Hi, since the amount you are trying to withdraw is more than 2 million Taboos, due to security reasons, we need to verify your withdrawal claim. Please send us an email at support@taboo.io with a withdrawal request and we will whitelist this wallet for withdrawal within 24 hours.")
        
                              
-        //                       }
-        //                      else
-        //                      {
-        //                        toast.warn("Something went wrong")
+                              }
+                             else
+                             {
+                               toast.warn("Something went wrong")
        
-        //                      }
+                             }
                              
-        //                }
+                       }
      
-        //            }else
-        //              {
+                   }else
+                     {
      
-        //                setLoading(false);
+                       setLoading(false);
        
-        //                getData();
+                       getData();
                        
-        //                toast.error("Sorry! You can not unstake before Lockup End time.");
-        //              }
+                       toast.error("Sorry! You can not unstake before Lockup End time.");
+                     }
                   
      
-        //     }  
-        //    }
+            }  
+           }
            
-        // }else{
-        //   toast.error("OTP verification failed")
-        // }
+        }else{
+          toast.error("OTP verification failed")
+        }
       
     }else{
       toast.error("please update your correct mail")
@@ -772,12 +781,12 @@ console.log(reStakeData)
                     <div className="outer-create-form">
                     
                       <Form.Group className="mb-4">
-<Form.Control
-  type="text"
-  onKeyUp={(e) => handleOtp(e)}
-  placeholder="Enter Otp"
-/>
-</Form.Group>
+                        <Form.Control
+                          type="text"
+                          onKeyUp={(e) => handleOtp(e)}
+                          placeholder="Enter Otp"
+                        />
+                        </Form.Group>
                      
               
                    
