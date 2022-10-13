@@ -31,7 +31,16 @@ const Stakes = () => {
 const[reStake,setReStake] = useState(false)
 const[reStakeData,setReStakeData] = useState(false)
 const [lockUp,setLockUp]=useState(false);
+const[showOtpVerify,setShowOtpVerify] = useState(false)
+const[sendOtp,setSendOtp] = useState(false)
+const[otp,setOtp] = useState()
+const [data,setData]=useState(false);
 
+
+
+const [createStart, setCreateStart] = useState(false);
+
+const [name, setName] = useState("");
 console.log({reStake})
   const handleAbove18 = () => {
     setShowModal(false);
@@ -50,7 +59,8 @@ console.log("close button")
   }
 
   const startWithdraw=async()=>{ //alert("Hello")
-      
+  
+  
        await handleWithdraw(withdrawData);
         
   }
@@ -262,92 +272,147 @@ console.log("close button")
              }
       }
  }
+ const handleSendOtp = async(e) => {
+  setLoading(true)
+
+  const res = await axios.post('https://api.taboo.io/resendOTP',{
+   
+    address:"0x4C8bD57F6c6619B92e378037c8F225348f39F628"
+   })
+   setSendOtp(true)
+
+   setLoading(false)
+toast.success("OTP has been sent to your registered email address")
+  if(res.data.status){
+    return true
+  }else{
+    return false
+  }
+ 
+}
+const handleVerify = async(e) => {
+setLoading(true);
+if(otp){
+
+  const res = await axios.post('https://api.taboo.io/verify-otp',{
+  
+    otp:otp,
+    address:"0x4C8bD57F6c6619B92e378037c8F225348f39F628"
+   })
+   if(res.data.status){
+    showOtpVerify(false)
+    return true;
+    
+   }else{
+    return false;
+   }
+}
+
+
+
+}
   const handleWithdraw=async(data)=>{
       console.log("helloS",data)
-      let stake_id=data._id;
-
-     let current_balance=data.current_coin_balance;
-      
-    // toast.warn("unstaking under maintenance for 24 hours");
-      
-       if(stake_id){
-        //console.log("stake id",stake_id)
-        
-        setLoading(true);
-
-        current_balance=parseFloat(current_balance);
-
-        if(current_balance>=2000000){
-
-          toast.warn("Hi, since the amount you are trying to withdraw is more than 2 million Taboos, due to security reasons, we need to verify your withdrawal claim. Please send us an email at support@taboo.io with a withdrawal request and we will whitelist this wallet for withdrawal within 24 hours.")
-          
-          
-        }else
-          {
-
-              const days= calculateDays(moment(data.stakeinfo.enddate).format("YYYY-MM-DD"),new Date())
-
-              console.log({days})
-
-              setShowModal(false)
-
-              if(days>1){
-
-
-                let res=await axios.post('https://blockchain.taboo.io/transfer-token',{stake_id:stake_id})
-            
-                console.log("res",res)
-                if(res.data.status){
-                  setWithdrawData(false)
+      setShowOtpVerify(true);
+      let otpStatus = await handleSendOtp();
+    if(otpStatus){
   
-                  setLoading(false);
-  
-                  getData();
-                 // toast.success("Withdraw request submitted successfully!")
-  
-                 toast.success("Due to system upgrades, tokens will be sent  within 24 hours!");
-  
-                }else
-                  {
-                    setWithdrawData(false)
-  
-                    setLoading(false);
-  
-                    current_balance=parseFloat(current_balance);
-  
-                      if(current_balance>=2000000){
-  
-                        toast.warn("Hi, since the amount you are trying to withdraw is more than 2 million Taboos, due to security reasons, we need to verify your withdrawal claim. Please send us an email at support@taboo.io with a withdrawal request and we will whitelist this wallet for withdrawal within 24 hours.")
-  
-                        
-                         }
-                        else
-                        {
-                          toast.warn("Something went wrong")
-  
-                        }
-                        
-                  }
 
-              }else
-                {
-
-                  setLoading(false);
+        // let verificationStatus = await handleVerify();
+        // if(verificationStatus){
+        //   let stake_id=data._id;
   
-                  getData();
-                  
-                  toast.error("Sorry! You can not unstake before Lockup End time.");
-                }
+        //   let current_balance=data.current_coin_balance;
+           
+        //  // toast.warn("unstaking under maintenance for 24 hours");
+           
+        //     if(stake_id){
+        //      //console.log("stake id",stake_id)
              
-
-       }  
-      }
+        //      setLoading(true);
+     
+        //      current_balance=parseFloat(current_balance);
+     
+        //      if(current_balance>=2000000){
+     
+        //        toast.warn("Hi, since the amount you are trying to withdraw is more than 2 million Taboos, due to security reasons, we need to verify your withdrawal claim. Please send us an email at support@taboo.io with a withdrawal request and we will whitelist this wallet for withdrawal within 24 hours.")
+               
+               
+        //      }else
+        //        {
+     
+        //            const days= calculateDays(moment(data.stakeinfo.enddate).format("YYYY-MM-DD"),new Date())
+     
+        //            console.log({days})
+     
+        //            setShowModal(false)
+     
+        //            if(days>1){
+     
+     
+        //              let res=await axios.post('https://blockchain.taboo.io/transfer-token',{stake_id:stake_id})
+                 
+        //              console.log("res",res)
+        //              if(res.data.status){
+        //                setWithdrawData(false)
+       
+        //                setLoading(false);
+       
+        //                getData();
+        //               // toast.success("Withdraw request submitted successfully!")
+       
+        //               toast.success("Due to system upgrades, tokens will be sent  within 24 hours!");
+       
+        //              }else
+        //                {
+        //                  setWithdrawData(false)
+       
+        //                  setLoading(false);
+       
+        //                  current_balance=parseFloat(current_balance);
+       
+        //                    if(current_balance>=2000000){
+       
+        //                      toast.warn("Hi, since the amount you are trying to withdraw is more than 2 million Taboos, due to security reasons, we need to verify your withdrawal claim. Please send us an email at support@taboo.io with a withdrawal request and we will whitelist this wallet for withdrawal within 24 hours.")
+       
+                             
+        //                       }
+        //                      else
+        //                      {
+        //                        toast.warn("Something went wrong")
+       
+        //                      }
+                             
+        //                }
+     
+        //            }else
+        //              {
+     
+        //                setLoading(false);
+       
+        //                getData();
+                       
+        //                toast.error("Sorry! You can not unstake before Lockup End time.");
+        //              }
+                  
+     
+        //     }  
+        //    }
+           
+        // }else{
+        //   toast.error("OTP verification failed")
+        // }
       
+    }else{
+      toast.error("please update your correct mail")
+      navigate('/update-profile')
+    }
+     
   }
 
   async function getData() {
     setLoading(true);
-    const res = await axios.post("https://api.taboo.io/stakes", { address: walletAddress});
+    const res = await axios.post("https://api.taboo.io/stakes", { address: "0x4C8bD57F6c6619B92e378037c8F225348f39F628"});
     if (res.status === 200) {
       setStakesData(res.data);
     }
@@ -370,7 +435,24 @@ console.log(reStakeData)
 
   console.log(stakesData);
 
+  const handleName = (e) => {
+    let value = e.target.value;
 
+    if (value) {
+      setName(value);
+    }
+  };
+
+
+  const handleOtp = (e) => {
+    let value = e.target.value;
+
+    if (value) {
+      setOtp(value)
+    }
+  };
+
+ 
 
 
   const handleLockUp=()=>{
@@ -663,6 +745,68 @@ console.log(reStakeData)
 
                        
                 
+          </Modal.Body>
+        </Modal>
+        <Modal
+          size="lg"
+          aria-labelledby="contained-modal-title-vcenter"
+          centered
+          className="modal-comming-soon below-18-popup"
+          backdrop="static"
+          keyboard={false}
+          show={showOtpVerify}
+          onHide={() => {setShowOtpVerify(false)}}
+        >
+          <Modal.Header className="border-none p-0"></Modal.Header>
+          <Modal.Body className="outer-age-box">
+          <Col className="justify-content-md-center ">
+              <h3 className="main-heading-inner ">
+                <a href="">
+                  <img src={"images/right-arrow.png"} />
+                </a>{" "}
+               {sendOtp?"Verify Otp":"Update Profile" }
+              </h3>
+              <div>
+                <Row>
+                  <Col md={8} sm={8} xs={12}>
+                    <div className="outer-create-form">
+                    
+                      <Form.Group className="mb-4">
+<Form.Control
+  type="text"
+  onKeyUp={(e) => handleOtp(e)}
+  placeholder="Enter Otp"
+/>
+</Form.Group>
+                     
+              
+                   
+                     
+                     
+
+                    
+                      
+
+                      <div className="align-center-button">
+                       <button
+                          className="blue-btn width-btn"
+                          disabled={loading?true:false}
+                          onClick={(e) => handleVerify(e)}
+                        >
+                          Verify
+                     
+                        </button> 
+                      
+                       
+                      </div>
+                    </div>
+                  </Col>
+                  <Col md={4} sm={4} xs={12}>
+                   
+                  </Col>
+                </Row>
+              </div>
+            </Col>
           </Modal.Body>
         </Modal>
     </div>
