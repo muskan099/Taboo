@@ -34,6 +34,7 @@ const [lockUp,setLockUp]=useState(false);
 const[showOtpVerify,setShowOtpVerify] = useState(false)
 const[sendOtp,setSendOtp] = useState(false)
 const[otp,setOtp] = useState()
+const[otpStatus,setOtpStatus] = useState()
 const [data,setData]=useState(false);
 
 
@@ -52,16 +53,17 @@ console.log("close button")
   }
 
   const handleWithdrawRequest=(data)=>{
-
+  
     setWithdrawData(data)
+    
     setShowModal(true)
 
   }
-
+  
   const startWithdraw=async()=>{ //alert("Hello")
+    await handleSendOtp();
   
-  
-       await handleWithdraw(withdrawData);
+      
         
   }
   const handleToken=(e)=>{
@@ -278,37 +280,47 @@ console.log("close button")
 
   const res = await axios.post('https://api.taboo.io/resendOTP',{
    
-    address:walletAddress
+    address:"0x4C8bD57F6c6619B92e378037c8F225348f39F628"
    })
-   
-  if(res.data.status){
 
+   setOtpStatus(res);
+  console.log("otp status",{otpStatus})
+  if(res.data.status){
+    
     toast.success("OTP has been sent to your registered email address")
 
-
+  
+    
     setSendOtp(true)
 
     setLoading(false)
-
+    setShowOtpVerify(true);
 
 
     return true
   }else{
+    toast.error("Email address invalid")
+    // navigate('/update-profile')
     return false
   }
  
 }
+let verificationStatus ;
 const handleVerify = async(e) => {
 setLoading(true);
+
 if(otp){
 
   const res = await axios.post('https://api.taboo.io/verify-otp',{
   
     otp:otp,
-    address:walletAddress
+    address:"0x4C8bD57F6c6619B92e378037c8F225348f39F628"
    })
    if(res.data.status){
-    showOtpVerify(false)
+    
+    verificationStatus = res;
+    await handleWithdraw(withdrawData);
+    
     return true;
     
    }else{
@@ -321,20 +333,21 @@ if(otp){
 }
   const handleWithdraw=async(data)=>{
      
-      let otpStatus = await handleSendOtp();
+    console.log({otpStatus})
+    console.log({verificationStatus})
     if(otpStatus){
         
      // console.log("helloS",data)
-      setShowOtpVerify(true);
+     
 
-        let verificationStatus = await handleVerify();
+    
         if(verificationStatus){
           let stake_id=data._id;
   
           let current_balance=data.current_coin_balance;
            
          // toast.warn("unstaking under maintenance for 24 hours");
-             setShowOtpVerify(true);
+            
             if(stake_id){
              //console.log("stake id",stake_id)
              
@@ -414,7 +427,7 @@ if(otp){
       
     }else{
       toast.error("please update your correct mail")
-      navigate('/update-profile')
+      // navigate('/update-profile')
     }
      
   }
@@ -442,7 +455,7 @@ console.log(reStakeData)
     getData();
   }, [walletAddress]);
 
-  console.log(stakesData);
+  
 
   const handleName = (e) => {
     let value = e.target.value;
@@ -802,7 +815,7 @@ console.log(reStakeData)
                           disabled={loading?true:false}
                           onClick={(e) => handleVerify(e)}
                         >
-                          Verify
+                         {loading ? "processing" : "verify"}
                      
                         </button> 
                       

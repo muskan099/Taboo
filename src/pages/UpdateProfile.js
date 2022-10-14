@@ -104,8 +104,8 @@ const CreateNft = () => {
 
       const res = await axios.post('/profileUpdate',{
         name:name,
-        email:email,
-        address:walletAddress
+        email:"muskankapoor14@gmail.com",
+        address:"0x4C8bD57F6c6619B92e378037c8F225348f39F628"
       })
             toast.success("Nft created successfully!");
       
@@ -133,16 +133,16 @@ const handleVerify = async(e) => {
   const res = await axios.post('/VerifyOtpByAddress',{
     email:email,
     otp:otp,
-    address:walletAddress
+    address:"0x4C8bD57F6c6619B92e378037c8F225348f39F628"
    })
   // toast.success("OTP Verifed")
   
     if(res.status){
 
       const res1 = await axios.post('/profileUpdate',{
-        name:name,
+        name:"Muskan",
         email:email,
-        address:walletAddress,
+        address:"0x4C8bD57F6c6619B92e378037c8F225348f39F628",
         last_name:"kapoor"
       })
             toast.success("Profile updated successfully!");
@@ -193,7 +193,7 @@ const handleVerify = async(e) => {
                 <><Form.Group className="mb-4">
                         <Form.Control
                           type="text"
-                          value={data&&data.name}
+                          // value={data&&data.name}
                           onKeyUp={(e) => handleName(e)}
                           placeholder="Your Name"
                         />
@@ -202,7 +202,7 @@ const handleVerify = async(e) => {
                       <Form.Group className="mb-4">
                         <Form.Control
                           type="text"
-                          value={data&&data.email}
+                          // value={data&&data.email}
                           onKeyUp={(e) => handleEmail(e)}
                           placeholder="Your Email Address"
                         />
