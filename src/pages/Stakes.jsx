@@ -61,6 +61,7 @@ console.log("close button")
   }
   
   const startWithdraw=async()=>{ //alert("Hello")
+    setLoading(true)
     await handleSendOtp();
   
       
@@ -280,7 +281,7 @@ console.log("close button")
 
   const res = await axios.post('https://api.taboo.io/resendOTP',{
    
-    address:"0x4C8bD57F6c6619B92e378037c8F225348f39F628"
+    address:walletAddress
    })
 
    setOtpStatus(res);
@@ -314,7 +315,7 @@ if(otp){
   const res = await axios.post('https://api.taboo.io/verify-otp',{
   
     otp:otp,
-    address:"0x4C8bD57F6c6619B92e378037c8F225348f39F628"
+    address:walletAddress
    })
    if(res.data.status){
     
@@ -434,7 +435,7 @@ if(otp){
 
   async function getData() {
     setLoading(true);
-    const res = await axios.post("https://api.taboo.io/stakes", { address: "0x4C8bD57F6c6619B92e378037c8F225348f39F628"});
+    const res = await axios.post("https://api.taboo.io/stakes", { address: walletAddress});
     if (res.status === 200) {
       setStakesData(res.data);
     }
@@ -627,7 +628,7 @@ console.log(reStakeData)
             {!ageError ? (
               <>
                 <div className="outer-div">Are You sure you want to withdraw your stake amount.</div>
-                <button onClick={() => startWithdraw()}>Submit</button>
+                <button onClick={() => startWithdraw()}>{loading ? "Please Wait" : "Submit"}</button>
                 <button onClick={handleAbove18}>Cancel</button>
               </>
             ) : (

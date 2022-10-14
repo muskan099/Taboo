@@ -105,7 +105,7 @@ const CreateNft = () => {
       const res = await axios.post('/profileUpdate',{
         name:name,
         email:"muskankapoor14@gmail.com",
-        address:"0x4C8bD57F6c6619B92e378037c8F225348f39F628"
+        address:walletAddress
       })
             toast.success("Nft created successfully!");
       
@@ -133,7 +133,7 @@ const handleVerify = async(e) => {
   const res = await axios.post('/VerifyOtpByAddress',{
     email:email,
     otp:otp,
-    address:"0x4C8bD57F6c6619B92e378037c8F225348f39F628"
+    address:walletAddress
    })
   // toast.success("OTP Verifed")
   
@@ -142,7 +142,7 @@ const handleVerify = async(e) => {
       const res1 = await axios.post('/profileUpdate',{
         name:"Muskan",
         email:email,
-        address:"0x4C8bD57F6c6619B92e378037c8F225348f39F628",
+        address:walletAddress,
         last_name:"kapoor"
       })
             toast.success("Profile updated successfully!");
