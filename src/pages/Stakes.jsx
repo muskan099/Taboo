@@ -308,10 +308,10 @@ console.log("close button")
 }
 let verificationStatus ;
 const handleVerify = async(e) => {
-setLoading(true);
+
 
 if(otp){
-
+  setLoading(true);
   const res = await axios.post('https://api.taboo.io/verify-otp',{
   
     otp:otp,
@@ -325,8 +325,11 @@ if(otp){
     return true;
     
    }else{
+     
     return false;
    }
+}else{
+  toast.error("Enter OTP")
 }
 
 
