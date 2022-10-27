@@ -316,7 +316,7 @@ const CreateStake=()=>{
                                         <ul>
                                             <li>Stake in Taboo and Earn more</li>
                                             <li>APY is {rate}%</li>
-                                            <li>Minimum Lockup period is 3 months</li>
+                                            <li>Minimum Lockup period is {stakeTime} months</li>
                                             <li>No Deposit or Withdrawal Fee</li>
                                         </ul>
                                     </div>
