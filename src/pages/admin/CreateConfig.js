@@ -17,7 +17,7 @@ const[loading,setLoading]=useState(false)
 const handleType=(e)=>{
     let value=e.target.value;
     
-    console.log("value",value)
+    // console.log("value",value)
 
     if(value){
 
@@ -33,7 +33,7 @@ const handleAddress=(e)=>{
 
     let value=e.target.value;
 
-    console.log("value",value)
+    // console.log("value",value)
 
      if(value){
         setAddress(value)
@@ -55,7 +55,7 @@ const handleSubmit=async()=>{
 
             let res=await axios.post("https://blockchain.taboo.io/config",{type:type,address:address});
 
-            console.log("res",res)
+            // console.log("res",res)
 
              if(res.data.Status){
                 setLoading(false)

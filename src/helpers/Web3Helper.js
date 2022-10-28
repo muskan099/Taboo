@@ -31,7 +31,7 @@ export const web3 = async () => {
     const web3 = new Web3(provider);
     return web3;
   } catch (error) {
-    console.log(error.message);
+    // console.log(error.message);
   }
 };
 
@@ -41,6 +41,6 @@ export const Provider = async () => {
 
     return provider;
   } catch (error) {
-    console.log(error.message);
+    // console.log(error.message);
   }
 };

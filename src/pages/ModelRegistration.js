@@ -70,7 +70,7 @@ const CreateNft = () => {
     reader.onloadend = () => {
       setContentImage(reader.result);
     };
-console.log({files})
+// console.log({files})
     if (files[0]) {
       if (files[0].type.includes("video")) {
         const filename = files[0].name;
@@ -263,12 +263,12 @@ console.log({files})
       formData.append("youtubeLink", youtubeLink);
       
       formData.append("description", description);
-      console.log({file,name,email,age,chest,weight})
-      console.log({formData})
+      // console.log({file,name,email,age,chest,weight})
+      // console.log({formData})
 
      
 const res = await axios.post('https://test.taboo.io/users/modelRegister', formData)
-console.log(res)
+// console.log(res)
 if(res.data.status){
   setCreateStart(false);
   toast.success("Your Profile is under review. We will update you once its approved.");
@@ -319,7 +319,7 @@ if(res.data.status){
                           </div>
                         </div>
                       </div>
-{console.log({photoUrl})}
+{/* {console.log({photoUrl})} */}
 <Form.Group className="mb-4">
 <Form.Label>Name</Form.Label>
                         <Form.Control

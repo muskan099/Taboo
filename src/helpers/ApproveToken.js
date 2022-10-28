@@ -25,9 +25,9 @@ export const ApproveTabooNFT = async (token, address) => {
 
   const nonce = await web3js.eth.getTransactionCount(address, "latest");
 
-  console.log("data", address);
+  // console.log("data", address);
 
-  console.log("token",token)
+  // console.log("token",token)
 
   //price = "0x" + (price * 1000000000).toString(16);
 

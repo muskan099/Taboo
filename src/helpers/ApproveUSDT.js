@@ -21,7 +21,7 @@ export const ApproveUSDT = async (price, address) => {
 
   const nonce = await web3js.eth.getTransactionCount(address, "latest");
 
-  console.log("approve data", address);
+  // console.log("approve data", address);
 
   price = "0x" + (price * 1000000000000000000).toString(16);
 
@@ -54,7 +54,7 @@ export const ApproveUSDT = async (price, address) => {
 
     return tx;
   } catch (e) {
-    console.log(e);
+    // console.log(e);
   }
   return tx;
 };

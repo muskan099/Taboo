@@ -94,7 +94,7 @@ const BuyCoin=()=>{
   const getBNBBalance=async(address)=>{
       
 
-    console.log("currency Type2",currencyType);
+    // console.log("currency Type2",currencyType);
 
 
           setIsloadingBalance(true);
@@ -103,7 +103,7 @@ const BuyCoin=()=>{
 
           let balance= await TokenBalance(walletAddress,currencyType);
 
-          console.log("other balance",balance);
+          // console.log("other balance",balance);
 
           setBnbBalance(balance)
 
@@ -116,7 +116,7 @@ const BuyCoin=()=>{
 
           let balance=res.data.balance//await BNBBalance(address);
 
-           console.log('balance',balance)
+          //  console.log('balance',balance)
   
            setBnbBalance(balance)
 
@@ -153,11 +153,11 @@ const BuyCoin=()=>{
 
               if(currencyType=="BNB"||currencyType=="ETH"){
 
-                  console.log("currency",currencyType)
+                  // console.log("currency",currencyType)
 
                 let res= await axios.get(`https://api.coingecko.com/api/v3/simple/price?ids=taboo-token&vs_currencies=${currencyType}&include_market_cap=true&include_24hr_vol=true&include_24hr_change=true&include_last_updated_at=true%27`)
                 
-                console.log("res",res);
+                // console.log("res",res);
 
                 let price=0;
                   
@@ -169,7 +169,7 @@ const BuyCoin=()=>{
                   price= res.data['taboo-token'][`matic`];
                 }
 
-                console.log("price",price);
+                // console.log("price",price);
 
                 let taboo= (1/price)*value;
 
@@ -192,7 +192,7 @@ const BuyCoin=()=>{
 
                 let res= await axios.get(`https://api.coingecko.com/api/v3/simple/price?ids=${geko_ids}&vs_currencies=bnb`)
                 
-                console.log("res isd",res.data[`${geko_ids}`]['bnb']);
+                // console.log("res isd",res.data[`${geko_ids}`]['bnb']);
 
                 let matic_bnb=res.data[`${geko_ids}`]['bnb'];
 
@@ -299,7 +299,7 @@ const BuyCoin=()=>{
                 let web3js= await web3();
 
                 let chainId=await web3js.eth.getChainId();
-                console.log('chainId',chainId)
+                // console.log('chainId',chainId)
                  
                 if(chainId==56){
 
@@ -362,7 +362,7 @@ const BuyCoin=()=>{
                  let web3js= await web3();
 
                 let chainId=await web3js.eth.getChainId();
-                console.log('chainId',chainId)
+                // console.log('chainId',chainId)
 
                  if(chainId==56){
 
@@ -392,7 +392,7 @@ const BuyCoin=()=>{
                 let web3js= await web3();
 
                 let chainId=await web3js.eth.getChainId();
-                console.log('chainId',chainId)
+                // console.log('chainId',chainId)
                  
                 if(chainId==137){
 
@@ -420,7 +420,7 @@ const BuyCoin=()=>{
                   let web3js= await web3();
 
                   let chainId=await web3js.eth.getChainId();
-                  console.log('chainId',chainId)
+                  // console.log('chainId',chainId)
   
                    if(chainId==56){
   
@@ -463,7 +463,7 @@ const BuyCoin=()=>{
 
                let transactionData=await web3js.eth.getTransaction(hash.transactionHash);
 
-               console.log("babalALX",transactionData);
+              //  console.log("babalALX",transactionData);
                let amount=tabooAmount.toFixed(0)
                  
                let txAmount=transactionData.value/1000000000000000000;
@@ -472,9 +472,9 @@ const BuyCoin=()=>{
 
                let tempAmount=parseFloat(bnbAmount);
 
-               console.log("tx amount",txAmount);
+              //  console.log("tx amount",txAmount);
               
-               console.log("bnb amount",tempAmount)
+              //  console.log("bnb amount",tempAmount)
 
                let toAddress=transactionData.to;
 
@@ -568,7 +568,7 @@ const BuyCoin=()=>{
       setCurrencyType(value);
 
 
-      console.log("currencyTyp",value)
+      // console.log("currencyTyp",value)
       
       handleToken(bnbAmount)
 

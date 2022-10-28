@@ -35,9 +35,9 @@ const JoinUs = () => {
   const handleData = (e) => {
     const { name, value } = e.target;
     setData({ ...data, [name]: e.target.value });
-    console.log([name]);
-    console.log(value);
-    console.log(data);
+    // console.log([name]);
+    // console.log(value);
+    // console.log(data);
   };
 
   const handleSubmit = async (e) => {
@@ -99,7 +99,7 @@ const JoinUs = () => {
         "https://test.taboo.io/users/join-us",
         payload
       );
-console.log(res)
+// console.log(res)
 
       if (res.data.status) {
         setLoading(false);
@@ -107,15 +107,15 @@ console.log(res)
       }
     } catch (err) {
       setLoading(false);
-      console.log(err);
+      // console.log(err);
       toast.error("Something went wrong. Try again!");
     }
   };
 
   useEffect(() => {
-    console.log(errors);
+    // console.log(errors);
     if (Object.keys(errors).length === 0 && isSubmit) {
-      console.log(data);
+      // console.log(data);
     }
   }, [data, errors, isSubmit]);
 

@@ -50,7 +50,7 @@ export function* getNftDetailSaga(action) {
   try {
     const response = yield axios.post(`/content-detail`, action.payload);
     if (response.status === 200) {
-      console.log(response.data);
+      // console.log(response.data);
 
       yield put(getNftDetailSuccess(response.data));
     } else {
@@ -66,7 +66,7 @@ export function* updateNftStatusSaga(action) {
   try {
     const response = yield axios.post(`/content-status`, action.payload);
     if (response.status === 200) {
-      console.log(response.data);
+      // console.log(response.data);
 
       yield put(updateNftStatusSuccess(response.data));
     } else {
