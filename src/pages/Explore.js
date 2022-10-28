@@ -907,7 +907,7 @@ const Explore = () => {
                     />
                   </Col>
 
-                  {console.log("the nft data is ", nft)}
+                  {/* {console.log("the nft data is ", nft)} */}
                 </div>
               </div>
             </Col>
