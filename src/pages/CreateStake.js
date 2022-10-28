@@ -36,7 +36,7 @@ const CreateStake=()=>{
     // console.log("punks",punk)
     let tier=punk>0?"3 Tier":"1 Tier"
     let balance= await TabooBalance(address)
-    console.log("balance",balance)
+    // console.log("balance",balance)
 
     if (address && address.length) {
       dispatch(loginSaga({ address: address,balance:balance,tabooPunk:punk,tier:tier}));

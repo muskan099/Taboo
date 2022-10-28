@@ -16,7 +16,7 @@ export const ipfsMint = async (testFile, data) => {
     const hash = await ipfs.add(testBuffer);
 
     // console.log(`https://gateway.ipfs.io/ipfs/${hash[0].path}`);
-    console.log("hash", hash);
+    // console.log("hash", hash);
     var hash1 = hash.path;
 
     let testFile1 = {
@@ -29,7 +29,7 @@ export const ipfsMint = async (testFile, data) => {
     let testBuffer2 = new Buffer.from(JSON.stringify(testFile1));
 
     const ImgUrl = await ipfs.add(testBuffer2);
-    console.log(ImgUrl);
+    // console.log(ImgUrl);
     // console.log(`https://gateway.ipfs.io/ipfs/${ImgUrl[0].path}`);
 
     let hash2 = ImgUrl.path;
@@ -38,6 +38,6 @@ export const ipfsMint = async (testFile, data) => {
 
     return contentUrl;
   } catch (e) {
-    console.log(e);
+    // console.log(e);
   }
 };

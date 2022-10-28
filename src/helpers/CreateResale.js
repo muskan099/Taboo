@@ -84,7 +84,7 @@ export const CreateReSale=async(selectedAccount,token,price)=>{
 
 
        }catch(e){
-        console.log(e);
+        // console.log(e);
     }
     return hash;
     
@@ -98,12 +98,12 @@ export const WithdrawSale=async(selectedAccount,token)=>{
         
   let web3js=await web3();
 
-  console.log('token',token);
+  // console.log('token',token);
 
 
-  console.log("seller",selectedAccount)
+  // console.log("seller",selectedAccount)
 
-  console.log(" NftContract", NftContract)
+  // console.log(" NftContract", NftContract)
 
   const SaleContract = new web3js.eth.Contract(abi, contractAddress);
 
@@ -156,7 +156,7 @@ export const WithdrawSale=async(selectedAccount,token)=>{
 
 
      }catch(e){
-      console.log(e);
+      // console.log(e);
   }
   return hash;
   

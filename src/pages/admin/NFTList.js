@@ -44,7 +44,7 @@ const NFTList = () => {
   const [show, setShow] = useState(false);
 
   const [ANft, setANft] = useState("");
-  console.log(ANft);
+  // console.log(ANft);
 
   const [auctionData, setAuctionData] = useState({
     minPrice: 0,
@@ -122,7 +122,7 @@ const NFTList = () => {
         buttonMessage: "Processing Please Wait...",
       }));
       let address = await Connect();
-      console.log("anft", ANft);
+      // console.log("anft", ANft);
       let tx = await createAuction(
         ANft.nftToken,
         auctionData.minPrice,
@@ -135,13 +135,13 @@ const NFTList = () => {
         ANft.ipfs,
         address[0]
       );
-      console.log("tx", tx);
+      // console.log("tx", tx);
       let data = { tx: tx };
       try {
         let trx = await Transaction(data);
         if (trx) {
           let token = await NFTBalance();
-          console.log("token", token);
+          // console.log("token", token);
           let res = await axios.post("/update-content", {
             content_id: ANft._id,
             status: "auction",
@@ -171,7 +171,7 @@ const NFTList = () => {
   console.log({filterSearch})
   const getData = async (currentPage, limit, filterSearch) => {
     console.log({category})
-    console.log({filterSearch})
+    // console.log({filterSearch})
    
     const res = await axios.post("/content-list", {
       page: currentPage,
@@ -192,7 +192,7 @@ const NFTList = () => {
   useEffect(() => {
     getData(currentPage,20,filterSearch);
   }, []);
-  console.log({ nft });
+  // console.log({ nft });
   const [currentPage, setCurrentPage] = useState(1);
   const[tier,setTier] = useState()
 

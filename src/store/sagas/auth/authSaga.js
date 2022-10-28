@@ -65,7 +65,7 @@ export function* userLoginSaga(action) {
   try {
     const { formData, navigate } = action.payload;
     const response = yield axios.post(`/users/login`, formData);
-    console.log(response.data);
+    // console.log(response.data);
     if (response?.data.status) {
       yield call(
         setItemToLocalStorage,
@@ -94,9 +94,9 @@ export function* registerSaga(action) {
   yield put(registerStart());
   try {
     const response = yield axios.post(`/users/signup`, action.payload);
-    console.log(response);
+    // console.log(response);
     if (response.status === 200) {
-      console.log(response.data.data);
+      // console.log(response.data.data);
       yield call(
         [localStorage, "setItem"],
         "authToken",
@@ -130,7 +130,7 @@ export function* registerSaga(action) {
 export function* googleLoginSaga(action) {
   yield put(loginStart());
   try {
-    console.log(action.payload);
+    // console.log(action.payload);
     const response = yield axios.post(`/users/login-google`, action.payload);
     if (response.status === 200) {
       yield call(

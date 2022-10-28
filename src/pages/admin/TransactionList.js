@@ -25,8 +25,8 @@ const TransactionList = () => {
   const [endDate, setEndDate] = useState(new Date());
   let dateTime1 = endDate.toDateString();
   let current_date1 = moment(endDate, "YYYY-MM-DD").format().slice(0,10);
-  console.log("the current date is", { current_date });
-  console.log("the current date is", { current_date1 });
+  // console.log("the current date is", { current_date });
+  // console.log("the current date is", { current_date1 });
 
   const [totalNft, setTotalNft] = useState([]);
   const [result, setResult] = useState([]);
@@ -35,7 +35,7 @@ const TransactionList = () => {
   const [status, setStatus] = useState("");
   const [submit, setSubmit] = useState(false);
   const [searchByDate,setSearchByDate] = useState(false)
-  console.log({ status });
+  // console.log({ status });
   //startDate=2022-07-20&endDate=2022-07-23
   const getData = async (page, limit) => {
     const res = await axios.post("/transactions", {
@@ -44,16 +44,16 @@ const TransactionList = () => {
       skip: page * limit - limit,
     });
     if (res.data) {
-      console.log(res.data.data);
+      // console.log(res.data.data);
       setNft(res.data.data[0].list);
 
       setResult(res.data.data[0]);
       setTotalNft(JSON.stringify(res.data.data[0].totalRecords[0].count));
     
-      console.log(res.data);
+      // console.log(res.data);
     }
   };
-  console.log({ nft });
+  // console.log({ nft });
   
   useEffect(() => {
     getData(currentPage, 20);
@@ -63,16 +63,16 @@ const TransactionList = () => {
   let indexOfLastNft = currentPage * nftPerPage;
   let indexOfFirstNft = indexOfLastNft - nftPerPage;
 
-  console.log({currentPage});
+  // console.log({currentPage});
 
   let currentNfts = nft.slice(indexOfFirstNft, indexOfLastNft);
 
-  console.log(nft);
+  // console.log(nft);
   console.log({ currentNfts });
   useEffect(() => {
     getData(currentPage, 20);
 
-    console.log({ currentNfts });
+    // console.log({ currentNfts });
   }, [currentPage]);
   function handleSelection() {
     setStatus("all");
@@ -228,7 +228,7 @@ const TransactionList = () => {
                   onChange={(endDate) => {
                     setIsVisible(false)
                     setEndDate(endDate)
-                  {console.log({isVisible})}
+                  // {console.log({isVisible})}
                     setSearchByDate(true);
                   }}
                 />
@@ -261,7 +261,7 @@ const TransactionList = () => {
                       .map((item, index) => (
                         
                         <tr key={item._id}>
-                          {console.log("created at", item.created_at)}
+                          {/* {console.log("created at", item.created_at)} */}
                           <td>{result.offSet + index + 1}</td>
                           <td>
                             <div>   <div class="owner-row-outer">

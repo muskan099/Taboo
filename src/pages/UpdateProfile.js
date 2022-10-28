@@ -137,7 +137,7 @@ const handleVerify = async(e) => {
    })
   // toast.success("OTP Verifed")
   
-    if(res.status){
+    if(res.data.status){
 
       const res1 = await axios.post('/profileUpdate',{
         name:"Muskan",

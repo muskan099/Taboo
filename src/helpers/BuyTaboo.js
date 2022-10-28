@@ -123,12 +123,12 @@ export const TokenBalance=async(address,type)=>{
     let web3js=await web3();
 
 
-        console.log("crypto type",type)
+        // console.log("crypto type",type)
     if(type=="wrapped-ada"){
         usdtContract=wADA;
     }else if(type=="wrapped-bitcoin"){
 
-        console.log("baaaa",type)
+        // console.log("baaaa",type)
         usdtContract=wBTC;
 
     }else if(type=="dogecoin"){
@@ -144,7 +144,7 @@ export const TokenBalance=async(address,type)=>{
         usdtContract= usdtContract;
     }
 
-    console.log("usdtc",usdtContract)
+    // console.log("usdtc",usdtContract)
 
      const TokenContract = new web3js.eth.Contract(usdtAbi, usdtContract);
 
@@ -155,7 +155,7 @@ export const TokenBalance=async(address,type)=>{
              from :usdtContract
              });
 
-             console.log("balance",balance)
+            //  console.log("balance",balance)
 
              if(type=="dogecoin"){
 

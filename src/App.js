@@ -127,7 +127,7 @@ function App() {
           <Route path="/update-profile" element={<UpdateProfile />} />
         </Routes>
         {path === "about" ? <AboutUsFooter /> : <Footer />}
-        {console.log({ path })}
+        {/* {console.log({ path })} */}
       </BrowserRouter>
     </div>
   );

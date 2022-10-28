@@ -44,14 +44,14 @@ const AdminDashboard = () => {
     vAxis: { minValue: 0 },
   };
   const { user } = useSelector((state) => state.auth);
-  console.log({ user });
+  // console.log({ user });
   const [nftDetails,setNftDetails] = useState([])
   const getData = async() => {
     const res = await axios.get('/dashboard')
-    console.log(res.data)
+    // console.log(res.data)
     setNftDetails(res.data.data)
   }
-  console.log("nftDetails",nftDetails)
+  // console.log("nftDetails",nftDetails)
   let percentage1 = nftDetails.totalNFT_Persentage;
   let percentage2 = nftDetails.forSellNFT_Persentage;
   let percentage3 = nftDetails.auctionNFT_Persentage;

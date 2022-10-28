@@ -26,7 +26,7 @@ export const Mint=async(tokenUrl,minPrice)=>{
 
        //let accounts = await window.ethereum.enable();
       //console.log("accounts", accounts);
-       console.log('ready to go!') 
+      //  console.log('ready to go!') 
       voucher.address= wallet_address //accounts[0];
   
         
@@ -35,7 +35,7 @@ export const Mint=async(tokenUrl,minPrice)=>{
 
        voucher.voucher =  await lazyminter.createVoucher(token,tokenUrl,minPrice);
 
-       console.log(voucher);
+      //  console.log(voucher);
 
 
 

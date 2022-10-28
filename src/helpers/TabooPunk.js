@@ -749,7 +749,7 @@ export const TabooPunk=async(address)=>{
 
     const nftContract = new web3js.eth.Contract(abi, contractAddress);
 
-    console.log('data',address);
+    // console.log('data',address);
     
     let balance=0;
 
@@ -760,7 +760,7 @@ export const TabooPunk=async(address)=>{
            
           return balance;
        }catch(e){
-        console.log(e);
+        // console.log(e);
     }
     return balance;
     

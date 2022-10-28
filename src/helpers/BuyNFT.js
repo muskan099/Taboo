@@ -29,7 +29,7 @@ export const BuyNFT = async (token_id, uri, minPrice, signature,tier,punk) => {
     token=parseInt(token);
      token=token+1;
     
-    console.log("token",token)
+    // console.log("token",token)
     //  let amount = BigInt(minPrice * 1000000000000000000).toString();
 
     const voucher = {
@@ -39,8 +39,8 @@ export const BuyNFT = async (token_id, uri, minPrice, signature,tier,punk) => {
       signature: signature,
     };
 
-    console.log("xyz", voucher);
-    console.log("ccc", token, uri, minPrice, signature);
+    // console.log("xyz", voucher);
+    // console.log("ccc", token, uri, minPrice, signature);
 
     const nonce = await Web3.eth.getTransactionCount(selectedAccount, "latest");
 
@@ -97,7 +97,7 @@ export const BuyNFT = async (token_id, uri, minPrice, signature,tier,punk) => {
         .encodeABI(),
     });
 
-    console.log("hhhh", token, uri, minPrice, signature);
+    // console.log("hhhh", token, uri, minPrice, signature);
 
     let gasLimit = Web3.utils.toHex(estimates_gas * 2);
     let gasPrice_bal = await Web3.eth.getGasPrice();
@@ -125,7 +125,7 @@ export const BuyNFT = async (token_id, uri, minPrice, signature,tier,punk) => {
         .encodeABI(),
     };
 
-    console.log("logging before sendTransaction");
+    // console.log("logging before sendTransaction");
     let hash = await Web3.eth.sendTransaction(tx);
 
 

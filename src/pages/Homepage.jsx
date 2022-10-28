@@ -14,7 +14,7 @@ const onClose = () => {
 
 const Homepage = () => {
   const isAbove18 = !!localStorage.getItem("below-18");
-  console.log(isAbove18);
+  // console.log(isAbove18);
   const [showImg, setShowImg] = useState(false);
   const [show, setShow] = useState(false);
   // const [isBelow18, setIsBelow18] = useState(isAbove18 ? false : true);

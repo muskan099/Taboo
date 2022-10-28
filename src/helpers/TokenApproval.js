@@ -24,12 +24,12 @@ export const TokenApproval = async (price, address,forsale) => {
    if(forsale=="yes"){
       spender=spenderSecond;
    }
- console.log("spender",spender)
+//  console.log("spender",spender)
   const nftContract = new web3js.eth.Contract(abi, contractAddress);
 
   const nonce = await web3js.eth.getTransactionCount(address, "latest");
 
-  console.log("data", address);
+  // console.log("data", address);
 
   price=parseInt(price)+parseInt(price);
 
@@ -62,7 +62,7 @@ export const TokenApproval = async (price, address,forsale) => {
 
     return tx;
   } catch (e) {
-    console.log(e);
+    // console.log(e);
   }
   return tx;
 };

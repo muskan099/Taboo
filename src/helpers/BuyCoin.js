@@ -39,7 +39,7 @@ export const BuyTaboo = async (BNBAmount,tabooAmount) => {
 
      //BNBAmount=BNBAmount/1000000000000000000;
      //BNBAmount=BNBAmount.toFixed(3);
-     console.log("bnb balance",BNBAmount)
+    //  console.log("bnb balance",BNBAmount)
 
      
 
@@ -391,13 +391,13 @@ export const TabooPrice=async(bnb)=>{
       });
 
 
-      console.log("bnb to taboo",balance)
+      // console.log("bnb to taboo",balance)
 
    //let taboo=bnb*balance;
    
    return balance;
   }catch(e){
-    console.log("hello",e);
+    // console.log("hello",e);
 
       let balance=0;
 
@@ -423,13 +423,13 @@ export const TabooPriceByEth=async(bnb)=>{
       });
 
 
-      console.log("eth to taboo",balance)
+      // console.log("eth to taboo",balance)
 
    //let taboo=bnb*balance;
    
    return balance;
   }catch(e){
-    console.log("hello",e);
+    // console.log("hello",e);
 
     let balance=0;
 
@@ -456,13 +456,13 @@ export const TabooPriceByMatic=async(bnb)=>{
       });
 
 
-    console.log("matic to taboo",balance)
+    // console.log("matic to taboo",balance)
 
   // let taboo=bnb*balance;
    
    return balance;
   }catch(e){
-    console.log("hello",e);
+    // console.log("hello",e);
 
     let balance=0;
 
@@ -491,13 +491,13 @@ export const TabooPriceByUSDT=async(bnb)=>{
       });
 
 
-      console.log("usdt to taboo",balance)
+      // console.log("usdt to taboo",balance)
 
   // let taboo=bnb*balance;
    
    return balance;
   }catch(e){
-    console.log("hello",e);
+    // console.log("hello",e);
 
     let balance=0;
 
@@ -525,14 +525,14 @@ export const TabooToBNB=async(taboo)=>{
       });
 
 
-      console.log("taboo rate",balance)
+      // console.log("taboo rate",balance)
 
    
    
    return balance;
 
   }catch(e){
-    console.log("hello",e);
+    // console.log("hello",e);
   }
 
 
@@ -559,9 +559,9 @@ const Web3 = await web3();
     }
 
 
-    console.log("address",address);
+    // console.log("address",address);
 
-    console.log("token address",tokenAddress)
+    // console.log("token address",tokenAddress)
 
   const nftcontract = new Web3.eth.Contract(abi, contractAddress);
 
@@ -574,7 +574,7 @@ const Web3 = await web3();
 
       balance=balance/1000000000000000000;
       
-      console.log("crypto balance",balance)
+      // console.log("crypto balance",balance)
 
      
    

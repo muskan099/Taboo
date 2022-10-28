@@ -42,13 +42,13 @@ const [data,setData]=useState(false);
 const [createStart, setCreateStart] = useState(false);
 
 const [name, setName] = useState("");
-console.log({reStake})
+// console.log({reStake})
   const handleAbove18 = () => {
     setShowModal(false);
     localStorage.setItem("below-18", false);
   };
   const handleClose = () => {
-console.log("close button")
+// console.log("close button")
     setReStake(false);
   }
 
@@ -131,7 +131,7 @@ console.log("close button")
     // console.log("punks",punk)
     let tier=punk>0?"3 Tier":"1 Tier"
     let balance= await TabooBalance(address)
-    console.log("balance",balance)
+    // console.log("balance",balance)
 
     if (address && address.length) {
       dispatch(loginSaga({ address: address,balance:balance,tabooPunk:punk,tier:tier}));
@@ -202,7 +202,7 @@ console.log("close button")
          let hash = true;
          let verificationStatus=true;
          let stakeId = reStakeData._id
-         console.log({reStakeData})
+        //  console.log({reStakeData})
          if(tabooToken>currentBalance){
            const amount = tabooToken-currentBalance;
 
@@ -233,7 +233,7 @@ console.log("close button")
 
          }
 
-           console.log('token',res)           
+          //  console.log('token',res)           
 
             if(res){
               
@@ -285,7 +285,7 @@ console.log("close button")
    })
 
    setOtpStatus(res);
-  console.log("otp status",{otpStatus})
+  // console.log("otp status",{otpStatus})
   if(res.data.status){
     
     toast.success("OTP has been sent to your registered email address")
@@ -337,8 +337,8 @@ if(otp){
 }
   const handleWithdraw=async(data)=>{
      
-    console.log({otpStatus})
-    console.log({verificationStatus})
+    // console.log({otpStatus})
+    // console.log({verificationStatus})
     if(otpStatus){
         
      // console.log("helloS",data)
@@ -369,7 +369,7 @@ if(otp){
      
                    const days= calculateDays(moment(data.stakeinfo.enddate).format("YYYY-MM-DD"),new Date())
      
-                   console.log({days})
+                  //  console.log({days})
      
                    setShowModal(false)
      
@@ -378,7 +378,7 @@ if(otp){
      
                      let res=await axios.post('https://blockchain.taboo.io/transfer-token',{stake_id:stake_id})
                  
-                     console.log("res",res)
+                    //  console.log("res",res)
                      if(res.data.status){
                        setWithdrawData(false)
        
@@ -452,7 +452,7 @@ const handleReStake = (data) => {
 
 }
 
-console.log(reStakeData)
+// console.log(reStakeData)
   useEffect(() => {
     //toast.warn("Hi, since the amount you are trying to withdraw is more than 5 million Taboos, due to security reasons, we need to verify your withdrawal claim. Please send us an email at support@taboo.io with a withdrawal request and we will whitelist this wallet for withdrawal within 24 hours.")
 

@@ -7,7 +7,7 @@ export const BNBBalance=async(account)=>{
 
     let balance = await web3js.eth.getBalance(account);
 
-    console.log("balanceBNB",balance)
+    // console.log("balanceBNB",balance)
     
     if(balance){
         balance = balance / Math.pow(10,18);
