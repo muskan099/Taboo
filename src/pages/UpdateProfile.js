@@ -104,10 +104,10 @@ const CreateNft = () => {
 
       const res = await axios.post('/profileUpdate',{
         name:name,
-        email:"muskankapoor14@gmail.com",
+        email:email,
         address:walletAddress
       })
-            toast.success("Nft created successfully!");
+            toast.success("Profile created successfully!");
       
             setCreateStart(false);
       
@@ -140,10 +140,10 @@ const handleVerify = async(e) => {
     if(res.status){
 
       const res1 = await axios.post('/profileUpdate',{
-        name:"Muskan",
+        name:name,
         email:email,
         address:walletAddress,
-        last_name:"kapoor"
+        last_name:name
       })
             toast.success("Profile updated successfully!");
       
