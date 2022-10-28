@@ -45,13 +45,13 @@ const[vStatus,setVStatus]=useState(false);
 const [createStart, setCreateStart] = useState(false);
 
 const [name, setName] = useState("");
-console.log({reStake})
+// console.log({reStake})
   const handleAbove18 = () => {
     setShowModal(false);
     localStorage.setItem("below-18", false);
   };
   const handleClose = () => {
-console.log("close button")
+// console.log("close button")
     setReStake(false);
   }
 
@@ -135,7 +135,7 @@ console.log("close button")
     // console.log("punks",punk)
     let tier=punk>0?"3 Tier":"1 Tier"
     let balance= await TabooBalance(address)
-    console.log("balance",balance)
+    // console.log("balance",balance)
 
     if (address && address.length) {
       dispatch(loginSaga({ address: address,balance:balance,tabooPunk:punk,tier:tier}));
@@ -206,7 +206,7 @@ console.log("close button")
          let hash = true;
          let verificationStatus=true;
          let stakeId = reStakeData._id
-         console.log({reStakeData})
+        //  console.log({reStakeData})
          if(tabooToken>currentBalance){
            const amount = tabooToken-currentBalance;
 
@@ -237,7 +237,7 @@ console.log("close button")
 
          }
 
-           console.log('token',res)           
+          //  console.log('token',res)           
 
             if(res){
               
@@ -292,7 +292,7 @@ console.log("close button")
    })
 
    setOtpStatus(res);
-  console.log("otp status",{otpStatus})
+  // console.log("otp status",{otpStatus})
   if(res.data.status){
     
     toast.success("OTP has been sent to your registered email address")
@@ -313,7 +313,7 @@ console.log("close button")
   }
 
    }catch(e){
-    console.log({e})
+    // console.log({e})
     toast.error("Please update your mail first!")
     navigate('/update-profile')
    }
@@ -359,7 +359,7 @@ const handleVerify = async(e) => {
         
                       const days= calculateDays(moment(data.stakeinfo.enddate).format("YYYY-MM-DD"),new Date())
         
-                      console.log({days})
+                      // console.log({days})
         
                       setShowModal(false)
         
@@ -368,7 +368,7 @@ const handleVerify = async(e) => {
         
                         let res=await axios.post('https://blockchain.taboo.io/transfer-token',{stake_id:stake_id})
                     
-                        console.log("res",res)
+                        // console.log("res",res)
                         if(res.data.status){
                           setWithdrawData(false)
           
@@ -446,8 +446,8 @@ const handleVerify = async(e) => {
 }
   const handleWithdraw=async(data)=>{
      
-    console.log({otpStatus})
-    console.log({vStatus})
+    // console.log({otpStatus})
+    // console.log({vStatus})
 
     if(otpStatus){
         
@@ -479,7 +479,7 @@ const handleVerify = async(e) => {
      
                    const days= calculateDays(moment(data.stakeinfo.enddate).format("YYYY-MM-DD"),new Date())
      
-                   console.log({days})
+                  //  console.log({days})
      
                    setShowModal(false)
      
@@ -488,7 +488,7 @@ const handleVerify = async(e) => {
      
                      let res=await axios.post('https://blockchain.taboo.io/transfer-token',{stake_id:stake_id})
                  
-                     console.log("res",res)
+                    //  console.log("res",res)
                      if(res.data.status){
                        setWithdrawData(false)
        
@@ -562,7 +562,7 @@ const handleReStake = (data) => {
 
 }
 
-console.log(reStakeData)
+// console.log(reStakeData)
   useEffect(() => {
     //toast.warn("Hi, since the amount you are trying to withdraw is more than 5 million Taboos, due to security reasons, we need to verify your withdrawal claim. Please send us an email at support@taboo.io with a withdrawal request and we will whitelist this wallet for withdrawal within 24 hours.")
 
@@ -616,7 +616,7 @@ console.log(reStakeData)
 
                 <p>{lockUp?"If no option chosen within 7 days the stake will recommit at the previous level":""}</p>
               </div>
-              {console.log(stakesData && stakesData?.stakes.length)}
+              {/* {console.log(stakesData && stakesData?.stakes.length)} */}
               {loading && (
                 <div className="text-center">
                   <Spinner animation="border" role="status" />
