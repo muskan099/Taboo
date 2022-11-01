@@ -18,11 +18,8 @@ const Login = () => {
   // console.log(auth);
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const [formData, setFormData] = useState({
-    email: "",
-    password: "",
-  });
-  const { email, password } = formData;
+ 
+
   const[sendOtp,setSendOtp] = useState(false)
   const [loading,setLoading]=useState(false);
   const[otp,setOtp] = useState()
@@ -31,8 +28,8 @@ const Login = () => {
   );
   const [createStart, setCreateStart] = useState(false);
   const [name, setName] = useState("");
-  const formInputHandler = (e) =>
-    setFormData((p) => ({ ...p, [e.target.name]: e.target.value }));
+  const[email,setEmail] = useState("");
+  const[password,setPassword] = useState("")
 
   const submitHandler = async (e) => {
     e.preventDefault();
@@ -42,7 +39,10 @@ const Login = () => {
     }
     handleSendOtp();
     if(otp){
-
+let formData = {
+  email,
+  password
+}
       dispatch(userLoginSaga({ formData, navigate }));
     }
     // try {
@@ -98,7 +98,20 @@ const handleOtp = (e) => {
     setOtp(value)
   }
 };
+const handleEmail = (e) => {
+  let value = e.target.value;
 
+  if (value) {
+    setEmail(value);
+  }
+};
+const handlePassword = (e) => {
+  let value = e.target.value;
+
+  if (value) {
+    setPassword(value);
+  }
+};
   return (
     <>
       <div
@@ -126,7 +139,7 @@ const handleOtp = (e) => {
                   className="form-control"
                   placeholder="Enter email"
                   name="email"
-                  onChange={formInputHandler}
+                  onChange={(e) => handleEmail(e)}
                   value={email}
                 />
               </div>
@@ -137,7 +150,7 @@ const handleOtp = (e) => {
                   className="form-control"
                   placeholder="Enter password"
                   name="password"
-                  onChange={formInputHandler}
+                  onChange={(e) => handlePassword(e)}
                   value={password}
                 />
               </div>
