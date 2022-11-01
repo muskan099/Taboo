@@ -48,7 +48,7 @@ const authSlice = createSlice({
     },
 
     userloginSuccess: (state, action) => {
-      console.log(action.payload);
+      // console.log(action.payload);
       return {
         ...state,
         isLoading: false,
@@ -76,7 +76,7 @@ const authSlice = createSlice({
     },
 
     loginSuccess: (state, action) => {
-      console.log(action.payload);
+      // console.log(action.payload);
       return {
         ...state,
         isLoading: false,

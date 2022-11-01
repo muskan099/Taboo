@@ -25,7 +25,7 @@ const tabooRate=async(taboo,walletAddress)=>{
 
    const res = await axios.post("https://api.taboo.io/stakes", { address: walletAddress });
 
-   console.log("res",res.data.total_stake)
+  //  console.log("res",res.data.total_stake)
 
    taboo=taboo+parseFloat(res.data.total_stake)
  
@@ -35,7 +35,7 @@ const tabooRate=async(taboo,walletAddress)=>{
   // get the response body (the method explained below)
   //let data = await response.data();
 
-    console.log('data',response.data['taboo-token'].usd)
+    // console.log('data',response.data['taboo-token'].usd)
 
   var totalUsd=  response.data['taboo-token'].usd*taboo
   return totalUsd

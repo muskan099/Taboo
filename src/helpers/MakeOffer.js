@@ -46,7 +46,7 @@ export const MakeOffer = async (minPrice, token, from_account) => {
 
     return tx;
   } catch (e) {
-    console.log(e);
+    // console.log(e);
   }
   return tx;
 };

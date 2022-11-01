@@ -24,12 +24,12 @@ const StackList = () => {
   const [startDate, setStartDate] = useState(new Date());
  
   let current_date = moment(startDate, "YYYY-MM-DD").format().slice(0,10);
-  console.log({current_date})
+  // console.log({current_date})
   const [endDate, setEndDate] = useState(new Date());
   const [searchByDate,setSearchByDate] = useState(false)
   let current_date1 = moment(endDate, "YYYY-MM-DD").format().slice(0,10);
-  console.log("the current date1",{current_date1})
-  console.log("the current date", { current_date });
+  // console.log("the current date1",{current_date1})
+  // console.log("the current date", { current_date });
 
   const [totalNft, setTotalNft] = useState();
  
@@ -43,12 +43,12 @@ const StackList = () => {
  
   const getData = async (page, limit,skip=(page * limit) - limit) => {
     {console.log("get data called")}
-    {console.log(page)}
-    {console.log(limit)}
+    // {console.log(page)}
+    // {console.log(limit)}
 
     const res = await axios.get(`/AllstakeList?limit=${limit}&skip=${skip}`);
-    console.log(res.data)
-   console.log("the stakes info is ",res.data.stakes[0].stakeinfo)
+    // console.log(res.data)
+  //  console.log("the stakes info is ",res.data.stakes[0].stakeinfo)
    
     if (res.data) {
       setNft(res.data.stakes[0].list);
@@ -60,9 +60,9 @@ const StackList = () => {
       
     }
   };
-  console.log("total no. of nfts",{totalNft});
-  console.log({ nft });
-  console.log({ currentPage });
+  // console.log("total no. of nfts",{totalNft});
+  // console.log({ nft });
+  // console.log({ currentPage });
   useEffect(() => {
     
     getData(currentPage, 20);
@@ -155,7 +155,7 @@ const StackList = () => {
                          setStatus("all")
                         }}
                         >
-                        {console.log({status})}
+                        {/* {console.log({status})} */}
                         All
                       </Dropdown.Item>
                       <Dropdown.Item

@@ -67,7 +67,7 @@ const Header = () => {
     //let tier=punk>0?"3 Tier":"1 Tier"
     let balance = await TabooBalance(address[0]);
     let tier = await TierHelper(punk, balance,address[0]);
-    console.log("balance", balance);
+    // console.log("balance", balance);
 
     if (address && address.length) {
       dispatch(
@@ -111,24 +111,24 @@ const Header = () => {
     if (isAuthenticated) {
       let provider = await Provider();
       provider.on("accountsChanged", (accounts) => {
-        console.log(accounts);
+        // console.log(accounts);
         handleLogin();
       });
 
       // Subscribe to chainId change
       provider.on("chainChanged", (chainId) => {
-        console.log(chainId);
+        // console.log(chainId);
         handleLogin();
       });
 
       // Subscribe to provider connection
       provider.on("connect", (info) => {
-        console.log(info);
+        // console.log(info);
       });
 
       // Subscribe to provider disconnection
       provider.on("disconnect", (error) => {
-        console.log(error);
+        // console.log(error);
 
         handleLogout();
       });

@@ -104,10 +104,10 @@ const CreateNft = () => {
 
       const res = await axios.post('/profileUpdate',{
         name:name,
-        email:"muskankapoor14@gmail.com",
+        email:email,
         address:walletAddress
       })
-            toast.success("Nft created successfully!");
+            toast.success("Profile created successfully!");
       
             setCreateStart(false);
       
@@ -137,13 +137,13 @@ const handleVerify = async(e) => {
    })
   // toast.success("OTP Verifed")
   
-    if(res.status){
+    if(res.data.status){
 
       const res1 = await axios.post('/profileUpdate',{
         name:name,
         email:email,
         address:walletAddress,
-        last_name:"kapoor"
+        last_name:name
       })
             toast.success("Profile updated successfully!");
       

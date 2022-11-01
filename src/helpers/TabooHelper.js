@@ -20,7 +20,7 @@ export const TabooBalance=async(address)=>{
 
     const nftContract = new web3js.eth.Contract(abi, contractAddress);
 
-    console.log('data',address);
+    // console.log('data',address);
     
     let balance=0;
 
@@ -32,7 +32,7 @@ export const TabooBalance=async(address)=>{
           // let usd_balance= await tabooRate(balance)
           return balance;
        }catch(e){
-        console.log(e);
+        // console.log(e);
     }
     return balance;
     
@@ -48,7 +48,7 @@ const tabooRate=async(taboo)=>{
   // get the response body (the method explained below)
   //let data = await response.data();
 
-    console.log('data',response.data['taboo-token'].usd)
+    // console.log('data',response.data['taboo-token'].usd)
 
   var totalUsd=  response.data['taboo-token'].usd*taboo
   return totalUsd
@@ -60,7 +60,7 @@ export const tabooMarketData=async()=>{
 
   let res=await axios.get("https://api.coingecko.com/api/v3/coins/taboo-token?market_data=true");
 
-  console.log("market data",res.data.market_data);
+  // console.log("market data",res.data.market_data);
 
   let market_cap=res.data.market_data.market_cap.usd;
 

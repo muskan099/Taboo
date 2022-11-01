@@ -201,9 +201,9 @@ const CreateNft = () => {
       let ipfs_hash = await ipfsMint(contentImage, data);
       let voucher = await Mint(ipfs_hash, price);
 
-      console.log("voucher", voucher.address);
+      // console.log("voucher", voucher.address);
       const formData = new FormData();
-      console.log("file", file);
+      // console.log("file", file);
       formData.append("file", file);
       formData.append("name", name);
       formData.append("meta_tag", metaTag);

@@ -42,7 +42,7 @@ const ContactList = () => {
   const [show, setShow] = useState(false);
 
   const [ANft, setANft] = useState("");
-  console.log(ANft);
+  // console.log(ANft);
 
   const [auctionData, setAuctionData] = useState({
     minPrice: 0,
@@ -121,7 +121,7 @@ const ContactList = () => {
         buttonMessage: "Processing Please Wait...",
       }));
       let address = await Connect();
-      console.log("anft", ANft);
+      // console.log("anft", ANft);
       let tx = await createAuction(
         ANft.nftToken,
         auctionData.minPrice,
@@ -134,13 +134,13 @@ const ContactList = () => {
         ANft.ipfs,
         address[0]
       );
-      console.log("tx", tx);
+      // console.log("tx", tx);
       let data = { tx: tx };
       try {
         let trx = await Transaction(data);
         if (trx) {
           let token = await NFTBalance();
-          console.log("token", token);
+          // console.log("token", token);
           let res = await axios.post("/update-content", {
             content_id: ANft._id,
             status: "auction",
@@ -167,10 +167,10 @@ const[totalNft1,setTotalNft] = useState()
 
     if (res.data) {
      let response = res.data;
-     console.log(response)
+    //  console.log(response)
       setContactList(res.data.data[0].list);
       setTotalNft(res.data.data[0].totalRecords[0].count)
-      console.log(res.data.data[0].list);
+      // console.log(res.data.data[0].list);
     }
   };
 
@@ -259,7 +259,7 @@ const[totalNft1,setTotalNft] = useState()
                           setSearchValue(true)
                         }}
                       />
-                      {console.log(search)}
+                      {/* {console.log(search)} */}
                       <Button>
                         <img
                           className="search-icon"
@@ -287,11 +287,11 @@ const[totalNft1,setTotalNft] = useState()
                     </thead>
                     <tbody>
                   
-                 {console.log({contactList})}
-                 {console.log({search})}
+                 {/* {console.log({contactList})} */}
+                 {/* {console.log({search})} */}
           {searchValue ? contactList.filter((user) => {
-            {console.log(user.name)}
-            {console.log(search)}
+            // {console.log(user.name)}
+            // {console.log(search)}
             return user.name.includes(search)
           }).map((item, index) => (
                             <tr key={index}>

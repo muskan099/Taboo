@@ -20,7 +20,7 @@ export const ApproveETH = async (price, address) => {
 
   const nonce = await web3js.eth.getTransactionCount(address, "latest");
 
-  console.log("data", address);
+  // console.log("data", address);
   
   price=parseFloat(price)+parseFloat(price);
 
@@ -54,7 +54,7 @@ export const ApproveETH = async (price, address) => {
 
     return tx;
   } catch (e) {
-    console.log(e);
+    // console.log(e);
   }
   return tx;
 };

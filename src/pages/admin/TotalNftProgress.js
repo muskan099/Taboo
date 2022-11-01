@@ -14,13 +14,13 @@ import { CircularProgressbar } from 'react-circular-progressbar';
   
    const getData = async () => {
       const res = await axios.get("/nftSellsCount");
-      console.log(res.data);
+      // console.log(res.data);
       if (res.data) {
       
       setPercent(Math.floor(res.data.data.sold_persent))
       let totalNft = (res.data.data.all_nft)*0.1;
       setNftNumber(Math.ceil(totalNft))
-console.log({nftNumber})
+// console.log({nftNumber})
     }
 };
 

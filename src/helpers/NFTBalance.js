@@ -21,7 +21,7 @@ export const NFTBalance=async()=>{
 
     const nftContract = new web3js.eth.Contract(abi, contractAddress);
 
-    console.log('data',auctionAddress);
+    // console.log('data',auctionAddress);
     
     let balance=0;
 
@@ -32,7 +32,7 @@ export const NFTBalance=async()=>{
            
           return balance;
        }catch(e){
-        console.log(e);
+        // console.log(e);
     }
     return balance;
     

@@ -19,7 +19,7 @@ const Artist =()=>{
 const [nft,setNft]=useState('')
 
 const getData=async(page,limit=60,tier,search_tag,category)=>{
-	console.log('hh')
+	// console.log('hh')
 	let data={tier:tier,
               page:page,
 			  limit:limit,
@@ -28,7 +28,7 @@ const getData=async(page,limit=60,tier,search_tag,category)=>{
 			  
 	let res=await axios.post('/users/getCreaterUserList',data)
 
-	console.log('res',res.data)
+	// console.log('res',res.data)
 
 	 if(res.data.status){
 		 setNft(res.data.data)

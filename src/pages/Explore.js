@@ -96,7 +96,7 @@ const Explore = () => {
   );
 
   const { nft, isLoading, totalNfts } = useSelector((state) => state.nft);
-  console.log(totalNfts);
+  // console.log(totalNfts);
 
   const handleTierCheck = () => setTierCheck(false);
 
@@ -135,7 +135,7 @@ const Explore = () => {
     };
 
     dispatch(getNftSaga(data));
-    console.log({ data });
+    // console.log({ data });
   };
 
   // console.log("nft tier \n", nftTier);
@@ -192,7 +192,7 @@ const Explore = () => {
     }));
   }, [nft, paginationData.limit]);
 
-  console.log("Pagination Pages \n", paginationData.pages);
+  // console.log("Pagination Pages \n", paginationData.pages);
 
   const handleSearch = async (e) => {
     let value = e.target.value;
@@ -245,7 +245,7 @@ const Explore = () => {
   };
 
   const handleNFTRedirect = (data) => {
-    console.log("data", data);
+    // console.log("data", data);
 
     if (data.lock) {
       if (data.available_to.includes("3 Tier")) {
@@ -907,7 +907,7 @@ const Explore = () => {
                     />
                   </Col>
 
-                  {console.log("the nft data is ", nft)}
+                  {/* {console.log("the nft data is ", nft)} */}
                 </div>
               </div>
             </Col>

@@ -47,13 +47,13 @@ const NftDetails = () => {
   const [time, setTime] = useState(false);
 
   useEffect(() => {
-    console.log("inside use effect", nft);
+    // console.log("inside use effect", nft);
 
     if (nft && nft.bid_end) {
       let end_Date = nft.bid_end;
 
       // let time = new Date(end_Date);
-      console.log(`end date is ${end_Date}`);
+      // console.log(`end date is ${end_Date}`);
       let current_time = moment(end_Date, "YYYY-MM-DD HH:mm:ss").format();
       // current_time.setSeconds(current_time.getSeconds() + 600); // 10 minutes timer
       current_time = new Date(current_time);
@@ -137,14 +137,14 @@ const NftDetails = () => {
   const handleBuy = async (e) => {
     let price = parseFloat(nft.price);
 
-    console.log("price", price);
+    // console.log("price", price);
 
     if (!isAuthenticated) {
       toast.warn("Please connect wallet!");
     } else if (balance<price) {
       toast.warn("You don't have sufficient taboo token!");
     } else {
-      console.log("hello");
+      // console.log("hello");
       setBuyStart(true);
       // dispatch(createTransactionsSaga({address:walletAddress,content_id:nft._id}))
       // let tx = await axios.post("/make-order", {
@@ -152,12 +152,12 @@ const NftDetails = () => {
       // content_id: nft._id,
       // });
 
-      console.log("NFt", nft.forsale);
+      // console.log("NFt", nft.forsale);
 
       const for_sale = nft.forsale == "no" ? true : false;
 
       if (for_sale) {
-        console.log("no");
+        // console.log("no");
 
         let approveData = await TokenApproval(
           price,
@@ -167,14 +167,14 @@ const NftDetails = () => {
 
         let tx = await Transaction({ tx: approveData });
         if (tx) {
-          console.log("tx", tx);
+          // console.log("tx", tx);
           // let {tx}=transactions;
           let taboo_hash = true;
           try {
             // taboo_hash = await Transaction(tx.data);
           } catch (e) {
             setBuyStart(false);
-            console.log(e);
+            // console.log(e);
           }
 
           if (taboo_hash) {
@@ -213,7 +213,7 @@ const NftDetails = () => {
                 token: hashNFT.token,
               });
 
-              console.log("order", order);
+              // console.log("order", order);
 
               handleClose2();
               handleShow1();
@@ -239,7 +239,7 @@ const NftDetails = () => {
 
         let tx = await Transaction({ tx: approveData });
 
-        console.log("nft token", nft.token_id);
+        // console.log("nft token", nft.token_id);
         if (tx) {
           let hash = await Sale(walletAddress, nft.token_id, "1");
 
