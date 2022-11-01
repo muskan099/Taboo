@@ -39,11 +39,8 @@ const Login = () => {
     }
     handleSendOtp();
     if(otp){
-let formData = {
-  email,
-  password
-}
-      dispatch(userLoginSaga({ formData, navigate }));
+
+     
     }
     // try {
     //   const res = await axios.post("/users/login", formData);
@@ -56,28 +53,36 @@ let formData = {
   const handleSendOtp = async(e) => {
     setLoading(true)
 
-    const res = await axios.post('/sendOTP',{
+    const res = await axios.post('/send-authcode',{
       email:email,
-      address:walletAddress
+     
      })
-     setSendOtp(true)
+     if(res.data.status){
 
-     setLoading(false)
-
-     toast.success("OTP has been sent successfully to your email address")
+       setSendOtp(true)
+  
+       setLoading(false)
+  
+       toast.success("OTP has been sent successfully to your email address")
+     }else{
+      toast.error("Something went wrong");
+     }
   }
 const handleVerify = async(e) => {
   setLoading(true);
-  const res = await axios.post('/VerifyOtpByAddress',{
+  const res = await axios.post('/veriy-authcode',{
     email:email,
     otp:otp,
-    address:walletAddress
+   
    })
   // toast.success("OTP Verifed")
   
-    if(res.status){
-
-    
+    if(res.data.status){
+      let formData = {
+        email,
+        password
+      }
+      dispatch(userLoginSaga({ formData, navigate }));
             toast.success("OTP verified");
       
             setCreateStart(false);
