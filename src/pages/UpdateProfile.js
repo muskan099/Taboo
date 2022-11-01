@@ -140,7 +140,7 @@ const handleVerify = async(e) => {
     if(res.status){
 
       const res1 = await axios.post('/profileUpdate',{
-        name:"Muskan",
+        name:name,
         email:email,
         address:walletAddress,
         last_name:"kapoor"
