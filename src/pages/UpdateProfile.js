@@ -145,11 +145,20 @@ const handleVerify = async(e) => {
         address:walletAddress,
         last_name:name
       })
+          if(res1.data.status){
+
             toast.success("Profile updated successfully!");
       
             setCreateStart(false);
             setLoading(false)
             setTimeout(navigate("/explore"), 120000);
+
+          }else
+            {
+               toast.error("Email already linked with other account!");
+
+               setTimeout(navigate("/explore"), 120000);
+            }
          
     }else
       {     setLoading(false)

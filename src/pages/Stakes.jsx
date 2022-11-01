@@ -907,7 +907,7 @@ const handleReStake = (data) => {
                 <a href="">
                   <img src={"images/right-arrow.png"} />
                 </a>{" "}
-               {sendOtp?"Verify otp":"Update Profile" }
+               {sendOtp?"Enter otp sent on your mail":"Update Profile" }
               </h3>
               <div>
                 <Row>
