@@ -305,8 +305,13 @@ const BuyCoin = () => {
         address: walletAddress,
       });
       // toast.success("OTP Verifed")
-      setShowOtpVerify(false);
-      await handleBuyCoin();
+      if (res.data.status) {
+        setShowOtpVerify(false);
+        await handleBuyCoin();
+      } else {
+        toast.error("Please update your mail first!");
+        navigate("/update-profile");
+      }
     } else {
       setLoading(false);
 
