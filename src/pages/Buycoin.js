@@ -310,6 +310,7 @@ const BuyCoin = () => {
         await handleBuyCoin();
       } else {
         toast.error("You have entered wrong Otp");
+        setLoading(false);
       }
     } else {
       setLoading(false);
