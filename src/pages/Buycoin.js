@@ -309,8 +309,7 @@ const BuyCoin = () => {
         setShowOtpVerify(false);
         await handleBuyCoin();
       } else {
-        toast.error("Please update your mail first!");
-        navigate("/update-profile");
+        toast.error("You have entered wrong Otp");
       }
     } else {
       setLoading(false);
