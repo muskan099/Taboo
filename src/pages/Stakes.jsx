@@ -548,7 +548,7 @@ const handleVerify = async(e) => {
 
   async function getData() {
     setLoading(true);
-    const res = await axios.post("https://api.taboo.io/stakes", { address: walletAddress});
+    const res = await axios.post("/stakes", { address: walletAddress});
     if (res.status === 200) {
       setStakesData(res.data);
     }

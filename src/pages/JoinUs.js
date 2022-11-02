@@ -30,7 +30,7 @@ const JoinUs = () => {
   const [isSubmit, setIsSubmit] = useState(false);
 
   const [loading, setLoading] = useState(false);
-  const[isModel,setIsModel] = useState("false")
+  const [isModel, setIsModel] = useState("false");
 
   const handleData = (e) => {
     const { name, value } = e.target;
@@ -90,16 +90,12 @@ const JoinUs = () => {
         email: data.email,
         social_media: data.socialmedia,
         message: data.message,
-        isModel: isModel
+        isModel: isModel,
       };
-      
-     
+
       setLoading(true);
-      const res = await axios.post(
-        "https://test.taboo.io/users/join-us",
-        payload
-      );
-// console.log(res)
+      const res = await axios.post("/join-us", payload);
+      // console.log(res)
 
       if (res.data.status) {
         setLoading(false);
@@ -245,7 +241,7 @@ const JoinUs = () => {
                               name="isModel"
                               onChange={handleData}
                               onClick={() => {
-                                setIsModel("true")
+                                setIsModel("true");
                               }}
                               value=""
                             ></input>
