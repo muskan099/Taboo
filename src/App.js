@@ -114,7 +114,11 @@ function App() {
          
           <Route path="/ModelRegistration" element={<ModelRegistration />} />
           
-          <Route path="/ContactList" element={<ContactList />} />
+          <Route path="/ContactList" element={
+           <AdminRoute>
+            <ContactList />
+          </AdminRoute>
+          } />
 
           <Route path="/create-stake" element={<CreateStake />} />
 
