@@ -165,7 +165,7 @@ const Header = () => {
               <a href="https://opensea.io/collection/taboopunks" target={'_blank'} className="nav-link">
                 TabooPunks
               </a>
-              <Nav.Link>Magazine</Nav.Link>
+              {/* <Nav.Link>Magazine</Nav.Link> */}
               {/* <Nav.Link onClick={handleShow}>Magazine</Nav.Link> */}
               <a href="https://tabootoken.medium.com/" target={'_blank'} className="nav-link">
               News
