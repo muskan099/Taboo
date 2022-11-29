@@ -105,6 +105,7 @@ const Header = () => {
 
   const handleLogout = async () => {
     dispatch(logout({}));
+    navigate("/");
   };
 
   useEffect(async () => {
@@ -164,8 +165,12 @@ const Header = () => {
               <a href="https://opensea.io/collection/taboopunks" target={'_blank'} className="nav-link">
                 TabooPunks
               </a>
-              <Nav.Link onClick={handleShow}>Magazine</Nav.Link>
-              <Nav.Link onClick={handleShow}>News</Nav.Link>
+              <Nav.Link>Magazine</Nav.Link>
+              {/* <Nav.Link onClick={handleShow}>Magazine</Nav.Link> */}
+              <a href="https://tabootoken.medium.com/" target={'_blank'} className="nav-link">
+              News
+              </a>
+              {/* <Nav.Link href="/https://tabootoken.medium.com/">News</Nav.Link> */}
               <Link to="/about" className="nav-link">About</Link>
               <Link to="/models" className="nav-link">Models</Link>
 

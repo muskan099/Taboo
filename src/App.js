@@ -57,10 +57,10 @@ function App() {
 
           <Route path="/explore" element={<Explore />} />
 
-          <Route path="/magzine" element={<Magzine />} />
+          {/* <Route path="/magzine" element={<Magzine />} /> */}
           <Route path="/join-us" element={<JoinUs />} />
 
-          <Route path="/news" element={<News />} />
+          {/* <Route path="/news" element={<News />} /> */}
 
           <Route path="/transactions" element={<TransactionPage />} />
 
@@ -98,10 +98,22 @@ function App() {
               </AdminRoute>
             }
           />
-
-          <Route path="/TransactionList" element={<TransactionList />} />
+           <Route
+            path="/TransactionList"
+            element={
+              <AdminRoute>
+                <TransactionList />
+              </AdminRoute>
+            }
+          />
+         <Route path="/StackList" element={
+           <AdminRoute>
+             <StackList />
+           </AdminRoute>
+         } />
+         
           <Route path="/ModelRegistration" element={<ModelRegistration />} />
-          <Route path="/StackList" element={<StackList />} />
+          
           <Route path="/ContactList" element={<ContactList />} />
 
           <Route path="/create-stake" element={<CreateStake />} />
