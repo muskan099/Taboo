@@ -212,7 +212,7 @@ const TransactionPage = () => {
    setIsLoading(true)
     let hash = await WithdrawSale(walletAddress, saleData.token_id);
     console.log("hash",hash);
-    if (!hash) {
+    if (hash) {
       let res = await axios.post("/update-content", {
         content_id: saleData._id,
         status: "sold",
