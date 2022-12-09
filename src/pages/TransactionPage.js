@@ -209,9 +209,10 @@ const TransactionPage = () => {
   };
 
   const submitWithdrawSale = async () => {
+   setIsLoading(true)
     let hash = await WithdrawSale(walletAddress, saleData.token_id);
-
-    if (hash) {
+    console.log("hash",hash);
+    if (!hash) {
       let res = await axios.post("/update-content", {
         content_id: saleData._id,
         status: "sold",
@@ -220,8 +221,11 @@ const TransactionPage = () => {
       });
 
       setShowSale(false);
-
+      setIsLoading(false)
       toast.success("Transaction submitted successfully!");
+    }else{
+      toast.error("Submit withdraw failed")
+      setIsLoading(false)
     }
   };
 
@@ -325,8 +329,8 @@ const TransactionPage = () => {
                            
 
                                          <button disabled={item.contentinfo.status=="sold"&&item.isOwner=="yes"?false:true} onClick={()=>handleCreateSale(item)}>{item.isOwner=="no"?"Sold":"Sell"}</button>
- 
-                                         <button disabled={item.contentinfo.status=="active"&&item.isOwner=="yes"?false:true} onClick={()=>handleWithdrawSale(item.contentinfo)}>Cancel</button>
+                                          {/* disabled={item.contentinfo.status=="active"&&item.isOwner=="yes"?false:true} */}
+                                         <button  onClick={()=>handleWithdrawSale(item.contentinfo)}>Cancel</button>
 
                                        
 
@@ -527,7 +531,7 @@ const TransactionPage = () => {
             <div className="outer-div">
               Are You sure you want to withdraw your Sale.
             </div>
-            <button onClick={() => submitWithdrawSale()}>Submit</button>
+            <button onClick={() => submitWithdrawSale()}>{isLoading ? "Processing":"Submit"}</button>
             <button onClick={() => setShowSale(false)}>Cancel</button>
           </Modal.Body>
         </Modal>
