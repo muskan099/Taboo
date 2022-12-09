@@ -219,10 +219,14 @@ const TransactionPage = () => {
         token: saleData.token_id,
         bid_price: saleData.price,
       });
-
-      setShowSale(false);
+   if(res){
+     setShowSale(false);
+     setIsLoading(false)
+     toast.success("Transaction submitted successfully!");
+     }else{
+      toast.error("Submit withdraw failed")
       setIsLoading(false)
-      toast.success("Transaction submitted successfully!");
+     }
     }else{
       toast.error("Submit withdraw failed")
       setIsLoading(false)
