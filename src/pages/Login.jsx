@@ -92,7 +92,7 @@ const handleVerify = async(e) => {
     }else
       {     setLoading(false)
 
-        toast.error("Otp verification failed!");
+        toast.error("OTP verification failed!");
       }
 
 }
@@ -132,7 +132,7 @@ const handlePassword = (e) => {
 <Form.Control
   type="text"
   onKeyUp={(e) => handleOtp(e)}
-  placeholder="Enter Otp"
+  placeholder="Enter OTP"
 />
 </Form.Group>
                      
