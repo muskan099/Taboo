@@ -40,6 +40,7 @@ import Buycoin from "./pages/Buycoin";
 import CreateConfig from "./pages/admin/CreateConfig";
 import AboutUsFooter from "./pages/AboutUsFooter";
 import UpdateProfile from "./pages/UpdateProfile";
+
 function App() {
   const [path, setPath] = useState();
   useEffect(() => {
@@ -51,7 +52,9 @@ function App() {
         <ToastContainer />
         <Header />
         <Routes>
+
           <Route path="/" element={<Homepage />} />
+          <Route path="*" element={<Homepage />}/>
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<SignUp />} />
 
