@@ -163,7 +163,7 @@ const handleVerify = async(e) => {
     }else
       {     setLoading(false)
 
-        toast.error("Otp verification failed!");
+        toast.error("OTP verification failed!");
       }
 
 }
@@ -183,7 +183,7 @@ const handleVerify = async(e) => {
                 <a href="">
                   <img src={"images/right-arrow.png"} />
                 </a>{" "}
-               {sendOtp?"Verify Otp":"Update Profile" }
+               {sendOtp?"Verify OTP":"Update Profile" }
               </h3>
               <div>
                 <Row>
@@ -194,7 +194,7 @@ const handleVerify = async(e) => {
 <Form.Control
   type="text"
   onKeyUp={(e) => handleOtp(e)}
-  placeholder="Enter Otp"
+  placeholder="Enter OTP"
 />
 </Form.Group>
                      
