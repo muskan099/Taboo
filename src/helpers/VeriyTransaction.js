@@ -46,7 +46,7 @@ export const VerifyTransactions = async (hash, amount) => {
 
     receiverWallet = receiverWallet.toLowerCase();
 
-    let adminWalletAddress = "0xeacA827FFd13DE31e4BD03Ae12D17064546d745a";
+    let adminWalletAddress = "0x59FaC1ed3C7E0e00C5f865c81e783698Eb146e51";
     adminWalletAddress = adminWalletAddress.toLowerCase();
 
     if (amount === txAmount && receiverWallet === adminWalletAddress) {
