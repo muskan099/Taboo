@@ -169,7 +169,7 @@ const handleVerify = async(e) => {
 }
   return (
     <>
-      <section className="crate-page-sec">
+      <section className="crate-page-sec update-profile-box">
         <Container>
           <Row>
           <div className="profile-img-stakes">
@@ -178,16 +178,17 @@ const handleVerify = async(e) => {
 
              
               </div>
-            <Col className="justify-content-md-center padding-container">
-              <h3 className="main-heading-inner ">
+            <Col className="justify-content-md-center">
+              
+              <div>
+                <Row>
+                  <Col md={6} sm={6} xs={12} className="m-auto">
+                  <h3 className="main-heading-inner ">
                 <a href="">
                   <img src={"images/right-arrow.png"} />
                 </a>{" "}
                {sendOtp?"Verify OTP":"Update Profile" }
               </h3>
-              <div>
-                <Row>
-                  <Col md={8} sm={8} xs={12}>
                     <div className="outer-create-form">
                     
                      {sendOtp?    <Form.Group className="mb-4">
@@ -254,9 +255,7 @@ const handleVerify = async(e) => {
                       </div>
                     </div>
                   </Col>
-                  <Col md={4} sm={4} xs={12}>
-                   
-                  </Col>
+                 
                 </Row>
               </div>
             </Col>

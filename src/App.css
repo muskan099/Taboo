@@ -5375,3 +5375,13 @@ body , html{
 .profile-upper-banner .width-set .inner-width{
   width:50%;
 }
+
+@media (max-width: 768px){
+  .update-profile-box{
+    padding-top: 20px;
+    }
+    .update-profile-box .profile-img-stakes {
+      word-break: break-all;
+    }
+}
+
